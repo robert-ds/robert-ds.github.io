@@ -2,7 +2,7 @@
 
 [![Twitter Follow](https://img.shields.io/twitter/follow/robertandres14?color=%231DA1F2&label=robert-ds&logo=twitter&style=for-the-badge)](https://twitter.com/robertandres14)
 
-[<img src="https://s2.gifyu.com/images/foAiUnw.gif">][website]
+[<img style="align: center" src="https://s2.gifyu.com/images/foAiUnw.gif">][website]
 
 ## Systems Engineer, Web Developer :earth_americas: And Android Developer :cactus:
 
