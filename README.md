@@ -2,9 +2,16 @@
 
 [![Twitter Follow](https://img.shields.io/twitter/follow/robertandres14?color=%231DA1F2&label=robert-ds&logo=twitter&style=for-the-badge)](https://twitter.com/robertandres14)
 
-[<img src="https://gifyu.com/image/U3Da">][website]
+[<img src="https://s2.gifyu.com/images/foAiUnw.gif">][website]
 
-## Systems Engineer and Web Developer :computer:
+## Systems Engineer, Web Developer And Android Developer :computer:
+
+-
+-
+-
+- ***
+
+## Coding
 
 <!--links-->
 
