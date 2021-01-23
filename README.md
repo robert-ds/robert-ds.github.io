@@ -4,7 +4,7 @@
 
 [<img src="https://gifyu.com/image/U3Da">][website]
 
-##Ingeniering System an Web Developer :computer:
+## Systems Engineer and Web Developer :computer:
 
 <!--links-->
 
