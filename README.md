@@ -1,8 +1,8 @@
-# :raised_hand: Hi, Welcome to [Robert Vásquez][website] :point_left: Here
+# <img src="https://github.com/TheDudeThatCode/TheDudeThatCode/blob/master/Assets/Hi.gif" width="29px"> Hi, Welcome to [Robert Vásquez][website] :point_left: Here
 
 [![Twitter Follow](https://img.shields.io/twitter/follow/robertandres14?color=%231DA1F2&label=robert-ds&logo=twitter&style=for-the-badge)](https://twitter.com/robertandres14)
 
-[<img style="align: center" src="https://s2.gifyu.com/images/foAiUnw.gif">][website]
+[<img align="center" src="https://s2.gifyu.com/images/foAiUnw.gif">][website]
 
 ## Systems Engineer, Web Developer :earth_americas: And Android Developer :cactus:
 
@@ -15,7 +15,7 @@
 
 ## :hammer: Coding
 
-<img align="left" alt="HTML5" width="26px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/html/html.png" /><br>
+<img align="left" alt="HTML5" width="26px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/html/html.png" />
 
 <img align="left" alt="HTML5" width="26px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/css/css.png" /><br>
 
