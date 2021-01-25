@@ -2,9 +2,9 @@
 
 [![Twitter Follow](https://img.shields.io/twitter/follow/robertandres14?color=%231DA1F2&label=robert-ds&logo=twitter&style=for-the-badge)](https://twitter.com/robertandres14)
 
-[<img align="center" src="https://s2.gifyu.com/images/foAiUnw.gif">][website]
+[<img align="center" src="https://s2.gifyu.com/images/foAiUnw.gif" />][website]
 
-## Systems Engineer, Web Developer <img src="https://github.com/TheDudeThatCode/TheDudeThatCode/blob/master/Assets/Earth.gif"> And Android Developer :cactus:
+## Systems Engineer, Web Developer <img src="https://github.com/TheDudeThatCode/TheDudeThatCode/blob/master/Assets/Earth.gif" width="30px" /> And Android Developer :cactus:
 
 - Passionate about web technologies
 - Self-taught and researcher of new technologies
@@ -13,7 +13,7 @@
 
 ---
 
-## <img src="https://github.com/TheDudeThatCode/TheDudeThatCode/blob/master/Assets/Developer.gif"> Coding
+## <img src="https://github.com/TheDudeThatCode/TheDudeThatCode/blob/master/Assets/Developer.gif" width="30px" /> width="30px"> Coding
 
 <img align="left" alt="HTML5" width="26px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/html/html.png" />
 
