@@ -4,7 +4,7 @@
 
 [<img align="center" src="https://s2.gifyu.com/images/foAiUnw.gif" />][website]
 
-## Systems Engineer, Web Developer <img src="https://github.com/TheDudeThatCode/TheDudeThatCode/blob/master/Assets/Earth.gif" width="30px" /> And Android Developer :cactus:
+## Systems Engineer, Web Developer <img src="https://github.com/TheDudeThatCode/TheDudeThatCode/blob/master/Assets/Earth.gif" width="30px" /> And Android Developer <img src="https://github.com/TheDudeThatCode/TheDudeThatCode/blob/master/Assets/Rocket.gif" width="30px"/>
 
 - Passionate about web technologies
 - Self-taught and researcher of new technologies
@@ -13,7 +13,7 @@
 
 ---
 
-## <img src="https://github.com/TheDudeThatCode/TheDudeThatCode/blob/master/Assets/Developer.gif" width="30px" /> Coding
+## <img src="https://github.com/TheDudeThatCode/TheDudeThatCode/blob/master/Assets/Developer.gif" width="60px" /> Coding
 
 <img align="left" alt="HTML5" width="26px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/html/html.png" />
 
