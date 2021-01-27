@@ -12,7 +12,7 @@
 
 <!--Acerca de mi-->
 
-## Systems Engineer, Web Developer <img src="https://github.com/TheDudeThatCode/TheDudeThatCode/blob/master/Assets/Earth.gif" width="30px" /> And Android Developer <img src="https://github.com/TheDudeThatCode/TheDudeThatCode/blob/master/Assets/Rocket.gif" width="30px"/>
+## Systems Engineer, Web Developer <img src="https://github.com/TheDudeThatCode/TheDudeThatCode/blob/master/Assets/Earth.gif" width="30px" /> And Android Developer
 
 - Passionate about web technologies
 - Self-taught and researcher of new technologies
@@ -41,7 +41,11 @@
 
 <!--Stad Animated-->
 
+## <img src="https://github.com/TheDudeThatCode/TheDudeThatCode/blob/master/Assets/Rocket.gif" width="30px"/> Stats
+
 [![Robert Vásquez GitHub stats](https://github-readme-stats.vercel.app/api?username=robert-ds&show_icons=true&theme=tokyonight)](https://github.com/robert-ds/github-readme-stats)
+
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=robert-ds&layout=compact)](https://github.com/robert-ds/github-readme-stats)
 
 <!--links-->
 
