@@ -35,7 +35,13 @@
 
 <img align="left" alt="java" width="30px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/java/java.png" />
 
-<img align="left" alt="mysql" width="30px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/mysql/mysql.png" />
+<img align="left" alt="mysql" width="30px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494dv/topics/mysql/mysql.png" /><br/>
+
+---
+
+<!--Stad Animated-->
+
+[![Robert Vásquez GitHub stats](https://github-readme-stats.vercel.app/api?username=robert-ds&show_icons=true&theme=tokyonight)](https://github.com/robert-ds/github-readme-stats)
 
 <!--links-->
 
