@@ -6,13 +6,16 @@
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
 		rel="stylesheet">
 	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="css/tablet.css" media="(min-width: 768px)" />
+	<link rel="stylesheet" href="css/desktop.css" media="(min-width: 1024px)" />
+
 </head>
 <body>
 		<!--Main section-->
 		<div class="bg-img">
-			<section class="content">
+			<section class="main-content">
 				<!--Menu section-->
-				<article class="content-menu-lang">
+				<article class="main-content--menu">
 					
 					<span id="burguer-button" class="burguer-button icon-menu"></span>
 					
@@ -26,23 +29,22 @@
 						</ul>
 					</nav>
 
-				<!-- Language select -->
-				<select name="" id="">
-					<span class="en"></span><option value="">ENG</option>
-					<span class="es"></span><option value="">ESP</option>
-				</select>
-			
+					<!-- Language select -->
+						<select name="countries" id="countries" class="lang">
+							<option value="">Language</option>
+							<option value="usa"> ENG</option>
+							<option value="spain">ESP</option>
+						</select>
+
 				</article>
 
 				<!-- Imagen section and descriptive text -->
 				<article class="img-text">
 					
 					<div class="img-content">
-						<img src="" alt="my-image">
+						<p>[System enginner, developer web and mobile]</p>
+						<p>[Imagine - Model - Program]</p>
 					</div>
-
-					<p>System enginner, developer web and mobile</p>
-					<p>[Imagine - Model - Program]</p>
 
 				</article>
 
@@ -59,7 +61,64 @@
 
 		<section class="portafolio"></section>
 		<section class="blog"></section>
-		<footer class="footer"></footer>
+	<footer class="footer"></footer>
+	
+	<script src="js/hammer.min.js"></script>
+	<script src="js/blazy.min.js"></script>
+	<script type="text/javascript">
+
+		/* Script Para Comprobar si el Navegador Soporta Lazzy Loading */
+		/* function loading() {
+			if ('loading' in HTMLImageElement.prototype) {
+				console.log('El navegador soporta `lazy-loading`...');
+			} else {
+				console.log('`lazy-loading` no soportado...');
+			}
+		} */
+
+		var consulta = window.matchMedia('(max-width: 467px)');
+		consulta.addListener(mediaQuery);
+
+		var $burguerButton = document.getElementById('burguer-button');
+		var $menu = document.getElementById('menu');
+
+		function toggleMenu() {
+			$menu.classList.toggle('active');
+		};
+
+		function showMenu() {
+			$menu.classList.add('active');
+		};
+
+		function hideMenu() {
+			$menu.classList.remove('active');
+		};
+
+		function mediaQuery() {
+
+			if (consulta.matches) {
+				console.log("Se Cumplio la Condición");
+				$burguerButton.addEventListener('touchstart', toggleMenu);
+			} else {
+				console.log("No Se Cumplio la Condición")
+				$burguerButton.removeEventListener('touchstart', toggleMenu);
+			}
+		}
+
+		mediaQuery();
+
+		/* Lazy Loading */
+		var bLazy = new Blazy({
+			selector: 'img'
+		});
+
+		/* Gestos Touch */
+		var $body = document.body;
+
+		var gestos = new Hammer($body);
+		gestos.on('swipeleft', hideMenu);
+		gestos.on('swiperight', showMenu);
+	</script>
 	
 </body>
 </html>
