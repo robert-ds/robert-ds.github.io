@@ -165,9 +165,10 @@ select.lang option {
   padding-left: 30px;
 }
 
-select#countries option[value="usa"] {
-  background-image: url(../assets/icons/usa.svg);
+select#countries option[value="usa"]:before {
+  background-image: url("../assets/icons/usa.svg");
 }
+
 /*Main image*/
 .img-text {
   width: 280px;
@@ -204,7 +205,7 @@ select#countries option[value="usa"] {
   color: var(--text-white);
 }
 
-/*Call to ation*/
+/*Main call to ation*/
 .boton {
   width: 50px;
   height: 100px;
@@ -237,5 +238,5 @@ select#countries option[value="usa"] {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  margin-top: 15px;
+  margin-top: 10px;
 }
