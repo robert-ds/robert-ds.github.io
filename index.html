@@ -19,7 +19,7 @@
 					
 					<span id="burguer-button" class="burguer-button icon-menu"></span>
 					
-					<nav class="menu">
+					<nav id="menu" class="menu">
 						<ul>
 							<li><a href="#">Profile</a></li>
 							<li><a href="#">Briefcase</a></li>
@@ -32,7 +32,7 @@
 					<!-- Language select -->
 						<select name="countries" id="countries" class="lang">
 							<option value="">Language</option>
-							<option value="usa"> ENG</option>
+							<option value="usa">ENG</option>
 							<option value="spain">ESP</option>
 						</select>
 
@@ -51,9 +51,11 @@
 				<!-- Main buttom -->
 				<article class="boton">
 					<p>Continue</p>
-					<div class="main-boton">
-						<span class="arrow-down"></span>
-					</div>
+					<button class="main-boton">
+						<a href="#">
+							<span class="arrow-down"></span>
+						</a>
+					</button>
 				</article>
 			
 			</section>
@@ -76,7 +78,7 @@
 			}
 		} */
 
-		var consulta = window.matchMedia('(max-width: 467px)');
+		var consulta = window.matchMedia('(max-width: 480px)');
 		consulta.addListener(mediaQuery);
 
 		var $burguerButton = document.getElementById('burguer-button');
