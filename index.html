@@ -30,21 +30,23 @@
 					</nav>
 
 					<!-- Language select -->
-						<select name="countries" id="countries" class="lang">
+					<div id="google_translate_element" class="google"></div>
+
+						<!-- <select name="countries" class="lang">
 							<option value="">Language</option>
 							<option value="usa">ENG</option>
 							<option value="spain">ESP</option>
-						</select>
+						</select> -->
 
 				</article>
 
 				<!-- Imagen section and descriptive text -->
 				<article class="img-text">
 					
-					<div class="img-content">
-						<p>[System enginner, developer web and mobile]</p>
-						<p>[Imagine - Model - Program]</p>
-					</div>
+					<div class="img-content"></div>
+
+					<p>[System enginner, developer web and mobile]</p>
+					<p>[Imagine - Model - Program]</p>
 
 				</article>
 
@@ -67,6 +69,17 @@
 	
 	<script src="js/hammer.min.js"></script>
 	<script src="js/blazy.min.js"></script>
+
+	<script type="text/javascript">
+		function googleTranslateElementInit() {
+			new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'en,fr,es', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, gaTrack: true }, 'google_translate_element');
+		}
+	</script>
+	
+	<script type="text/javascript"
+		src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+	</script>
+
 	<script type="text/javascript">
 
 		/* Script Para Comprobar si el Navegador Soporta Lazzy Loading */
