@@ -61,7 +61,7 @@ body {
   min-width: 320px;
   max-width: 480px;
   height: 100vh;
-  background-image: url("../assets/imgs/background-mobile.png");
+  background-image: url("../assets/imgs/background-mobile.svg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -159,14 +159,22 @@ body {
   font-weight: bold;
 }
 
-select.lang option {
-  background-repeat: no-repeat;
-  background-position: bottom left;
-  padding-left: 30px;
+.google {
+  display: inline-block;
+  position: absolute;
+  width: 105px;
+  height: 24px;
+  right: 0;
+  margin-right: 18px;
 }
 
-select#countries option[value="usa"]:before {
-  background-image: url("../assets/icons/usa.svg");
+.skiptranslate.goog-te-gadget {
+  position: absolute;
+  right: 0;
+  font-family: "Poppins";
+  font-size: 8px;
+  white-space: nowrap;
+  color: var(--black);
 }
 
 /*Main image*/
@@ -189,25 +197,18 @@ select#countries option[value="usa"]:before {
   border: 5px solid var(--text-white);
 }
 
-.img-text p:first-child {
+.img-text p {
   display: inline-block;
-  margin-top: 260px;
-  font-size: 1em;
-  font-weight: 800;
-  line-height: 1.8rem;
-  color: var(--text-white);
-}
-
-.img-text p:nth-child(2) {
-  display: inline-block;
-  font-size: 1em;
-  font-weight: 500;
+  margin-top: 12px;
+  font-size: 1.3em;
+  font-weight: 700;
+  line-height: 0.9rem;
   color: var(--text-white);
 }
 
 /*Main call to ation*/
 .boton {
-  width: 50px;
+  width: 100px;
   height: 100px;
   margin: 0 auto;
   text-align: center;
@@ -215,7 +216,7 @@ select#countries option[value="usa"]:before {
 
 .boton p {
   display: inline-block;
-  font-size: 1em;
+  font-size: 0.8rem;
   font-weight: 800;
   line-height: 1.8rem;
   color: var(--text-white);
