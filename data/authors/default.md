@@ -1,15 +1,15 @@
 ---
-name: Raphaël Chelly
-avatar: /static/images/avatar.jpg
-occupation: Marketing Project Manager
-company: Octopia
-email: hi@raphaelchelly.com
-twitter: https://twitter.com/raphael_chelly
-linkedin: https://www.linkedin.com/raphael.chelly
-github: https://github.com/raphaelchelly
+name: Robert Vásquez
+avatar: /static/images/avatar.png
+occupation: System Engineer 🏆 | FullStack Developer 💻 | DevOps 🚀
+company: @robert-ds
+email: vasquezrober09@gmail.com
+twitter: https://twitter.com/robertds_
+linkedin: https://www.linkedin.com/in/robert-vasquez
+github: https://github.com/robert-ds
 ---
 
-Graduated from a **Master in Management** at Excelia Business School, I am passionate about **digital and new technologies.** Creative, proactive, versatile and with a good understanding of digital and marketing, **I am confident in my ability to tackle new missions.** Organized and rigorous, I possess a range of key business and interpersonal skills that I have developed through my professional experiences.
+👋 Greetings, **I'm Robert Vásquez**, recently graduated as a **system engineer** 🚀. During my time as a student 📚, I showed interest in **technological infrastructures** and **software development** 💻. At this stage I carried out several projects for the installation of small computer communication networks, installation and configuration of servers, as well as small **web applications**.
 
 - [💼 Experience](#experience)
 - [🧑🏻‍💻 Side Project](#side-project)
@@ -19,47 +19,35 @@ Graduated from a **Master in Management** at Excelia Business School, I am passi
 
 ## Experience
 
-### Marketing Project Manager @**[Octopia](https://octopia.com)**
+### Networking Specialist **@UNEFA**
 
-`Oct 2021 - Today`
+`Nov 2018 -Seasonal`
 
-Responsible for **the acquisition and marketing development of the Octopia Products offer** in order to develop the activity and e-commerce sales in France and internationally.
-
-### Marketing Project Manager @[Microsoft](https://microsoft.net)
-
-`Sept 2019 - Sept 2020`
-
-Participation in the implementation of Microsoft France’s marketing plan for the Education audience (Primary/Secondary and Higher Education) in order to **develop the network of teachers and partner schools.**
-
-### Digital Project Manager @[Havana Club International](https://havana-club.com)
-
-`Jan 2019 - Jul 2019`
-
-As part of the International Marketing team and under the responsibility of the Senior Brand Manager, I participate in the launch and follow-up of **international digital projects** for Havana Club International, a subsidiary of Pernod Ricard group.
-
-### Digital Project Manager @[Pernod Ricard France](https://www.pernod-ricard.com/fr/nos-marches/france)
-
-`Jul 2018 - Jan 2019`
-
-Support to the Digital Manager on the deployment of the **digital strategy of the Havana Club brand on the French market.**
+Installation and configuration of the structured wired network in the **technological infrastructure** of the **Department of Technology** and Secretary of UNEFA
 
 ## Side Project
 
-### Cofounder & Project Manager @[Fabrilab](https://fabrilab.net)
+### Batatabit web site @[Batatabit](https://github.com/robert-ds/Batatabit)
 
-`Sept 2017 - Today`
+`Jul 2021 - Seasonal`
 
-Creation of a communication agency in the form of a micro-enterprise. Fabrilab supports self-employed and small businesses in their **digital transition.**
+**Website built as mobile first**. The main topic is the exchange of cryptocurrencies.
+The technologies involved were html, css and javascript
 
-- Main clients : TotalEnergies, Solis International, SCEBOG (1st agricultural cooperative of Guyana)...
+- Personal Project
 
+### NPM Random Trabalengua Package @[Package](https://github.com/robert-ds/npm-random-trabalengua)
+
+`May 2021 - Seasonal`
+
+**Random Twister** is an npm package that allows you to get a text string in Spanish with a tongue twister.
+
+- Personal Project
 ## Education
 
-### Master in Management @[Excelia BS](https://www.excelia-group.com)
+### National Experimental Polytechnic University of the Armed Forces @[UNEFA](https://www.https://www.unefa.edu.ve/)
 
-`Sept 2016 - Sept 2020`
-
-Member of the «Conférence des Grandes Ecoles», AMBA, AACSB, EQUIS and EPAS accredited. Graduate of a master in management, specialising in Marketing & Brand Management.
+`Jun 2014 - Jun 2020`
 
 ## Skills
 
@@ -67,14 +55,16 @@ Member of the «Conférence des Grandes Ecoles», AMBA, AACSB, EQUIS and EPAS ac
 
 - 🇬🇧 English
 - 🇪🇸 Spanish
-- 🤹🏼‍♂️ Project Management
-- 🌐 WordPress
-- 💻 Digital Marketing
-- 🎨 Adobe CC
-- 🔍 SEO
-- 📊 Microsoft 365
-- 📨 E-CRM Management
-- 📱 Social Media Management
+- ⚡  Javascript
+- ⚛  React
+- 💚 Node
+- 🐍 Python
+- 🍵 Java
+- ⛅ Cloud
+- 💧 Mysql
+- 🐘 Postgresql
+- 🌱 MongoDB
+- 🐳 Docker
 
 ### Soft Skills:
 
@@ -84,33 +74,18 @@ Member of the «Conférence des Grandes Ecoles», AMBA, AACSB, EQUIS and EPAS ac
 
 ## Interests
 
-### Sports:
+### Percussion:
 
-- 🏄🏽‍♂️ Bodyboarding & Surfing
-- 🏊🏼‍♂️ Swimming
+- 🇧🇷 Samba
+- 🪘 Latin Percussion
 
 |                                                       |                                         |
 | ----------------------------------------------------- | --------------------------------------- |
-| ![Bodyboarding](/static/images/bodyboarding-raph.jpg) | ![Wave](/static/images/wave-france.jpg) |
+| ![Bodyboarding](/static/images/samba.png) | ![Wave](/static/images/latin-percussion.png) |
 
 ### Others:
 
-- 🗺️ Discovery and Traveling
-- 📷 Photography
+- 🎬 Movie
+- 📚 Books
 - 🎶 Music
-- ♟️ Chess ➡️ [Chess.com](https://www.chess.com/member/raphythe)
 
-### Humanitarian:
-
-- 🤝🏼 Volunteer teacher in Cambodia in 2017 for 3 months in a children’s centre **"Les Enfants de Klang Leu".** As a teacher, I taught French, English and IT. Practice hygiene rules and help with the daily life of the center.
-
-### Other Experiences:
-
-- **2021:** TikTok Business for Enterprise training
-- **2020:** Facebook Spark AR Tutorials
-- **2018:** Bike courier for Deliveroo and Uber Eats
-- **2018:** Ambassador [ASUS](https://www.asus.com/fr/) Vivobook S and ASUS ZenFone 5
-- **2017-2018:** Digital Project Manager of the Student Office of Excela Business School
-- **2017:** Hotel receptionist in Australia at the [Nomads Noosa Hotel](https://nomadsworld.com/australia/nomads-noosa/)
-- **2016-2017:** Bank teller at [La Poste Group](https://www.lapostegroupe.com/fr) (replacement during the holidays)
-- **2015:** Online advisor at [CIC](https://www.cic.fr/fr/index.html) (6-month fixed-term contract)
