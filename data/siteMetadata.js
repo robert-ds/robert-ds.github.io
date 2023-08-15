@@ -1,6 +1,6 @@
 const siteMetadata = {
   title: 'Robert Vásquez - Software Developer',
-  author: 'Raphaël Chelly',
+  author: 'Robert Vásquez',
   headerTitle: 'Robert Vásquez',
   description: 'Portfolio of a fullstack develooper',
   language: 'en-us',
@@ -10,7 +10,7 @@ const siteMetadata = {
   siteLogo: '/static/images/robert-logo.png',
   image: '/static/images/avatar.jpg',
   socialBanner: '/static/images/twitter-card.png',
-  email: 'vasquezrober09@gmail.com.com',
+  email: 'vasquezrober09@gmail.com',
   github: 'https://github.com/robert-ds/',
   twitter: 'https://twitter.com/robertds_',
   linkedin: 'https://www.linkedin.com/in/robert-vasquez',

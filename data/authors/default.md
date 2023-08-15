@@ -2,7 +2,7 @@
 name: Robert Vásquez
 avatar: /static/images/avatar.png
 occupation: System Engineer 🏆 | FullStack Developer 💻 | DevOps 🚀
-company: @robert-ds
+company: robert-ds
 email: vasquezrober09@gmail.com
 twitter: https://twitter.com/robertds_
 linkedin: https://www.linkedin.com/in/robert-vasquez
@@ -54,7 +54,6 @@ The technologies involved were html, css and javascript
 ### Hard Skills:
 
 - 🇬🇧 English
-- 🇪🇸 Spanish
 - ⚡  Javascript
 - ⚛  React
 - 💚 Node
