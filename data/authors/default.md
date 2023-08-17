@@ -43,6 +43,7 @@ The technologies involved were html, css and javascript
 **Random Twister** is an npm package that allows you to get a text string in Spanish with a tongue twister.
 
 - Personal Project
+
 ## Education
 
 ### National Experimental Polytechnic University of the Armed Forces @[UNEFA](https://www.https://www.unefa.edu.ve/)
