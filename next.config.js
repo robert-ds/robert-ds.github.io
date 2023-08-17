@@ -2,6 +2,24 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
 
+const isGithubActions = process.env.GITHUB_ACTIONS || false
+
+let assetPrefix = ''
+let basePath = '/'
+
+if (isGithubActions) {
+  // trim off `<owner>/`
+  const repo = process.env.GITHUB_REPOSITORY.replace(/.*?\//, '')
+
+  assetPrefix = `/${repo}/`
+  basePath = `/${repo}`
+}
+
+module.exports = {
+  assetPrefix: assetPrefix,
+  basePath: basePath,
+}
+
 // You might need to insert additional domains in script-src if you are using external services
 const ContentSecurityPolicy = `
   default-src 'self';
