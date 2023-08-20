@@ -16,8 +16,7 @@ if (isGithubActions) {
 }
 
 module.exports = {
-  assetPrefix: assetPrefix,
-  basePath: basePath,
+  distDir: 'build',
 }
 
 // You might need to insert additional domains in script-src if you are using external services
