@@ -15,10 +15,6 @@ if (isGithubActions) {
   basePath = `/${repo}`
 }
 
-module.exports = {
-  distDir: 'build',
-}
-
 // You might need to insert additional domains in script-src if you are using external services
 const ContentSecurityPolicy = `
   default-src 'self';
