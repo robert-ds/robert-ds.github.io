@@ -16,6 +16,7 @@ github: https://github.com/robert-ds
 - [🎓 Education](#education)
 - [🤹🏼‍♂️ Skills](#skills)
 - [🏐 Interests](#interests)
+- [🔗 Links](#links)
 
 ## Experience
 
@@ -44,23 +45,35 @@ The technologies involved were html, css and javascript
 
 - Personal Project
 
-## Education
+## Education:
 
 ### National Experimental Polytechnic University of the Armed Forces @[UNEFA](https://www.https://www.unefa.edu.ve/)
 
 `Jun 2014 - Jun 2020`
 
-## Skills
+## Skills:
 
-### Hard Skills:
+### Hard Skills (Languages and Frameworks):
 
-- 🇬🇧 English
 - ⚡  Javascript
+- 🌀 Typescript
 - ⚛  React
 - 💚 Node
 - 🐍 Python
 - 🍵 Java
-- ⛅ Cloud
+
+### Cloud: ⛅
+
+- ᵃ⤻ᶻ Aws (Amazon web Service)
+- 🐬 Azure (Microsoft cloud)
+- 🌍 GCP (Google cloud platform)
+- 🌊 Digital Ocean
+- 🌋 Firestore
+- 🌩 Cloudflare
+- 🍷 Vercel
+
+### Database and Deployment Tech:
+
 - 💧 Mysql
 - 🐘 Postgresql
 - 🌱 MongoDB
@@ -71,6 +84,11 @@ The technologies involved were html, css and javascript
 - 🎨 Creative
 - 📚 Curious
 - 🤝🏼 Team Spirit
+
+### Idioms:
+
+- 🇪🇸 Spanish (Native Speaking)
+- 🇬🇧 English (B1 level)
 
 ## Interests
 
@@ -88,4 +106,9 @@ The technologies involved were html, css and javascript
 - 🎬 Movie
 - 📚 Books
 - 🎶 Music
+
+### Links:
+
+  [CV](https://www.notion.so/motley-ds/Robert-V-squez-Ingeniero-de-Sistemas-638439d943d04a39bac3a251368d7d7d?pvs=4)
+  [Others](https://bit.ly/m/robert-ds)
 

@@ -1,13 +1,13 @@
 const projectsData = [
   {
     title: 'Fylo dark',
-    description: `Desafío de Frontend Mentor. Página de inicio`,
+    description: `Frontend Mentor Challenge. Homepage`,
     imgSrc: '/static/images/projects/fylo-dark/fylo-dark.png',
     href: '/blog/projects/fylo-dark',
   },
   {
     title: 'Sunny agency',
-    description: `Desafío de Frontend Mentor.`,
+    description: `Frontend Mentor Challenge. Landing Page`,
     imgSrc: '/static/images/projects/sunny-agency/sunny-agency.png',
     href: '/blog/projects/sunny-agency',
   },
