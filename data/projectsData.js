@@ -23,6 +23,18 @@ const projectsData = [
     imgSrc: '/static/images/projects/batatabit/batatabit.jpg',
     href: '/blog/projects/batatabit',
   },
+  {
+    title: 'Mult dog',
+    description: `App that consumes an API-REST of Dogs`,
+    imgSrc: '/static/images/projects/mult-dog/mult-dog.png',
+    href: '/blog/projects/mult-dog',
+  },
+  {
+    title: 'Login form animated',
+    description: `Login form with an animated background`,
+    imgSrc: '/static/images/projects/login-form-animated/login-form-animated.png',
+    href: '/blog/projects/login-form-animated',
+  },
 ];
 
 export default projectsData;
