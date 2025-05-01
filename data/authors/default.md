@@ -9,7 +9,7 @@ linkedin: https://www.linkedin.com/in/robert-vasquez
 github: https://github.com/robert-ds
 ---
 
-👋 Greetings, **I'm Robert Vásquez**, recently graduated as a **system engineer** 🚀. During my time as a student 📚, I showed interest in **technological infrastructures** and **software development** 💻. At this stage I carried out several projects for the installation of small computer communication networks, installation and configuration of servers, as well as small **web applications**.
+👋 Saludos, **soy Robert Vásquez**, **Ingeniero de sistemas** 🚀. Durante mi tiempo como estudiante 📚, mostré interés en las **infraestructuras tecnológicas** y el **desarrollo de software** 💻. En esta etapa realicé varios proyectos para la instalación de pequeñas redes de comunicación informática, instalación y configuración de servidores, así como pequeñas **aplicaciones web**.
 
 - [💼 Experience](#experience)
 - [🧑🏻‍💻 Side Project](#side-project)
@@ -18,42 +18,43 @@ github: https://github.com/robert-ds
 - [🏐 Interests](#interests)
 - [🔗 Links](#links)
 
-## Experience
+## Experiencia
 
-### Networking Specialist **@UNEFA**
+### Especialista en Redes **@UNEFA**
 
-`Nov 2018 -Seasonal`
+`Nov 2018 - Temporal`
 
-Installation and configuration of the structured wired network in the **technological infrastructure** of the **Department of Technology** and Secretary of UNEFA
+Instalación y configuración de la red cableada estructurada en la **infraestructura tecnológica** del **Departamento de Tecnología** y Secretaría de la UNEFA.
 
-## Side Project
+## Proyecto Personal
 
-### Batatabit web site @[Batatabit](https://github.com/robert-ds/Batatabit)
+### Sitio web de Batatabit @[Batatabit](https://github.com/robert-ds/Batatabit)
 
-`Jul 2021 - Seasonal`
+`Jul 2021 - Temporal`
 
-**Website built as mobile first**. The main topic is the exchange of cryptocurrencies.
-The technologies involved were html, css and javascript
+**Sitio web diseñado como mobile first**. El tema principal es el intercambio de criptomonedas.  
 
-- Personal Project
+Las tecnologías utilizadas fueron HTML, CSS y JavaScript.
 
-### NPM Random Trabalengua Package @[Package](https://github.com/robert-ds/npm-random-trabalengua)
+- Proyecto Personal
 
-`May 2021 - Seasonal`
+### Paquete NPM Random Trabalengua @[Paquete](https://github.com/robert-ds/npm-random-trabalengua)
 
-**Random Twister** is an npm package that allows you to get a text string in Spanish with a tongue twister.
+`May 2021 - Temporal`
 
-- Personal Project
+**Random Trabalengua** es un paquete npm que permite obtener una cadena de texto en español con un trabalenguas.
 
-## Education:
+- Proyecto Personal
 
-### National Experimental Polytechnic University of the Armed Forces @[UNEFA](https://www.https://www.unefa.edu.ve/)
+## Educación
+
+### Universidad Nacional Experimental Politécnica de la Fuerza Armada @[UNEFA](https://www.unefa.edu.ve/)
 
 `Jun 2014 - Jun 2020`
 
 ## Skills:
 
-### Hard Skills (Languages and Frameworks):
+### Hard Skills (Lenguajes y Frameworks):
 
 - ⚡  Javascript
 - 🌀 Typescript
@@ -62,7 +63,7 @@ The technologies involved were html, css and javascript
 - 🐍 Python
 - 🍵 Java
 
-### Cloud: ⛅
+### Nube: ⛅
 
 - ᵃ⤻ᶻ Aws (Amazon web Service)
 - 🐬 Azure (Microsoft cloud)
@@ -71,41 +72,46 @@ The technologies involved were html, css and javascript
 - 🌋 Firestore
 - 🌩 Cloudflare
 - 🍷 Vercel
-
-### Database and Deployment Tech:
+### Tecnologías de Bases de Datos y Despliegue:
 
 - 💧 Mysql
 - 🐘 Postgresql
 - 🌱 MongoDB
 - 🐳 Docker
+- 🚀 Kubernetes
+- 🌐 Terraform
+- 🛠️ Jenkins
+- 📦 GitHub Actions
+- 🖥️ CI/CD Pipelines
+- 🏗️ Infrastructure as Code (IaC)
 
 ### Soft Skills:
 
-- 🎨 Creative
-- 📚 Curious
-- 🤝🏼 Team Spirit
+- 🎨 Creativo  
+- 📚 Curioso  
+- 🤝🏼 Espíritu de equipo  
 
-### Idioms:
+### Idiomas:
 
-- 🇪🇸 Spanish (Native Speaking)
-- 🇬🇧 English (B1 level)
+- 🇪🇸 Español (Hablante Nativo)
+- 🇬🇧 Ingles (Nivel B1)
 
-## Interests
+## Inntereses
 
 ### Percussion:
 
 - 🇧🇷 Samba
-- 🪘 Latin Percussion
+- 🪘 Percusión Latina
 
 |                                                       |                                         |
 | ----------------------------------------------------- | --------------------------------------- |
 | ![Bodyboarding](/static/images/samba.png) | ![Wave](/static/images/latin-percussion.png) |
 
-### Others:
+### Otros:
 
-- 🎬 Movie
-- 📚 Books
-- 🎶 Music
+- 🎬 Películas  
+- 📚 Libros  
+- 🎶 Música  
 
 ### Links:
 
