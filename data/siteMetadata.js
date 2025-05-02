@@ -3,7 +3,7 @@ const siteMetadata = {
   author: 'Robert Vásquez',
   headerTitle: 'Robert Vásquez',
   description: 'Portfolio of a fullstack developer',
-  language: 'en-us',
+  language: 'es-es',
   theme: 'system', // system, dark or light
   siteUrl: 'https://robert-ds.github.io/',
   siteRepo: 'https://github.com/robert-ds/blog-portfolio',
@@ -14,7 +14,7 @@ const siteMetadata = {
   github: 'https://github.com/robert-ds/',
   twitter: 'https://twitter.com/robertds_',
   linkedin: 'https://www.linkedin.com/in/robert-vasquez',
-  locale: 'en-US',
+  locale: 'es-ES',
   analytics: {
     // If you want to use an analytics provider you have to add it to the
     // content security policy in the `next.config.js` file.
