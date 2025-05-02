@@ -13,7 +13,7 @@ export default function Projects() {
             Projects
           </h1>
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-            Una selección de proyectos en los que trabajé en los últimos años. Algunos de ellos son proyectos personales, otros son colaboraciones con amigos o compañeros de trabajo. Todos ellos son ejemplos de mi trabajo y habilidades en el desarrollo web.
+            A selection of projects I worked on in the past few years.
           </p>
         </div>
         <div className="container py-12">

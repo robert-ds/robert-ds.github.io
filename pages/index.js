@@ -44,7 +44,7 @@ export default function Home({ posts }) {
         </div>
         <p className="space-y-4 text-zinc-500 dark:text-slate-300">
           <p className="my-4 leading-loose">
-            👋 ¡Saludos! Soy <span>Robert Vásquez</span>, ingeniero de sistemas 🚀 con interés en infraestructuras tecnológicas y desarrollo de software 💻. He realizado varios proyectos de instalación de redes de comunicación, configuración de servidores y desarrollo de pequeñas aplicaciones web.
+            👋 Greetings, I'm <span>Robert Vásquez</span>, recently graduated as a system engineer 🚀. During my time as a student 📚, I showed interest in technological infrastructures and software development 💻. At this stage I carried out several projects for the installation of small computer communication networks, installation and configuration of servers, as well as small web applications.
            
           </p>
         </p>
@@ -119,7 +119,7 @@ export default function Home({ posts }) {
       <div className="content mb-8">
         <h2 className="mb-2 text-xl font-bold text-zinc-800 dark:text-white">Projects</h2>
         <p className="max-w-[46ch] leading-relaxed text-zinc-500 dark:text-slate-300">
-          Una selección de proyectos en los que trabajé en los últimos años. Algunos de ellos son proyectos personales, mientras que otros son parte de mi trabajo profesional. Todos ellos reflejan mi pasión por la tecnología y mi deseo de aprender y crecer en este campo.
+          A selection of projects I worked on in the past few years.
         </p>
       </div>
       <div className="container py-12">
@@ -136,7 +136,7 @@ export default function Home({ posts }) {
         </div>
       </div>
       <div className="content mt-12 sm:mt-24">
-        <h2 className="mb-2 text-xl font-bold text-zinc-800 dark:text-white">Experiencia</h2>
+        <h2 className="mb-2 text-xl font-bold text-zinc-800 dark:text-white">Experiences</h2>
         <ul className="mt-8">
           <li className="dark:text-zinc-350 my-5 flex items-center gap-4 text-zinc-500">
             <a
@@ -161,12 +161,12 @@ export default function Home({ posts }) {
                 <span className="ml-1.5 inline-block flex-none translate-y-px rounded bg-zinc-100 p-1 text-xs font-medium leading-none text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400">
                   2018
                   <span className="text-zinc-350 dark:text-zinc-550 mx-0.5">—</span>
-                  Temporal
+                  Seasonal
                 </span>
               </p>
               <p className="flex items-center truncate">
                 <span className="flex-1 truncate text-zinc-500 dark:text-zinc-400">
-                  Especialista en Redes
+                  Network Specialist
                 </span>
               </p>
             </div>
