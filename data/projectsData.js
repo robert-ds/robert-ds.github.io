@@ -1,19 +1,19 @@
 const projectsData = [
   {
     title: 'Fylo dark',
-    description: `Frontend Mentor Challenge. Homepage`,
+    description: `Reto Frontend Mentor. Página de inicio`,
     imgSrc: '/static/images/projects/fylo-dark/fylo-dark.png',
     href: '/blog/projects/fylo-dark',
   },
   {
     title: 'Sunny agency',
-    description: `Frontend Mentor Challenge. Landing Page`,
+    description: `Reto Frontend Mentor. Pagina de una agencia`,
     imgSrc: '/static/images/projects/sunny-agency/sunny-agency.png',
     href: '/blog/projects/sunny-agency',
   },
   {
     title: 'Snap landing page',
-    description: `Frontend Mentor Challenge. Landing Page`,
+    description: `Reto Frontend Mentor. Página de inicio`,
     imgSrc: '/static/images/projects/snap-landing-page/snap-landing-page.jpg',
     href: '/blog/projects/snap-landing-page',
   },
@@ -25,12 +25,12 @@ const projectsData = [
   },
   {
     title: 'Mult dog',
-    description: `App that consumes an API-REST of Dogs`,
+    description: `Aplicación que consume una API Rest de perros`,
     imgSrc: '/static/images/projects/mult-dog/mult-dog.png',
     href: '/blog/projects/mult-dog',
   },
   {
-    title: 'Login form animated',
+    title: 'Formulario de login con movimiento de fondo',
     description: `Login form with an animated background`,
     imgSrc: '/static/images/projects/login-form-animated/login-form-animated.png',
     href: '/blog/projects/login-form-animated',
