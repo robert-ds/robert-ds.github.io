@@ -10,10 +10,10 @@ export default function Projects() {
       <div className="">
         <div className="space-y-2 pt-6 pb-4 md:space-y-5">
           <h1 className="mb-1 text-3xl font-bold tracking-tight text-zinc-800 dark:text-white md:text-5xl">
-            Projects
+            Proyectos
           </h1>
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-            A selection of projects I worked on in the past few years.
+            Una selección de proyectos en los que he trabajado en los últimos años.
           </p>
         </div>
         <div className="container py-12">

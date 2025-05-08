@@ -44,8 +44,8 @@ export default function Home({ posts }) {
         </div>
         <p className="space-y-4 text-zinc-500 dark:text-slate-300">
           <p className="my-4 leading-loose">
-            👋 Greetings, I'm <span>Robert Vásquez</span>, recently graduated as a system engineer 🚀. During my time as a student 📚, I showed interest in technological infrastructures and software development 💻. At this stage I carried out several projects for the installation of small computer communication networks, installation and configuration of servers, as well as small web applications.
-           
+            👋 Hola, <span>soy Robert Vásquez</span>, recién graduado como ingeniero de sistemas 🚀. Durante mi tiempo como estudiante 📚, mostré interés en las infraestructuras tecnológicas y el desarrollo de software 💻. En esta etapa realicé varios proyectos para la instalación de pequeñas redes de comunicación informática, instalación y configuración de servidores, así como pequeñas aplicaciones web.
+
           </p>
         </p>
         <div className="mt-8 flex flex-wrap gap-4 text-center">
@@ -93,7 +93,7 @@ export default function Home({ posts }) {
                 fillRule="evenodd"
               />
             </svg>
-            <span className="hidden sm:inline">Email</span>
+            <span className="hidden sm:inline">Correo</span>
           </a>
           <a
             className="focusable flex flex-none cursor-pointer items-center justify-center gap-2 rounded-md bg-blue-500 py-2 px-2.5 font-medium text-white shadow-lg shadow-blue-500/10 transition selection:bg-white/30 hover:bg-blue-500/80 hover:shadow-blue-500/5 focus:ring-blue-500/40 dark:bg-blue-400 dark:text-zinc-900 dark:shadow-blue-400/10 dark:selection:bg-zinc-900/30 dark:hover:bg-blue-400/80 dark:hover:shadow-blue-400/5 dark:focus:ring-blue-400/40 sm:w-auto sm:px-3 sm:pl-2.5"
@@ -119,7 +119,7 @@ export default function Home({ posts }) {
       <div className="content mb-8">
         <h2 className="mb-2 text-xl font-bold text-zinc-800 dark:text-white">Projects</h2>
         <p className="max-w-[46ch] leading-relaxed text-zinc-500 dark:text-slate-300">
-          A selection of projects I worked on in the past few years.
+          Una selección de proyectos en los que he trabajado en los últimos años.
         </p>
       </div>
       <div className="container py-12">
@@ -136,7 +136,7 @@ export default function Home({ posts }) {
         </div>
       </div>
       <div className="content mt-12 sm:mt-24">
-        <h2 className="mb-2 text-xl font-bold text-zinc-800 dark:text-white">Experiences</h2>
+        <h2 className="mb-2 text-xl font-bold text-zinc-800 dark:text-white">Experiencia</h2>
         <ul className="mt-8">
           <li className="dark:text-zinc-350 my-5 flex items-center gap-4 text-zinc-500">
             <a
@@ -161,12 +161,12 @@ export default function Home({ posts }) {
                 <span className="ml-1.5 inline-block flex-none translate-y-px rounded bg-zinc-100 p-1 text-xs font-medium leading-none text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400">
                   2018
                   <span className="text-zinc-350 dark:text-zinc-550 mx-0.5">—</span>
-                  Seasonal
+                  Temporal
                 </span>
               </p>
               <p className="flex items-center truncate">
                 <span className="flex-1 truncate text-zinc-500 dark:text-zinc-400">
-                  Network Specialist
+                  Especialista en Redes
                 </span>
               </p>
             </div>

@@ -19,7 +19,7 @@ const projectsData = [
   },
   {
     title: 'Batatabit project',
-    description: `Batatabit project is a landing page with mobile first design`,
+    description: `Batatabit es un proyecto de página de inicio priorizando el diseño mobile first`,
     imgSrc: '/static/images/projects/batatabit/batatabit.jpg',
     href: '/blog/projects/batatabit',
   },

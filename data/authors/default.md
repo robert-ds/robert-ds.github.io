@@ -11,48 +11,48 @@ github: https://github.com/robert-ds
 
 👋 Hola, **soy Robert Vásquez**, recién graduado como **ingeniero de sistemas** 🚀. Durante mi tiempo como estudiante 📚, mostré interés en las **infraestructuras tecnológicas** y el **desarrollo de software** 💻. En esta etapa realicé varios proyectos para la instalación de pequeñas redes de comunicación informática, instalación y configuración de servidores, así como pequeñas **aplicaciones web**.
 
-- [💼 Experience](#experience)
-- [🧑🏻‍💻 Side Project](#side-project)
-- [🎓 Education](#education)
-- [🤹🏼‍♂️ Skills](#skills)
-- [🏐 Interests](#interests)
-- [🔗 Links](#links)
+- [💼 Experience](#experiencia)
+- [🧑🏻‍💻 Side Project](#Proyecto-personal)
+- [🎓 Education](#educación)
+- [🤹🏼‍♂️ Skills](#Habilidades)
+- [🏐 Interests](#intereses)
+- [🔗 Links](#enlaces)
 
-## Experience
+## Experiencia
 
-### Networking Specialist **@UNEFA**
+### Especialista en Redes **@UNEFA**
 
-`Nov 2018 -Seasonal`
+`Nov 2018 - Temporal`
 
 Instalación y configuración de la red cableada estructurada en la **infraestructura tecnológica** del **Departamento de Tecnología** y Secretaría de la UNEFA.
 
-## Side Project
+## Proyecto Personal
 
-### Batatabit web site @[Batatabit](https://github.com/robert-ds/Batatabit)
+### Sitio Web Batatabit @[Batatabit](https://github.com/robert-ds/Batatabit)
 
-`Jul 2021 - Seasonal`
+`Jul 2021 - Temporal`
 
-**Sitio web construido como mobile first**. El tema principal es el intercambio de criptomonedas.  
+**Sitio web construido como mobile first**. El tema principal es el intercambio de criptomonedas.
 Las tecnologías involucradas fueron HTML, CSS y JavaScript.
 
 - Personal Project
 
-### NPM Random Trabalengua Package @[Package](https://github.com/robert-ds/npm-random-trabalengua)
+### Paquete NPM Random Trabalengua @[Package](https://github.com/robert-ds/npm-random-trabalengua)
 
-`May 2021 - Seasonal`
+`May 2021 - Temporal`
 
 **Random Twister** es un paquete de npm que te permite obtener una cadena de texto en español con un trabalenguas.
 
 - Personal Project
 
-## Education:
+## Educación:
 ### Universidad Nacional Experimental Politécnica de la Fuerza Armada @[UNEFA](https://www.unefa.edu.ve/)
 
 `Jun 2014 - Jun 2020`
 
-## Skills:
+## Habilidades:
 
-### Hard Skills (Languages and Frameworks):
+### Habilidades Duras (Lengaujes y Frameworks):
 
 - ⚡  Javascript
 - 🌀 Typescript
@@ -61,7 +61,7 @@ Las tecnologías involucradas fueron HTML, CSS y JavaScript.
 - 🐍 Python
 - 🍵 Java
 
-### Cloud: ⛅
+### Nube: ⛅
 
 - ᵃ⤻ᶻ Aws (Amazon web Service)
 - 🐬 Azure (Microsoft cloud)
@@ -71,42 +71,42 @@ Las tecnologías involucradas fueron HTML, CSS y JavaScript.
 - 🌩 Cloudflare
 - 🍷 Vercel
 
-### Database and Deployment Tech:
+### Base de Datos y tecnologías de Despliegue:
 
 - 💧 Mysql
 - 🐘 Postgresql
 - 🌱 MongoDB
 - 🐳 Docker
 
-### Soft Skills:
+### Habilidades Blandas:
 
-- 🎨 Creative
-- 📚 Curious
-- 🤝🏼 Team Spirit
+- 🎨 Creativo
+- 📚 Curioso
+- 🤝🏼 Espiritu de equipo
 
-### Idioms:
+### Idiomas:
 
-- 🇪🇸 Spanish (Native Speaking)
-- 🇬🇧 English (B1 level)
+- 🇪🇸 Español (Hablante Nativo)
+- 🇬🇧 Ingles (Nivel B1)
 
-## Interests
+## Intereses
 
-### Percussion:
+### Percusión:
 
 - 🇧🇷 Samba
-- 🪘 Latin Percussion
+- 🪘 Perscusión Latina
 
 |                                                       |                                         |
 | ----------------------------------------------------- | --------------------------------------- |
 | ![Bodyboarding](/static/images/samba.png) | ![Wave](/static/images/latin-percussion.png) |
 
-### Others:
+### Otros:
 
-- 🎬 Movie
-- 📚 Books
-- 🎶 Music
+- 🎬 Peliculas
+- 📚 Libros
+- 🎶 Música
 
-### Links:
+### Enlaces:
 
   [CV](https://www.notion.so/motley-ds/Robert-V-squez-Ingeniero-de-Sistemas-638439d943d04a39bac3a251368d7d7d?pvs=4)
   [Others](https://bit.ly/m/robert-ds)
