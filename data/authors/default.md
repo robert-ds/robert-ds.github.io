@@ -9,7 +9,7 @@ linkedin: https://www.linkedin.com/in/robert-vasquez
 github: https://github.com/robert-ds
 ---
 
-👋 Greetings, **I'm Robert Vásquez**, recently graduated as a **system engineer** 🚀. During my time as a student 📚, I showed interest in **technological infrastructures** and **software development** 💻. At this stage I carried out several projects for the installation of small computer communication networks, installation and configuration of servers, as well as small **web applications**.
+👋 Hola, **soy Robert Vásquez**, recién graduado como **ingeniero de sistemas** 🚀. Durante mi tiempo como estudiante 📚, mostré interés en las **infraestructuras tecnológicas** y el **desarrollo de software** 💻. En esta etapa realicé varios proyectos para la instalación de pequeñas redes de comunicación informática, instalación y configuración de servidores, así como pequeñas **aplicaciones web**.
 
 - [💼 Experience](#experience)
 - [🧑🏻‍💻 Side Project](#side-project)
@@ -24,7 +24,7 @@ github: https://github.com/robert-ds
 
 `Nov 2018 -Seasonal`
 
-Installation and configuration of the structured wired network in the **technological infrastructure** of the **Department of Technology** and Secretary of UNEFA
+Instalación y configuración de la red cableada estructurada en la **infraestructura tecnológica** del **Departamento de Tecnología** y Secretaría de la UNEFA.
 
 ## Side Project
 
@@ -32,8 +32,8 @@ Installation and configuration of the structured wired network in the **technolo
 
 `Jul 2021 - Seasonal`
 
-**Website built as mobile first**. The main topic is the exchange of cryptocurrencies.
-The technologies involved were html, css and javascript
+**Sitio web construido como mobile first**. El tema principal es el intercambio de criptomonedas.  
+Las tecnologías involucradas fueron HTML, CSS y JavaScript.
 
 - Personal Project
 
@@ -41,13 +41,12 @@ The technologies involved were html, css and javascript
 
 `May 2021 - Seasonal`
 
-**Random Twister** is an npm package that allows you to get a text string in Spanish with a tongue twister.
+**Random Twister** es un paquete de npm que te permite obtener una cadena de texto en español con un trabalenguas.
 
 - Personal Project
 
 ## Education:
-
-### National Experimental Polytechnic University of the Armed Forces @[UNEFA](https://www.https://www.unefa.edu.ve/)
+### Universidad Nacional Experimental Politécnica de la Fuerza Armada @[UNEFA](https://www.unefa.edu.ve/)
 
 `Jun 2014 - Jun 2020`
 
