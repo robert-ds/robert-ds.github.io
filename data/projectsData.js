@@ -31,7 +31,7 @@ const projectsData = [
   },
   {
     title: 'Formulario de login con movimiento de fondo',
-    description: `Login form with an animated background`,
+    description: `Formulario de login animado`,
     imgSrc: '/static/images/projects/login-form-animated/login-form-animated.png',
     href: '/blog/projects/login-form-animated',
   },
