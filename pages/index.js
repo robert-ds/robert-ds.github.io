@@ -44,8 +44,7 @@ export default function Home({ posts }) {
         </div>
         <p className="space-y-4 text-zinc-500 dark:text-slate-300">
           <p className="my-4 leading-loose">
-            👋 Hola, <span>soy Robert Vásquez</span>, recién graduado como ingeniero de sistemas 🚀. Durante mi tiempo como estudiante 📚, mostré interés en las infraestructuras tecnológicas y el desarrollo de software 💻. En esta etapa realicé varios proyectos para la instalación de pequeñas redes de comunicación informática, instalación y configuración de servidores, así como pequeñas aplicaciones web.
-
+            👋 Hola, <span>soy Robert Vásquez</span>,  ingeniero de sistemas 🚀. Me apasionan las infraestructuras tecnológicas y el desarrollo de software 💻. Entre los que puedo destacar; instalación de pequeñas redes de comunicación informática, instalación y configuración de servidores, así como pequeñas aplicaciones web.
           </p>
         </p>
         <div className="mt-8 flex flex-wrap gap-4 text-center">
@@ -167,6 +166,40 @@ export default function Home({ posts }) {
               <p className="flex items-center truncate">
                 <span className="flex-1 truncate text-zinc-500 dark:text-zinc-400">
                   Especialista en Redes
+                </span>
+              </p>
+            </div>
+          </li>
+
+          <li className="dark:text-zinc-350 my-5 flex items-center gap-4 text-zinc-500">
+            <a
+              className="link focusable font-medium text-zinc-800 dark:text-white"
+              href="https://www.unefa.com/"
+              rel="noreferrer"
+              target="_blank"
+            >
+              <Image
+                src="/static/images/workxp/unefa.jpg"
+                alt="Unefa"
+                width="50px"
+                height="50px"
+                className="rounded-md"
+              />
+            </a>
+            <div className="flex min-w-0 flex-col justify-center">
+              <p className="mb-1 flex items-center">
+                <span className="truncate font-semibold text-zinc-700 dark:text-zinc-100">
+                  Unefa
+                </span>
+                <span className="ml-1.5 inline-block flex-none translate-y-px rounded bg-zinc-100 p-1 text-xs font-medium leading-none text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400">
+                  2024
+                  <span className="text-zinc-350 dark:text-zinc-550 mx-0.5">—</span>
+                  Actualmente
+                </span>
+              </p>
+              <p className="flex items-center truncate">
+                <span className="flex-1 truncate text-zinc-500 dark:text-zinc-400">
+                  Docente - Lenguaje de Programación
                 </span>
               </p>
             </div>

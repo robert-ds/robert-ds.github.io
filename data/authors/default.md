@@ -26,6 +26,10 @@ github: https://github.com/robert-ds
 
 Instalación y configuración de la red cableada estructurada en la **infraestructura tecnológica** del **Departamento de Tecnología** y Secretaría de la UNEFA.
 
+### Docente - Lenguaje de Programación **@UNEFA**
+
+`Mar 2024 - Actualmente`
+
 ## Proyecto Personal
 
 ### Sitio Web Batatabit @[Batatabit](https://github.com/robert-ds/Batatabit)
