@@ -12,7 +12,7 @@ export default function AuthorLayout({ children, frontMatter }) {
       <div className="">
         <div className="space-y-2 pt-6 pb-4 md:space-y-5">
           <h1 className="mb-1 text-3xl font-bold tracking-tight text-zinc-800 dark:text-white md:text-5xl">
-            About
+            Acerca de mí
           </h1>
         </div>
         <div className="items-start">
