@@ -1,0 +1,74 @@
+---
+title: Subsistema de linux para Windows (WSL)
+date: '2025-05-16'
+tags: ['Subsistema', 'windows', 'linux', 'wsl']
+draft: false
+images:
+  [
+    '/static/images/blog/wsl/wsl.jpg',
+  ]
+summary: 'WSL son las siglas de Windows Subsystem for Linux, que en español significa Subsistema de Windows para Linux.'
+---
+
+<Image
+  alt={`wslimage`}
+  src={`/static/images/blog/wsl/wsl.jpg`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Básicamente, es una característica de Windows que te permite ejecutar un entorno Linux directamente en tu sistema operativo Windows, sin necesidad de una máquina virtual tradicional o un arranque dual.
+
+Imagina que tienes dos mundos dentro de tu computadora: el mundo de Windows y, gracias a WSL, un mundo de Linux que vive dentro del primero. Puedes entrar y salir de este mundo Linux casi sin darte cuenta.
+
+Aquí te presento los puntos clave para entenderlo mejor:
+
+1. ¿Qué NO es WSL?
+
+- **No es una máquina virtual tradicional:** A diferencia de VirtualBox o VMware, WSL no crea una simulación completa de una computadora con su propio kernel (el núcleo del sistema operativo), hardware virtualizado, etc. Esto hace que WSL sea mucho más ligero y eficiente en términos de recursos (CPU, memoria, disco).
+
+- **No es un entorno de emulación:** WSL no está traduciendo las llamadas del sistema Linux a llamadas del sistema Windows. En su lugar, utiliza una capa de compatibilidad que permite que los binarios de Linux se ejecuten directamente en Windows.
+
+- **No es un reemplazo completo de una instalación Linux nativa:** Si bien WSL es muy útil para muchas tareas, una instalación Linux completa te dará un control total sobre el hardware y el kernel, lo cual puede ser necesario para ciertos usos muy específicos.
+
+2. ¿Qué SÍ es WSL?
+
+- **Una capa de compatibilidad:** WSL proporciona una capa que traduce las llamadas del sistema Linux al kernel de Windows. Esto permite que la mayoría de las herramientas de línea de comandos, utilidades y aplicaciones de Linux se ejecuten sin modificaciones.
+
+- **Integración con el sistema de archivos de Windows:** Puedes acceder a tus archivos de Windows desde el entorno Linux y viceversa.
+  - Esto facilita trabajar con archivos que necesitas usar en ambos sistemas operativos. Por ejemplo, puedes tener tu código fuente en el sistema de archivos de Windows y compilarlo o ejecutarlo usando herramientas de Linux dentro de WSL.
+
+- **Acceso a la línea de comandos de Linux (Bash, Zsh, etc.):** WSL te da acceso a potentes shells de Linux como Bash, Zsh, Fish, etc. Esto es fundamental para desarrolladores, administradores de sistemas y cualquier persona familiarizada con el entorno de línea de comandos de Linux.
+
+- **Posibilidad de instalar distribuciones de Linux:** Puedes elegir e instalar diferentes distribuciones de Linux desde la Microsoft Store, como Ubuntu, Debian, Fedora, Kali Linux, entre otras. Cada distribución proporciona su propio conjunto de herramientas y paquetes.
+
+- **Integración con herramientas de desarrollo de Windows:** WSL se integra bien con herramientas de desarrollo populares en Windows como Visual Studio y Visual Studio Code, lo que facilita el desarrollo en un entorno Linux sin salir de tu entorno de desarrollo principal.
+
+- **Soporte para aplicaciones GUI de Linux (WSLg):** Con las versiones más recientes de WSL (WSL 2 con WSLg), incluso puedes ejecutar aplicaciones gráficas de Linux directamente en tu escritorio de Windows. Esto abre un mundo de posibilidades para usar herramientas de desarrollo, editores gráficos y otras aplicaciones con interfaz gráfica de Linux.
+
+3. ¿Cómo funciona WSL?
+
+Existen dos versiones principales de WSL:
+
+- **WSL 1:** La primera versión utilizaba una capa de traducción para convertir las llamadas del sistema Linux al kernel de Windows. Si bien era funcional, tenía algunas limitaciones en cuanto a rendimiento y compatibilidad con ciertas aplicaciones.
+
+- **WSL 2:** La versión más reciente y recomendada utiliza una tecnología de virtualización ligera. Ejecuta un kernel de Linux real (una versión optimizada del kernel de Linux) dentro de una máquina virtual muy ligera. Esto mejora significativamente el rendimiento, especialmente en operaciones de E/S de archivos y compatibilidad con más aplicaciones de Linux, incluyendo aquellas que dependen de ciertas llamadas al sistema que no eran totalmente compatibles en WSL 1. WSL 2 utiliza Hyper-V para esta virtualización ligera, pero está diseñado para ser transparente para el usuario.
+
+4. ¿Para qué se utiliza WSL?
+
+WSL es extremadamente útil para una variedad de tareas, incluyendo:
+
+- **Desarrollo de software:** Ejecutar herramientas de desarrollo específicas de Linux (como lenguajes de programación, frameworks, bases de datos, etc.) directamente en Windows.
+
+- **Administración de sistemas:** Utilizar herramientas de línea de comandos de Linux para tareas de administración, scripting y automatización.
+
+- **Aprendizaje de Linux:** Familiarizarse con el entorno Linux y sus herramientas sin necesidad de instalar un sistema operativo separado.
+
+- **Pruebas de compatibilidad:** Probar cómo se comporta una aplicación en un entorno Linux sin salir de Windows.
+
+- **Uso de herramientas específicas de Linux:** Acceder a utilidades y software que solo están disponibles para Linux.
+
+En resumen, WSL es una potente y conveniente característica de Windows que te permite integrar el mundo de Linux en tu flujo de trabajo diario, ofreciendo lo mejor de ambos sistemas operativos de una manera eficiente y fácil de usar.
+
+---
