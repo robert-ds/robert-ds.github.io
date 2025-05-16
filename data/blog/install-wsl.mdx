@@ -1,0 +1,132 @@
+---
+title: ¿Cómo instalar WSL en tu sistema Windows?
+date: '2025-05-16'
+tags: ['Subsistema', 'windows', 'linux', 'wsl']
+draft: false
+images:
+  [
+    '/static/images/blog/install-wsl/wsl-1.jpg',
+    '/static/images/blog/install-wsl/power.png',
+  ]
+summary: 'El proceso es relativamente sencillo, pero puede variar ligeramente dependiendo de la versión de Windows que estés utilizando'
+---
+
+<Image
+  alt={`wslimage`}
+  src={`/static/images/blog/install-wsl/wsl-1.jpg`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+## Requisitos Previos:
+
+- Windows 10 versión 2004 o superior (Build 19041 o superior) o Windows 11: Para obtener la mejor experiencia y la posibilidad de usar WSL 2 (altamente recomendado), asegúrate de tener una versión reciente de Windows. Puedes verificar tu versión presionando la tecla de Windows + R, escribiendo winver y presionando Enter.
+
+- Virtualización habilitada en la BIOS/UEFI: En la mayoría de los casos, la virtualización ya está habilitada. Sin embargo, si encuentras problemas, es posible que necesites habilitarla en la configuración de tu BIOS/UEFI. La forma de acceder a esta configuración varía según el fabricante de tu placa base, pero generalmente se hace presionando una tecla como Suprimir, F2, F12 o Esc durante el inicio del sistema. Busca opciones relacionadas con "Virtualization Technology", "Intel VT-x", "AMD-V", etc., y asegúrate de que estén habilitadas.
+
+### Método de Instalación Recomendado (Más Sencillo): Usando un Solo Comando
+
+Este método es la forma más fácil y rápida de instalar WSL en las versiones recientes de Windows.
+
+1. Abre PowerShell como Administrador:
+
+- Haz clic derecho en el botón de Inicio (el logo de Windows en la esquina inferior izquierda).
+
+- Selecciona "Windows PowerShell (Administrador)" o "Terminal (Administrador)". Haz clic en "Sí" si te pregunta si quieres permitir que esta aplicación realice cambios en tu dispositivo.
+
+2. Ejecuta el comando de instalación de WSL:
+
+<Image
+  alt={`wslimage`}
+  src={`/static/images/blog/install-wsl/power.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+- En la ventana de PowerShell, escribe el siguiente comando y presiona Enter:
+
+```bash
+wsl --install
+```
+
+Este comando realizará las siguientes acciones:
+
+- Habilitará las características opcionales necesarias para WSL (Subsistema de Windows para Linux y Plataforma de máquina virtual).
+
+- Descargará e instalará la distribución de Linux Ubuntu de forma predeterminada.
+
+- Configurará WSL 2 como la arquitectura predeterminada.
+
+3. Reinicia tu computadora:
+
+- Una vez que el proceso de instalación se complete, se te pedirá que reinicies tu computadora. Es importante que reinicies para que los cambios se apliquen correctamente.
+
+4. Inicia tu distribución de Linux:
+
+- Después de reiniciar, busca "Ubuntu" en el menú de Inicio y haz clic para iniciarlo.
+
+- Se abrirá una ventana de terminal. La primera vez que inicies tu distribución, se te pedirá que crees un nombre de usuario y una contraseña para tu entorno Linux. ¡Elige un nombre de usuario y una contraseña seguros y recuérdalos!
+
+¡Y eso es todo! Ya tienes WSL y una distribución de Ubuntu instalada y funcionando.
+
+### Método de Instalación Manual (Para un Control Más Específico o Versiones Antiguas):
+
+Si el método anterior no funciona o si deseas tener un control más específico sobre qué componentes instalar, puedes seguir estos pasos:
+
+1. Habilitar las características opcionales de WSL:
+
+- Presiona la tecla de Windows, escribe "Activar o desactivar las características de Windows" y presiona Enter.
+
+	- En la ventana que se abre, busca y marca las siguientes dos opciones:
+
+	- Subsistema de Windows para Linux
+
+- Plataforma de máquina virtual (Esta opción es necesaria para WSL 2)
+
+Haz clic en "Aceptar". Windows podría pedirte que reinicies tu computadora. Reinicia si se te solicita.
+
+2. Descargar e instalar una distribución de Linux:
+
+- Abre la Microsoft Store (búscalo en el menú de Inicio).
+
+- Busca la distribución de Linux que deseas instalar (por ejemplo, Ubuntu, Debian, Fedora, Kali Linux).
+
+- Selecciona la distribución y haz clic en el botón "Obtener" o "Instalar".
+
+- Una vez que la descarga e instalación se completen, haz clic en el botón "Iniciar". Se abrirá una ventana de terminal para esa distribución.
+
+3. Configurar la distribución de Linux (primera vez):
+
+- Al igual que con el método automático, la primera vez que inicies tu distribución, se te pedirá que crees un nombre de usuario y una contraseña para ese entorno Linux.
+
+  - Opcional: Establecer WSL 2 como la arquitectura predeterminada (Recomendado):
+
+  - WSL 2 ofrece un mejor rendimiento. Si instalaste usando el método manual o quieres asegurarte de que las nuevas distribuciones usen WSL 2, sigue estos pasos:
+
+- Abre PowerShell como Administrador.
+
+- Verifica el nombre de tus distribuciones instaladas:
+
+```bash
+wsl --list --verbose
+```
+
+- Ejecuta el siguiente comando para convertir la distribución deseada a WSL 2:
+
+```bash
+wsl --set-version <NombreDeDistribucion> 2
+```
+
+Por ejemplo:
+
+```bash
+wsl --set-version Ubuntu 2
+```
+
+La conversión puede tardar unos minutos en completarse.
+
+¡Listo! Con estos pasos, deberías tener WSL instalado y una distribución de Linux funcionando en tu sistema Windows. Ahora puedes empezar a explorar el entorno Linux y utilizar sus herramientas directamente desde tu computadora con Windows.
+
+---
