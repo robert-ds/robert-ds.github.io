@@ -116,7 +116,7 @@ export default function Home({ posts }) {
         </div>
       </div>
       <div className="content mb-8">
-        <h2 className="mb-2 text-xl font-bold text-zinc-800 dark:text-white">Projects</h2>
+        <h2 className="mb-2 text-xl font-bold text-zinc-800 dark:text-white">Proyectos</h2>
         <p className="max-w-[46ch] leading-relaxed text-zinc-500 dark:text-slate-300">
           Una selección de proyectos en los que he trabajado en los últimos años.
         </p>

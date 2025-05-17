@@ -9,14 +9,14 @@ linkedin: https://www.linkedin.com/in/robert-vasquez
 github: https://github.com/robert-ds
 ---
 
-👋 Hola, **soy Robert Vásquez**, recién graduado como **ingeniero de sistemas** 🚀. Durante mi tiempo como estudiante 📚, mostré interés en las **infraestructuras tecnológicas** y el **desarrollo de software** 💻. En esta etapa realicé varios proyectos para la instalación de pequeñas redes de comunicación informática, instalación y configuración de servidores, así como pequeñas **aplicaciones web**.
+👋 Hola,soy **Robert Vásquez**,  Ingeniero de sistemas 🚀. Me apasionan las infraestructuras tecnológicas y el desarrollo de software 💻. Entre los que puedo destacar; instalación de pequeñas redes de comunicación informática, instalación y configuración de servidores, así como pequeñas aplicaciones web.
 
-- [💼 Experience](#experiencia)
-- [🧑🏻‍💻 Side Project](#Proyecto-personal)
-- [🎓 Education](#educación)
-- [🤹🏼‍♂️ Skills](#Habilidades)
-- [🏐 Interests](#intereses)
-- [🔗 Links](#enlaces)
+- [💼 Experiencia](#experiencia)
+- [🧑🏻‍💻 Proyectos Personales](#Proyecto-personal)
+- [🎓 Educación](#educación)
+- [🤹🏼‍♂️ Habilidades](#Habilidades)
+- [🏐 Intereses](#intereses)
+- [🔗 Enlaces](#enlaces)
 
 ## Experiencia
 
@@ -29,6 +29,8 @@ Instalación y configuración de la red cableada estructurada en la **infraestru
 ### Docente - Lenguaje de Programación **@UNEFA**
 
 `Mar 2024 - Actualmente`
+
+Donde enseño las base del desarrollo web y el aprendizaje de lenguajes cmo html, css y javascript.
 
 ## Proyecto Personal
 
