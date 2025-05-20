@@ -1,0 +1,153 @@
+---
+title: Versionamiento de Software
+date: '2025-05-20'
+tags: ['versionamiento', 'software']
+draft: false
+images:
+  ['/static/images/blog/versionamiento/versionamiento.png']
+summary: 'El **versionamiento de código fuente** es una práctica fundamental en el desarrollo de software, crucial para la colaboración, el seguimiento de cambios, la gestión de errores y la capacidad de volver a versiones anteriores de un proyecto.'
+---
+
+<Image
+  alt={`Hook image`}
+  src={`/static/images/blog/versionamiento/versionamiento.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>En esencia, un sistema de control de versiones registra los cambios realizados en un archivo o conjunto de archivos a lo largo del tiempo, de modo que puedes recuperar versiones específicas más tarde.
+
+### **¿Por qué es crucial el versionamiento de código fuente?**
+
+- **Colaboración:** Permite a múltiples desarrolladores trabajar en el mismo proyecto simultáneamente sin pisarse el trabajo.
+- **Seguimiento de Cambios:** Proporciona un historial completo de todas las modificaciones realizadas, quién las hizo y cuándo.
+- **Reversión:** Facilita la vuelta a una versión anterior del código en caso de errores o si se desea deshacer cambios.
+- **Ramificación y Fusión:** Permite crear líneas de desarrollo paralelas (ramas) para implementar nuevas funcionalidades o corregir errores de forma aislada, y luego fusionar esos cambios de vuelta a la rama principal.
+- **Auditoría:** Permite rastrear la evolución del código y comprender por qué se tomaron ciertas decisiones.
+- **Gestión de Releases:** Facilita la creación de versiones etiquetadas (releases) del software.
+
+### **Herramientas de Versionamiento de Código Fuente:**
+
+La herramienta más popular y ampliamente utilizada para el versionamiento de código fuente en la actualidad es **Git**. Sin embargo, existen otras herramientas históricas y algunas con nichos de uso específicos. Vamos a explorar las más relevantes:
+
+### Git
+
+Git es un **sistema de control de versiones distribuido (DVCS)**. Esto significa que cada desarrollador tiene una copia completa del repositorio (incluyendo todo el historial de cambios) en su máquina local.
+
+**Características Clave:**
+
+- **Distribuido:** Cada copia del repositorio es un respaldo completo, lo que aumenta la robustez y la disponibilidad.
+- **Ramificación y Fusión Poderosas:** Git facilita la creación, gestión y fusión de ramas de manera eficiente.
+- **Rendimiento:** Generalmente rápido y eficiente en la gestión de cambios.
+- **Flexibilidad:** Se adapta a una amplia variedad de flujos de trabajo.
+- **Amplia Adopción:** La gran mayoría de los proyectos de software modernos utilizan Git, lo que significa una gran comunidad y abundancia de recursos.
+- **Plataformas de Hosting:** Existen plataformas populares como GitHub, GitLab y Bitbucket que proporcionan servicios de alojamiento para repositorios Git, colaboración, gestión de proyectos y más.
+
+**Conceptos Fundamentales de Git:**
+
+- **Repositorio:** Un directorio que contiene todos los archivos del proyecto y el historial de sus cambios.
+- **Commit:** Una instantánea de los cambios realizados en un momento específico, acompañado de un mensaje que describe esos cambios.
+- **Branch (Rama):** Una línea de desarrollo independiente. La rama principal suele llamarse `main` o `master`.
+- **Merge (Fusión):** El proceso de combinar los cambios de una rama en otra.
+- **Pull Request (Solicitud de Extracción):** Un mecanismo para proponer cambios desde una rama a otra (comúnmente utilizado en plataformas de hosting para la revisión de código).
+- **Clone (Clonar):** Crear una copia local de un repositorio remoto.
+- **Push (Empujar):** Enviar los commits locales a un repositorio remoto.
+- **Pull (Jalar):** Descargar los cambios de un repositorio remoto al repositorio local.
+
+**Ejemplo de Comandos Básicos de Git:**
+
+```bash
+git init             # Inicializar un nuevo repositorio Git local
+git clone <url>      # Clonar un repositorio remoto
+git add <archivo>    # Añadir un archivo al área de staging
+git commit -m "Mensaje descriptivo del commit" # Guardar los cambios con un mensaje
+git status           # Mostrar el estado de los archivos en el directorio de trabajo y el área de staging
+git log              # Mostrar el historial de commits
+git branch           # Listar las ramas
+git checkout <rama>  # Cambiar a una rama existente
+git checkout -b <nueva_rama> # Crear y cambiar a una nueva rama
+git merge <rama>     # Fusionar una rama en la rama actual
+git push origin <rama> # Enviar los commits locales a una rama remota
+git pull origin <rama> # Descargar los cambios de una rama remota
+```
+
+### Subversion (SVN)
+
+Subversion (SVN) es un **sistema de control de versiones centralizado**. En un sistema centralizado, existe un único repositorio central donde se almacenan todas las versiones del proyecto. Los desarrolladores trabajan en copias locales y deben comunicarse con el repositorio central para compartir sus cambios.
+
+**Características Clave:**
+
+- **Centralizado:** Un único punto de verdad para el historial del proyecto.
+- **Control de Acceso:** Permite un control de acceso granular a los archivos y directorios.
+- **Bloqueo (Locking):** En algunos flujos de trabajo, SVN permite bloquear archivos para evitar conflictos durante la edición.
+- **Historial Lineal:** Tiende a tener un historial más lineal en comparación con la naturaleza ramificada de Git (aunque las ramas son posibles).
+
+**Desventajas en Comparación con Git:**
+
+- **Dependencia del Servidor Central:** Si el servidor central falla, la colaboración se ve interrumpida.
+- **Menos Flexible en Ramificación y Fusión:** Las operaciones de ramificación y fusión pueden ser más complejas y menos eficientes que en Git.
+- **Menor Rendimiento para Operaciones Locales:** Muchas operaciones requieren comunicación con el servidor central, lo que puede ser más lento que las operaciones locales de Git.
+- **Menor Adopción:** Ha sido ampliamente superado por Git en la mayoría de los proyectos nuevos.
+
+**Ejemplo de Comandos Básicos de SVN:**
+
+```bash
+svn checkout <url>   # Obtener una copia de trabajo del repositorio
+svn update           # Obtener los últimos cambios del repositorio
+svn add <archivo>      # Marcar un archivo para ser añadido al repositorio
+svn commit -m "Mensaje del commit" # Enviar los cambios al repositorio
+svn status           # Mostrar el estado de los archivos locales
+svn log              # Mostrar el historial de cambios
+svn branch <nombre_rama> <ruta_nueva_rama> # Crear una nueva rama (en el repositorio)
+svn switch <url_rama> # Cambiar la copia de trabajo a una rama diferente
+svn merge <url_rama> # Fusionar los cambios de una rama en la copia de trabajo
+svn resolve <archivo> # Resolver conflictos después de una fusión
+```
+
+### Mercurial (Hg)
+
+Mercurial es otro **sistema de control de versiones distribuido**, similar en muchos aspectos a Git.
+
+**Características Clave:**
+
+- **Distribuido:** Al igual que Git, cada copia es un repositorio completo.
+- **Facilidad de Uso:** A menudo se considera que tiene una curva de aprendizaje ligeramente más suave que Git para algunas operaciones básicas.
+- **Potente:** Ofrece funcionalidades robustas para la gestión de versiones.
+- **Extensiones:** Soporta extensiones para ampliar su funcionalidad.
+
+**Diferencias con Git:**
+
+- **Filosofía de Diseño:** Aunque ambos son DVCS, tienen algunas diferencias en su filosofía de diseño y en cómo manejan ciertas operaciones internamente.
+- **Comunidad y Ecosistema:** La comunidad y el ecosistema de herramientas y plataformas de hosting son significativamente más grandes para Git.
+
+**Ejemplo de Comandos Básicos de Mercurial:**
+
+```bash
+hg init             # Inicializar un nuevo repositorio Mercurial local
+hg clone <url>      # Clonar un repositorio remoto
+hg add <archivo>    # Añadir un archivo para el seguimiento
+hg commit -m "Mensaje del commit" # Guardar los cambios localmente
+hg status           # Mostrar el estado de los archivos
+hg log              # Mostrar el historial de cambios
+hg branches         # Listar las ramas
+hg update <rama>     # Cambiar a una rama existente
+hg branch <nueva_rama> # Crear una nueva rama
+hg merge <rama>     # Fusionar una rama con la rama actual
+hg push             # Enviar los cambios al repositorio remoto
+hg pull             # Descargar los cambios del repositorio remoto
+```
+
+### Otros Sistemas Históricos o de Nicho
+
+- **CVS (Concurrent Versions System):** Uno de los sistemas de control de versiones más antiguos y centralizados. Ha sido en gran medida reemplazado por SVN y Git debido a sus limitaciones.
+- **Perforce:** Un sistema de control de versiones centralizado y comercial, utilizado en industrias como el desarrollo de videojuegos, conocido por su manejo eficiente de grandes archivos binarios.
+- **Team Foundation Version Control (TFVC):** Un sistema de control de versiones centralizado o distribuido ofrecido por Microsoft como parte de Azure DevOps (anteriormente Team Foundation Server).
+
+### **Conclusión:**
+
+En el panorama actual del desarrollo de software, **Git es la herramienta de versionamiento de código fuente dominante**. Su naturaleza distribuida, su potente sistema de ramificación y fusión, su rendimiento y su amplio ecosistema lo han convertido en la opción preferida para la mayoría de los proyectos, desde pequeños proyectos personales hasta grandes proyectos empresariales.
+
+Si bien otras herramientas como SVN y Mercurial tienen sus propias características y casos de uso históricos o específicos, para un nuevo proyecto o para colaborar con la gran mayoría de la comunidad de desarrollo, aprender y utilizar Git es altamente recomendable.
+
+---

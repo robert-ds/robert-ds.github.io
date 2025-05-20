@@ -1,0 +1,76 @@
+---
+title: Jamstack
+date: '2025-05-19'
+tags: ['aws', 'lambda']
+draft: false
+images:
+  ['/static/images/blog/jamstack/jamstack.png']
+summary: 'Es un enfoque moderno para la construcción de sitios web y aplicaciones que ha ganado mucha popularidad en los últimos años.'
+---
+
+<Image
+  alt={`jamstack image`}
+  src={`/static/images/blog/jamstack/jamstack.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>**Jamstack es una arquitectura web** que influye significativamente en cómo estructuramos y desplegamos nuestras aplicaciones, y a menudo se asocia con ciertos estilos de programación y desarrollo.
+
+### **¿Qué significa Jamstack?**
+
+El término "Jamstack" es un acrónimo que representa los tres pilares fundamentales de esta arquitectura:
+
+- **J**avaScript: Se encarga de toda la lógica dinámica en el lado del cliente.
+- **A**PIs: La funcionalidad del servidor y los datos se abstraen y se acceden a través de APIs (Application Programming Interfaces) basadas en HTTP.
+- **M**arkup: El contenido estático pre-renderizado (generalmente HTML) sirve como la base de la interfaz de usuario.
+
+### **Características Clave de la Arquitectura Jamstack:**
+
+- **Sitios Estáticos Pre-renderizados:** La mayoría de las páginas se generan en tiempo de construcción (build time) como archivos HTML estáticos. Esto resulta en sitios web extremadamente rápidos, ya que los navegadores solo necesitan descargar archivos estáticos desde una CDN (Content Delivery Network).
+- **Separación Clara de Concerns:** Existe una distinción nítida entre el frontend (JavaScript, Markup, CSS) y el backend (APIs). El frontend se enfoca en la presentación y la interacción del usuario, mientras que el backend proporciona los datos y la funcionalidad a través de APIs.
+- **Dependencia de APIs:** Cualquier funcionalidad dinámica, como formularios, autenticación, comercio electrónico, etc., se maneja a través de APIs de terceros o APIs personalizadas.
+- **Flujo de Trabajo Git-Centric:** El versionado del código, la colaboración y los despliegues suelen estar estrechamente ligados a Git. Los cambios en el repositorio desencadenan procesos de construcción y despliegue automatizados.
+- **Rendimiento Óptimo:** Al servir archivos estáticos desde una CDN, se minimiza la latencia y se optimiza la velocidad de carga, lo que mejora la experiencia del usuario y el SEO.
+- **Seguridad Mejorada:** Al reducir la superficie de ataque al eliminar servidores de aplicaciones tradicionales, se disminuyen los riesgos de seguridad. La lógica sensible reside en servicios de terceros o APIs especializadas.
+- **Escalabilidad Sencilla:** La escalabilidad se maneja principalmente a través de la CDN para los activos estáticos y a través de los proveedores de las APIs para la funcionalidad dinámica.
+
+### **¿Cómo encaja la programación en Jamstack?**
+
+Aunque el "Markup" es estático, el "JavaScript" juega un papel crucial en la interacción del usuario y en la comunicación con las "APIs". En un sitio Jamstack, el JavaScript del lado del cliente es responsable de:
+
+- **Manipulación del DOM:** Actualizar dinámicamente la interfaz de usuario en respuesta a las acciones del usuario o a los datos obtenidos de las APIs.
+- **Llamadas a APIs:** Realizar solicitudes HTTP a las APIs para obtener o enviar datos.
+- **Lógica del Frontend:** Implementar la lógica de la aplicación que se ejecuta en el navegador.
+- **Frameworks y Librerías:** Se utilizan ampliamente frameworks y librerías de JavaScript modernos como React, Vue.js, Angular, Svelte, entre otros, para facilitar la construcción de interfaces de usuario complejas y reactivas.
+
+### **Ejemplo Conceptual de un Sitio Jamstack:**
+
+Imagina un blog construido con la arquitectura Jamstack:
+
+1.  **Markup:** Los archivos Markdown que contienen el contenido de los posts del blog se transforman en archivos HTML estáticos durante el proceso de construcción utilizando un **generador de sitios estáticos (SSG)** como Next.js, Nuxt.js, Gatsby, Hugo, Jekyll, etc.
+2.  **JavaScript:** Se incluye JavaScript en las plantillas HTML para agregar interactividad, como menús desplegables, carruseles de imágenes o la capacidad de filtrar posts. También se podría utilizar JavaScript para interactuar con una API de comentarios (como Disqus o un servicio personalizado) para mostrar y enviar comentarios.
+3.  **APIs:**
+    - El generador de sitios estáticos podría consumir datos de un **CMS headless** (como Contentful, Netlify CMS, Strapi) a través de su API para obtener el contenido de los posts durante la construcción.
+    - La funcionalidad de búsqueda podría ser proporcionada por una **API de búsqueda** como Algolia o Elastic Search.
+    - Los formularios de contacto podrían enviarse a través de una **API de formularios** como Netlify Forms o Formspree.
+
+### **Beneficios de Jamstack:**
+
+- **Rendimiento Excepcional:** Carga inicial rápida y navegación fluida.
+- **Mejor Seguridad:** Menos servidores que gestionar y menor superficie de ataque.
+- **Escalabilidad Sencilla y Económica:** La CDN maneja el tráfico de los activos estáticos.
+- **Experiencia de Desarrollo Mejorada:** Flujo de trabajo moderno con Git y herramientas especializadas.
+- **Costo Reducido:** Menos infraestructura de servidor que mantener.
+- **Portabilidad:** Los archivos estáticos se pueden desplegar en cualquier CDN.
+
+### **Limitaciones de Jamstack:**
+
+- **Procesamiento en Tiempo de Construcción:** Los sitios grandes con mucho contenido dinámico pueden tener tiempos de construcción largos.
+- **Funcionalidad Dinámica Compleja:** La lógica dinámica compleja debe implementarse en el lado del cliente con JavaScript o a través de APIs.
+- **Dependencia de APIs de Terceros:** La disponibilidad y el costo de las APIs de terceros son factores a considerar.
+
+**En resumen**, Jamstack no es un paradigma de programación en sí mismo, sino una arquitectura web moderna que enfatiza la separación entre el frontend estático pre-renderizado y la funcionalidad dinámica manejada por JavaScript en el cliente y accedida a través de APIs. Fomenta un enfoque de desarrollo modular, rápido, seguro y escalable.**
+
+---
