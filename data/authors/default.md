@@ -12,7 +12,7 @@ github: https://github.com/robert-ds
 👋 Hola,soy **Robert Vásquez**,  Ingeniero de sistemas 🚀. Me apasionan las infraestructuras tecnológicas y el desarrollo de software 💻. Entre los que puedo destacar; instalación de pequeñas redes de comunicación informática, instalación y configuración de servidores, así como pequeñas aplicaciones web.
 
 - [💼 Experiencia](#experiencia)
-- [🧑🏻‍💻 Proyectos Personales](#Proyecto-personal)
+- [🧑🏻‍💻 Proyectos](#Proyectos)
 - [🎓 Educación](#educación)
 - [🤹🏼‍♂️ Habilidades](#Habilidades)
 - [🏐 Intereses](#intereses)
@@ -30,9 +30,9 @@ Instalación y configuración de la red cableada estructurada en la **infraestru
 
 `Mar 2024 - Actualmente`
 
-Donde enseño las base del desarrollo web y el aprendizaje de lenguajes cmo html, css y javascript.
+Donde enseño las base del desarrollo web y el aprendizaje de lenguajes como html, css y javascript.
 
-## Proyecto Personal
+## Proyectos
 
 ### Sitio Web Batatabit @[Batatabit](https://github.com/robert-ds/Batatabit)
 
@@ -58,7 +58,7 @@ Las tecnologías involucradas fueron HTML, CSS y JavaScript.
 
 ## Habilidades:
 
-### Habilidades Duras (Lengaujes y Frameworks):
+### Habilidades Duras (Lenguajes y Frameworks):
 
 - ⚡  Javascript
 - 🌀 Typescript

@@ -1,0 +1,176 @@
+---
+title: Metodologías Agiles
+date: '2025-05-20'
+tags: ['agile','scrum', 'kanban', 'kubernetes']
+draft: false
+images:
+  [
+    '/static/images/blog/agile/agiles.jpg',
+    '/static/images/blog/agile/scrum.jpg',
+    '/static/images/blog/agile/kanban.png',
+    '/static/images/blog/agile/xp.png',
+  ]
+summary: 'Un conjunto de enfoques para el desarrollo de software (y ahora también para la gestión de proyectos en general) que priorizan la flexibilidad, la colaboración, la entrega continua y la adaptación al cambio.'
+---
+
+<Image
+  alt={`agile image`}
+  src={`/static/images/blog/agile/agiles.jpg`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>En contraste con los enfoques tradicionales de "cascada" (waterfall), que son secuenciales y rígidos, las metodologías ágiles buscan ser más dinámicas y responder rápidamente a las necesidades del cliente y a la evolución del proyecto.
+
+### ¿Por qué surgieron las Metodologías Ágiles?
+
+Durante mucho tiempo, el desarrollo de software se basó en el modelo de cascada: una fase seguía a la otra (requisitos, diseño, implementación, pruebas, despliegue), con poca flexibilidad para los cambios una vez que una fase había terminado. Esto llevaba a problemas como:
+
+- **Larga duración de los proyectos:** El cliente no veía un producto funcional hasta el final.
+- **Altos costos de cambio:** Modificar requisitos en fases avanzadas era muy caro.
+- **Poca adaptabilidad:** El mercado y las necesidades del cliente podían cambiar drásticamente durante el ciclo de vida del proyecto.
+- **Falta de comunicación:** Silos entre equipos y poca interacción con el cliente.
+
+En 2001, un grupo de expertos en desarrollo de software se reunió y creó el **Manifiesto Ágil para el Desarrollo de Software**, que establece los principios fundamentales detrás de las metodologías ágiles.
+
+### El Manifiesto Ágil: Valores y Principios
+
+El Manifiesto Ágil no es una metodología en sí, sino una declaración de valores y principios que guían las metodologías ágiles.
+
+**Valores:**
+
+1. **Individuos e interacciones** sobre procesos y herramientas.
+2. **Software funcionando** sobre documentación exhaustiva.
+3. **Colaboración con el cliente** sobre negociación contractual.
+4. **Respuesta al cambio** sobre seguir un plan.
+
+Esto no significa que los elementos de la derecha no sean importantes, sino que los de la izquierda tienen mayor valor en el contexto ágil.
+
+**Principios:**
+
+El manifiesto detalla 12 principios, entre los que destacan:
+
+- La máxima prioridad es satisfacer al cliente mediante la entrega temprana y continua de software de valor.
+- Los requisitos cambiantes son bienvenidos, incluso en etapas tardías del desarrollo.
+- Entregar software funcionando frecuentemente, en periodos de semanas en lugar de meses.
+- Los individuos más cercanos al trabajo deben ser motivados y apoyados.
+- La conversación cara a cara es la forma más eficiente y efectiva de comunicar información.
+- El software funcionando es la medida principal del progreso.
+- Mantener un ritmo constante y sostenible de desarrollo.
+- La simplicidad (el arte de maximizar la cantidad de trabajo no realizado) es esencial.
+- En intervalos regulares, el equipo reflexiona sobre cómo ser más efectivo y ajusta su comportamiento.
+
+
+### Metodologías Ágiles Populares
+
+Existen varias metodologías o frameworks que implementan los principios ágiles. Aquí te presento las más comunes:
+
+#### Scrum
+
+<Image
+  alt={`scrum image`}
+  src={`/static/images/blog/agile/scrum.jpg`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+**Scrum** es, con mucho, la metodología ágil más utilizada. Es un marco de trabajo liviano que ayuda a las personas, equipos y organizaciones a generar valor a través de soluciones adaptativas para problemas complejos. Se basa en ciclos de trabajo cortos e iterativos llamados **Sprints**.
+
+- **Roles Clave:**
+  - **Product Owner:** Representa los intereses del cliente y del negocio. Es responsable de maximizar el valor del producto y de la **Product Backlog** (lista priorizada de funcionalidades y requisitos).
+  - **Scrum Master:** Facilita el proceso Scrum, elimina impedimentos y asegura que el equipo siga los principios y valores ágiles. No es un gerente de proyecto tradicional, sino un "servant leader".
+  - **Development Team:** Un equipo autoorganizado y multifuncional de profesionales que realiza el trabajo de construir el incremento del producto.
+
+- **Artefactos Clave:**
+  - **Product Backlog:** Lista dinámica y priorizada de todo lo que se podría incluir en el producto.
+  - **Sprint Backlog:** Subconjunto de elementos del Product Backlog seleccionados para el Sprint actual.
+  - **Incremento:** El producto que se construye durante el Sprint, que es utilizable y potencialmente entregable.
+
+- **Eventos (Ceremonias) Clave:**
+  - **Sprint Planning:** El equipo planifica qué se hará en el próximo Sprint.
+  - **Daily Scrum (Stand-up):** Una reunión diaria corta (15 min) para sincronizar al equipo, discutir el progreso y los impedimentos.
+  - **Sprint Review:** Al final del Sprint, el equipo presenta el incremento a los stakeholders para obtener retroalimentación.
+  - **Sprint Retrospective:** Una reunión para que el equipo inspeccione su proceso y planifique mejoras para el siguiente Sprint.
+
+**Ejemplo de Flujo en Scrum:**
+
+Imagina que estás construyendo una aplicación de entrega de comida.
+
+1. El **Product Owner** tiene una larga lista de ideas (Product Backlog): "Mapa de restaurantes", "Carrito de compras", "Pago con tarjeta", "Sistema de reseñas", etc.
+2. El equipo decide que el primer **Sprint** (por ejemplo, de 2 semanas) se enfocará en "Registro de usuario" y "Visualización de restaurantes cercanos". Estos elementos se mueven al **Sprint Backlog**.
+3. Cada día, en el **Daily Scrum**, el equipo comparte lo que hizo el día anterior, lo que hará hoy y si tiene algún impedimento.
+4. Al final de las 2 semanas, en el **Sprint Review**, demuestran el "Registro de usuario" y la "Visualización de restaurantes" funcionando. El cliente da su feedback.
+5. En el **Sprint Retrospective**, el equipo discute qué funcionó bien en el Sprint, qué no y cómo pueden mejorar para el próximo Sprint (ej: "Necesitamos estimar mejor las tareas").
+
+#### Kanban
+
+<Image
+  alt={`kanban image`}
+  src={`/static/images/blog/agile/kanban.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+**Kanban** es otra metodología ágil que se centra en la visualización del flujo de trabajo, la limitación del trabajo en progreso (WIP) y la maximización de la eficiencia. Es menos prescriptiva que Scrum y se adapta bien a equipos que necesitan flexibilidad constante o para mantener sistemas ya en producción.
+
+- **Principios Clave:**
+  - **Visualizar el flujo de trabajo:** Usar un tablero Kanban (físico o digital) con columnas que representen las etapas del trabajo (ej: Pendiente, En Desarrollo, En Prueba, Listo).
+  - **Limitar el trabajo en progreso (WIP):** Establecer límites máximos de elementos en cada etapa para evitar la sobrecarga y el cambio de contexto constante.
+  - **Gestionar el flujo:** Monitorear y mejorar cómo el trabajo se mueve a través del sistema.
+  - **Hacer las políticas explícitas:** Definir claramente las reglas para mover elementos entre columnas.
+  - **Implementar bucles de retroalimentación:** Revisar regularmente el proceso.
+
+**Ejemplo de Tablero Kanban:**
+
+| Pendiente | En Desarrollo (WIP: 3) | En Prueba (WIP: 2) | Listo (Done) |
+| :-------- | :--------------------- | :----------------- | :----------- |
+| Tarea A   | Tarea D                | Tarea G            | Tarea K      |
+| Tarea B   | Tarea E                | Tarea H            | Tarea L      |
+| Tarea C   | Tarea F                |                    |              |
+
+Cuando una tarea se completa en "En Desarrollo", se mueve a "En Prueba". Si "En Prueba" está lleno, el desarrollador podría ayudar en pruebas en lugar de iniciar una nueva tarea, lo que fomenta la colaboración y el enfoque en completar el trabajo.
+
+#### Extreme Programming (XP)
+
+<Image
+  alt={`xp image`}
+  src={`/static/images/blog/agile/xp.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+**XP** es una metodología ágil más específica y prescriptiva, que se enfoca en la ingeniería de software de alta calidad. Enfatiza prácticas de ingeniería como:
+
+- **Programación en parejas (Pair Programming):** Dos desarrolladores trabajando en la misma computadora.
+- **Desarrollo guiado por pruebas (Test-Driven Development - TDD):** Escribir pruebas automatizadas antes de escribir el código de producción.
+- **Integración Continua:** Fusionar el código con frecuencia en un repositorio compartido.
+- **Refactorización:** Mejorar continuamente la estructura interna del código sin cambiar su comportamiento externo.
+- **Entregas pequeñas y frecuentes:** Desplegar versiones funcionales muy a menudo.
+- **Feedback constante:** Involucrar al cliente en el proceso de desarrollo para obtener retroalimentación continua.
+- **Simplicidad:** Mantener el diseño y la implementación lo más simples posible.
+
+### Beneficios Generales de las Metodologías Ágiles:
+
+- **Mayor Satisfacción del Cliente:** Al involucrar al cliente y entregar valor continuamente.
+- **Mayor Flexibilidad y Adaptabilidad:** Capacidad de responder rápidamente a cambios y nuevas oportunidades.
+- **Mejor Calidad del Producto:** A través de ciclos de retroalimentación temprana, pruebas continuas y refactorización.
+- **Mayor Transparencia:** El progreso del proyecto es visible para todos los involucrados.
+- **Mejor Moral del Equipo:** Fomenta la autoorganización, la colaboración y la mejora continua.
+- **Reducción de Riesgos:** Los problemas se identifican y se abordan temprano.
+
+### ¿Cuándo usar Metodologías Ágiles?
+
+Son particularmente adecuadas para:
+
+- Proyectos con requisitos cambiantes o poco claros al inicio.
+- Proyectos donde la retroalimentación rápida del cliente es crucial.
+- Equipos pequeños y multifuncionales.
+- Entornos donde la innovación y la experimentación son valoradas.
+
+En resumen, las metodologías ágiles representan un cambio fundamental en la mentalidad del desarrollo de software, pasando de un enfoque rígido y planificado a uno adaptable, iterativo y centrado en las personas y el valor. Dominar estos conceptos es esencial en el panorama actual de la ingeniería de software.
+
+---
