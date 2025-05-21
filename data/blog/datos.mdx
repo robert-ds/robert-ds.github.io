@@ -1,0 +1,253 @@
+---
+title: Estructura de Datos
+date: '2025-05-21'
+tags: ['datos','estructura', 'pilas', 'colas']
+draft: false
+images:
+  [
+    '/static/images/blog/datos/datos.jpg'
+  ]
+summary: 'Las estructuras de datos son uno de los pilares fundamentales de la ciencia de la computación y la programación. Si los algoritmos son las "recetas" para resolver problemas, las estructuras de datos son los "ingredientes" que los algoritmos utilizan.'
+---
+
+<Image
+  alt={`datos image`}
+  src={`/static/images/blog/datos/datos.jpg`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Elegir la estructura de datos adecuada puede marcar una diferencia abismal en el rendimiento, la eficiencia y la simplicidad de tu código.
+
+### ¿Qué es una Estructura de Datos?
+
+Una **estructura de datos** es una forma particular de organizar y almacenar datos en una computadora para que puedan ser accedidos y modificados de manera eficiente. No solo definen cómo se almacenan los datos, sino también las relaciones entre ellos y las operaciones permitidas sobre esos datos.
+
+Piensa en una biblioteca: los libros son los datos. Puedes apilarlos aleatoriamente (mala organización), o puedes organizarlos por género, autor, o usando un sistema de Dewey Decimal (buenas estructuras de datos) para que encontrarlos sea mucho más rápido y eficiente.
+
+### ¿Por qué son Importantes las Estructuras de Datos?
+
+- **Eficiencia:** Permiten realizar operaciones comunes (búsqueda, inserción, eliminación) de manera más rápida. Por ejemplo, buscar un elemento en una lista desordenada es lento, pero en un árbol de búsqueda binaria es mucho más rápido.
+- **Gestión de Memoria:** Algunas estructuras están optimizadas para usar la memoria de manera más eficiente.
+- **Abstracción:** Proporcionan una forma de organizar datos que es independiente de la implementación subyacente.
+- **Resolución de Problemas:** Muchos problemas de programación se resuelven de forma elegante y eficiente utilizando la estructura de datos correcta.
+- **Fundamento de Algoritmos:** La mayoría de los algoritmos se basan en el uso de una o más estructuras de datos para funcionar.
+
+
+### Clasificación General de las Estructuras de Datos
+
+Las estructuras de datos se pueden clasificar de varias maneras, pero una común es por su linealidad:
+
+1.  **Estructuras de Datos Lineales:** Los elementos están organizados en una secuencia, donde cada elemento tiene un predecesor y un sucesor único (excepto el primero y el último).
+2.  **Estructuras de Datos No Lineales:** Los elementos no están en una secuencia lineal, y un elemento puede estar conectado a múltiples predecesores y/o sucesores.
+
+Vamos a explorar las más comunes con ejemplos:
+
+
+### I. Estructuras de Datos Lineales
+
+#### Arrays (Arreglos / Vectores)
+
+- **Descripción:** Una colección de elementos del mismo tipo almacenados en ubicaciones de memoria contiguas. Cada elemento es accesible directamente por su índice.
+- **Operaciones Típicas:**
+    - **Acceso:** $O(1)$ (directo por índice).
+    - **Búsqueda:** $O(N)$ (lineal en el peor caso), $O(\log N)$ si está ordenado y se usa búsqueda binaria.
+    - **Inserción/Eliminación:** $O(N)$ (si se requiere desplazar elementos).
+- **Ventajas:** Acceso muy rápido a los elementos, uso eficiente de la memoria caché.
+- **Desventajas:** Tamaño fijo (en muchos lenguajes), inserciones y eliminaciones costosas en el medio.
+
+**Ejemplo (Python):**
+```python
+# Un array (lista en Python) de números enteros
+numeros = [10, 20, 30, 40, 50]
+
+print(f"Primer elemento: {numeros[0]}") # Acceso O(1)
+numeros.append(60) # Añadir al final (eficiente)
+numeros.insert(1, 15) # Insertar en el medio (costoso)
+print(numeros)
+```
+
+#### Listas Enlazadas (Linked Lists)
+
+- **Descripción:** Una colección de nodos, donde cada nodo contiene un dato y una referencia (o puntero) al siguiente nodo en la secuencia.
+- **Tipos:** Simplemente enlazadas (unidireccional), doblemente enlazadas (bidireccional), circulares.
+- **Operaciones Típicas:**
+    - **Acceso/Búsqueda:** $O(N)$ (se debe recorrer desde el inicio).
+    - **Inserción/Eliminación:** $O(1)$ (una vez que se tiene una referencia al nodo anterior/actual), pero $O(N)$ si se debe buscar el nodo primero.
+- **Ventajas:** Tamaño dinámico, inserciones y eliminaciones eficientes en cualquier posición.
+- **Desventajas:** No permite acceso directo por índice (no $O(1)$), mayor consumo de memoria por los punteros.
+
+**Ejemplo (Python - Conceptual):**
+
+```python
+class Nodo:
+    def __init__(self, dato):
+        self.dato = dato
+        self.siguiente = None
+
+nodo1 = Nodo(10)
+nodo2 = Nodo(20)
+nodo3 = Nodo(30)
+
+nodo1.siguiente = nodo2
+nodo2.siguiente = nodo3
+
+actual = nodo1
+while actual:
+    print(actual.dato, end=" -> ")
+    actual = actual.siguiente
+print("None")
+```
+
+#### Pilas (Stacks)
+
+- **Descripción:** Una estructura de datos LIFO (Last-In, First-Out), similar a una pila de platos. El último elemento añadido es el primero en ser eliminado.
+- **Operaciones Típicas:**
+    - **Push:** Añadir un elemento a la cima ($O(1)$).
+    - **Pop:** Eliminar el elemento de la cima ($O(1)$).
+    - **Peek/Top:** Ver el elemento de la cima sin eliminarlo ($O(1)$).
+- **Ventajas:** Simple, eficiente para operaciones de LIFO.
+- **Aplicaciones:** Deshacer/Rehacer funcionalidades, control de llamadas a funciones (call stack), evaluación de expresiones.
+- **Desventajas:** No permite acceso aleatorio a los elementos, solo al de la cima.
+
+**Ejemplo (Python):**
+
+```python
+pila = []
+pila.append("Plato 1") # Push
+pila.append("Plato 2")
+pila.append("Plato 3")
+
+print(f"Pila actual: {pila}")
+print(f"Elemento en la cima: {pila[-1]}") # Peek
+
+elemento_eliminado = pila.pop() # Pop
+print(f"Elemento eliminado: {elemento_eliminado}")
+print(f"Pila después de pop: {pila}")
+```
+
+#### Colas (Queues)
+
+- **Descripción:** Una estructura de datos FIFO (First-In, First-Out), similar a una fila en el supermercado. El primer elemento añadido es el primero en ser eliminado.
+- **Operaciones Típicas:**
+    - **Enqueue:** Añadir un elemento al final ($O(1)$).
+    - **Dequeue:** Eliminar el elemento del frente ($O(1)$).
+    - **Front/Peek:** Ver el elemento del frente sin eliminarlo ($O(1)$).
+- **Ventajas:** Simple, eficiente para operaciones de FIFO.
+- **Aplicaciones:** Gestión de tareas en un sistema operativo, simulación de eventos, buffers de datos.
+- **Desventajas:** No permite acceso aleatorio a los elementos, solo al del frente.
+
+**Ejemplo (Python):**
+
+```python
+from collections import deque
+
+cola = deque()
+cola.append("Persona 1") # Enqueue
+cola.append("Persona 2")
+cola.append("Persona 3")
+
+print(f"Cola actual: {cola}")
+print(f"Elemento al frente: {cola[0]}") # Peek
+
+elemento_atendido = cola.popleft() # Dequeue
+print(f"Elemento atendido: {elemento_atendido}")
+print(f"Cola después de dequeue: {cola}")
+```
+
+### II. Estructuras de Datos No Lineales
+
+#### Árboles (Trees)
+
+- **Descripción:** Una estructura jerárquica donde los elementos (nodos) están conectados de forma no lineal. Un nodo raíz es el punto de partida, y cada nodo puede tener cero o más nodos hijos.
+- **Tipos Comunes:**
+    - **Árbol Binario:** Cada nodo tiene como máximo dos hijos (izquierdo y derecho).
+    - **Árbol de Búsqueda Binaria (BST):** Un árbol binario donde todos los nodos del subárbol izquierdo son menores que el nodo padre, y todos los nodos del subárbol derecho son mayores. Esto permite búsquedas eficientes ($O(\log N)$ en el caso promedio).
+    - **Árbol AVL / Rojo-Negro:** BSTs auto-balanceados que garantizan que las operaciones de búsqueda, inserción y eliminación siempre sean $O(\log N)$.
+    - **Árbol B:** Usados en bases de datos para indexación.
+- **Operaciones Típicas (BST):**
+    - **Búsqueda, Inserción, Eliminación:** $O(\log N)$ en el caso promedio, $O(N)$ en el peor caso (árbol desbalanceado).
+- **Ventajas:** Eficientes para búsquedas, inserciones y eliminaciones ordenadas.
+- **Aplicaciones:** Sistemas de archivos, bases de datos (índices), algoritmos de búsqueda, árboles de decisión.
+
+**Ejemplo (Conceptual de BST):**
+
+```
+    50
+    /  \
+  30   70
+  / \   / \
+20 40 60 80
+```
+
+#### Tablas Hash (Hash Tables / Diccionarios / Mapas Asociativos)
+
+- **Descripción:** Almacenan datos en pares clave-valor. Utilizan una **función hash** para mapear claves a índices en un array, permitiendo un acceso muy rápido a los valores asociados a esas claves.
+- **Conceptos Clave:**
+    - **Función Hash:** Toma una clave de entrada y devuelve un índice numérico.
+    - **Colisión:** Cuando dos claves diferentes producen el mismo índice hash. Se resuelven con técnicas como encadenamiento (listas enlazadas en cada índice) o sondeo abierto.
+- **Operaciones Típicas:**
+    - **Inserción, Búsqueda, Eliminación:** $O(1)$ en el caso promedio, $O(N)$ en el peor caso (muchas colisiones).
+- **Ventajas:** Acceso extremadamente rápido a los datos por clave.
+- **Desventajas:** Puede haber colisiones, no mantienen el orden de inserción.
+- **Aplicaciones:** Caches, bases de datos, búsqueda rápida de elementos, implementación de conjuntos.
+
+**Ejemplo (Python - Diccionario):**
+
+```python
+diccionario = {
+    "manzana": "fruta roja",
+    "platano": "fruta amarilla",
+    "zanahoria": "vegetal naranja"
+}
+
+print(f"Significado de manzana: {diccionario['manzana']}") # Acceso O(1)
+diccionario["uva"] = "fruta morada" # Inserción O(1)
+del diccionario["platano"] # Eliminación O(1)
+print(diccionario)
+```
+
+#### Grafos (Graphs)
+
+- **Descripción:** Una colección de nodos (vértices) y las conexiones entre ellos (aristas). Representan relaciones complejas entre objetos.
+- **Tipos:** Dirigidos (las aristas tienen dirección), no dirigidos, ponderados (las aristas tienen un peso).
+- **Representación:** Lista de adyacencia (lista de vecinos para cada nodo) o matriz de adyacencia (matriz que indica si hay conexión entre dos nodos).
+- **Operaciones Típicas:**
+    - **Recorrido:** Búsqueda en anchura (BFS), búsqueda en profundidad (DFS).
+    - **Caminos Mínimos:** Algoritmos como Dijkstra, Floyd-Warshall.
+    - **Detección de Ciclos:**
+- **Ventajas:** Muy flexibles para modelar relaciones del mundo real.
+- **Desventajas:** Los algoritmos pueden ser complejos y computacionalmente intensivos.
+- **Aplicaciones:** Redes sociales, mapas (rutas), sistemas de recomendación, circuitos electrónicos, flujo de trabajo.
+
+**Ejemplo (Conceptual):**
+
+```
+(A) --- (B)
+  | \   / |
+  |  (C)  |
+  | /   \ |
+(D) --- (E)
+
+Representación con lista de adyacencia:
+A: [B, C, D]
+B: [A, C, E]
+C: [A, B, D, E]
+D: [A, C, E]
+E: [B, C, D]
+```
+
+### Consideraciones al Elegir una Estructura de Datos
+
+La elección de la estructura de datos correcta depende de varios factores:
+
+1. **Operaciones Típicas:** ¿Qué operaciones se realizarán con mayor frecuencia (inserción, eliminación, búsqueda, acceso por índice)?
+2. **Volumen de Datos:** ¿Cuántos datos se esperan almacenar?
+3. **Requisitos de Memoria:** ¿Hay restricciones de memoria?
+4. **Requisitos de Rendimiento:** ¿Qué tan crítico es el tiempo de ejecución de las operaciones?
+5. **Naturaleza de los Datos:** ¿Están ordenados, hay relaciones complejas?
+
+Dominar las estructuras de datos no es solo memorizar sus propiedades, sino entender cuándo y por qué usar cada una. Es una habilidad que mejora con la práctica y te permite diseñar soluciones más robustas y eficientes.
+
+---

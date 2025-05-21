@@ -1,0 +1,228 @@
+---
+title: Patrones de diseño de Software
+date: '2025-05-21'
+tags: ['patrones','software', 'builder', 'singleton']
+draft: false
+images:
+  [
+    '/static/images/blog/patrones/patrones.png'
+  ]
+summary: '
+  En este artículo, exploraremos los patrones de diseño de software más comunes y cómo pueden mejorar la calidad y la mantenibilidad de tu código.'
+---
+
+<Image
+  alt={`arquitectura image`}
+  src={`/static/images/blog/patrones/patrones.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+> Si la arquitectura de software es el "mapa" o "plano" general de tu sistema, y las estructuras de datos son los "ingredientes" fundamentales, los **patrones de diseño de software** son las "recetas" probadas y recurrentes para resolver problemas de diseño específicos y comunes en el desarrollo de software.
+
+Los patrones te permiten escribir código más limpio, flexible, reutilizable y fácil de entender y mantener.
+
+### ¿Qué es un Patrón de Diseño de Software?
+
+Un **patrón de diseño de software** es una solución general y reutilizable a un problema común que ocurre dentro de un contexto dado en el diseño de software. No es un diseño final que pueda ser directamente transformado en código, sino una descripción o plantilla de cómo resolver un problema que puede ser usada en muchas situaciones diferentes.
+
+El concepto fue popularizado por el libro "Design Patterns: Elements of Reusable Object-Oriented Software" de la "Gang of Four" (GoF): Erich Gamma, Richard Helm, Ralph Johnson y John Vlissides. Este libro categorizó 23 patrones que se han convertido en la base del conocimiento en el campo.
+
+### Componentes de un Patrón de Diseño:
+
+Un patrón de diseño suele describir los siguientes elementos:
+
+1. **Nombre del Patrón:** Un nombre breve y descriptivo para el patrón.
+2. **Problema:** Una descripción del problema al que el patrón intenta dar solución.
+3. **Solución:** Una descripción abstracta del diseño que resuelve el problema. Incluye los elementos (clases, objetos), sus relaciones, responsabilidades y colaboraciones.
+4. **Consecuencias:** Las ventajas y desventajas de aplicar el patrón, así como las implicaciones en el rendimiento, la flexibilidad, la mantenibilidad, etc.
+
+### ¿Por qué son Importantes los Patrones de Diseño?
+
+- **Reutilización:** Proporcionan soluciones probadas que se pueden aplicar en diferentes proyectos y contextos, ahorrando tiempo y esfuerzo.
+- **Lenguaje Común:** Establecen un vocabulario estandarizado entre los desarrolladores. Decir "vamos a usar un Singleton" es más eficiente que describir cómo se va a asegurar una única instancia.
+- **Mejores Diseños:** Ayudan a crear diseños más robustos, flexibles, escalables y mantenibles, al aplicar soluciones que han demostrado ser efectivas.
+- **Reducción de Errores:** Al usar soluciones probadas, se reduce la probabilidad de introducir errores de diseño comunes.
+- **Comunicación Mejorada:** Facilitan la discusión de diseños de alto nivel y la transferencia de conocimiento.
+- **Aprendizaje y Crecimiento:** Son una excelente forma de aprender sobre diseño de software orientado a objetos y buenas prácticas.
+
+### Categorías de Patrones de Diseño (Según la GoF)
+
+Los patrones de diseño de GoF se clasifican en tres categorías principales según su propósito:
+
+#### Patrones Creacionales (Creational Patterns)
+
+Estos patrones se ocupan de la **creación de objetos**. Proporcionan formas de crear objetos de manera flexible y desacoplada, evitando la instanciación directa.
+
+**Singleton:**
+  - **Problema:** Asegurar que una clase tenga **una única instancia** y proporcionar un punto de acceso global a ella. Útil para gestores de configuración, bases de datos o servicios de logging.
+  - **Solución:** La clase Singleton tiene un constructor privado para evitar la instanciación externa y un método estático que devuelve la única instancia.
+
+**Ejemplo (Python):**
+```python
+class Configuracion:
+    _instance = None
+
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super(Configuracion, cls).__new__(cls)
+            cls._instance.ajustes = {} # Inicializar ajustes
+        return cls._instance
+
+    def set_ajuste(self, clave, valor):
+        self.ajustes[clave] = valor
+
+    def get_ajuste(self, clave):
+        return self.ajustes.get(clave)
+
+# Uso:
+config1 = Configuracion()
+config1.set_ajuste("db_host", "localhost")
+
+config2 = Configuracion()
+print(config2.get_ajuste("db_host")) # Output: localhost (es la misma instancia)
+print(config1 is config2) # Output: True
+```
+
+**Factory Method (Método de Fábrica):**
+  - **Problema:** Definir una interfaz para crear un objeto, pero dejar que las subclases decidan qué clase instanciar.
+  - **Solución:** Una superclase declara un método que "crea" objetos, y las subclases implementan este método para devolver instancias de sus clases concretas.
+  - **Uso:** Cuando una clase no puede prever la clase de objetos que debe crear.
+  - **Ejemplo:** Un sistema que crea diferentes tipos de documentos (PDF, Word, Excel).
+
+**Abstract Factory (Fábrica Abstracta):**
+  - **Problema:** Proporcionar una interfaz para crear **familias de objetos relacionados o dependientes** sin especificar sus clases concretas.
+  - **Solución:** Define una interfaz para una fábrica que agrupa métodos de creación de objetos relacionados.
+  - **Uso:** Cuando necesitas asegurar que los objetos creados son compatibles entre sí.
+  - **Ejemplo:** Crear familias de componentes de interfaz de usuario (Botón Windows, Checkbox Windows; Botón Mac, Checkbox Mac).
+
+**Builder (Constructor):**
+  - **Problema:** Construir objetos complejos paso a paso, permitiendo diferentes representaciones del mismo proceso de construcción.
+  - **Solución:** Separa la construcción de un objeto complejo de su representación. Un director orquesta el constructor para producir el objeto.
+  - **Uso:** Cuando un objeto tiene muchas partes o varias formas de construirse.
+  - **Ejemplo:** Construir un objeto `Coche` con muchas opciones (motor, color, asientos, GPS).
+
+**Prototype (Prototipo):**
+  - **Problema:** Crear nuevos objetos copiando un objeto existente (el prototipo) en lugar de instanciar nuevas clases.
+  - **Solución:** Los objetos implementan una interfaz de clonación.
+  - **Uso:** Cuando la creación de objetos es costosa o cuando quieres evitar la creación de una jerarquía de clases paralela para constructores.
+  - **Ejemplo:** Un editor de gráficos donde puedes "clonar" formas existentes.
+
+#### Patrones Estructurales (Structural Patterns)
+
+Estos patrones se ocupan de la **composición de clases y objetos**, es decir, cómo se organizan y relacionan las clases y objetos para formar estructuras más grandes.
+
+**Adapter (Adaptador):**
+  - **Problema:** Permitir que dos interfaces incompatibles trabajen juntas.
+  - **Solución:** Crea una clase "adaptador" que convierte la interfaz de una clase a otra interfaz que el cliente espera.
+  - **Uso:** Integrar sistemas existentes con nuevas APIs, reutilizar clases existentes.
+  - **Ejemplo:** Conectar un cargador USB-A a un puerto USB-C.
+
+**Decorator (Decorador):**
+  - **Problema:** Añadir responsabilidades a un objeto dinámicamente, sin modificar su estructura original ni crear una explosión de subclases.
+  - **Solución:** Envuelve el objeto original en un "decorador" que añade nuevas funcionalidades antes o después de llamar al método del objeto original.
+  - **Uso:** Añadir logging, seguridad, compresión, etc., a componentes existentes.
+
+**Ejemplo (Python):**
+```python
+class Cafe:
+    def costo(self):
+        return 5
+    def descripcion(self):
+        return "Café simple"
+
+class Leche(Cafe):
+    def __init__(self, cafe):
+        self._cafe = cafe
+    def costo(self):
+        return self._cafe.costo() + 1.5
+    def descripcion(self):
+        return self._cafe.descripcion() + ", con leche"
+
+class Azucar(Cafe):
+    def __init__(self, cafe):
+        self._cafe = cafe
+    def costo(self):
+        return self._cafe.costo() + 0.5
+    def descripcion(self):
+        return self._cafe.descripcion() + ", con azúcar"
+
+mi_cafe = Cafe()
+mi_cafe = Leche(mi_cafe)
+mi_cafe = Azucar(mi_cafe)
+print(f"{mi_cafe.descripcion()} Costo: ${mi_cafe.costo()}")
+# Output: Café simple, con leche, con azúcar Costo: $7.0
+```
+
+**Facade (Fachada):**
+  - **Problema:** Proporcionar una interfaz unificada y simplificada a un conjunto de interfaces en un subsistema complejo.
+  - **Solución:** Una clase "fachada" que delega las llamadas a las clases apropiadas del subsistema.
+  - **Uso:** Reducir la complejidad de un sistema y mejorar su usabilidad.
+  - **Ejemplo:** Una interfaz sencilla para un sistema multimedia complejo (reproducir, pausar, detener) que oculta los detalles de los códecs, decodificadores, etc.
+
+**Composite (Compuesto):**
+  - **Problema:** Tratar objetos individuales y composiciones de objetos de manera uniforme.
+  - **Solución:** Define una interfaz común para objetos individuales (hojas) y contenedores de objetos (compuestos), que también implementan la misma interfaz.
+  - **Uso:** Estructuras de árbol, sistemas de archivos, componentes gráficos.
+  - **Ejemplo:** Un sistema de archivos donde un directorio (compuesto) y un archivo (hoja) pueden ser tratados de la misma manera (ej. calcular tamaño).
+
+**Proxy (Sustituto):**
+  - **Problema:** Proporcionar un sustituto o marcador de posición para otro objeto para controlar el acceso a él.
+  - **Solución:** Una clase Proxy implementa la misma interfaz que el objeto real y controla el acceso a este.
+  - **Uso:** Control de acceso (seguridad), lazy loading, logging, caching.
+  - **Ejemplo:** Un proxy de red que controla el acceso a un servidor web.
+
+#### Patrones de Comportamiento (Behavioral Patterns)
+
+Estos patrones se ocupan de la **comunicación y la interacción entre objetos**. Se centran en cómo los objetos colaboran para llevar a cabo una tarea.
+
+**Observer (Observador):**
+  - **Problema:** Definir una dependencia uno-a-muchos entre objetos, de manera que cuando un objeto (sujeto) cambia de estado, todos sus dependientes (observadores) son notificados y actualizados automáticamente.
+  - **Solución:** El sujeto mantiene una lista de observadores y los notifica de los cambios.
+  - **Uso:** Sistemas de eventos, notificación de cambios en la interfaz de usuario, RSS feeds.
+  - **Ejemplo:** Un modelo de datos (sujeto) notifica a las vistas (observadores) cuando los datos cambian.
+
+**Strategy (Estrategia):**
+  - **Problema:** Definir una familia de algoritmos, encapsular cada uno de ellos y hacerlos intercambiables. Permite que el algoritmo varíe independientemente de los clientes que lo utilizan.
+  - **Solución:** Define una interfaz para los algoritmos (estrategias) y una clase de contexto que utiliza una de estas estrategias.
+  - **Uso:** Cuando tienes varios algoritmos para una misma tarea y quieres poder cambiar entre ellos en tiempo de ejecución.
+  - **Ejemplo:** Diferentes algoritmos de ordenamiento (burbuja, rápida, inserción) que pueden ser usados por una clase "Ordenador".
+
+**Command (Comando):**
+  - **Problema:** Encapsular una solicitud como un objeto, permitiendo parametrizar clientes con diferentes solicitudes, poner en cola o registrar solicitudes, y soportar operaciones des-hacer.
+  - **Solución:** Define una interfaz `Command` con un método `execute()`. Las clases concretas implementan esta interfaz para realizar acciones específicas.
+  - **Uso:** Sistemas de menús, botones, operaciones des-hacer/rehacer, sistemas de colas de tareas.
+  - **Ejemplo:** Un editor de texto donde "Cortar", "Copiar" y "Pegar" son objetos comando.
+
+**Iterator (Iterador):**
+  - **Problema:** Proporcionar una forma de acceder a los elementos de un objeto agregado secuencialmente sin exponer su representación subyacente.
+  - **Solución:** Define una interfaz `Iterator` que permite recorrer una colección.
+  - **Uso:** Recorrer colecciones (listas, árboles, grafos) de manera uniforme.
+  - **Ejemplo:** Los bucles `for...in` en muchos lenguajes utilizan el concepto de iteradores.
+
+**State (Estado):**
+  - **Problema:** Permitir que un objeto altere su comportamiento cuando su estado interno cambia. El objeto parecerá cambiar su clase.
+  - **Solución:** Un objeto tiene diferentes clases de estado, y delega el comportamiento a la clase de estado actual.
+  - **Uso:** Máquinas de estado finito, comportamiento dependiente del estado del objeto.
+  - **Ejemplo:** Un objeto `ReproductorMultimedia` que cambia su comportamiento (play, pause, stop) según su estado (Reproduciendo, Pausado, Detenido).
+
+### Más Allá de la GoF: Otros Patrones Notables
+
+Existen muchos otros patrones más allá de los 23 de la GoF, incluyendo:
+
+- **Patrones de Concurrencia:** (ej., Producer-Consumer, Thread Pool)
+- **Patrones de Arquitectura Empresarial:** (ej., Inyección de Dependencias, Repository, Unit of Work)
+- **Patrones de Diseño de Microservicios:** (ej., API Gateway, Service Discovery, Circuit Breaker)
+
+### Cómo Aprender y Aplicar Patrones de Diseño
+
+1. **Entiende el Problema:** No apliques un patrón solo por aplicarlo. Primero, identifica el problema de diseño que necesitas resolver.
+2. **Aprende los Patrones:** Estudia los patrones, sus soluciones y, crucialmente, sus consecuencias (cuándo usarlos y cuándo no).
+3. **Practica:** La mejor forma de aprender es implementándolos. Intenta refactorizar código existente usando patrones.
+4. **Lee Código:** Observa cómo otros desarrolladores experimentados aplican patrones en sus proyectos. Muchos frameworks y librerías utilizan patrones de forma extensiva.
+5. **Sé Crítico:** No todos los problemas requieren un patrón. A veces, una solución simple es mejor.
+
+Los patrones de diseño son una herramienta poderosa para construir software de alta calidad. Te elevan del nivel de la implementación individual al nivel de la estrategia de diseño, permitiéndote crear soluciones más elegantes y robustas para los desafíos de la ingeniería de software.
+
+---
