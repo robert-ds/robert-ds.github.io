@@ -58,7 +58,7 @@ La arquitectura de software se materializa a menudo a través de **patrones y es
 
 Aquí te presento algunos de los estilos y patrones arquitectónicos más comunes:
 
-#### 1. Arquitectura en Capas (N-Tier)
+### 1. Arquitectura en Capas (N-Tier)
 
 - **Descripción:** Es el estilo más común y tradicional. El sistema se divide en capas horizontales, donde cada capa tiene una responsabilidad específica y solo se comunica con las capas adyacentes.
 - **Capas Típicas:**
@@ -70,7 +70,7 @@ Aquí te presento algunos de los estilos y patrones arquitectónicos más comune
 - **Desventajas:** Puede generar "monolitos en capas", lo que dificulta el escalado y la evolución independiente de funcionalidades.
 - **Ejemplo:** La mayoría de las aplicaciones web empresariales tradicionales siguen este estilo (frontend, backend, base de datos).
 
-#### 2. Arquitectura Cliente-Servidor
+### 2. Arquitectura Cliente-Servidor
 
 - **Descripción:** Un cliente (frontend) solicita recursos o servicios a un servidor (backend), que los proporciona.
 - **Variantes:** Thin client (la mayor parte de la lógica en el servidor), thick client (la mayor parte de la lógica en el cliente).
@@ -78,7 +78,7 @@ Aquí te presento algunos de los estilos y patrones arquitectónicos más comune
 - **Desventajas:** Dependencia del servidor, latencia de red.
 - **Ejemplo:** Aplicaciones web, aplicaciones móviles que se conectan a un API.
 
-#### 3. Arquitectura Basada en Microservicios
+### 3. Arquitectura Basada en Microservicios
 
 - **Descripción:** El sistema se descompone en un conjunto de servicios pequeños, independientes y autónomos, cada uno ejecutándose en su propio proceso y comunicándose entre sí a través de APIs ligeras (usualmente HTTP/REST o gRPC).
 - **Características:**
@@ -102,7 +102,7 @@ Aquí te presento algunos de los estilos y patrones arquitectónicos más comune
 - **Desventajas:** Mayor complejidad en la depuración (flujos asíncronos), necesidad de gestionar la consistencia eventual.
 - **Ejemplo:** Un sistema de e-commerce donde "pedido_creado" es un evento que dispara acciones como "enviar_email_confirmacion", "procesar_pago", "actualizar_inventario".
 
-#### 5. Arquitectura sin Servidor (Serverless)
+### 5. Arquitectura sin Servidor (Serverless)
 
 - **Descripción:** Los desarrolladores escriben y despliegan código sin preocuparse por la infraestructura subyacente. Los proveedores de la nube gestionan dinámicamente la asignación de recursos, escalando automáticamente el código y cobrando solo por el tiempo de ejecución.
 - **Funciones como Servicio (FaaS):** El modelo más común de serverless (ej. AWS Lambda, Azure Functions, Google Cloud Functions).
@@ -110,7 +110,7 @@ Aquí te presento algunos de los estilos y patrones arquitectónicos más comune
 - **Desventajas:** Dependencia del proveedor de la nube, "cold start" (latencia inicial para funciones inactivas), complejidad en la depuración distribuida, límites de tiempo de ejecución.
 - **Ejemplo:** Una API para procesar una imagen subida, donde una función Lambda se activa automáticamente al cargar la imagen en un bucket de almacenamiento.
 
-#### 6. Arquitectura Basada en Servicios (SOA - Service-Oriented Architecture)
+### 6. Arquitectura Basada en Servicios (SOA - Service-Oriented Architecture)
 
 - **Descripción:** Antecesor de los microservicios, SOA se enfoca en la reutilización de servicios empresariales. Los servicios son componentes más grandes que los microservicios, a menudo compartiendo una única base de datos y un "Enterprise Service Bus (ESB)" para la comunicación.
 - **Ventajas:** Reutilización de servicios, interoperabilidad.
