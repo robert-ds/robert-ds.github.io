@@ -62,7 +62,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
               </div>
               <div className="flex items-center space-x-2 ">
                 <div className="text-gray-500 dark:text-gray-400">{readingTime.text}</div>
-                {pageViews && <div>Vistas de la páagina</div>}
+                {pageViews && <div>Vistas de la página</div>}
               </div>
             </div>
           </header>
