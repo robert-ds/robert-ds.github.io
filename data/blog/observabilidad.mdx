@@ -1,0 +1,139 @@
+---
+title: Observabilidad
+date: '2025-05-22'
+tags: ['observabilidad', 'log', 'monitoreo', 'seguimiento']
+draft: false
+images:
+  [
+    '/static/images/blog/observabilidad/obser.jpeg',
+    '/static/images/blog/observabilidad/observabilidad.jpg',
+  ]
+summary: 'Es un concepto fundamental en el desarrollo y operación de sistemas modernos, especialmente en arquitecturas distribuidas como los microservicios o los sistemas en la nube.'
+---
+
+<Image
+  alt={`observabilidad image`}
+  src={`/static/images/blog/observabilidad/obser.jpeg`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Va más allá de la simple "monitorización" y se ha convertido en una necesidad para entender el comportamiento de sistemas complejos y dinámicos. la observabilidad es la clave para responder a la pregunta: "¿Por qué mi sistema se está comportando de esta manera?" cuando algo inesperado ocurre, o incluso para entender su comportamiento normal bajo carga.
+
+### ¿Qué es la Observabilidad?
+
+La **observabilidad** es la capacidad de un sistema para **inferir su estado interno basándose únicamente en los datos que genera desde el exterior**. Dicho de otra forma, es qué tan bien puedes entender lo que está sucediendo dentro de tu aplicación o infraestructura sin tener que desplegar nuevo código o realizar cambios en el entorno de producción.
+
+Mientras que la **monitorización** te dice **si** algo está fallando (ej. "el uso de CPU es alto"), la observabilidad te ayuda a entender **por qué** está fallando (ej. "el uso de CPU es alto debido a un bucle infinito en el servicio X causado por un dato específico en el usuario Y").
+
+La observabilidad se logra a través de la recopilación y análisis de tres tipos principales de datos telemetría, a menudo referidos como los "Tres Pilares de la Observabilidad":
+
+1.  **Logs (Registros):** Eventos discretos e inmutables que ocurren en un sistema en un momento dado.
+2.  **Metrics (Métricas):** Agregaciones numéricas de datos medibles a lo largo del tiempo.
+3.  **Traces (Trazas Distribuidas):** Representaciones del recorrido de una solicitud a través de múltiples servicios en un sistema distribuido.
+
+### Los Tres Pilares de la Observabilidad
+
+### 1\. Logs (Registros)
+
+- **Descripción:** Son mensajes de texto (estructurados o no) generados por aplicaciones o componentes de infraestructura para registrar eventos, operaciones o estados en un momento específico. Piensa en ellos como la "bitácora" de tu sistema.
+- **Contenido Típico:** Timestamps, nivel de severidad (INFO, WARN, ERROR, DEBUG), mensaje, contexto (ID de usuario, ID de transacción, nombre del microservicio, etc.).
+- **Propósito:** Depuración detallada de problemas específicos, análisis forense, auditoría.
+- **Herramientas Comunes:**
+  - **Recopilación:** Fluentd, Logstash, Vector.
+  - **Almacenamiento y Análisis:** ELK Stack (Elasticsearch, Logstash, Kibana), Grafana Loki, Splunk, Datadog Logs.
+- **Desafíos:** Volumen masivo de datos, dificultad para correlacionar logs de diferentes servicios sin contexto (ej. ID de traza).
+
+**Ejemplo de un Log:**
+```json
+{
+  "timestamp": "2023-10-26T10:30:00.123Z",
+  "level": "ERROR",
+  "service": "orders-service",
+  "message": "Failed to process order",
+  "order_id": "ORD-78901",
+  "user_id": "user123",
+  "error_code": "DB_CONN_FAILED",
+  "exception": "java.sql.SQLException: Connection refused"
+}
+```
+
+#### 2\. Metrics (Métricas)
+
+- **Descripción:** Valores numéricos que representan una medida en un momento dado. A diferencia de los logs que son eventos discretos, las métricas son series de tiempo de datos agregados que cambian a lo largo del tiempo.
+- **Tipos Comunes:**
+  - **Counters:** Solo aumentan (ej. número total de solicitudes, errores).
+  - **Gauges:** Pueden aumentar o disminuir (ej. uso de CPU, memoria disponible, número de usuarios activos).
+  - **Histograms:** Muestran la distribución de un conjunto de valores (ej. tiempos de respuesta de solicitudes).
+  - **Summaries:** Similares a los histogramas pero calculan percentiles.
+- **Propósito:** Monitoreo del rendimiento, detección de anomalías, dashboards, alertas, análisis de tendencias a largo plazo.
+- **Herramientas Comunes:**
+  - **Recopilación:** Prometheus Exporters, Telegraf, StatsD.
+  - **Almacenamiento y Visualización:** Prometheus, Grafana, InfluxDB, Datadog Metrics, New Relic.
+- **Ventajas:** Baja sobrecarga de almacenamiento y procesamiento, ideales para alertas y visualización rápida del estado del sistema.
+- **Ejemplo de Métricas:**
+  - `http_requests_total{service="user-service", status="200"} 15432` (Counter)
+  - `cpu_usage_percent{host="server-a"} 75.6` (Gauge)
+  - `request_duration_seconds_bucket{le="0.5", service="product-service"} 120` (parte de un Histogram)
+
+#### 3\. Traces (Trazas Distribuidas)
+
+- **Descripción:** Representan la ruta completa de una única solicitud o transacción a medida que fluye a través de múltiples servicios, componentes y sistemas en un entorno distribuido. Son cruciales para entender la latencia y los fallos en arquitecturas de microservicios.
+- **Componentes:** Una traza se compone de múltiples "spans". Cada **span** representa una operación unitaria dentro de la traza (ej. una llamada a una base de datos, una llamada a un servicio externo, una función específica).
+- **Propósito:** Análisis de rendimiento en microservicios, identificar cuellos de botella en transacciones complejas, depuración de fallos que abarcan múltiples servicios.
+- **Estándares y Herramientas Comunes:**
+  - **Estándares:** OpenTelemetry (unifica traces, metrics y logs), OpenTracing, Zipkin, Jaeger.
+  - **Plataformas:** Jaeger, Zipkin, Datadog APM, New Relic APM, Grafana Tempo.
+- **Ventajas:** Visibilidad end-to-end de las transacciones, identificación de la causa raíz en sistemas distribuidos.
+- **Desafíos:** Requieren instrumentación del código, pueden generar un gran volumen de datos, compleja correlación si no se implementa correctamente.
+
+
+```
+Request (Cliente)
+├── Servicio_API_Gateway (span1)
+│   └── Servicio_Pedidos (span2)
+│       ├── Servicio_Inventario (span3)
+│       │   └── BaseDeDatos_Inventario (span4)
+│       └── Servicio_Pagos (span5)
+│           └── API_Externa_Pago (span6)
+└── Respuesta (Cliente)
+```
+
+Cada `span` tendría su propio ID, ID de padre, nombre de operación, timestamp de inicio/fin, y metadatos relevantes.
+
+### Principios Clave de la Observabilidad
+
+<Image
+  alt={`observabilidad image`}
+  src={`/static/images/blog/observabilidad/observabilidad.jpeg`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+- **Instrumentación:** El proceso de añadir código a tus aplicaciones o configurar tu infraestructura para emitir logs, métricas y trazas. Esto es crucial; un sistema no es observable si no emite los datos correctos.
+- **Contexto:** Los datos de observabilidad deben tener suficiente contexto para ser útiles. Por ejemplo, un log de error es más útil si incluye un `user_id` o `request_id`.
+- **Correlación:** La capacidad de vincular logs, métricas y trazas entre sí (por ejemplo, usando el mismo `request_id` en todos los logs y spans de una misma solicitud).
+- **Análisis y Visualización:** Herramientas que permiten almacenar, consultar, visualizar y alertar sobre los datos de observabilidad.
+- **Retroalimentación:** Utilizar los insights obtenidos de la observabilidad para mejorar el diseño, la implementación y la operación del sistema.
+
+### Observabilidad vs. Monitorización (Una distinción importante)
+
+| Característica | Monitorización                                      | Observabilidad                                      |
+| :------------- | :-------------------------------------------------- | :-------------------------------------------------- |
+| **Pregunta** | ¿Está funcionando bien? ¿Qué está mal?             | ¿Por qué no está funcionando bien? ¿Qué está pasando? |
+| **Enfoque** | Pre-definido, conocido, métricas y alertas esperadas | Exploratorio, desconocido, capacidad de depuración profunda |
+| **Datos** | Principalmente métricas (salud del sistema)         | Métricas, Logs y Trazas (detalles internos)        |
+| **Naturaleza** | Reactiva (cuando una métrica cruza un umbral)      | Proactiva y Diagnóstica                             |
+| **Uso Típico** | Cuadros de mando, alertas de "algo está mal"       | Análisis de causa raíz, rendimiento, comportamiento de negocio |
+
+### Impacto de la Observabilidad
+
+- **Reducción del MTTR (Mean Time To Recovery):** El tiempo medio para recuperarse de un fallo. La observabilidad permite diagnosticar y resolver problemas mucho más rápido.
+- **Mejora de la Experiencia del Usuario:** Al detectar y resolver problemas antes de que afecten gravemente a los usuarios.
+- **Desarrollo más Rápido:** Permite a los equipos entender el impacto de sus cambios y depurar de manera más eficiente.
+- **Mayor Confianza en los Despliegues:** Saber que tienes las herramientas para entender y solucionar problemas en producción reduce el miedo a desplegar nuevas versiones.
+- **Optimización de Recursos:** Identificar cuellos de botella y ineficiencias.
+
+En un mundo de aplicaciones complejas y distribuidas, la observabilidad es indispensable. No es un lujo, sino una necesidad operativa para mantener los sistemas saludables, entender su comportamiento y asegurar una entrega de valor continua.
