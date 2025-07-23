@@ -1,0 +1,115 @@
+---
+title: N8N
+date: '2025-05-21'
+tags: ['automatización', 'herramienta']
+draft: false
+images: ['/static/images/blog/n8n/n8n.png']
+summary: 'Una herramienta fantástica y muy potente para la automatización de flujos de trabajo'
+---
+
+<Image
+  alt={`agile image`}
+  src={`/static/images/blog/n8n/n8n.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Si estás buscando una forma de conectar y automatizar tareas entre diferentes aplicaciones y servicios sin escribir mucho (o nada) de código, n8n es una opción que definitivamente debes considerar.
+
+---
+
+### ¿Qué es n8n?
+
+**n8n** (pronunciado "n-eight-n" o "node-eigh-n") es una herramienta de **automatización de flujos de trabajo (workflow automation)** que se describe a sí misma como una "herramienta de automatización de código justo" (*"fair-code automation tool"*). Esto significa que es un software de **código abierto** que puedes alojar en tu propio servidor (self-hosted), pero también ofrece una versión en la nube.
+
+Su principal objetivo es permitirte **conectar diversas aplicaciones y servicios web** (como Google Sheets, Slack, Trello, bases de datos, APIs personalizadas, CRM, etc.) y **automatizar tareas repetitivas** mediante la creación de "workflows" visuales.
+
+A diferencia de otras herramientas de automatización como Zapier o Make (antes Integromat), n8n te da mucho más control al ser de código abierto y autoalojable, lo que es ideal para quienes buscan **mayor privacidad, personalización y costos reducidos** a largo plazo.
+
+---
+
+### ¿Cómo funciona n8n?
+
+El corazón de n8n son los **nodos (nodes)** y los **flujos de trabajo (workflows)**.
+
+1.  **Nodos:** Son los bloques de construcción individuales. Cada nodo representa una aplicación, un servicio o una función específica (ej., un nodo para "Google Sheets", otro para "enviar un email con Gmail", otro para "hacer una solicitud HTTP").
+    * **Nodos de Disparador (Triggers):** Son el punto de inicio de un flujo de trabajo. Escuchan eventos (ej., un nuevo registro en una base de datos, un email entrante, una nueva fila en Google Sheets, una hora específica).
+    * **Nodos de Operación:** Realizan acciones o transformaciones de datos (ej., añadir una fila, enviar un mensaje, filtrar datos, transformar texto JSON).
+2.  **Flujos de Trabajo (Workflows):** Son secuencias visuales de nodos conectados. Defines una lógica de cómo los datos fluyen de un nodo a otro y qué acciones se deben ejecutar en cada paso.
+
+**En resumen, el proceso es:**
+Un evento **dispara** un flujo de trabajo. Los datos de ese evento se **procesan** a través de una serie de nodos que realizan **acciones** o **transformaciones**, y finalmente los resultados se envían a otro servicio o se almacenan.
+
+---
+
+### Características Clave de n8n
+
+* **Interfaz Visual de Arrastrar y Soltar:** La creación de flujos de trabajo es intuitiva. Conectas nodos y configuras sus propiedades en una interfaz gráfica.
+* **Amplia Variedad de Integraciones (Nodos):** n8n cuenta con cientos de integraciones pre-construidas para servicios populares. Si una integración no existe, puedes usar nodos HTTP Request para conectarte a cualquier API REST.
+* **Código "Justo" (Fair-Code):** Es de código abierto (bajo la licencia `[email protected]`), lo que significa que puedes usarlo, modificarlo y alojarlo tú mismo. Sin embargo, tiene restricciones para ser ofrecido como un SaaS directamente competitivo.
+* **Autohospedaje (Self-hosted):** Una de sus mayores ventajas. Puedes instalarlo en tu propio servidor (Docker es la forma más común), lo que te da control total sobre tus datos y escalabilidad.
+* **Flexibilidad Extrema:**
+    * **Nodos de Código:** Si necesitas lógica personalizada que no está disponible en un nodo pre-construido, puedes escribir código JavaScript directamente dentro de un nodo de función.
+    * **Nodos HTTP:** Conectar con cualquier API web.
+    * **Variables y Expresiones:** Puedes manipular datos complejos entre nodos usando expresiones JavaScript.
+* **Ejecución de Flujos de Trabajo:** Los flujos pueden ejecutarse manualmente, mediante un disparador web (webhook), en un horario específico (cron job) o por eventos internos.
+* **Gestión de Credenciales:** Maneja de forma segura las credenciales de API para tus servicios conectados.
+* **Registros y Historial de Ejecuciones:** Puedes ver el historial de cada ejecución de un flujo de trabajo, los datos que pasaron por cada nodo y cualquier error que haya ocurrido.
+* **Comunidad Activa:** Al ser de código abierto, tiene una comunidad vibrante que contribuye con nuevos nodos, ayuda y ejemplos.
+
+---
+
+### Casos de Uso Comunes de n8n
+
+n8n es increíblemente versátil y puede automatizar casi cualquier proceso que involucre diferentes aplicaciones. Algunos ejemplos incluyen:
+
+* **Marketing y Ventas:**
+    * Capturar leads de un formulario web y añadirlos automáticamente a tu CRM.
+    * Enviar emails de bienvenida personalizados a nuevos suscriptores.
+    * Publicar automáticamente contenido de un blog a tus redes sociales.
+    * Sincronizar contactos entre diferentes plataformas.
+* **Operaciones y Gestión de Proyectos:**
+    * Crear tareas en Trello o Jira cuando llega un nuevo email.
+    * Generar informes diarios de ventas en Google Sheets y enviarlos por Slack.
+    * Automatizar la facturación o la creación de recibos.
+* **Soporte al Cliente:**
+    * Crear tickets de soporte en un sistema cuando se recibe un email con ciertas palabras clave.
+    * Notificar al equipo de soporte en Slack sobre problemas urgentes.
+* **Desarrollo y DevOps:**
+    * Automatizar despliegues simples.
+    * Recibir notificaciones en Slack/Discord cuando una integración continua falla.
+    * Procesar webhooks de GitHub o GitLab.
+* **Integración de Datos:**
+    * Mover datos entre bases de datos diferentes.
+    * Transformar y limpiar datos de una fuente antes de enviarlos a otra.
+
+---
+
+### n8n vs. Otras Herramientas de Automatización (Zapier, Make/Integromat)
+
+| Característica        | n8n                                      | Zapier / Make (Integromat)                     |
+| :-------------------- | :--------------------------------------- | :--------------------------------------------- |
+| **Licencia** | Fair-code (código abierto con restricciones) | Propietario (SaaS)                             |
+| **Hosting** | Autoalojable (Self-hosted), también SaaS | SaaS (basado en la nube)                       |
+| **Control de Datos** | Total (si es autoalojado)                | Depende del proveedor de la nube               |
+| **Costos** | Varía (servidor, uso de nube n8n.cloud)  | Basado en suscripción (por tareas, apps)      |
+| **Flexibilidad** | Muy alta (código JS, HTTP genérico)     | Alta, pero más limitada a integraciones predefinidas |
+| **Curva de Aprendizaje**| Moderada (requiere entender lógica y autoalojamiento) | Baja (más "plug and play")                     |
+| **Ideal Para** | Usuarios técnicos, desarrolladores, empresas con necesidades específicas de privacidad/costo, integración de APIs complejas. | Usuarios no técnicos, pequeñas empresas, rapidez en la creación de automatizaciones simples. |
+
+---
+
+### Cómo empezar con n8n
+
+1.  **Instalación (Self-hosted):** La forma más sencilla es usar Docker. n8n tiene imágenes oficiales y documentación clara para empezar.
+2.  **n8n Cloud:** Si prefieres no gestionar tu propio servidor, puedes usar el servicio gestionado de n8n.
+3.  **Explorar Nodos:** Familiarízate con los diferentes nodos disponibles y sus funcionalidades.
+4.  **Crear tu Primer Workflow:** Empieza con algo sencillo, como conectar un formulario web a una hoja de cálculo.
+5.  **Utilizar Nodos de Código:** Para lógica avanzada, el nodo Function es tu mejor amigo.
+
+---
+
+### Resumen
+
+n8n es una herramienta muy potente que empodera a los desarrolladores y a los usuarios técnicos para automatizar procesos complejos, ahorrar tiempo y reducir errores manuales. Si te gusta tener control y personalizar tus automatizaciones, ¡definitivamente vale la pena explorarlo!
