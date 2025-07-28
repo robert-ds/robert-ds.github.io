@@ -1,0 +1,121 @@
+---
+title: Ingeniería de Contexto
+date: '2025-07-28'
+tags: ['ingeniería', 'llm', 'ia', 'contexto']
+draft: false
+images: ['/static/images/blog/contexto/contexto.png']
+summary: 'La ingeniería de contexto es una técnica que permite a los modelos de lenguaje comprender mejor el contexto de una conversación o un texto, mejorando así la calidad de las respuestas generadas.'
+---
+
+<Image
+  alt={`contexto image`}
+  src={`/static/images/blog/contexto/contexto.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Esta técnica es especialmente útil en aplicaciones de procesamiento del lenguaje natural (NLP) y en sistemas de diálogo. La **Ingeniería de Contexto** es un concepto que ha cobrado una importancia tremenda con la llegada y el auge de los **Grandes Modelos de Lenguaje (LLMs)** y los sistemas de Inteligencia Artificial más avanzados. A menudo, se la considera la evolución natural de la "ingeniería de *prompts*".
+
+---
+
+### ¿Qué es la Ingeniería de Contexto?
+
+La **Ingeniería de Contexto** es el proceso de **diseñar, construir y optimizar los sistemas que recolectan, estructuran, enriquecen y presentan toda la información relevante a un modelo de IA** (como un LLM) para que este pueda realizar una tarea de manera efectiva, precisa y confiable.
+
+Mientras que la **ingeniería de *prompts*** se centra en **cómo formulamos la pregunta o la instrucción directa** al modelo (el "qué decir"), la **ingeniería de contexto** se enfoca en **todo el ecosistema de información que el modelo necesita para responder de manera significativa** (el "qué sabe el modelo cuando se le pregunta y por qué debería importarle"). Es como ser el "sistema GPS personal" del modelo, alimentándolo constantemente con datos relevantes, históricos y en tiempo real.
+
+En esencia, la ingeniería de contexto busca asegurar que el modelo de IA tenga **el entorno y la información adecuados** para responder de manera inteligente, consistente y, sobre todo, útil, a lo largo de múltiples interacciones y tareas complejas.
+
+---
+
+### ¿Por qué es Crucial la Ingeniería de Contexto?
+
+Los LLMs son extremadamente poderosos, pero tienen limitaciones:
+
+1.  **Ventana de Contexto Limitada:** Los modelos solo pueden "recordar" y procesar una cierta cantidad de texto a la vez (su "ventana de contexto"). La ingeniería de contexto ayuda a decidir qué información es la más relevante para encajar en esa ventana.
+2.  **Falta de Conocimiento Específico/Actualizado:** Los LLMs están entrenados con datos hasta una fecha de corte específica. No tienen conocimiento del mundo en tiempo real o de datos internos y específicos de una organización.
+3.  **"Alucinaciones":** Cuando a un modelo le falta información, a menudo "inventa" respuestas plausibles pero incorrectas.
+4.  **Falta de Personalización/Memoria:** Sin un contexto bien gestionado, las interacciones con la IA pueden ser genéricas y desconectadas de las necesidades individuales del usuario o de la historia de la conversación.
+5.  **Flujos de Trabajo Complejos:** Las tareas que involucran múltiples pasos, herramientas externas o datos de diversas fuentes no pueden manejarse con un *prompt* estático.
+
+La ingeniería de contexto aborda estos desafíos al proporcionar una base sólida para construir **sistemas de IA conscientes del contexto, con memoria y capaces de razonar y actuar de manera más fiable**.
+
+---
+
+### Componentes Clave de la Ingeniería de Contexto
+
+La ingeniería de contexto implica la orquestación de varios elementos:
+
+1.  **Instrucciones del Sistema (System Prompt/Persona):**
+    * Define el rol, el tono, las limitaciones y las directrices generales de comportamiento del modelo.
+    * Ej: "Eres un asistente experto en soporte técnico para una compañía de telecomunicaciones. Responde de forma concisa, educada y profesional."
+
+2.  **Historial de Conversación/Memoria:**
+    * Mantener un registro de las interacciones previas en una conversación para que el modelo pueda recordar el contexto y seguir el hilo.
+    * Puede ser a corto plazo (las últimas N interacciones) o a largo plazo (resúmenes de conversaciones pasadas, preferencias del usuario).
+
+3.  **Recuperación de Información (RAG - Retrieval-Augmented Generation):**
+    * Este es el pilar fundamental de la ingeniería de contexto. Implica:
+        * **Bases de Conocimiento Externas:** Conectar el LLM a bases de datos, documentos (PDF, Confluence, etc.), APIs internas o externas.
+        * **Mecanismos de Recuperación:** Utilizar técnicas como las **bases de datos vectoriales** (vector databases) para buscar y recuperar fragmentos de texto relevantes de estas fuentes en función de la consulta del usuario.
+        * **Inyección de Contexto:** El texto recuperado se inyecta directamente en la ventana de contexto del LLM junto con el *prompt* del usuario, permitiendo que el modelo genere respuestas informadas y actualizadas.
+    * **Beneficio:** Permite que los LLMs respondan preguntas sobre información específica y actual de la que no fueron entrenados, y reduce las "alucinaciones".
+
+4.  **Gestión de Herramientas y APIs (Tool Use/Function Calling):**
+    * Proporcionar al modelo descripciones de herramientas o funciones externas a las que puede acceder y utilizar para obtener información o realizar acciones.
+    * Ej: Una herramienta para "buscar estado de pedido", una herramienta para "reservar un vuelo", una herramienta para "acceder a un CRM".
+    * El modelo recibe la capacidad de decidir cuándo y cómo usar estas herramientas basándose en el *prompt* y el contexto.
+
+5.  **Datos de Usuario y Preferencias:**
+    * Información específica del usuario (ID de cliente, historial de compras, preferencias, datos de cuenta) para personalizar las respuestas.
+
+6.  **Estructuración y Compresión de Información:**
+    * Dado el límite de la ventana de contexto, es crucial que la información se presente de forma óptima:
+        * **Resumen:** Resumir textos largos antes de pasarlos al LLM.
+        * **Filtrado:** Eliminar información irrelevante o redundante.
+        * **Formato:** Presentar el contexto de forma estructurada (ej., JSON, viñetas) para que el modelo lo procese mejor.
+
+7.  **Validación y Filtrado (Guardrails):**
+    * Asegurar que el contexto proporcionado al modelo no contenga información sensible, instrucciones maliciosas o contenido que no deba ser procesado.
+    * Prevenir el "envenenamiento del contexto" o la "confusión".
+
+---
+
+### Ingeniería de Contexto vs. Ingeniería de *Prompts*
+
+| Característica        | Ingeniería de *Prompts* | Ingeniería de Contexto                                    |
+| :-------------------- | :------------------------------------------------- | :-------------------------------------------------------- |
+| **Enfoque** | Cómo hablarle al modelo para una respuesta específica | Cómo preparar el *entorno* para que el modelo responda bien |
+| **Alcance** | Una sola interacción o *prompt* específico         | Todo el flujo de la conversación/tarea, a través del tiempo y múltiples fuentes |
+| **Naturaleza** | Lingüística, arte de la redacción                 | Sistemática, arquitectura de información                 |
+| **Objetivo** | Obtener la respuesta deseada *ahora* | Asegurar rendimiento consistente, fiabilidad y conocimiento a largo plazo |
+| **Componentes Típicos** | Instrucciones claras, *few-shot examples*, roles | RAG, memoria, gestión de herramientas, perfil de usuario, *system prompts* |
+| **Escalabilidad** | Menos escalable para sistemas complejos            | Diseñada para sistemas de IA complejos y robustos         |
+
+La Ingeniería de *Prompts* es una **parte** de la Ingeniería de Contexto. La Ingeniería de Contexto es el campo más amplio que abarca todas las estrategias y sistemas para optimizar la entrada del modelo.
+
+---
+
+### Aplicaciones de la Ingeniería de Contexto
+
+* **Asistentes Virtuales y Chatbots Avanzados:** Para mantener el hilo de la conversación, recordar preferencias de usuario y acceder a bases de conocimiento específicas de la empresa.
+* **Agentes de IA:** Sistemas autónomos que pueden realizar tareas complejas usando herramientas y basándose en una comprensión profunda de un dominio.
+* **Sistemas de Soporte al Cliente:** Proporcionar a la IA acceso a historiales de tickets, políticas de la empresa y bases de datos de productos para respuestas precisas.
+* **Herramientas de Codificación Asistida por IA:** Darle a la IA el contexto del proyecto (archivos, estructuras, convenciones de estilo) para generar código más coherente y relevante.
+* **Análisis y Resumen de Documentos:** Cuando el LLM necesita procesar grandes volúmenes de texto (contratos, artículos de investigación) y extraer información específica o generar resúmenes coherentes.
+
+---
+
+### Desafíos en la Ingeniería de Contexto
+
+* **"Lost in the Middle" Problem:** Los LLMs a veces tienen dificultades para recuperar información que se encuentra en el medio de una ventana de contexto muy larga.
+* **Calidad del Contexto:** Un contexto irrelevante, obsoleto o incorrecto puede llevar a "alucinaciones" o respuestas erróneas ("context poisoning").
+* **Costo y Latencia:** Recuperar y procesar grandes volúmenes de contexto puede aumentar el costo y la latencia de las llamadas al modelo.
+* **Gestión de la Complejidad:** Construir y mantener sistemas robustos de RAG y gestión de memoria es una tarea de ingeniería significativa.
+* **Evaluación:** Medir la efectividad de las estrategias de ingeniería de contexto requiere métricas y pipelines de evaluación sofisticados.
+
+### Resumen
+
+La Ingeniería de Contexto es el siguiente paso lógico en la construcción de aplicaciones de IA verdaderamente inteligentes y confiables. A medida que los modelos de IA se vuelven más ubicuos, la habilidad para alimentarles el contexto adecuado será una diferenciación clave en la calidad y utilidad de estas aplicaciones.
+
