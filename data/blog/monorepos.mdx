@@ -1,0 +1,183 @@
+---
+title: Monorepos
+date: '2025-07-31'
+tags: ['versionamiento', 'software', 'colaboracion']
+draft: false
+images: ['/static/images/blog/monorepos/monorepos.png']
+summary: 'Explorando los monorepos: una estrategia para gestionar múltiples proyectos en un solo repositorio.'
+---
+
+<Image
+  alt={`monorepos image`}
+  src={`/static/images/blog/monorepos/monorepos.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Los **monorepos** (también conocidos como repositorios monolíticos), un modelo de gestión de código fuente que, aunque tiene sus raíces en las grandes empresas tecnológicas, ha ganado popularidad en el desarrollo de software moderno. Un monorepo es, en esencia, **un único repositorio de control de versiones que contiene múltiples proyectos o bibliotecas de software relacionados, pero lógicamente separados**.
+
+En contraste, un enfoque de **multirepo** (o polyrepo) implica que cada proyecto o componente tiene su propio repositorio independiente.
+
+---
+
+### ¿Qué es un Monorepo?
+
+Imagina que estás construyendo una suite de aplicaciones interconectadas: una aplicación web, una aplicación móvil, una API backend compartida y varias bibliotecas internas.
+
+  * **En un enfoque multirepo:** Tendrías un repositorio para la web, otro para la móvil, otro para la API, y quizás uno o más para cada biblioteca.
+  * **En un enfoque monorepo:** Todos esos proyectos vivirían en el mismo repositorio Git (o el sistema de control de versiones que uses), pero en subdirectorios distintos.
+
+Esto no significa que sea un único "monolito" de código; de hecho, los proyectos dentro del monorepo pueden ser, y a menudo son, **microservicios independientes, bibliotecas o aplicaciones distintas**. La "mono" en monorepo se refiere solo a la **estructura del repositorio**, no a la arquitectura de la aplicación en sí.
+
+---
+
+### Ejemplos Famosos de Monorepos
+
+Grandes empresas tecnológicas han adoptado y popularizado el monorepo debido a la escala de sus proyectos y equipos:
+
+  * **Google:** Uno de los pioneros, su famoso monorepo contiene casi todo su código fuente.
+  * **Meta (Facebook):** También utiliza un monorepo masivo para muchos de sus productos.
+  * **Microsoft:** Usa monorepos para proyectos como Azure DevOps, VS Code y TypeScript.
+  * **Airbnb, Uber, Twitter:** Muchas startups de alto crecimiento también han adoptado este modelo.
+
+---
+
+### Ventajas de Usar un Monorepo
+
+1.  **Visibilidad y Reutilización de Código Simplificadas:**
+
+      * **Fácil Descubrimiento:** Es más sencillo encontrar y reutilizar bibliotecas, componentes o utilidades ya existentes dentro de la misma organización. No necesitas buscar en múltiples repositorios.
+      * **Refactorización Global:** Si necesitas cambiar una interfaz compartida o una biblioteca central, puedes ver de inmediato todos los proyectos que la utilizan y refactorizarlos de forma coordinada en una sola solicitud de extracción (pull request).
+
+2.  **Gestión de Dependencias Centralizada:**
+
+      * Es más fácil gestionar las versiones de las dependencias. Puedes estandarizar la versión de una librería a través de todos los proyectos o actualizarla de forma atómica en todos los lugares donde se usa.
+      * *Ejemplo:* Si actualizas la versión de React o de una biblioteca de componentes UI, puedes probar y desplegar esa actualización en todas las aplicaciones del monorepo de una vez.
+
+3.  **Refactorización y Sincronización Atómica:**
+
+      * Puedes realizar cambios en múltiples proyectos o bibliotecas que son interdependientes en una única transacción de control de versiones. Esto asegura que la base de código siempre esté en un estado consistente.
+      * *Ejemplo:* Si una función en un microservicio cambia, y su consumidor (otra API o un frontend) necesita adaptarse, ambos cambios se pueden realizar y versionar juntos.
+
+4.  **Colaboración Simplificada para Equipos Grandes:**
+
+      * Permite que diferentes equipos colaboren más fácilmente en componentes compartidos o en proyectos con dependencias cruzadas.
+      * Fomenta la propiedad compartida y la coherencia del código a nivel de organización.
+
+5.  **Simplificación de CI/CD (Integración y Entrega Continua):**
+
+      * Aunque inicialmente puede ser complejo de configurar, a largo plazo puede simplificar los pipelines. Las herramientas de construcción inteligentes pueden detectar qué proyectos se vieron afectados por un cambio y solo reconstruir/probar/desplegar esos.
+      * *Ejemplo:* Una `pull request` en el monorepo puede desencadenar pruebas solo para los proyectos que realmente cambiaron, no para todo el código base.
+
+6.  **Mayor Coherencia de Estilo y Herramientas:**
+
+      * Es más fácil aplicar estándares de codificación, herramientas de linting y formateadores de código de manera uniforme en todos los proyectos.
+
+---
+
+### Desventajas de Usar un Monorepo
+
+1.  **Tamaño del Repositorio:**
+
+      * A medida que el número de proyectos y el historial crecen, el tamaño del repositorio puede volverse muy grande, lo que resulta en clones más lentos y operaciones de Git más pesadas.
+      * *Ejemplo:* Clonar un monorepo de Google puede tomar horas o días y requerir terabytes de espacio. Aunque esto es un extremo, un monorepo mediano ya puede ser considerable.
+
+2.  **Complejidad en Herramientas de Construcción y Pruebas:**
+
+      * Necesitas herramientas de monorepo especializadas (como Lerna, Nx, Turborepo, Bazel) para gestionar dependencias, ejecutar pruebas selectivas y construir solo los proyectos afectados. Configurar estas herramientas puede ser complejo.
+      * *Ejemplo:* Sin herramientas como Nx, cada `push` a un monorepo podría desencadenar una reconstrucción y prueba de *todos* los proyectos, lo cual sería ineficiente.
+
+3.  **Permisos y Control de Acceso:**
+
+      * Gestionar los permisos de acceso para diferentes equipos o individuos puede ser más difícil en un solo repositorio si quieres restringir el acceso a ciertos subproyectos.
+      * *Ejemplo:* Si solo el equipo de seguridad debe tener acceso a un proyecto específico dentro del monorepo, implementarlo puede ser un desafío sin herramientas externas.
+
+4.  **Curva de Aprendizaje:**
+
+      * Los nuevos desarrolladores pueden encontrar la estructura y las herramientas del monorepo abrumadoras al principio.
+
+5.  **Fallas en el Pipeline de CI/CD:**
+
+      * Un cambio defectuoso en una librería compartida puede romper muchas aplicaciones a la vez si no hay pruebas adecuadas y un proceso de revisión riguroso.
+
+6.  **Historial de Git Enorme y Ruidoso:**
+
+      * El historial de commits puede ser muy grande y dificultar la búsqueda de cambios relevantes si no se utilizan técnicas como la filtración por ruta.
+
+---
+
+### Herramientas Populares para Monorepos
+
+Para mitigar las desventajas y aprovechar al máximo los monorepos, se utilizan herramientas especializadas:
+
+  * **Nx (Nrwl Extensible):** Muy popular en el ecosistema JavaScript/TypeScript, proporciona una potente CLI, gestión de dependencias, grafos de dependencia, detección de cambios afectados y caching de operaciones.
+  * **Lerna:** Históricamente popular para monorepos de JavaScript con muchos paquetes publicados de forma independiente. Maneja el versionado y la publicación.
+  * **Turborepo:** Una herramienta de construcción de alto rendimiento para monorepos JavaScript/TypeScript, enfocada en la velocidad a través del caching y la ejecución distribuida de tareas.
+  * **Bazel:** Desarrollado por Google, es un sistema de construcción políglota muy potente y escalable para monorepos masivos, conocido por su caching extremo y ejecuciones remotas.
+  * **Rush (Microsoft):** Una herramienta para monorepos de TypeScript/JavaScript que soporta múltiples paquetes y unifica la gestión de dependencias.
+
+---
+
+### ¿Cuándo Usar un Monorepo?
+
+Los monorepos no son para todos, pero son una excelente opción cuando:
+
+  * Tienes **múltiples equipos** trabajando en **proyectos interrelacionados** que comparten código.
+  * La **reutilización de código** es una prioridad y quieres simplificar su gestión.
+  * Necesitas **consistencia** en herramientas, dependencias y estilos de codificación en toda tu organización.
+  * Estás dispuesto a invertir en las **herramientas y la infraestructura** necesarias para gestionarlo de forma eficiente (CI/CD avanzado, herramientas de monorepo).
+  * Estás construyendo una suite de productos o una **arquitectura de microservicios** que se benefician de la cohesión del código base.
+
+---
+
+### Ejemplo de Estructura de un Monorepo (con pnpm workspaces o npm/yarn workspaces)
+
+```
+/mi-super-monorepo
+├── packages/
+│   ├── apps/
+│   │   ├── web/                     # Aplicación web (Next.js, React, etc.)
+│   │   │   ├── package.json
+│   │   │   └── src/
+│   │   ├── mobile/                  # Aplicación móvil (React Native, Flutter, etc.)
+│   │   │   ├── package.json
+│   │   │   └── src/
+│   │   └── admin-dashboard/         # Aplicación de panel de administración
+│   │       ├── package.json
+│   │       └── src/
+│   ├── services/
+│   │   ├── users-api/               # Microservicio de usuarios (Node.js, Go, etc.)
+│   │   │   ├── package.json
+│   │   │   └── src/
+│   │   ├── products-api/            # Microservicio de productos
+│   │   │   ├── package.json
+│   │   │   └── src/
+│   │   └── payment-processor/       # Microservicio de pagos
+│   │       ├── package.json
+│   │       └── src/
+│   └── libs/
+│       ├── ui-components/           # Biblioteca de componentes UI compartidos
+│       │   ├── package.json
+│       │   └── src/
+│       ├── utils/                   # Biblioteca de utilidades comunes
+│       │   ├── package.json
+│       │   └── src/
+│       └── shared-types/            # Tipos de TypeScript compartidos
+│           ├── package.json
+│           └── src/
+├── package.json                     # package.json raíz con workspaces configurados
+├── pnpm-workspace.yaml              # Archivo de configuración para pnpm workspaces
+├── tsconfig.json                    # Configuración de TypeScript global
+├── .eslintrc.js                     # Configuración de ESLint global
+├── .gitignore
+└── README.md
+```
+
+En este ejemplo, `packages/apps`, `packages/services` y `packages/libs` contendrían los distintos proyectos. `pnpm-workspace.yaml` (o `package.json` con `workspaces` en npm/yarn) le diría al gestor de paquetes dónde encontrar los subproyectos. Las herramientas de monorepo como Nx o Turborepo se integrarían con esta estructura para proporcionar las funcionalidades avanzadas de construcción y pruebas.
+
+---
+
+# Resumen
+
+Elegir entre un monorepo y un multirepo es una decisión arquitectónica importante que depende del tamaño del equipo, la complejidad de los proyectos, las necesidades de CI/CD y la cultura de la organización. Ambos tienen sus pros y sus contras, y la decisión correcta es la que mejor se adapta al contexto específico de tu equipo.
