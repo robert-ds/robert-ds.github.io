@@ -1,0 +1,136 @@
+---
+title: Github CLI
+date: '2025-07-31'
+tags: ['versionamiento', 'software', 'colaboracion', 'terminal', 'cli']
+draft: false
+images: ['/static/images/blog/github-cli/github-cli.png']
+summary: 'GitHub CLI es una herramienta que permite interactuar con GitHub desde la línea de comandos, facilitando tareas como la creación de repositorios, la gestión de pull requests y la automatización de flujos de trabajo.'
+---
+
+<Image
+  alt={`github cli image`}
+  src={`/static/images/blog/github-cli/github-cli.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>El **GitHub CLI** (Command Line Interface), también conocido simplemente como **`gh` CLI**, es el siguiente paso lógico para llevar tu interacción con GitHub directamente a tu terminal. Esta herramienta te permite **trabajar con tus repositorios, Pull Requests, Issues y otras características de GitHub sin tener que salir de la línea de comandos**.
+
+---
+
+### ¿Qué es GitHub CLI (`gh` CLI)?
+
+El **GitHub CLI** es una herramienta de código abierto desarrollada por GitHub que extiende las capacidades de Git en tu terminal. Mientras que **Git** se encarga de las operaciones de control de versiones locales (commits, ramas, merges), el `gh` CLI se encarga de las **operaciones de GitHub remotas**, como:
+
+* Crear Pull Requests y gestionarlos.
+* Listar y crear Issues.
+* Ver y clonar repositorios.
+* Gestionar lanzamientos (releases).
+* Trabajar con GitHub Actions.
+* Y mucho más, todo desde la línea de comandos.
+
+Es una herramienta diseñada para desarrolladores que prefieren la velocidad y la eficiencia de la terminal sobre la interfaz gráfica de usuario.
+
+---
+
+### ¿Por qué usar GitHub CLI?
+
+1.  **Eficiencia y Velocidad:** Realiza acciones rápidamente sin cambiar de contexto entre tu terminal y el navegador web.
+2.  **Automatización:** Facilita la creación de scripts que interactúen con GitHub, automatizando tareas repetitivas.
+3.  **Flujo de Trabajo Consistente:** Mantén todas tus operaciones de desarrollo en un solo lugar: la línea de comandos.
+4.  **Integración Directa:** No es una herramienta de terceros; es oficial de GitHub, lo que garantiza compatibilidad y soporte.
+5.  **Productividad Mejorada:** Reduce el tiempo que pasas navegando por la interfaz web, permitiéndote concentrarte más en el código.
+
+---
+
+### Funcionalidades Clave y Ejemplos de Uso
+
+Una vez instalado y autenticado (generalmente con `gh auth login`), puedes empezar a usar el `gh` CLI. Aquí te muestro algunas de sus funcionalidades más comunes:
+
+#### 1. Repositorios (`gh repo`)
+
+* **Clonar un repositorio:** Te permite clonar repositorios de GitHub sin necesidad de la URL completa.
+    * `gh repo clone <propietario>/<nombre-repositorio>`
+    * *Ejemplo:* `gh repo clone octocat/hello-world`
+* **Crear un nuevo repositorio:** Inicia un nuevo repositorio en GitHub directamente desde tu terminal.
+    * `gh repo create <nombre-repositorio>`
+    * *Ejemplo:* `gh repo create mi-nuevo-proyecto --public` (crea un repo público)
+* **Abrir el repositorio en el navegador:** Si estás en un directorio de un repositorio local, puedes abrir su página de GitHub en tu navegador predeterminado.
+    * `gh repo view --web`
+    * *Ejemplo:* `gh repo view --web` (Abre la página del repo actual)
+
+#### 2. Pull Requests (`gh pr`)
+
+* **Listar Pull Requests:** Muestra una lista de PRs en tu repositorio actual.
+    * `gh pr list`
+    * *Ejemplo:* `gh pr list --state open` (lista solo PRs abiertos)
+* **Crear un Pull Request:** La joya de la corona del `gh` CLI. Te guía a través del proceso de creación de un PR.
+    * `gh pr create`
+    * *Ejemplo:* Después de hacer tus commits en una rama de función, ejecutas `gh pr create`. Te pedirá el título, la descripción y la rama base.
+* **Revisar un Pull Request:** Puedes revisar y comentar PRs directamente desde la terminal.
+    * `gh pr checkout <PR_número_o_URL>` (Cambia a la rama del PR para revisarlo localmente)
+    * `gh pr review <PR_número_o_URL> --approve -b "Buen trabajo!"` (Aprobar un PR con un comentario)
+* **Fusionar un Pull Request:**
+    * `gh pr merge <PR_número_o_URL>`
+    * *Ejemplo:* `gh pr merge 123 --squash` (fusiona el PR 123 haciendo un squash de los commits)
+
+#### 3. Issues (`gh issue`)
+
+* **Listar Issues:** Muestra una lista de issues en tu repositorio.
+    * `gh issue list`
+    * *Ejemplo:* `gh issue list --assignee @me` (lista issues asignados a ti)
+* **Crear un Issue:** Abre un nuevo issue en GitHub.
+    * `gh issue create`
+    * *Ejemplo:* `gh issue create -t "Error en la paginación" -b "Al navegar a la página 2, se muestran los mismos resultados que en la 1." -l bug` (crea un issue con título, cuerpo y etiqueta)
+* **Ver detalles de un Issue:**
+    * `gh issue view <issue_número_o_URL>`
+
+#### 4. Lanzamientos (Releases - `gh release`)
+
+* **Listar lanzamientos:**
+    * `gh release list`
+* **Crear un lanzamiento:** Crea un nuevo lanzamiento de software.
+    * `gh release create <tag>`
+    * *Ejemplo:* `gh release create v1.0.0 -n "Primera versión estable" --prerelease` (crea un lanzamiento pre-release)
+
+#### 5. GitHub Actions (`gh workflow`, `gh run`)
+
+* **Listar flujos de trabajo:**
+    * `gh workflow list`
+* **Ver ejecuciones de un flujo de trabajo:**
+    * `gh run list`
+* **Volver a ejecutar un flujo de trabajo:**
+    * `gh run rerun <ID_de_ejecución>`
+
+#### 6. Gists (`gh gist`)
+
+* **Crear un Gist:** Crea un fragmento de código compartible.
+    * `gh gist create <nombre-archivo>`
+    * *Ejemplo:* `gh gist create README.md -d "Mi primer gist"`
+
+---
+
+### Instalación y Configuración
+
+El `gh` CLI está disponible para la mayoría de los sistemas operativos (Windows, macOS, Linux) y su instalación es sencilla, generalmente a través de gestores de paquetes.
+
+1.  **Instalación:** Visita la página oficial de GitHub CLI ([cli.github.com](https://cli.github.com/)) para obtener las instrucciones específicas para tu sistema.
+    * *Ejemplo (macOS con Homebrew):* `brew install gh`
+    * *Ejemplo (Debian/Ubuntu):* `sudo apt update && sudo apt install gh`
+2.  **Autenticación:** Después de la instalación, necesitarás autenticarte con tu cuenta de GitHub.
+    * `gh auth login`
+    * Esto te guiará a través de un proceso interactivo, que generalmente implica copiar un código y pegarlo en el navegador para autorizar la aplicación.
+
+---
+
+### Consideraciones
+
+* **No reemplaza a Git:** El `gh` CLI no reemplaza a Git. Seguirás usando comandos `git` para tus operaciones locales (add, commit, branch, checkout, merge). El `gh` CLI complementa a Git para las interacciones con la plataforma GitHub.
+* **Curva de Aprendizaje:** Aunque es intuitivo, al principio puede requerir un poco de adaptación si estás acostumbrado únicamente a la interfaz web. Sin embargo, los comandos son lógicos y la documentación es excelente.
+
+---
+
+### Resumen
+
+El GitHub CLI es una herramienta poderosa que te permite operar de manera más eficiente en tu entorno de desarrollo. Si pasas mucho tiempo en la terminal y trabajas con GitHub, integrarlo en tu flujo de trabajo te ahorrará tiempo y te hará sentir aún más productivo.
