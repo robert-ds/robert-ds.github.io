@@ -1,0 +1,170 @@
+---
+title: Gitlab
+date: '2025-07-31'
+tags: ['versionamiento', 'software', 'colaboracion']
+draft: false
+images: ['/static/images/blog/gitla/gitlab.png']
+summary: 'GitLab es una plataforma de DevOps que ofrece un conjunto completo de herramientas para la gestión del ciclo de vida del desarrollo de software, desde la planificación hasta el monitoreo y la seguridad.'
+---
+
+<Image
+  alt={`github actions image`}
+  src={`/static/images/blog/gitla/gitlab.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>GitLab es una plataforma de **DevOps completa y unificada**, que va mucho más allá de ser solo un repositorio de código. Aunque comparte muchas similitudes con GitHub en cuanto al control de versiones con Git, su filosofía es la de ofrecer una **solución integral para todo el ciclo de vida del desarrollo de software**, desde la planificación hasta el monitoreo y la seguridad.
+
+---
+
+### ¿Qué es GitLab?
+
+**GitLab** es una plataforma basada en web que proporciona un gestor de repositorios Git con funciones de wiki, seguimiento de problemas y CI/CD. Se distingue por su enfoque en una **solución de "single application" (aplicación única)** que cubre todas las fases del ciclo de vida de DevOps. Esto significa que, a diferencia de tener que integrar múltiples herramientas de diferentes proveedores para cada etapa, GitLab busca tener todas esas funcionalidades integradas de forma nativa.
+
+GitLab ofrece dos versiones principales:
+
+1.  **GitLab.com:** La versión SaaS (Software as a Service) gestionada por GitLab Inc., donde puedes alojar tus repositorios y proyectos en la nube.
+2.  **GitLab Community Edition (CE) / Enterprise Edition (EE):** Versiones de código abierto (CE) y de pago (EE) que puedes **autoalojar (self-host)** en tus propios servidores. Esto es una gran ventaja para empresas con requisitos de seguridad, privacidad o personalización específicos.
+
+---
+
+### Componentes Clave y Funcionalidades de GitLab
+
+GitLab abarca un amplio espectro de herramientas y funcionalidades, organizadas alrededor del ciclo de vida de DevOps:
+
+#### 1\. Planificación (Plan)
+
+  * **Gestión de Issues:** Similar a GitHub Issues, permite crear, asignar, etiquetar y seguir tareas, errores y solicitudes de características.
+  * **Boards (Tableros Kanban/Scrum):** Para visualizar el progreso de los issues en diferentes estados del flujo de trabajo.
+  * **Epics (Épicas) y Milestones (Hitos):** Para organizar y agrurear trabajo en niveles superiores, planificar versiones y objetivos a largo plazo.
+  * **Requisitos:** Herramientas para definir y rastrear los requisitos del producto.
+
+#### 2\. Código (Code)
+
+  * **Repositorios Git:** El núcleo. Almacena tu código, gestiona ramas, commits y el historial de versiones.
+  * **Merge Requests (MRs):** Equivalente a los Pull Requests de GitHub. Son el mecanismo central para proponer, revisar y fusionar cambios en el código. Incluyen discusiones, revisiones de código y ejecuciones de CI/CD.
+  * **Revisión de Código:** Herramientas integradas para facilitar comentarios en línea, sugerencias y aprobaciones.
+  * **Snippets:** Para almacenar y compartir pequeños fragmentos de código reutilizables.
+
+#### 3\. Construcción (Build) e Integración Continua (CI)
+
+  * **GitLab CI/CD:** La funcionalidad más destacada y una de las más potentes de GitLab. Permite definir pipelines de integración y entrega continua directamente en un archivo `.gitlab-ci.yml` en tu repositorio.
+      * **Runners:** Agentes que ejecutan los trabajos de CI/CD. GitLab ofrece *runners* compartidos o puedes configurar los tuyos propios.
+      * **Pipelines:** Secuencias de etapas y trabajos que se ejecutan automáticamente en respuesta a eventos (push, MR, schedule).
+      * **Pruebas Automáticas:** Integración fácil para ejecutar pruebas unitarias, de integración, funcionales, etc.
+  * **Artefactos de Construcción:** Permite almacenar los resultados de las construcciones (ejecutables, paquetes) para su posterior despliegue.
+
+#### 4\. Verificación (Verify)
+
+  * **Pruebas de Calidad:** Más allá de las pruebas unitarias, GitLab puede integrar pruebas de rendimiento, usabilidad, etc.
+  * **Revisiones de Código:** Las Merge Requests son la base para esta verificación manual y automatizada.
+
+#### 5\. Seguridad (Security)
+
+  * **Análisis Estático de Seguridad de Aplicaciones (SAST):** Escanea el código fuente en busca de vulnerabilidades antes de que se compile.
+  * **Análisis Dinámico de Seguridad de Aplicaciones (DAST):** Escanea la aplicación en ejecución en busca de vulnerabilidades.
+  * **Escaneo de Dependencias:** Identifica vulnerabilidades en las bibliotecas de terceros que utilizas.
+  * **Escaneo de Contenedores:** Revisa las imágenes Docker en busca de vulnerabilidades.
+  * **Gestión de Secretos:** Herramientas para manejar de forma segura las credenciales y claves.
+
+#### 6\. Despliegue (Deploy) y Operaciones (Operate)
+
+  * **GitLab CD:** Facilita el despliegue automático de aplicaciones a diferentes entornos (staging, producción) después de una integración exitosa.
+  * **Kubernetes Integration:** Integración nativa con clústeres de Kubernetes para despliegues y gestión de contenedores.
+  * **Environments (Entornos):** Gestiona y visualiza los diferentes entornos de despliegue.
+  * **Canary Deployments / Feature Flags:** Soporte para estrategias de despliegue avanzadas.
+  * **Auto DevOps:** Una función que puede configurar automáticamente pipelines de CI/CD, despliegue y seguridad con muy poca configuración.
+  * **Monitoreo:** Dashboards integrados para monitorizar el rendimiento de las aplicaciones desplegadas (a través de Prometheus y otras herramientas).
+  * **Gestión de Registros (Logs):** Herramientas para acceder y analizar los logs de tus aplicaciones.
+
+#### 7\. Liberación (Release)
+
+  * **Gestión de Lanzamientos:** Define y automatiza el proceso de creación de nuevas versiones de software.
+  * **Notas de Lanzamiento:** Generación automática de notas de lanzamiento.
+
+---
+
+### Diferencias Clave entre GitLab y GitHub (con un vistazo a Azure DevOps)
+
+| Característica         | GitLab                                       | GitHub                                         | Azure DevOps                                      |
+| :--------------------- | :------------------------------------------- | :--------------------------------------------- | :------------------------------------------------ |
+| **Filosofía Principal**| **DevOps completa** (Plan-Code-Build-Test-Deploy-Secure-Monitor) en una sola plataforma. | **Control de versiones y Colaboración** (Git + RR.PP. + Issues) + CI/CD (Actions). | **Suite modular de herramientas** para todo el ciclo de vida de desarrollo. |
+| **Hosting** | GitLab.com (SaaS), Autoalojable (CE/EE)      | GitHub.com (SaaS), GitHub Enterprise Server (autoalojable) | Azure DevOps Services (SaaS), Azure DevOps Server (on-premise) |
+| **CI/CD** | **GitLab CI/CD** (integrado, muy potente y configurable via `.gitlab-ci.yml`) | **GitHub Actions** (integrado, basado en eventos, `.github/workflows/`) | **Azure Pipelines** (integrado, YAML o visual)   |
+| **Seguridad DevOps** | Fuerte énfasis y herramientas integradas (SAST, DAST, etc.) | En crecimiento (GitHub Advanced Security, dependabot) | Herramientas de seguridad robustas, algunas integradas |
+| **Gestión de Proyectos** | Muy completa (Issues, Boards, Epics, Requisitos) | Issues, Projects (más simple que GitLab)       | Azure Boards (muy completo, integración con Scrum/Agile) |
+| **Interfaz/Experiencia**| Una única interfaz para todo el ciclo de vida | Más modular, con GitHub Actions/Projects como add-ons | Muy personalizable, puede ser compleja al principio |
+| **Precio** | Modelos Freemium y de suscripción por usuario; también versión CE gratuita. | Modelos Freemium y de suscripción por usuario/característica. | Modelo freemium, pago por usuario/uso para features avanzadas. |
+| **Mercado de Extensiones**| Integraciones de terceros, pero la tendencia es a integrar funciones nativamente. | Amplio Marketplace de Actions y Apps de terceros. | Extenso Marketplace de extensiones para Azure DevOps. |
+
+---
+
+### ¿Cuándo Usar GitLab?
+
+  * **Equipos que buscan una solución DevOps unificada:** Si quieres reducir la complejidad de integrar múltiples herramientas y prefieres una plataforma "todo en uno".
+  * **Requisitos de autohospedaje (Self-hosting):** Para organizaciones con estrictas políticas de seguridad, cumplimiento o privacidad que necesitan tener control total sobre sus datos y su infraestructura.
+  * **Empresas que ya usan Git y buscan un CI/CD robusto:** GitLab CI/CD es muy flexible y potente.
+  * **Startups o empresas en crecimiento:** El modelo de código abierto de GitLab CE permite empezar sin coste inicial para la infraestructura básica.
+  * **Proyectos Open Source:** Muchos proyectos eligen GitLab por su enfoque de código abierto y sus completas funcionalidades gratuitas.
+
+-----
+
+### Ejemplo de un Archivo `.gitlab-ci.yml` (Simplificado)
+
+```yaml
+# .gitlab-ci.yml
+
+# Definición de las etapas del pipeline
+stages:
+  - build
+  - test
+  - deploy
+
+# Job para la etapa de construcción
+build-job:
+  stage: build
+  image: node:20-alpine # Usa una imagen Docker para el entorno
+  script:
+    - echo "Instalando dependencias..."
+    - npm install
+    - echo "Compilando el proyecto..."
+    - npm run build
+  artifacts: # Guarda los archivos compilados para usarlos en jobs posteriores
+    paths:
+      - dist/ # Asumiendo que 'npm run build' genera archivos en 'dist/'
+
+# Job para la etapa de pruebas
+test-job:
+  stage: test
+  image: node:20-alpine
+  script:
+    - echo "Instalando dependencias de nuevo (podría usar artifacts del build-job si fuera necesario)..."
+    - npm install
+    - echo "Ejecutando pruebas unitarias..."
+    - npm test
+  needs:
+    - build-job # Este job depende del job de construcción
+
+# Job para la etapa de despliegue a staging
+deploy-staging-job:
+  stage: deploy
+  image: alpine/git # Una imagen ligera con Git
+  script:
+    - echo "Desplegando a entorno de staging..."
+    - # Aquí irían comandos SSH, rsync, o comandos CLI de tu proveedor de nube
+    - echo "Despliegue a staging completado."
+  only:
+    - main # Este job solo se ejecuta cuando se hace push a la rama 'main'
+  needs:
+    - test-job # Este job depende del job de pruebas
+
+# Podrías tener un job similar para 'deploy-production-job' con aprobación manual, etc.
+```
+
+---
+
+### Resumen
+
+GitLab es una plataforma sumamente poderosa y versátil. Su fortaleza radica en su visión unificada del ciclo de vida de DevOps, lo que puede simplificar drásticamente las herramientas y la orquestación para equipos que buscan una solución integral.
