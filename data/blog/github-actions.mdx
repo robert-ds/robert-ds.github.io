@@ -1,0 +1,233 @@
+---
+title: Github Actions
+date: '2025-07-31'
+tags: ['automatizacion', 'software', 'devops']
+draft: false
+images: ['/static/images/blog/github-actions/github-actions.png']
+summary: 'GitHub Actions es una plataforma de automatización que permite crear flujos de trabajo personalizados para compilar, probar y desplegar tu código directamente desde GitHub.'
+---
+
+<Image
+  alt={`github actions image`}
+  src={`/static/images/blog/github-actions/github-actions.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>**GitHub Actions**, una de las características más potentes y transformadoras de GitHub para los desarrolladores. En pocas palabras, GitHub Actions es la plataforma de **Integración Continua (CI) y Entrega Continua (CD)** de GitHub, totalmente integrada en tus repositorios. Permite **automatizar, personalizar y ejecutar flujos de trabajo de desarrollo de software directamente desde tu repositorio de GitHub**.
+
+Imagina que cada vez que subes un cambio a tu código, se ejecuten automáticamente una serie de pasos: compilar el código, ejecutar pruebas, analizar la seguridad, e incluso desplegar la aplicación en un servidor. Eso es lo que GitHub Actions hace posible, de forma sencilla y eficiente.
+
+-----
+
+### ¿Qué Problemas Resuelve GitHub Actions?
+
+Tradicionalmente, para automatizar estas tareas, necesitabas herramientas externas como Jenkins, Travis CI o CircleCI, configurando conexiones y permisos. GitHub Actions simplifica esto al:
+
+  * **Centralizar todo:** Tu código, tus issues, tus PRs y tus automatizaciones viven en un solo lugar.
+  * **Facilitar la configuración:** Los flujos de trabajo se definen en archivos YAML directamente en tu repositorio.
+  * **Democratizar la automatización:** Es fácil de usar para proyectos pequeños y escalable para grandes.
+  * **Acelerar el ciclo de desarrollo:** Detecta errores temprano, asegura la calidad y automatiza los despliegues.
+
+-----
+
+### Conceptos Clave de GitHub Actions
+
+Para entender cómo funciona GitHub Actions, es importante conocer estos términos:
+
+1.  **Workflow (Flujo de Trabajo):**
+
+      * **¿Qué es?** Es un proceso automatizado que tú defines. Un flujo de trabajo se compone de uno o más trabajos (jobs) y se activa por un evento específico.
+      * **Dónde se define:** Se crea un archivo `.yaml` (o `.yml`) en el directorio `.github/workflows/` de tu repositorio.
+      * *Ejemplo:* Un archivo `build.yml` para compilar tu aplicación.
+
+2.  **Event (Evento):**
+
+      * **¿Qué es?** Una actividad específica en tu repositorio de GitHub que desencadena un flujo de trabajo.
+      * *Ejemplo:* Un `push` (cuando subes código), un `pull_request` (cuando se crea o actualiza un PR), un `issue_comment` (cuando alguien comenta un issue), un `schedule` (en un horario fijo), o un `workflow_dispatch` (manual).
+
+3.  **Job (Trabajo):**
+
+      * **¿Qué es?** Un conjunto de pasos que se ejecutan en el mismo *runner* (servidor). Un flujo de trabajo puede tener uno o varios trabajos que se ejecutan en paralelo o en secuencia.
+      * *Ejemplo:* Un trabajo para "compilar", otro para "ejecutar pruebas unitarias" y otro para "desplegar".
+
+4.  **Step (Paso):**
+
+      * **¿Qué es?** Una secuencia de tareas dentro de un trabajo. Cada paso puede ejecutar un comando de shell, ejecutar una *acción* (Action), o ejecutar un script.
+      * *Ejemplo:* Un paso para "instalar dependencias", otro para "ejecutar `npm test`".
+
+5.  **Action (Acción):**
+
+      * **¿Qué es?** Es la unidad más pequeña y reutilizable de un flujo de trabajo. Las acciones son aplicaciones preconstruidas o scripts personalizados que realizan una tarea específica. Pueden ser creadas por GitHub, por la comunidad o por ti mismo.
+      * *Ejemplo:* `actions/checkout@v4` (para clonar tu repositorio), `actions/setup-node@v4` (para configurar Node.js), `docker/build-push-action@v5` (para construir y subir imágenes Docker).
+
+6.  **Runner:**
+
+      * **¿Qué es?** Una máquina (virtual) que ejecuta tu flujo de trabajo. GitHub proporciona *runners* gestionados (basados en Ubuntu, Windows o macOS) o puedes usar tus propios *runners* autoalojados (self-hosted).
+
+-----
+
+### Estructura Básica de un Archivo de Workflow (.yaml)
+
+```yaml
+# .github/workflows/my-first-workflow.yml
+
+name: Mi Primer Workflow CI
+
+# 1. Eventos que disparan el workflow
+on:
+  push:
+    branches:
+      - main # Se dispara cuando se suben cambios a la rama 'main'
+  pull_request:
+    branches:
+      - main # Se dispara cuando se crea un PR a la rama 'main'
+  workflow_dispatch: # Permite disparar el workflow manualmente desde la UI de GitHub
+
+# 2. Definición de los trabajos (jobs)
+jobs:
+  build-and-test: # Nombre del primer trabajo
+    name: Compilar y Ejecutar Pruebas
+    runs-on: ubuntu-latest # El tipo de runner (máquina virtual) a usar
+
+    # 3. Definición de los pasos (steps) dentro del trabajo
+    steps:
+      - name: Clonar el repositorio # Un paso para clonar el código
+        uses: actions/checkout@v4 # Usa una acción predefinida de GitHub
+
+      - name: Configurar Node.js # Un paso para configurar el entorno Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Especifica la versión de Node.js
+
+      - name: Instalar dependencias # Un paso para instalar dependencias de NPM
+        run: npm install # Comando de shell a ejecutar
+
+      - name: Compilar el proyecto # Un paso para compilar la aplicación
+        run: npm run build # Comando de shell a ejecutar
+
+      - name: Ejecutar pruebas unitarias # Un paso para ejecutar las pruebas
+        run: npm test # Comando de shell a ejecutar
+
+  deploy: # Nombre del segundo trabajo
+    name: Desplegar a Staging
+    needs: build-and-test # Este trabajo depende de que 'build-and-test' se complete con éxito
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar el repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalar dependencias
+        run: npm install
+
+      - name: Desplegar la aplicación # Paso para desplegar (ejemplo, podría ser mucho más complejo)
+        run: |
+          echo "Desplegando la aplicación a staging..."
+          # Aquí irían los comandos para desplegar a tu servidor,
+          # como ssh, scp, o comandos de un proveedor de nube (AWS CLI, Azure CLI, gcloud CLI)
+          echo "Despliegue completado!"
+```
+
+-----
+
+### Ejemplos Comunes de GitHub Actions
+
+1.  **Integración Continua (CI):**
+
+      * **Escenario:** Cada vez que se sube código a una rama, se compila el proyecto y se ejecutan las pruebas unitarias.
+      * **Beneficio:** Captura errores de integración temprano, asegura que el código es funcional.
+      * *Ejemplo de `on:`:*
+        ```yaml
+        on:
+          push:
+            branches: [ main, develop ]
+          pull_request:
+            branches: [ main ]
+        ```
+
+2.  **Despliegue Continuo (CD):**
+
+      * **Escenario:** Después de que un PR se fusiona en la rama `main`, la aplicación se despliega automáticamente a un entorno de producción o staging.
+      * **Beneficio:** Automatiza el proceso de lanzamiento, reduce el error humano.
+      * *Ejemplo de `on:`:*
+        ```yaml
+        on:
+          push:
+            branches: [ main ]
+        ```
+      * *Ejemplo de pasos para despliegue (simplificado):*
+        ```yaml
+        steps:
+          - uses: actions/checkout@v4
+          - name: Deploy to Netlify
+            env:
+              NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+              NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+            run: npm install -g netlify-cli && netlify deploy --prod
+        ```
+
+3.  **Análisis de Código y Seguridad:**
+
+      * **Escenario:** Ejecutar herramientas de linting, formateadores de código o escáneres de seguridad en cada PR.
+      * **Beneficio:** Mantiene la calidad y la seguridad del código consistentemente.
+      * *Ejemplo:*
+        ```yaml
+        - name: Run ESLint
+          run: npm run lint
+
+        - name: Run Snyk for vulnerability scanning
+          uses: snyk/actions/nodejs-go@master
+          env:
+            SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+          with:
+            args: -- severity-threshold=high
+        ```
+
+4.  **Generación de Documentación o Construcción de Artefactos:**
+
+      * **Escenario:** Generar documentación a partir del código, construir un paquete de distribución (npm package, Docker image) o un ejecutable.
+      * **Beneficio:** Automatiza la creación de entregables.
+      * *Ejemplo (construir y subir una imagen Docker):*
+        ```yaml
+        - name: Build and push Docker image
+          uses: docker/build-push-action@v5
+          with:
+            context: .
+            push: true
+            tags: myorg/my-app:latest
+            username: ${{ secrets.DOCKER_USERNAME }}
+            password: ${{ secrets.DOCKER_PASSWORD }}
+        ```
+
+5.  **Automatización de Tareas Diarias/Semanales:**
+
+      * **Escenario:** Ejecutar tareas programadas, como generar informes, limpiar caché, o enviar notificaciones.
+      * **Beneficio:** Elimina tareas manuales repetitivas.
+      * *Ejemplo de `on:` para un cron job:*
+        ```yaml
+        on:
+          schedule:
+            - cron: '0 0 * * *' # Se ejecuta a medianoche todos los días UTC
+        ```
+
+-----
+
+### ¿Cómo Empezar con GitHub Actions?
+
+1.  **Explora el Mercado de GitHub Actions:** Hay miles de acciones preconstruidas disponibles en el [GitHub Marketplace](https://github.com/marketplace?type=actions) para casi cualquier necesidad.
+2.  **Crea el directorio `.github/workflows/`:** En la raíz de tu repositorio.
+3.  **Escribe tu primer archivo `.yaml`:** Empieza con un flujo de trabajo simple como el ejemplo de CI/CD básico. GitHub te ofrecerá plantillas cuando crees un nuevo archivo en esta carpeta desde la UI.
+4.  **Experimenta y Itera:** Los flujos de trabajo son código, así que puedes probarlos, ver los resultados en la pestaña "Actions" de tu repositorio y refinarlos.
+
+---
+
+### Resumen
+
+GitHub Actions es una herramienta increíblemente flexible y potente que se ha convertido en un estándar de la industria para la automatización del ciclo de vida del desarrollo. Te permite construir, probar y desplegar tus proyectos con confianza y eficiencia, liberando a los desarrolladores para que se concentren en escribir un mejor código.
