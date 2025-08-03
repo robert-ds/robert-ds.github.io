@@ -1,0 +1,125 @@
+---
+title: Teoría de Grafos
+date: '2025-08-04'
+tags: ['matematicas', 'grafos', 'teoria', 'algoritmos']
+draft: false
+images: ['/static/images/blog/grafos/grafos.png']
+summary: 'Explora la teoría de grafos, una rama fundamental de las matemáticas y la informática que estudia las relaciones entre objetos a través de nodos y aristas, y su aplicación en algoritmos y estructuras de datos.'
+---
+
+<Image
+  alt={`grafo image`}
+  src={`/static/images/blog/grafos/grafos.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>La **Teoría de Grafos** es una rama de las matemáticas discretas y de la informática que estudia las propiedades de las **relaciones** entre objetos. Es una herramienta increíblemente poderosa para modelar y resolver problemas en una amplia variedad de campos, desde la informática y las redes sociales hasta la biología y la logística.
+
+En su forma más simple, un grafo es un conjunto de puntos conectados por líneas. Aunque suena sencillo, esta abstracción permite representar sistemas y relaciones increíblemente complejos.
+
+---
+
+### Conceptos Fundamentales
+
+Para entender la teoría de grafos, es crucial dominar algunos términos básicos:
+
+* **Grafo ($G$):** Un par ordenado de conjuntos, $G = (V, E)$, donde:
+    * **Vértices o Nodos ($V$):** Un conjunto no vacío de puntos o entidades. Representan los objetos del sistema.
+    * **Aristas o Ejes ($E$):** Un conjunto de pares de vértices que representan las relaciones o conexiones entre ellos.
+
+* **Grafo Dirigido vs. No Dirigido:**
+    * **No Dirigido:** Las aristas no tienen una dirección. Si existe una arista entre A y B, la relación es simétrica (A está conectado a B, y B está conectado a A). Se representa como un par de vértices no ordenado, $(A, B)$.
+    * **Dirigido (Dígrafo):** Las aristas tienen una dirección. Una arista de A a B no implica que haya una de B a A. Se representa como un par de vértices ordenado, $\langle A, B \rangle$.
+
+* **Pesos de las Aristas (Weighted Edges):**
+    * Una arista puede tener un valor numérico asociado, conocido como "peso". Este peso puede representar la distancia, el costo, el tiempo, la capacidad o cualquier otra métrica.
+    * *Ejemplo:* En un grafo de ciudades, el peso de la arista podría ser la distancia en kilómetros entre ellas.
+
+* **Ruta o Camino (Path):**
+    * Una secuencia de vértices conectados por aristas. La longitud de una ruta es el número de aristas que la componen.
+    * *Ejemplo:* En un grafo A-B-C-D, A, B, C y D forman un camino.
+
+* **Ciclo (Cycle):**
+    * Una ruta que comienza y termina en el mismo vértice.
+    * *Ejemplo:* A-B-C-A es un ciclo.
+
+* **Conectividad:**
+    * Un grafo es **conectado** si existe una ruta entre cada par de vértices. Si un grafo no es conectado, se compone de varias **componentes conectadas**.
+    * Un grafo dirigido es **fuertemente conectado** si existe una ruta de cada vértice a cualquier otro.
+
+* **Grado de un Vértice:**
+    * El número de aristas incidentes en un vértice. En grafos dirigidos, se diferencia entre **grado de entrada** (aristas que llegan) y **grado de salida** (aristas que salen).
+
+---
+
+### Tipos Comunes de Grafos
+
+* **Árboles (Trees):** Un grafo no dirigido y conectado que no contiene ciclos. Un árbol con $n$ vértices siempre tiene $n-1$ aristas. Es una estructura de datos fundamental en informática.
+* **Grafos Bipartitos:** Un grafo cuyos vértices se pueden dividir en dos conjuntos disjuntos, U y V, de tal manera que cada arista conecta un vértice en U con uno en V. No hay aristas dentro de U o V.
+* **Grafos Completos ($K_n$):** Un grafo simple donde cada par de vértices distintos está conectado por una única arista.
+
+---
+
+### Algoritmos Famosos de la Teoría de Grafos
+
+La verdadera potencia de la teoría de grafos reside en los algoritmos que se han desarrollado para resolver problemas comunes.
+
+* **Algoritmos de Búsqueda:**
+    * **Búsqueda en Amplitud (BFS - Breadth-First Search):** Explora el grafo nivel por nivel, útil para encontrar el camino más corto en un grafo no pesado.
+    * **Búsqueda en Profundidad (DFS - Depth-First Search):** Explora tan lejos como sea posible a lo largo de cada rama antes de retroceder, útil para detectar ciclos o componentes conectadas.
+
+* **Algoritmos de Camino Más Corto:**
+    * **Algoritmo de Dijkstra:** Encuentra el camino más corto desde un solo vértice de origen a todos los demás vértices en un grafo con aristas no negativas.
+    * **Algoritmo de Bellman-Ford:** Similar a Dijkstra, pero también funciona con aristas de peso negativo.
+
+* **Árbol de Expansión Mínima (Minimum Spanning Tree - MST):**
+    * Un subgrafo que conecta todos los vértices de un grafo ponderado, sin ciclos, y con el mínimo peso total de las aristas.
+    * **Algoritmo de Prim:** Construye el MST añadiendo la arista más barata que conecta un vértice del árbol a uno que no está.
+    * **Algoritmo de Kruskal:** Construye el MST añadiendo las aristas más baratas del grafo, siempre y cuando no formen un ciclo.
+
+* **Flujo Máximo (Maximum Flow):**
+    * Determina el flujo máximo que puede pasar a través de una red de tuberías (o aristas) desde un origen (fuente) a un destino (sumidero).
+    * **Algoritmo de Edmonds-Karp:** Un algoritmo para resolver este problema.
+
+* **Problema del Viajante de Comercio (Traveling Salesman Problem - TSP):**
+    * Un problema famoso (y NP-difícil) que busca el ciclo más corto posible que visita cada vértice exactamente una vez.
+
+---
+
+### Ejemplos de Aplicación de la Teoría de Grafos
+
+La teoría de grafos no es solo una curiosidad matemática; tiene aplicaciones prácticas inmensas.
+
+* **Redes Sociales:**
+    * Los usuarios son los **vértices**.
+    * Las conexiones (amigos, seguidores) son las **aristas**.
+    * *Problemas a resolver:* Encontrar la distancia social (grados de separación), detectar comunidades, o sugerir nuevos amigos.
+
+* **Logística y Navegación:**
+    * Las ubicaciones (ciudades, aeropuertos) son los **vértices**.
+    * Las rutas (carreteras, vuelos) son las **aristas** con **pesos** (distancia, tiempo, costo).
+    * *Problemas a resolver:* Encontrar la ruta más corta entre dos puntos (Google Maps), optimizar rutas de entrega de paquetes.
+
+* **Redes de Computadoras:**
+    * Los dispositivos (computadoras, routers) son los **vértices**.
+    * Los cables o conexiones son las **aristas**.
+    * *Problemas a resolver:* Encontrar la ruta más rápida para los datos (algoritmos de enrutamiento), diseñar redes tolerantes a fallos.
+
+* **Circuitos Eléctricos:**
+    * Los componentes (resistores, condensadores) son los **vértices**.
+    * Los cables son las **aristas**.
+    * *Problemas a resolver:* Analizar el flujo de corriente, encontrar fallos.
+
+* **Bases de Datos:**
+    * Las Bases de Datos de Grafos (como Neo4j o Amazon Neptune) están diseñadas específicamente para almacenar y consultar datos en forma de grafos, lo que las hace ideales para modelar relaciones complejas.
+
+* **Química y Biología:**
+    * Los átomos son los **vértices**.
+    * Los enlaces químicos son las **aristas**.
+    * *Problemas a resolver:* Estudiar la estructura de las moléculas o modelar redes metabólicas.
+
+### Resumen
+
+En conclusión, la teoría de grafos es un marco de pensamiento fundamental. Nos permite abstraer la complejidad del mundo real en un modelo simple de puntos y líneas, abriendo la puerta a soluciones elegantes y eficientes para problemas que, a primera vista, parecerían inabarcables.
