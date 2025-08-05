@@ -1,0 +1,88 @@
+---
+title: Amazon Web Services (AWS)
+date: '2025-08-06'
+tags: ['nube', 'servicios', 'cloud', 'infraestructura', 'tecnología', 'aws']
+draft: false
+images: ['/static/images/blog/img-aws/img-aws.png']
+summary: 'Explorando Amazon Web Services (AWS) y su papel en la computación en la nube.'
+---
+
+<Image
+  alt={`aws image`}
+  src={`/static/images/blog/img-aws/img-aws.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Amazon Web Services (AWS) es una plataforma de servicios en la nube que ofrece una amplia gama de servicios informáticos, desde almacenamiento y bases de datos hasta inteligencia artificial y análisis de datos. AWS ha sido un pionero en la computación en la nube y sigue siendo uno de los proveedores más grandes y populares del mundo.
+
+---
+
+## Amazon Web Services (AWS)
+
+**Amazon Web Services (AWS)** es el proveedor de servicios de nube más grande y popular del mundo. Es una plataforma de computación en la nube que ofrece más de 200 servicios completos, accesibles a través de internet con un modelo de pago por uso.
+
+La historia de AWS es interesante: surgió de la necesidad de Amazon.com de gestionar su propia infraestructura masiva. Se dieron cuenta de que habían construido un sistema increíblemente robusto y escalable, y decidieron ofrecer esos mismos servicios a otras empresas. Así, lo que empezó como una solución interna se convirtió en el negocio de computación en la nube más exitoso.
+
+La ventaja principal de AWS, y de la computación en la nube en general, es que te permite **acceder a recursos tecnológicos sin tener que comprar, poseer y mantener tu propia infraestructura física**. Puedes alquilar servidores, bases de datos, almacenamiento y mucho más, de forma flexible y escalable.
+
+---
+
+### Servicios Principales de AWS
+
+AWS ofrece una cantidad abrumadora de servicios, pero se pueden agrupar en categorías clave. Estos son algunos de los más importantes y más utilizados:
+
+#### 1. Computación
+
+Estos servicios te permiten ejecutar tu código, aplicaciones y cargas de trabajo.
+
+* **Amazon Elastic Compute Cloud (EC2):** Es el servicio fundamental de AWS. Te permite alquilar **máquinas virtuales (VMs)** en la nube, conocidas como "instancias". Puedes elegir el sistema operativo, la potencia de procesamiento, la memoria y el almacenamiento que necesites. Piensa en EC2 como el reemplazo de un servidor físico en un centro de datos.
+* **AWS Lambda:** Es el servicio "sin servidor" (serverless) de AWS. Con Lambda, puedes **ejecutar código sin tener que aprovisionar o gestionar servidores**. Simplemente subes tu código, y AWS se encarga de todo lo demás. Solo pagas por el tiempo de ejecución de tu código. Esto es ideal para microservicios y funciones que se ejecutan en respuesta a eventos.
+
+#### 2. Almacenamiento
+
+Estos servicios te permiten guardar tus datos de forma segura, escalable y duradera.
+
+* **Amazon Simple Storage Service (S3):** El servicio de almacenamiento de objetos de AWS. S3 es como una forma infinitamente escalable de guardar archivos, ya sean imágenes, videos, copias de seguridad o datos para un sitio web. Se organiza en "buckets" y ofrece una durabilidad extrema.
+* **Amazon Elastic Block Store (EBS):** Ofrece almacenamiento a nivel de bloque para tus instancias de EC2. Piensa en EBS como un disco duro que puedes adjuntar a una máquina virtual, ideal para sistemas operativos o bases de datos que requieren acceso de alta velocidad.
+* **Amazon Glacier:** Un servicio de almacenamiento de bajo costo para archivado y copias de seguridad a largo plazo. Es una opción muy rentable si no necesitas acceder a los datos de forma inmediata.
+
+#### 3. Bases de Datos
+
+AWS ofrece una amplia gama de bases de datos, tanto relacionales como no relacionales.
+
+* **Amazon Relational Database Service (RDS):** Te permite configurar, operar y escalar bases de datos relacionales (como MySQL, PostgreSQL, Oracle y SQL Server) de forma sencilla. AWS se encarga de las tareas de administración (parches, copias de seguridad, escalado).
+* **Amazon DynamoDB:** Una base de datos **NoSQL** de clave-valor. Es una base de datos de alto rendimiento, completamente gestionada y escalable, ideal para aplicaciones móviles, web y de juegos que requieren un acceso a datos rápido y de baja latencia.
+
+#### 4. Redes y Distribución de Contenido
+
+Estos servicios te permiten conectar tus recursos y entregar contenido de forma rápida y segura.
+
+* **Amazon Virtual Private Cloud (VPC):** Te permite crear una **red virtual privada y aislada** dentro de la nube de AWS. Tienes control total sobre tu entorno de red, incluyendo rangos de IP, subredes y tablas de enrutamiento.
+* **Amazon Route 53:** El servicio de Sistema de Nombres de Dominio (DNS) de AWS. Te ayuda a dirigir el tráfico de internet a tus recursos, como tus instancias de EC2 o tus buckets de S3.
+* **Amazon CloudFront:** Es una red de entrega de contenido (CDN). Acelera la entrega de tu contenido (como videos, imágenes y archivos estáticos) a los usuarios finales, almacenándolo en caché en ubicaciones cercanas a ellos en todo el mundo.
+
+#### 5. Seguridad, Identidad y Cumplimiento
+
+AWS tiene un fuerte enfoque en la seguridad, con servicios que te ayudan a proteger tus recursos y controlar el acceso.
+
+* **AWS Identity and Access Management (IAM):** Te permite gestionar el acceso a tus servicios y recursos de AWS de forma segura. Puedes crear usuarios, grupos y roles, y definir qué acciones pueden realizar.
+* **AWS Shield:** Un servicio de protección contra ataques de denegación de servicio distribuido (DDoS) que protege tus aplicaciones.
+
+---
+
+### ¿Cómo Funciona el Modelo de Precios?
+
+Una de las principales ventajas de AWS es su modelo de pago por uso. No hay costos iniciales, y solo pagas por los servicios que usas, durante el tiempo que los usas. Esto hace que sea muy flexible y rentable, ya que puedes experimentar y escalar sin una inversión inicial en hardware. El costo puede variar mucho dependiendo del servicio, la cantidad de recursos y la región en la que se despliegan.
+
+### La Infraestructura Global de AWS
+
+AWS no es un solo centro de datos; es una red global de regiones y zonas de disponibilidad.
+
+* **Regiones:** Son ubicaciones geográficas aisladas donde se agrupan los centros de datos. Cada región está completamente aislada de las demás.
+* **Zonas de Disponibilidad (AZs):** Dentro de cada región, hay varias zonas de disponibilidad. Una AZ es un centro de datos con alimentación, redes y conectividad separadas. El uso de múltiples AZs te permite construir aplicaciones altamente disponibles y tolerantes a fallos.
+
+### Resumen
+
+AWS ha transformado el desarrollo de software y la infraestructura tecnológica al ofrecer una plataforma flexible, potente y escalable que se adapta a las necesidades de cualquier proyecto, desde una pequeña startup hasta las empresas más grandes del mundo.
