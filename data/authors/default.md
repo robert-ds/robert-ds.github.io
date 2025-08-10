@@ -1,7 +1,7 @@
 ---
 name: Robert Vásquez
 avatar: /static/images/avatar.png
-occupation: System Engineer 🏆 | FullStack Developer 💻 | DevOps 🚀
+occupation: System Engineer 🏆 | Software Engineer 💻 | DevOps 🚀
 company: robert-ds
 email: vasquezrober09@gmail.com
 twitter: https://twitter.com/robertds_
@@ -9,7 +9,7 @@ linkedin: https://www.linkedin.com/in/robert-vasquez
 github: https://github.com/robert-ds
 ---
 
-👋 Hola,soy **Robert Vásquez**,  Ingeniero de sistemas 🚀. Me apasionan las infraestructuras tecnológicas y el desarrollo de software 💻. Entre los que puedo destacar; instalación de pequeñas redes de comunicación informática, instalación y configuración de servidores, así como pequeñas aplicaciones web.
+👋 Hola, soy Robert Vásquez, Ingeniero de Sistemas 🚀. Me apasiona construir infraestructuras tecnológicas y desarrollar software 💻. Mi experiencia incluye la instalación de redes de comunicación 🌐, la configuración de servidores 💾 y el desarrollo de aplicaciones web 📱.
 
 - [💼 Experiencia](#experiencia)
 - [🧑🏻‍💻 Proyectos](#Proyectos)

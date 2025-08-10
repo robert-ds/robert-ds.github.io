@@ -44,7 +44,7 @@ export default function Home({ posts }) {
         </div>
         <p className="space-y-4 text-zinc-500 dark:text-slate-300">
           <p className="my-4 leading-loose">
-            👋 Hola, <span>soy Robert Vásquez</span>,  ingeniero de sistemas 🚀. Me apasionan las infraestructuras tecnológicas y el desarrollo de software 💻. Entre los que puedo destacar; instalación de pequeñas redes de comunicación informática, instalación y configuración de servidores, así como pequeñas aplicaciones web.
+            👋 Hola, soy Robert Vásquez, Ingeniero de Sistemas 🚀. Me apasiona construir infraestructuras tecnológicas y desarrollar software 💻. Mi experiencia incluye la instalación de redes de comunicación 🌐, la configuración de servidores 💾 y el desarrollo de aplicaciones web 📱.
           </p>
         </p>
         <div className="mt-8 flex flex-wrap gap-4 text-center">
