@@ -1,0 +1,149 @@
+---
+title: Mapeo Objeto-Relacional (ORM - Object-Relational Mapping)
+date: '2025-08-11'
+tags: ['datos', 'modelos', 'programación', 'relacional']
+draft: false
+images: ['/static/images/blog/orm/orm.png']  
+summary: 'Es una técnica de programación que permite a los desarrolladores interactuar con bases de datos relacionales utilizando objetos del lenguaje de programación que están utilizando (como Python, Java, C\#, etc.), en lugar de escribir consultas SQL directas.'
+---
+
+<Image
+  alt={`orm image`}
+  src={`/static/images/blog/orm/orm.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>En términos más simples, un ORM actúa como un **traductor** entre el mundo orientado a objetos de tu aplicación (clases, objetos, métodos) y el mundo relacional de tu base de datos (tablas, filas, columnas). El objetivo principal de un ORM es **abstraer la complejidad del SQL** y permitir que los desarrolladores se centren en la lógica de su aplicación.
+
+---
+
+### ¿Cómo Funciona un ORM?
+
+Un ORM crea una capa de abstracción entre tu aplicación y la base de datos. Para ello, mapea las tablas de tu base de datos a clases o modelos de tu aplicación, y las filas de esas tablas a instancias (objetos) de esas clases.
+
+**Mapeo Básico:**
+
+  * **Clase/Modelo** ↔ **Tabla**
+  * **Instancia/Objeto** ↔ **Fila/Registro**
+  * **Propiedad/Atributo** ↔ **Columna**
+
+Cuando quieres interactuar con la base de datos, en lugar de escribir una consulta SQL como `SELECT * FROM usuarios WHERE id = 1`, simplemente usas un método de la clase `Usuario` de tu aplicación. El ORM se encarga de traducir esa llamada al método en el SQL apropiado, ejecutarlo y convertir el resultado de la base de datos de nuevo en un objeto `Usuario`.
+
+---
+
+### Ejemplo Práctico (Python con SQLAlchemy)
+
+Imagina que tienes una tabla de `usuarios` en tu base de datos con las columnas `id`, `nombre` y `email`.
+
+**Sin ORM (SQL Directo):**
+
+```python
+# Conexión a la base de datos (ej. con sqlite3)
+import sqlite3
+conn = sqlite3.connect('database.db')
+cursor = conn.cursor()
+
+# Consulta SQL directa para obtener un usuario
+cursor.execute("SELECT * FROM usuarios WHERE id = ?", (1,))
+usuario_data = cursor.fetchone()
+
+# Procesar los datos
+if usuario_data:
+    usuario_id, nombre, email = usuario_data
+    print(f"Usuario: {nombre}, Email: {email}")
+
+conn.close()
+```
+
+**Con ORM (SQLAlchemy en Python):**
+
+Primero, defines la clase `Usuario` que mapea a la tabla:
+
+```python
+from sqlalchemy import create_engine, Column, Integer, String
+from sqlalchemy.orm import declarative_base, sessionmaker
+
+# 1. Definir el mapeo
+Base = declarative_base()
+
+class Usuario(Base):
+    __tablename__ = 'usuarios'
+    id = Column(Integer, primary_key=True)
+    nombre = Column(String)
+    email = Column(String)
+
+    def __repr__(self):
+        return f"<Usuario(nombre='{self.nombre}', email='{self.email}')>"
+
+# 2. Conexión a la base de datos
+engine = create_engine('sqlite:///database.db')
+Base.metadata.create_all(engine)
+Session = sessionmaker(bind=engine)
+session = Session()
+
+# 3. Interacción con la base de datos a través de objetos
+# Crear un nuevo usuario
+nuevo_usuario = Usuario(nombre='Alice', email='alice@example.com')
+session.add(nuevo_usuario)
+session.commit()
+
+# Obtener un usuario por ID
+usuario = session.query(Usuario).filter_by(id=1).first()
+
+# Si existe, el ORM ya lo convirtió en un objeto 'Usuario'
+if usuario:
+    print(f"Usuario: {usuario.nombre}, Email: {usuario.email}")
+    
+# Actualizar el usuario
+if usuario:
+    usuario.email = 'alice.new@example.com'
+    session.commit()
+    
+# Borrar un usuario
+if usuario:
+    session.delete(usuario)
+    session.commit()
+
+session.close()
+```
+
+Como puedes ver, la versión con ORM te permite interactuar con la base de datos usando objetos, atributos y métodos, haciendo que el código sea más intuitivo y fácil de mantener. No necesitas escribir `SELECT`, `UPDATE` o `DELETE` manualmente.
+
+---
+
+### Ventajas del ORM
+
+1.  **Abstracción de la Base de Datos:** Los desarrolladores no necesitan ser expertos en SQL. Además, en muchos casos, el código del ORM es portable, lo que te permite cambiar de base de datos (por ejemplo, de MySQL a PostgreSQL) con cambios mínimos en el código de tu aplicación.
+2.  **Productividad:** Simplifica las tareas de acceso a datos, lo que acelera el proceso de desarrollo. El ORM maneja las consultas SQL, las transacciones, la sanitización de entradas, etc.
+3.  **Mantenimiento Sencillo:** El código de la aplicación es más legible y fácil de mantener. La lógica del negocio se separa de la lógica del acceso a los datos.
+4.  **Seguridad:** La mayoría de los ORM previenen automáticamente los ataques de inyección SQL, ya que gestionan la sanitización de las entradas por ti.
+5.  **Reutilización de Código:** Los modelos y clases que defines para el ORM pueden ser reutilizados en otras partes de tu aplicación.
+
+---
+
+### Desafíos y Desventajas del ORM
+
+1.  **Curva de Aprendizaje:** Aprender a usar un ORM complejo como SQLAlchemy o Hibernate puede llevar tiempo.
+2.  **Pérdida de Control:** A veces, el SQL que genera el ORM puede no ser el más eficiente, especialmente en consultas muy complejas. Esto puede llevar a problemas de rendimiento que requieren un conocimiento profundo de cómo el ORM interactúa con la base de datos.
+3.  **Overhead:** La capa de abstracción del ORM añade una pequeña sobrecarga de rendimiento en comparación con el SQL nativo. Para aplicaciones con requisitos de rendimiento extremos, a veces es necesario recurrir a consultas SQL directas.
+4.  **Configuración Inicial:** Configurar el ORM y los modelos puede ser un proceso largo y tedioso al inicio de un proyecto.
+
+---
+
+### ORM Populares
+
+Cada lenguaje de programación tiene su propio ecosistema de ORM:
+
+  * **Python:** SQLAlchemy, Django ORM, peewee.
+  * **Java:** Hibernate, EclipseLink, Jooq.
+  * **C\#/.NET:** Entity Framework, NHibernate.
+  * **JavaScript (Node.js):** Sequelize, Prisma, TypeORM.
+  * **Ruby:** ActiveRecord (parte de Ruby on Rails).
+
+---
+
+### Resumen
+
+El ORM es una herramienta valiosa y muy utilizada en el desarrollo de software moderno. Si bien no es la solución para todos los problemas de bases de datos, su capacidad para simplificar el acceso a datos y aumentar la productividad lo convierte en un componente esencial en la mayoría de las aplicaciones.
