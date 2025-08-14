@@ -1,0 +1,63 @@
+---
+title: Protocolo de Contexto de Modelo (MCP)
+date: '2025-08-15'
+tags: ['IA', 'modelo', 'protocolo']
+draft: false
+images: ['/static/images/blog/mcp/mcp.png']
+summary: 'El Protocolo de Contexto de Modelo (MCP) es una propuesta para estructurar y gestionar el contexto en sistemas de inteligencia artificial, facilitando la interacción eficiente entre modelos y usuarios mediante reglas y formatos definidos.'
+---
+
+<Image
+  alt={`aws image`}
+  src={`/static/images/blog/mcp/mcp.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Su objetivo principal es definir reglas claras y formatos estructurados que permitan gestionar el contexto de manera eficiente, optimizando la interacción y el rendimiento de los modelos. MCP facilita la integración de diferentes componentes y asegura que la información relevante se mantenga accesible y organizada durante todo el proceso de interacción.
+
+Piensa en MCP como un puerto **USB-C para la IA**. Así como un puerto USB-C permite conectar una amplia variedad de dispositivos (monitores, discos duros, cargadores) a tu computadora a través de un único estándar, el MCP permite que los modelos de IA se conecten a diversas fuentes de datos y herramientas sin la necesidad de una integración personalizada para cada una.
+
+---
+
+### ¿Por Qué es Necesario el MCP?
+
+Antes del MCP, si un desarrollador quería que su modelo de lenguaje accediera a una base de datos, a una API o a un documento específico, tenía que escribir una integración a medida para cada una de esas fuentes. Esto creaba "silos de información", donde los modelos de IA estaban aislados de los datos del mundo real, limitando su utilidad.
+
+El MCP busca resolver este problema proporcionando un protocolo universal que define cómo las aplicaciones:
+
+* Comparten información contextual con los modelos de lenguaje.
+* Exponen herramientas y capacidades a los sistemas de IA.
+* Construyen integraciones y flujos de trabajo reutilizables.
+
+Esto permite que los modelos de IA sean más conscientes del contexto, más capaces de acceder a datos relevantes y más poderosos en la automatización de tareas.
+
+---
+
+### Componentes Clave del MCP
+
+El protocolo se basa en una arquitectura de comunicación entre tres componentes principales:
+
+* **Hosts (Anfitriones):** Son las aplicaciones de LLM que inician las conexiones y utilizan los datos o herramientas proporcionados. Ejemplos incluyen asistentes de IA o interfaces de chat.
+* **Clients (Clientes):** Son los conectores dentro de la aplicación anfitriona. Se encargan de establecer la comunicación con los servidores MCP.
+* **Servers (Servidores):** Son los servicios externos que proporcionan contexto, datos o funcionalidades al sistema de IA. Un servidor MCP podría ser un conector a una base de datos, un sistema de gestión de documentos o una API de mensajería.
+
+El MCP utiliza mensajes **JSON-RPC 2.0** para establecer esta comunicación y define las especificaciones para la ingesta de datos, la transformación y el etiquetado de metadatos contextuales.
+
+---
+
+### Aplicaciones y Casos de Uso del MCP
+
+La adopción del MCP por parte de grandes proveedores de IA, como OpenAI y Google, demuestra su potencial para el futuro de la inteligencia artificial. Algunos de los casos de uso más relevantes son:
+
+* **Flujos de Trabajo de Agentes Multi-herramienta:** Permite que los agentes de IA coordinen múltiples herramientas (por ejemplo, buscar un documento y luego enviar un mensaje a través de una API) para ejecutar tareas complejas.
+* **Acceso a Datos en Lenguaje Natural:** Facilita que las aplicaciones conecten modelos de lenguaje a bases de datos estructuradas, permitiendo consultas en lenguaje natural como "muéstrame todos los clientes que compraron más de $1000 el mes pasado".
+* **Entornos de Desarrollo Integrados (IDEs) con IA:** Permite que los modelos de IA tengan un acceso profundo al contexto del código, la documentación y los repositorios para ofrecer una asistencia más inteligente a los desarrolladores.
+* **Investigación Académica:** Se puede integrar con sistemas de gestión de referencias como Zotero, permitiendo a los modelos de IA acceder a bibliografías y documentos de investigación.
+
+---
+
+### Conclusión
+
+El Protocolo de Contexto de Modelo (MCP) representa un avance significativo en la forma en que los sistemas de inteligencia artificial interactúan con el contexto y los datos. Al proporcionar un marco estandarizado para la integración y el acceso a la información, el MCP no solo mejora la eficiencia de los modelos de IA, sino que también amplía su aplicabilidad en una variedad de dominios. A medida que más organizaciones adopten este protocolo, es probable que veamos un aumento en la capacidad de los modelos de IA para realizar tareas complejas y contextualizadas, lo que a su vez impulsará la innovación en el campo de la inteligencia artificial.
