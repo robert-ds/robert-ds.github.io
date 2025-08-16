@@ -1,0 +1,107 @@
+---
+title: Ciclo DevOps
+date: '2025-08-17'
+tags: ['desarrollo', 'software', 'devops']
+draft: false
+images: ['/static/images/blog/ciclo-devops/ciclo-devops.png']
+summary: 'El Ciclo DevOps es un enfoque integral para el desarrollo y la operación de software que busca mejorar la colaboración entre equipos, acelerar la entrega de software y aumentar la calidad del producto final mediante la automatización y la integración continua.'
+---
+
+<Image
+  alt={`aws image`}
+  src={`/static/images/blog/ciclo-devops/ciclo-devops.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>El Ciclo DevOps es un enfoque que integra el desarrollo de software (Dev) y las operaciones de TI (Ops) para mejorar la colaboración, la eficiencia y la calidad del software. A través de prácticas como la integración continua, la entrega continua y la automatización, DevOps busca reducir el tiempo de entrega y aumentar la estabilidad del software.
+
+---
+
+El **Ciclo de Vida de DevOps** es un conjunto de prácticas y herramientas que busca integrar y automatizar los procesos entre los equipos de desarrollo de software (Dev) y los equipos de operaciones de TI (Ops). El objetivo principal es acortar el ciclo de vida de desarrollo de sistemas, mejorando la calidad del software y permitiendo una entrega continua de nuevas funcionalidades.
+
+A diferencia de los modelos tradicionales como el de cascada, que son secuenciales y rígidos, el ciclo de vida de DevOps es **continuo e iterativo**. Se representa a menudo como un bucle infinito que abarca todas las fases del desarrollo y la operación.
+
+---
+
+### Fases del Ciclo de Vida de DevOps
+
+El ciclo de vida de DevOps se puede dividir en varias fases interconectadas. Cada fase del bucle está diseñada para fomentar la comunicación y la automatización, eliminando los silos y los cuellos de botella.
+
+#### 1. Planificación (Plan)
+Esta fase es donde se definen las ideas, objetivos y requisitos del proyecto. Los equipos de desarrollo y operaciones colaboran desde el inicio para asegurarse de que el software no solo funcione, sino que también sea fácil de operar y desplegar.
+
+* **Actividades:** Recopilación de requisitos, gestión de tareas, planificación de sprints (usando metodologías ágiles), creación de un backlog de productos y definición de un plan de lanzamiento.
+* **Herramientas:** **Jira**, **Trello**, **Azure Boards**.
+
+#### 2. Código (Code)
+En esta fase, los desarrolladores escriben el código de la aplicación. Las prácticas de DevOps promueven el uso de sistemas de control de versiones para gestionar los cambios de forma colaborativa y eficiente.
+
+* **Actividades:** Desarrollo de código, revisiones de código, fusión de ramas y gestión de repositorios.
+* **Herramientas:** **Git**, **GitHub**, **GitLab**, **Azure Repos**.
+
+---
+
+#### 3. Construcción (Build)
+Aquí se compila el código, se construyen los artefactos y se preparan los archivos para la fase de pruebas. El objetivo es que este proceso sea totalmente automático.
+
+* **Actividades:** Compilación de código (usando herramientas como **Maven** o **Webpack**), creación de paquetes, y empaquetado de aplicaciones en contenedores (como **Docker**).
+* **Herramientas:** **Jenkins**, **GitLab CI/CD**, **GitHub Actions**, **Azure Pipelines**.
+
+#### 4. Pruebas (Test)
+En esta fase se valida la funcionalidad y el rendimiento del software. La automatización de pruebas es fundamental en DevOps para garantizar la calidad del código de manera rápida y constante.
+
+* **Actividades:** Pruebas unitarias, pruebas de integración, pruebas de rendimiento y pruebas de seguridad.
+* **Ejemplo de flujo de trabajo:** Cada vez que se sube un nuevo código, un **pipeline de CI/CD** dispara pruebas automáticas. Si las pruebas fallan, el equipo recibe una alerta inmediata.
+* **Herramientas:** **JUnit**, **Selenium**, **JMeter**, **Sonarqube**.
+
+---
+
+#### 5. Lanzamiento (Release)
+Una vez que el código ha pasado todas las pruebas, se prepara para su despliegue en un entorno de producción. Las prácticas de DevOps buscan automatizar al máximo este paso.
+
+* **Actividades:** Gestión de lanzamientos, aprobación de cambios, y creación de notas de lanzamiento.
+* **Herramientas:** **Jenkins**, **GitLab**, **Azure Pipelines**, **Spinnaker**.
+
+#### 6. Despliegue (Deploy)
+El software se instala y configura en los servidores de producción o en el entorno de destino. Este proceso se automatiza para reducir la posibilidad de errores manuales y acelerar la entrega de software.
+
+* **Actividades:** Despliegue automatizado, aprovisionamiento de infraestructura y gestión de la configuración.
+* **Ejemplo de flujo de trabajo:** Un **pipeline de CD** toma el artefacto aprobado en la fase de "lanzamiento" y lo despliega automáticamente en el entorno de producción, garantizando un despliegue sin interrupciones.
+* **Herramientas:** **Ansible**, **Chef**, **Puppet**, **Kubernetes**.
+
+---
+
+#### 7. Operación (Operate)
+En esta fase, el software ya está funcionando en un entorno real. El equipo de operaciones se asegura de que el sistema esté disponible, funcione correctamente y se le dé mantenimiento.
+
+* **Actividades:** Gestión de la infraestructura, administración del sistema y gestión de la configuración.
+* **Herramientas:** **Terraform**, **Azure Resource Manager**, **CloudFormation** (para la gestión de la infraestructura como código).
+
+#### 8. Monitoreo (Monitor)
+Esta fase es vital y ocurre en paralelo con la operación. Se supervisa el rendimiento y el comportamiento del software en tiempo real para detectar problemas, cuellos de botella o fallos.
+
+* **Actividades:** Recopilación de métricas, análisis de logs y creación de alertas.
+* **Ejemplo de flujo de trabajo:** Si el monitoreo detecta que el tiempo de respuesta de la aplicación supera un umbral, se envía una alerta automática al equipo de operaciones.
+* **Herramientas:** **Prometheus**, **Grafana**, **ELK Stack (Elasticsearch, Logstash, Kibana)**, **Datadog**.
+
+---
+
+### Ejemplo de un Flujo de Trabajo en DevOps
+
+Imagina un equipo que está construyendo una aplicación de comercio electrónico.
+
+1.  **Planificación:** El equipo decide añadir una nueva función de "lista de deseos". Crean un ticket en **Jira** para la tarea.
+2.  **Código:** Un desarrollador escribe el código para la lista de deseos en su máquina local y lo sube a una nueva rama en **GitHub**.
+3.  **Construcción y Pruebas (CI):** La subida del código activa un **pipeline de GitHub Actions**. Este pipeline:
+    * Clona el código.
+    * Instala las dependencias.
+    * Ejecuta las pruebas unitarias y de integración.
+    * Si todas las pruebas pasan, construye una **imagen de Docker** de la aplicación.
+4.  **Lanzamiento y Despliegue (CD):** Una vez que el código se fusiona con la rama principal (`main`), otro **pipeline de GitHub Actions** se activa. Este pipeline:
+    * Toma la imagen de Docker recién construida.
+    * Despliega automáticamente la aplicación en un clúster de **Kubernetes**.
+5.  **Operación y Monitoreo:** La aplicación está ahora en producción. Un equipo de operaciones utiliza **Prometheus** y **Grafana** para monitorear el rendimiento de la aplicación, el uso de recursos y el tráfico de la función de lista de deseos en tiempo real. Si surge algún error, el sistema de monitoreo envía una alerta.
+
+Este ejemplo muestra cómo el bucle de DevOps facilita la colaboración y la automatización en cada paso, permitiendo al equipo entregar nuevas funcionalidades de forma rápida, segura y continua.
