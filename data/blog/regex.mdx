@@ -1,0 +1,135 @@
+---
+title: Expresiones Regulares
+date: '2025-08-18'
+tags: ['expresiones', 'software', 'programación']
+draft: false
+images: ['/static/images/blog/regex/regex.png']
+summary: 'Las expresiones regulares son una herramienta poderosa para buscar y manipular texto. Permiten definir patrones complejos y realizar operaciones de búsqueda, reemplazo y validación de datos de manera eficiente. '
+---
+
+<Image
+  alt={`aws image`}
+  src={`/static/images/blog/regex/regex.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Una **expresión regular** (o **regex**, por su abreviatura) es una secuencia de caracteres que forma un patrón de búsqueda. Es una herramienta poderosa para encontrar, reemplazar o validar texto que se ajusta a un patrón específico. En lugar de buscar un texto exacto, una expresión regular busca un "tipo" de texto.
+
+Piensa en una expresión regular como un lenguaje de programación muy pequeño y especializado, utilizado para describir patrones de texto.
+
+---
+
+### Conceptos Fundamentales
+
+Para construir una expresión regular, se utilizan caracteres especiales y literales. Aquí tienes los más importantes:
+
+* **Caracteres Literales:** La mayoría de los caracteres se emparejan con su literal. Por ejemplo, `a` empareja la letra "a", y `abc` empareja la secuencia "abc".
+
+* **Metacaracteres:** Estos caracteres tienen un significado especial. Son el núcleo de las expresiones regulares.
+    * `[]` (Conjunto de Caracteres): Empareja cualquier carácter dentro de los corchetes.
+        * `[abc]` empareja "a", "b", o "c".
+        * `[0-9]` empareja cualquier dígito.
+        * `[a-zA-Z]` empareja cualquier letra mayúscula o minúscula.
+    * `^` (Ancla de Inicio): Empareja el inicio de una línea o cadena.
+        * `^abc` empareja una cadena que empieza con "abc".
+    * `$` (Ancla de Fin): Empareja el final de una línea o cadena.
+        * `abc$` empareja una cadena que termina con "abc".
+    * `.` (Punto): Empareja cualquier carácter (excepto un salto de línea).
+        * `h.la` empareja "hala", "hola", "hela", etc.
+    * `|` (O): Actúa como un operador "o".
+        * `gato|perro` empareja "gato" o "perro".
+    * `()` (Agrupar): Agrupa subexpresiones. Útil para aplicar cuantificadores a un grupo.
+        * `(ab)+` empareja "ab", "abab", "ababab", etc.
+
+---
+
+### Cuantificadores
+
+Los cuantificadores se utilizan para especificar cuántas veces debe ocurrir un carácter, un grupo o un conjunto.
+
+* `*` (Cero o más): El elemento que lo precede puede aparecer 0 o más veces.
+    * `ab*c` empareja "ac", "abc", "abbc", "abbbc", etc.
+* `+` (Una o más): El elemento que lo precede debe aparecer al menos una vez.
+    * `ab+c` empareja "abc", "abbc", "abbbc", etc., pero no "ac".
+* `?` (Cero o una): El elemento que lo precede es opcional.
+    * `colou?r` empareja "color" y "colour".
+* `{n}` (Exactamente n): El elemento que lo precede debe aparecer `n` veces.
+    * `a{3}` empareja "aaa".
+* `{n,}` (n o más): El elemento que lo precede debe aparecer `n` o más veces.
+    * `a{2,}` empareja "aa", "aaa", "aaaa", etc.
+* `{n,m}` (Entre n y m): El elemento que lo precede debe aparecer entre `n` y `m` veces.
+    * `a{2,4}` empareja "aa", "aaa" o "aaaa".
+
+---
+
+### Clases de Caracteres (Shorthand)
+
+Para simplificar las expresiones, existen atajos predefinidos para conjuntos de caracteres comunes:
+
+* `\d`: Empareja cualquier dígito (equivalente a `[0-9]`).
+* `\w`: Empareja cualquier carácter de "palabra" (letras, números y guion bajo) (equivalente a `[a-zA-Z0-9_]`).
+* `\s`: Empareja cualquier carácter de espacio en blanco (espacio, tabulador, salto de línea).
+
+Las versiones en mayúsculas de estos atajos emparejan lo opuesto:
+
+* `\D`: Empareja cualquier carácter que no sea un dígito.
+* `\W`: Empareja cualquier carácter que no sea de "palabra".
+* `\S`: Empareja cualquier carácter que no sea un espacio en blanco.
+
+---
+
+### Ejemplos Prácticos
+
+Aquí tienes algunos ejemplos que muestran el poder de las expresiones regulares para resolver problemas comunes:
+
+1.  **Validar un Correo Electrónico Básico:**
+    * **Regex:** `^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$`
+    * **Explicación:**
+        * `^`: Comienzo de la cadena.
+        * `[a-zA-Z0-9._%+-]+`: Una o más letras, números o los caracteres `._%+-`.
+        * `@`: El carácter literal "@".
+        * `[a-zA-Z0-9.-]+`: El dominio, con una o más letras, números o `.-`.
+        * `\.`: Un punto literal (el punto necesita ser escapado con `\`).
+        * `[a-zA-Z]{2,}`: Un dominio de nivel superior (como `com`, `org`, `es`) con al menos dos letras.
+        * `$`: Fin de la cadena.
+
+2.  **Encontrar Números de Teléfono en Formato (XXX) XXX-XXXX:**
+    * **Regex:** `\(\d{3}\) \d{3}-\d{4}`
+    * **Explicación:**
+        * `\(`: Un paréntesis de apertura literal.
+        * `\d{3}`: Exactamente tres dígitos.
+        * `\)`: Un paréntesis de cierre literal.
+        * `\s`: Un espacio en blanco.
+        * `\d{3}-\d{4}`: Tres dígitos, un guion, y cuatro dígitos.
+
+3.  **Encontrar todas las URLs que terminan en `.com`:**
+    * **Regex:** `\bhttps?:\/\/[a-zA-Z0-9\.\-]+\.com\b`
+    * **Explicación:**
+        * `\b`: Límite de palabra (para evitar emparejar partes de otras palabras).
+        * `https?`: El "s" es opcional.
+        * `:\/\/`: El `://` literal.
+        * `[a-zA-Z0-9\.\-]+`: Un o más caracteres que son letras, números, puntos o guiones.
+        * `\.com\b`: El `.com` literal, seguido de un límite de palabra.
+
+4.  **Reemplazar todas las ocurrencias de una palabra específica:**
+    * **Buscar:** `gato`
+    * **Reemplazar con:** `perro`
+    * En la cadena "El gato y el otro gato", el resultado sería "El perro y el otro perro".
+
+---
+
+### Usos de las Expresiones Regulares
+
+Las expresiones regulares se utilizan en muchos contextos y lenguajes de programación:
+
+* **Validación de Datos:** En formularios web para validar entradas de usuario (correos, números de teléfono, contraseñas).
+* **Análisis de Logs:** Para buscar patrones de errores o eventos específicos en archivos de logs.
+* **Procesamiento de Texto:** Para limpiar, formatear o extraer información de grandes volúmenes de texto.
+* **Editores de Código:** Funciones de "buscar y reemplazar" avanzadas.
+* **Desarrollo de Software:** En scripts para automatizar tareas de manipulación de archivos.
+
+### Resumen
+
+Las expresiones regulares son una herramienta poderosa para trabajar con texto. Permiten buscar, validar y manipular cadenas de manera eficiente. Con una sintaxis rica y flexible, se pueden aplicar en una variedad de contextos, desde la validación de formularios hasta el análisis de logs y el procesamiento de texto. Dominar las expresiones regulares puede mejorar significativamente la productividad y la precisión en tareas relacionadas con la manipulación de texto.
