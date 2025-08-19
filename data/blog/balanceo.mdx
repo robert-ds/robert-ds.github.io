@@ -1,0 +1,63 @@
+---
+title: Balanceo de Carga
+date: '2025-08-20'
+tags: ['sistemas', 'infraestructura', 'monitoreo']
+draft: false
+images: ['/static/images/blog/balanceo/balanceo.png']
+summary: 'El balanceo de carga es una técnica que distribuye la carga de trabajo de manera uniforme entre varios recursos, como servidores o instancias de aplicación.'
+---
+
+<Image
+  alt={`balanceo de carga image`}
+  src={`/static/images/blog/balanceo/balanceo.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>El balanceo de carga mejora la disponibilidad y el rendimiento de las aplicaciones al evitar la sobrecarga de un solo recurso.
+
+El **balanceo de carga** (o *load balancing*) es una técnica de administración de sistemas que distribuye de manera eficiente el tráfico de red entrante entre un grupo de servidores backend. El objetivo principal es evitar que un solo servidor se sobrecargue, lo que podría llevar a una ralentización del servicio o incluso a su caída.
+
+Piensa en un balanceador de carga como un "policía de tráfico" en la entrada de una autopista. En lugar de dirigir todos los autos (solicitudes de usuarios) a un solo carril (servidor), el policía los distribuye de manera inteligente entre todos los carriles disponibles para mantener el flujo constante y evitar la congestión. 
+
+---
+
+### ¿Cómo Funciona el Balanceo de Carga?
+
+1.  **Punto de entrada único:** Todas las solicitudes de los usuarios se dirigen a una única dirección IP, que pertenece al balanceador de carga.
+2.  **Distribución inteligente:** El balanceador de carga recibe las solicitudes y, utilizando un **algoritmo de balanceo**, decide a qué servidor backend enviar cada una.
+3.  **Monitoreo del estado de los servidores:** El balanceador de carga monitorea continuamente el estado de "salud" de los servidores. Si un servidor deja de responder o no está funcionando correctamente, el balanceador lo retira de su grupo de servidores activos y redirige el tráfico a los demás.
+4.  **Respuesta al cliente:** La respuesta del servidor elegido vuelve al cliente a través del balanceador de carga, de manera que el cliente no se da cuenta de que su solicitud fue procesada por un servidor diferente.
+
+---
+
+### Beneficios Clave del Balanceo de Carga
+
+* **Alta disponibilidad:** Al distribuir las cargas de trabajo, si un servidor falla, los demás continúan operando sin interrupción, garantizando que el servicio esté siempre disponible.
+* **Escalabilidad mejorada:** Permite añadir o eliminar servidores del grupo (lo que se conoce como escalado horizontal) sin afectar la experiencia del usuario. Es mucho más fácil y económico añadir un servidor extra que mejorar un solo servidor de alta capacidad.
+* **Rendimiento optimizado:** Al evitar la sobrecarga de un servidor, se reducen los tiempos de respuesta y se mejora la experiencia general del usuario.
+* **Mantenimiento sin interrupciones:** Los servidores pueden ser retirados para tareas de mantenimiento o actualizaciones sin interrumpir el servicio.
+
+---
+
+### Tipos de Algoritmos de Balanceo de Carga
+
+Los algoritmos son las reglas que utiliza un balanceador de carga para decidir a qué servidor enviar una solicitud. Se pueden clasificar en dos categorías principales:
+
+#### Algoritmos Estáticos
+Estos algoritmos no tienen en cuenta el estado actual de los servidores (como la carga de CPU o el número de conexiones). Son simples de implementar, pero menos eficientes si los servidores tienen capacidades diferentes.
+
+* **Round Robin:** El algoritmo más simple. Asigna las solicitudes a los servidores de forma secuencial y rotativa (servidor 1, luego servidor 2, luego servidor 3, y así sucesivamente).
+* **Round Robin Ponderado (Weighted Round Robin):** Asigna un "peso" a cada servidor. Los servidores con mayor capacidad reciben más solicitudes, mientras que los más débiles reciben menos.
+
+#### Algoritmos Dinámicos
+Estos algoritmos toman decisiones basadas en el estado en tiempo real de los servidores, lo que los hace más eficientes.
+
+* **Menor Conexión (Least Connections):** El balanceador de carga envía la nueva solicitud al servidor que tiene el menor número de conexiones activas en ese momento.
+* **Menor Tiempo de Respuesta (Least Response Time):** Dirige el tráfico al servidor con el tiempo de respuesta promedio más bajo y el menor número de conexiones activas.
+* **Hash de IP:** Utiliza la dirección IP de origen del cliente para generar un "hash" y enviar todas las solicitudes de ese cliente al mismo servidor. Esto es crucial para aplicaciones que requieren mantener la misma sesión con un usuario.
+
+### Resumen
+
+Un balanceador de carga es un componente fundamental en las arquitecturas modernas de aplicaciones web, garantizando que los servicios sean rápidos, fiables y estén siempre disponibles.
