@@ -1,0 +1,149 @@
+---
+title: Código Limpio
+date: '2025-08-21'
+tags: ['programación', 'Desarrollo', 'buenas prácticas', 'mantenibilidad']
+draft: false
+images: ['/static/images/blog/codigo-limpio/codigo-limpio.png']
+summary: 'El código limpio es un concepto fundamental en el desarrollo de software que se refiere a la escritura de código que es fácil de leer, entender y mantener.'
+---
+
+<Image
+  alt={`codigo limpio image`}
+  src={`/static/images/blog/codigo-limpio/codigo-limpio.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>El código limpio mejora la calidad del software al facilitar su comprensión y modificación, lo que a su vez reduce el riesgo de errores y aumenta la productividad del equipo de desarrollo.
+
+Es un conjunto de principios, técnicas y buenas prácticas que guían a los desarrolladores a escribir código que es fácil de leer, entender, mantener y modificar.  No se trata solo de que el código funcione, sino de que sea **comprensible**. La filosofía del código limpio fue popularizada por el libro "Clean Code: A Handbook of Agile Software Craftsmanship" de **Robert C. Martin**, conocido como "Uncle Bob". El código limpio es una inversión a largo plazo que reduce los errores y acelera el desarrollo.
+
+---
+
+### Principios Fundamentales del Código Limpio
+
+Escribir código limpio se basa en seguir algunas reglas de oro. Aquí tienes las más importantes con ejemplos detallados y conceptos adicionales.
+
+#### 1\. Nombres Significativos y Descriptivos
+
+  * **Principio:** Los nombres de variables, funciones y clases deben describir su propósito y su razón de ser. Si un nombre necesita un comentario para ser entendido, está mal elegido.
+  * **Ejemplo Malo:**
+    ```java
+    int d; // días
+    public void proc(List l) { // procesar lista
+        // ...
+    }
+    ```
+  * **Ejemplo Bueno:**
+    ```java
+    int diasTranscurridos;
+    public void procesarListaDeUsuarios(List<Usuario> usuarios) {
+        // ...
+    }
+    ```
+  * **Concepto Adicional:** La convención de nombres (como **CamelCase** para variables y métodos, o **PascalCase** para clases en Java y C\#) también es parte del código limpio. Un nombre consistente facilita la lectura.
+
+#### 2\. Funciones Pequeñas y con un Solo Propósito
+
+  * **Principio:** Cada función o método debe hacer una sola cosa, y hacerla bien. Una función debe ser tan pequeña que su nombre sea suficiente para describir su lógica interna.
+  * **Ejemplo Malo:**
+    ```python
+    def crear_usuario_y_enviar_correo(datos_usuario):
+        # Valida, guarda, y envía un correo
+        # ... varias líneas de código ...
+    ```
+  * **Ejemplo Bueno:** Dividir las responsabilidades.
+    ```python
+    def validar_datos_usuario(datos):
+        # ...
+
+    def guardar_usuario_en_db(datos):
+        # ...
+        
+    def enviar_correo_confirmacion(email):
+        # ...
+
+    def crear_usuario(datos):
+        validar_datos_usuario(datos)
+        guardar_usuario_en_db(datos)
+        enviar_correo_confirmacion(datos.get('email'))
+    ```
+  * **Concepto Adicional:** Esta práctica se relaciona directamente con el **Principio de Responsabilidad Única (SRP)** de **SOLID**. Una función (o clase) que hace una sola cosa tiene una sola razón para cambiar.
+
+#### 3\. Evita Comentarios Innecesarios
+
+  * **Principio:** El código bien escrito es su propia documentación. Los comentarios son a menudo una señal de que el código es demasiado complicado. Úsalos para explicar el "por qué" de una decisión, no el "qué" del código.
+  * **Ejemplo Malo:**
+    ```javascript
+    // Suma los dos números
+    return a + b;
+    ```
+  * **Ejemplo Bueno:**
+    ```javascript
+    // Usamos una solución temporal para evitar un error conocido en la versión 3.5 de la API.
+    // Se eliminará en la próxima actualización.
+    const resultado = api.procesarDatos(input);
+    ```
+  * **Concepto Adicional:** Robert C. Martin argumenta que los comentarios mienten, ya que a menudo no se actualizan cuando se cambia el código, creando confusión.
+
+#### 4\. Formato Consistente y Limpio
+
+  * **Principio:** Usa un formato consistente en todo el proyecto. Esto incluye la indentación, el espaciado, el uso de líneas en blanco y la organización del código.
+  * **Ejemplo Malo:**
+    ```csharp
+    public class MyClass {public void MyMethod(){int x=5; if (x>3){Console.WriteLine(x);}}}
+    ```
+  * **Ejemplo Bueno:**
+    ```csharp
+    public class MyClass 
+    {
+        public void MyMethod()
+        {
+            int x = 5; 
+            if (x > 3)
+            {
+                Console.WriteLine(x);
+            }
+        }
+    }
+    ```
+  * **Concepto Adicional:** Herramientas de formateo automático como **Prettier** para JavaScript o **Black** para Python ayudan a mantener un estilo consistente en todo el equipo, eliminando las discusiones sobre formato.
+
+#### 5\. Manejo de Errores con Excepciones
+
+  * **Principio:** No ignores los errores. Usa excepciones para comunicar y gestionar los errores de manera limpia, en lugar de devolver códigos de error o valores nulos ambiguos.
+  * **Ejemplo Malo:**
+    ```java
+    public Usuario obtenerUsuario(int id) {
+        // Devuelve null si no se encuentra el usuario
+        // ...
+    }
+    ```
+  * **Ejemplo Bueno:**
+    ```java
+    public Usuario obtenerUsuario(int id) {
+        Usuario user = db.find(id);
+        if (user == null) {
+            throw new UsuarioNoEncontradoException("Usuario no encontrado con ID: " + id);
+        }
+        return user;
+    }
+    ```
+  * **Concepto Adicional:** El uso de excepciones obliga al programador a manejar el error explícitamente, lo que hace el código más robusto y fiable.
+
+### Principios de Diseño de Software (SOLID)
+
+SOLID es un acrónimo de cinco principios fundamentales de la programación orientada a objetos que son la base del código limpio:
+
+  * **S** - Principio de Responsabilidad Única
+  * **O** - Principio Abierto/Cerrado
+  * **L** - Principio de Sustitución de Liskov
+  * **I** - Principio de Segregación de la Interfaz
+  * **D** - Principio de Inversión de Dependencias
+
+Dominar estos principios ayuda a escribir código modular, flexible y fácil de mantener.
+
+### Resumen
+
+El código limpio no es solo una cuestión de estética, sino una disciplina fundamental en la ingeniería de software moderna que busca la claridad, la simplicidad y la mantenibilidad. Al seguir estos principios y prácticas, los desarrolladores pueden crear software que no solo funcione bien, sino que también sea fácil de entender y modificar a lo largo del tiempo, lo que es crucial en un entorno de desarrollo ágil y colaborativo. Invertir tiempo en escribir código limpio desde el principio ahorra tiempo y esfuerzo a largo plazo, mejorando la calidad del software y la productividad del equipo.
