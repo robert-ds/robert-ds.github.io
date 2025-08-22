@@ -1,0 +1,194 @@
+---
+title: Principios SOLID
+date: '2025-08-23'
+tags: ['programación', 'Desarrollo', 'buenas prácticas', 'principios']
+draft: false
+images: ['/static/images/blog/solid/solid.png']
+summary: 'Los principios SOLID son un conjunto de cinco principios de diseño que buscan mejorar la calidad del software y facilitar su mantenimiento.'
+---
+
+<Image
+  alt={`principios solid image`}
+  src={`/static/images/blog/solid/solid.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Los Principios SOLID son un conjunto de principios de diseño orientados a objetos que buscan mejorar la calidad del software y facilitar su mantenimiento. Estos principios ayudan a los desarrolladores a crear sistemas más flexibles, escalables y fáciles de entender.
+
+Los **principios SOLID** son un conjunto de cinco principios de diseño de software que, cuando se aplican, hacen que el código sea más comprensible, flexible y fácil de mantener. Fueron introducidos por **Robert C. Martin** (Uncle Bob) y son fundamentales para la programación orientada a objetos. SOLID es un acrónimo de los nombres de los cinco principios.
+
+-----
+
+### **S** - Principio de Responsabilidad Única (Single Responsibility Principle)
+
+El principio establece que **una clase debe tener una sola razón para cambiar**. Esto significa que una clase debe ser responsable de una única funcionalidad. Si una clase tiene más de una responsabilidad, es más probable que sufra cambios que no están relacionados entre sí, lo que aumenta el riesgo de errores.
+
+  * **Ejemplo Malo:**
+    ```java
+    class Reporte {
+        public void generarReporte() { /* ... */ }
+        public void guardarEnBaseDeDatos() { /* ... */ }
+        public void enviarPorCorreo() { /* ... */ }
+    }
+    ```
+    *Razón:* La clase `Reporte` tiene tres responsabilidades: generar el reporte, guardar datos y enviar correos. Si cambia la forma de enviar correos, la clase tendrá que modificarse, aunque la lógica para generar el reporte no haya cambiado.
+  * **Ejemplo Bueno:**
+    ```java
+    class GeneradorDeReporte {
+        public void generarReporte() { /* ... */ }
+    }
+    class RepositorioDeReportes {
+        public void guardarEnBaseDeDatos() { /* ... */ }
+    }
+    class ServicioDeEmail {
+        public void enviarCorreo() { /* ... */ }
+    }
+    ```
+    *Razón:* Cada clase se encarga de una sola tarea. Si la lógica de guardar en la base de datos cambia, solo se modifica la clase `RepositorioDeReportes`.
+
+-----
+
+### **O** - Principio Abierto/Cerrado (Open/Closed Principle)
+
+Este principio dicta que las entidades de software (clases, módulos, funciones, etc.) deben estar **abiertas para la extensión, pero cerradas para la modificación**. Esto significa que se puede añadir una nueva funcionalidad sin alterar el código existente. Esto se logra generalmente a través del uso de la herencia y el polimorfismo.
+
+  * **Ejemplo Malo:**
+    ```python
+    class CalculadoraDeArea {
+        def calcular_area(self, forma):
+            if isinstance(forma, Rectangulo):
+                return forma.ancho * forma.alto
+            elif isinstance(forma, Circulo):
+                return math.pi * forma.radio ** 2
+    }
+    ```
+    *Razón:* Si se añade una nueva forma, como un `Triangulo`, la clase `CalculadoraDeArea` tendrá que ser modificada.
+  * **Ejemplo Bueno:**
+    ```python
+    class Forma:
+        def area(self):
+            pass
+    class Rectangulo(Forma):
+        def area(self):
+            return self.ancho * self.alto
+    class Circulo(Forma):
+        def area(self):
+            return math.pi * self.radio ** 2
+    class CalculadoraDeArea:
+        def calcular_area(self, formas):
+            total = 0
+            for forma in formas:
+                total += forma.area()
+            return total
+    ```
+    *Razón:* Ahora, para añadir un `Triangulo`, solo se necesita crear una nueva clase que herede de `Forma` e implemente el método `area()`, sin tocar la clase `CalculadoraDeArea`.
+
+-----
+
+### **L** - Principio de Sustitución de Liskov (Liskov Substitution Principle)
+
+Este principio establece que los objetos de un programa deben poder ser **reemplazados por instancias de sus subtipos sin alterar la corrección de ese programa**. En otras palabras, una clase hija debe poder sustituir a su clase padre sin causar errores.
+
+  * **Ejemplo Malo:**
+    ```c++
+    class Pinguino : public Ave {
+        public:
+            void volar() { /* No puede volar, lanza un error */ }
+    };
+    ```
+    *Razón:* Un `Pinguino` es un tipo de `Ave`, pero no cumple con la funcionalidad de `volar()` de la clase padre. Si un programa espera un `Ave` y se le pasa un `Pinguino`, el programa podría fallar.
+  * **Ejemplo Bueno:**
+    ```c++
+    class Ave {
+        public:
+            // Métodos comunes...
+    };
+    class AveVoladora : public Ave {
+        public:
+            void volar() { /* ... */ }
+    };
+    class Pinguino : public Ave {
+        // ...
+    };
+    ```
+    *Razón:* Se introduce una jerarquía más específica, con una clase `AveVoladora` para la funcionalidad de volar. Los pingüinos (y otras aves que no vuelan) pueden heredar de `Ave` sin violar el contrato.
+
+-----
+
+### **I** - Principio de Segregación de la Interfaz (Interface Segregation Principle)
+
+El principio afirma que **los clientes no deben ser forzados a depender de interfaces que no usan**. Es mejor tener muchas interfaces específicas y pequeñas que una única interfaz grande y monolítica.
+
+  * **Ejemplo Malo:**
+    ```typescript
+    interface Empleado {
+        nombre: string;
+        trabajar(): void;
+        reunirse(): void;
+        codificar(): void;
+    }
+    class Gerente implements Empleado {
+        // ... tiene que implementar codificar() aunque no lo necesite.
+    }
+    ```
+    *Razón:* La interfaz `Empleado` obliga a cualquier clase que la implemente a tener métodos que podrían no ser relevantes. Un `Gerente` no necesita un método `codificar()`.
+  * **Ejemplo Bueno:**
+    ```typescript
+    interface Trabajador {
+        trabajar(): void;
+    }
+    interface Programador {
+        codificar(): void;
+    }
+    interface LiderDeProyecto {
+        reunirse(): void;
+    }
+    class Gerente implements Trabajador, LiderDeProyecto {
+        // Solo implementa las interfaces que necesita.
+    }
+    ```
+    *Razón:* Las interfaces son más granulares. Cada clase implementa solo la funcionalidad que necesita, lo que reduce la dependencia de código no utilizado.
+
+-----
+
+### **D** - Principio de Inversión de Dependencias (Dependency Inversion Principle)
+
+Este principio establece que los módulos de alto nivel no deben depender de módulos de bajo nivel. **Ambos deben depender de abstracciones**. Las abstracciones no deben depender de los detalles; los detalles deben depender de las abstracciones.
+
+  * **Ejemplo Malo:**
+    ```php
+    class Notificador {
+        private CorreoElectronico correo;
+        public Notificador() {
+            this.correo = new CorreoElectronico();
+        }
+        public void notificar() {
+            this.correo.enviar("Alerta!");
+        }
+    }
+    ```
+    *Razón:* La clase de alto nivel `Notificador` depende directamente de la clase de bajo nivel `CorreoElectronico`. Si se quiere cambiar a notificaciones por SMS, hay que modificar la clase `Notificador`.
+  * **Ejemplo Bueno:**
+    ```php
+    interface EnviadorDeMensaje {
+        public function enviar(mensaje: string);
+    }
+    class CorreoElectronico implements EnviadorDeMensaje {
+        public function enviar(mensaje: string) { /* ... */ }
+    }
+    class SMS implements EnviadorDeMensaje {
+        public function enviar(mensaje: string) { /* ... */ }
+    }
+    class Notificador {
+        private EnviadorDeMensaje enviador;
+        public Notificador(enviador: EnviadorDeMensaje) {
+            this.enviador = enviador;
+        }
+        public function notificar(mensaje: string) {
+            this.enviador.enviar(mensaje);
+        }
+    }
+    ```
+    *Razón:* La clase `Notificador` ahora depende de la abstracción `EnviadorDeMensaje`. Se le puede pasar una instancia de `CorreoElectronico` o de `SMS` en el constructor sin cambiar la lógica interna de `Notificador`.
