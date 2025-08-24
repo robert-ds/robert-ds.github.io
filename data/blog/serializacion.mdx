@@ -1,0 +1,123 @@
+---
+title: Lenguajes de Serialización Datos
+date: '2025-08-24'
+tags: ['programación', 'Desarrollo', 'serialización', 'datos']
+draft: false
+images: ['/static/images/blog/serializacion/serializacion.png']
+summary: 'El formato serializado es un lenguaje común que entienden tanto el que envía los datos como el que los recibe, independientemente de la tecnología que estén usando. Los lenguajes de serialización más populares son **JSON**, **XML** y **YAML**.'
+---
+
+<Image
+  alt={`serialización image`}
+  src={`/static/images/blog/serializacion/serializacion.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>La serialización es el proceso de **convertir un objeto de un lenguaje de programación en un formato de secuencia de datos** que pueda ser fácilmente almacenado (por ejemplo, en un archivo) o transmitido a través de una red.
+
+-----
+
+### ¿Por Qué son Tan Importantes?
+
+Los lenguajes de serialización son la clave para la **comunicación entre sistemas**. Imagina que tienes una aplicación web construida en Python y quieres enviar datos a una aplicación móvil desarrollada en Java. No puedes simplemente enviar el objeto de Python directamente al móvil; necesitas un formato universal que ambos entiendan.
+
+La serialización resuelve este problema al convertir el objeto en una cadena de texto (o un formato binario), que puede ser enviada fácilmente. El receptor, al recibir la cadena, la "deserializa" o "parsea" de nuevo a un objeto que puede usar en su propio lenguaje. Esta capacidad de comunicar sistemas heterogéneos es lo que impulsa el desarrollo de microservicios, APIs y aplicaciones distribuidas.
+
+-----
+
+### JSON (JavaScript Object Notation)
+
+JSON es el rey indiscutible de la serialización en la actualidad. Es un formato ligero, legible por humanos y muy fácil de parsear por las máquinas. Su estructura se basa en pares de clave-valor.
+
+  * **Ventajas:**
+      * **Ligero y Rápido:** Su sintaxis minimalista lo hace muy eficiente para transmitir grandes volúmenes de datos.
+      * **Fácil de Leer:** Su estructura es muy similar a la de los objetos en lenguajes como JavaScript o Python, lo que lo hace intuitivo.
+      * **Soporte Universal:** Prácticamente todos los lenguajes de programación y APIs modernas tienen soporte nativo para JSON.
+  * **Desventajas:**
+      * **No hay Comentarios:** No permite agregar comentarios dentro de su sintaxis, lo que a veces dificulta documentar el archivo.
+      * **Limitado a Tipos Simples:** No tiene un soporte nativo para tipos de datos complejos como fechas o conjuntos, que deben ser serializados como cadenas y luego parseados manualmente.
+  * **Ejemplo:**
+    ```json
+    {
+      "nombre": "Alice",
+      "edad": 30,
+      "esActivo": true,
+      "habilidades": ["Python", "JavaScript", "HTML"],
+      "direccion": {
+        "ciudad": "Ciudad de México",
+        "pais": "México"
+      }
+    }
+    ```
+
+-----
+
+### XML (eXtensible Markup Language)
+
+XML fue el estándar de facto antes de la llegada de JSON. Es un lenguaje de marcado que utiliza etiquetas (tags) para estructurar los datos, de forma similar a HTML.
+
+  * **Ventajas:**
+      * **Muy Flexible:** Permite crear estructuras de datos muy complejas y anidadas con facilidad.
+      * **Soporte de Esquemas:** A través de XML Schema Definition (XSD), se pueden validar los datos para asegurar que cumplan con una estructura predefinida.
+      * **Permite Comentarios:** Puedes documentar la estructura de tu archivo con comentarios.
+  * **Desventajas:**
+      * **Demasiado Verboso:** La sintaxis con etiquetas de apertura y cierre (`<etiqueta>...</etiqueta>`) hace que los archivos sean mucho más grandes que los de JSON, lo que aumenta el ancho de banda necesario para la transmisión.
+      * **Más Lento de Procesar:** La verbosidad y la complejidad de su estructura hacen que el parseo sea más lento.
+  * **Ejemplo:**
+    ```xml
+    <usuario>
+      <nombre>Bob</nombre>
+      <edad>25</edad>
+      <esActivo>false</esActivo>
+      <habilidades>
+        <habilidad>Java</habilidad>
+        <habilidad>SQL</habilidad>
+      </habilidades>
+    </usuario>
+    ```
+
+-----
+
+### YAML (YAML Ain't Markup Language)
+
+YAML es un lenguaje de serialización de datos diseñado para ser muy legible para los humanos. Es comúnmente utilizado para archivos de configuración, donde la legibilidad es más importante que la velocidad de procesamiento.
+
+  * **Ventajas:**
+      * **Extremadamente Legible:** Utiliza indentación para representar la estructura, lo que lo hace muy limpio y fácil de leer.
+      * **Sintaxis Concisa:** Evita el uso de llaves, corchetes o etiquetas, lo que lo hace mucho menos verboso que JSON o XML.
+      * **Soporte para Comentarios:** Permite agregar comentarios para documentar la configuración.
+  * **Desventajas:**
+      * **Sensible a la Indentación:** Un pequeño error de espacio puede romper todo el archivo.
+      * **Menos Común para APIs:** Aunque es muy popular para la configuración (por ejemplo, en **Docker** o **Kubernetes**), rara vez se usa para APIs de comunicación.
+  * **Ejemplo:**
+    ```yaml
+    nombre: Charlie
+    edad: 42
+    esActivo: true
+    habilidades:
+      - C#
+      - .NET
+    dirección:
+      ciudad: Madrid
+      país: España
+    ```
+
+-----
+
+### Tabla Comparativa y Conclusiones
+
+| Característica | JSON | XML | YAML |
+| :--- | :--- | :--- | :--- |
+| **Legibilidad** | ✅ Alta | 🟡 Media | ✅ Muy Alta |
+| **Tamaño del archivo**| ✅ Ligero | ❌ Verboso | ✅ Muy Ligero |
+| **Soporte** | ✅ Universal | ✅ Alto | 🟡 Específico |
+| **Uso Principal** | APIs, servicios web | Documentos estructurados | Archivos de configuración |
+| **Permite Comentarios** | ❌ No | ✅ Sí | ✅ Sí |
+
+-----
+
+# Resumengit
+
+En resumen, **JSON** es la elección preferida para la mayoría de los casos, especialmente para la comunicación entre APIs y servicios web, debido a su eficiencia y amplio soporte. **XML**, aunque ha perdido popularidad, sigue siendo relevante en sistemas empresariales heredados. Finalmente, **YAML** es la mejor opción cuando la legibilidad y la facilidad de edición por parte de los humanos son la máxima prioridad, como en los archivos de configuración de DevOps.
