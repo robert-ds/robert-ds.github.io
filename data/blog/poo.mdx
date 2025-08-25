@@ -1,0 +1,145 @@
+---
+title: Programación Orientada a Objetos
+date: '2025-08-26'
+tags: ['programación', 'Desarrollo', 'paradigmas', 'poo']
+draft: false
+images: ['/static/images/blog/poo/poo.png']
+summary: 'Es uno de los enfoques más poderosos y populares para organizar el código de manera que imita el mundo real, lo que hace que sea mucho más fácil de entender, mantener y escalar.'
+---
+
+<Image
+  alt={`programación orientada a objetos image`}
+  src={`/static/images/blog/poo/poo.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>En esencia, la POO se basa en el concepto de **objetos**, que son instancias de una **clase**. Una clase es como un plano o una plantilla para crear objetos. Un objeto, por otro lado, es una entidad que tiene **estado** (propiedades o atributos) y **comportamiento** (acciones o métodos). Piensa en un coche: su estado sería el color, el modelo y la velocidad, mientras que su comportamiento sería acelerar, frenar o encenderse. La POO nos permite representar estas entidades en nuestro código de forma clara y organizada.
+
+-----
+
+### Los 4 Pilares Fundamentales de la POO
+
+Para dominar la POO, es crucial que entiendas sus cuatro pilares. Estos principios son la base de este paradigma y te permiten construir software robusto y flexible.
+
+#### 1\. Encapsulamiento (Encapsulation)
+
+El encapsulamiento es el pilar que agrupa los datos (estado) y los métodos (comportamiento) que operan sobre esos datos en una sola unidad, la **clase**. Su principal objetivo es **ocultar los detalles internos de una clase del mundo exterior** y exponer solo la información necesaria. Esto se logra con modificadores de acceso como `public`, `private` y `protected`.
+
+Imagina una clase `CuentaBancaria`. Para proteger la integridad del saldo, no permitimos que se acceda o modifique directamente. En cambio, exponemos métodos públicos como `depositar` y `retirar`, que controlan cómo se accede al saldo y garantizan que las operaciones sean válidas (por ejemplo, evitando depósitos negativos). Esta práctica no solo protege los datos, sino que también simplifica el uso de la clase, ya que el usuario no necesita saber cómo se gestiona el saldo internamente.
+
+```java
+public class CuentaBancaria {
+    // El saldo es privado, su acceso está controlado
+    private double saldo;
+
+    // Métodos públicos para interactuar con el saldo
+    public void depositar(double cantidad) {
+        if (cantidad > 0) {
+            this.saldo += cantidad;
+        }
+    }
+
+    public double getSaldo() {
+        return this.saldo;
+    }
+}
+```
+
+-----
+
+#### 2\. Abstracción (Abstraction)
+
+La abstracción se centra en **mostrar solo las funcionalidades esenciales al usuario, ocultando los detalles complejos de la implementación**. Es como un televisor: sabes que al presionar el botón de encendido se prende, pero no necesitas saber cómo funciona el circuito interno. En POO, esto se implementa con **clases abstractas** e **interfaces**.
+
+Una **clase abstracta** es una clase que no se puede instanciar directamente y que puede contener métodos abstractos (sin cuerpo), los cuales deben ser implementados por las clases que la heredan. Una **interfaz** es similar a una clase abstracta, pero solo contiene métodos sin implementación (a partir de Java 8, también puede tener métodos `default` y `static`). El objetivo de ambas es definir un contrato o un conjunto de comportamientos que una clase debe seguir.
+
+Supongamos que tenemos diferentes formas geométricas. Todas tienen un área, pero la forma de calcularla es distinta para un círculo, un cuadrado o un triángulo. La abstracción nos permite definir un comportamiento común (`calcularArea()`) sin especificar la implementación, dejando que cada forma concreta lo resuelva a su manera.
+
+```java
+public abstract class FormaGeometrica {
+    public abstract double calcularArea();
+}
+
+public class Circulo extends FormaGeometrica {
+    private double radio;
+    
+    public Circulo(double radio) { this.radio = radio; }
+
+    @Override
+    public double calcularArea() {
+        return Math.PI * radio * radio;
+    }
+}
+```
+
+-----
+
+#### 3\. Herencia (Inheritance)
+
+La herencia es un mecanismo que permite a una clase **heredar propiedades y métodos de otra clase**. Esto promueve la **reutilización de código** y establece una relación de "es un tipo de" (por ejemplo, un `Coche` "es un tipo de" `Vehiculo`). La clase que hereda se llama **subclase** (o clase hija), y la clase de la que hereda se llama **superclase** (o clase padre). La herencia permite crear una jerarquía de clases donde las subclases pueden añadir nuevos atributos y comportamientos, o anular (override) los de la superclase.
+
+Retomemos nuestro ejemplo del vehículo.
+
+```java
+public class Vehiculo {
+    private String marca;
+    private String modelo;
+
+    public void mostrarInfo() {
+        System.out.println("Marca: " + marca + ", Modelo: " + modelo);
+    }
+}
+
+public class Coche extends Vehiculo {
+    private int numeroPuertas;
+
+    public Coche(String marca, String modelo, int numeroPuertas) {
+        // Llama al constructor de la clase padre
+        super(marca, modelo);
+        this.numeroPuertas = numeroPuertas;
+    }
+}
+```
+
+La clase `Coche` hereda automáticamente los atributos y el método `mostrarInfo()` de `Vehiculo`. Podemos crear un objeto `Coche` y usar el método heredado sin tener que volver a escribirlo.
+
+-----
+
+#### 4\. Polimorfismo (Polymorphism)
+
+El polimorfismo significa **"muchas formas"**. Es la capacidad de un objeto de tomar muchas formas. En la práctica, significa que puedes usar un objeto de una clase hija como si fuera un objeto de la clase padre. Esto nos permite escribir código más genérico y flexible.  El polimorfismo se manifiesta de dos maneras principales:
+
+  * **Sobrecarga de Métodos (Method Overloading):** Múltiples métodos con el mismo nombre en la misma clase, pero con diferentes parámetros.
+  * **Anulación de Métodos (Method Overriding):** Una subclase proporciona una implementación específica para un método que ya está definido en su superclase.
+
+El polimorfismo es lo que nos permite tratar a un `Coche` y a una `Motocicleta` como un `Vehiculo` de forma indistinta, lo que simplifica la programación de colecciones y la interacción con objetos de diferentes tipos.
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        Vehiculo miCoche = new Coche("Toyota", "Corolla", 4);
+        Vehiculo miMoto = new Motocicleta("Honda", "CBR");
+
+        // Creamos una lista de Vehiculos (Polimorfismo en acción)
+        ArrayList<Vehiculo> vehiculos = new ArrayList<>();
+        vehiculos.add(miCoche);
+        vehiculos.add(miMoto);
+
+        // Iteramos sobre la lista y llamamos al mismo método
+        for (Vehiculo v : vehiculos) {
+            v.mostrarInfo();
+        }
+    }
+}
+```
+
+En este ejemplo, podemos llamar a `mostrarInfo()` en cualquier objeto de la lista, sin importar si es un `Coche` o una `Motocicleta`. El método correcto de cada clase se ejecutará automáticamente. Esto es el polimorfismo en acción, ya que el mismo código se comporta de manera diferente según el tipo de objeto.
+
+----
+
+### Conclusión
+
+Dominar estos cuatro pilares te dará una base sólida para crear software robusto, escalable y mantenible. La POO no solo facilita la organización del código, sino que también mejora la colaboración en equipos de desarrollo, ya que los conceptos son intuitivos y reflejan el mundo real. 
+
