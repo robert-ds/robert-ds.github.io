@@ -1,0 +1,117 @@
+---
+title: Programación Funcional
+date: '2025-08-27'
+tags: ['programación', 'Desarrollo', 'paradigmas', 'funcional']
+draft: false
+images: ['/static/images/blog/funcional/funcional.png']
+summary: 'La programación funcional es un paradigma que trata la computación como la evaluación de funciones matemáticas y evita el cambio de estado y los datos mutables.'
+---
+
+<Image
+  alt={`programación orientada a objetos image`}
+  src={`/static/images/blog/funcional/funcional.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>*Programación Funcional**, un paradigma de programación que está ganando cada vez más popularidad en el mundo del software. A diferencia de la Programación Orientada a Objetos (POO), que se enfoca en objetos y su estado, la programación funcional se centra en el uso de **funciones puras** y la **inmutabilidad de los datos**.
+
+La idea principal es tratar a las funciones como "ciudadanos de primera clase", lo que significa que pueden ser asignadas a variables, pasadas como argumentos a otras funciones y devueltas como resultados. Piensa en ello como si cada función fuera una máquina bien definida: le das una entrada y siempre obtienes la misma salida, sin efectos secundarios inesperados.
+
+-----
+
+### Conceptos Fundamentales de la Programación Funcional
+
+Para entender este paradigma, es clave familiarizarse con estos conceptos:
+
+#### 1\. Funciones Puras (Pure Functions)
+
+Una función pura es la piedra angular de la programación funcional. Para que una función sea considerada pura, debe cumplir dos reglas estrictas:
+
+1.  **Siempre devuelve el mismo resultado para las mismas entradas.**
+2.  **No causa efectos secundarios.** Esto significa que no modifica variables fuera de su alcance, no realiza operaciones de E/S (lectura/escritura de archivos, impresión en consola) ni altera el estado del sistema.
+
+{/* end list */}
+
+  * **Ejemplo en JavaScript:**
+    ```javascript
+    // Función pura: siempre devuelve 12 para los argumentos 5 y 7.
+    // No modifica nada fuera de su ámbito.
+    function sumarPura(a, b) {
+      return a + b;
+    }
+
+    // Función impura: depende de una variable externa y la modifica.
+    let total = 0;
+    function sumarImpura(a) {
+      total += a;
+      return total;
+    }
+    ```
+
+#### 2\. Inmutabilidad (Immutability)
+
+La inmutabilidad se refiere a la práctica de no modificar el estado de los datos una vez que han sido creados. En lugar de cambiar un objeto o una variable, se crea una nueva con el valor actualizado. Esto elimina los efectos secundarios y hace que el código sea más predecible.
+
+  * **Ejemplo en JavaScript:**
+    ```javascript
+    // Mutabilidad: el array original es modificado.
+    let numeros = [1, 2, 3];
+    numeros.push(4);
+    console.log(numeros); // Salida: [1, 2, 3, 4]
+
+    // Inmutabilidad: se crea un nuevo array sin modificar el original.
+    let numerosInmutables = [1, 2, 3];
+    let nuevoArray = [...numerosInmutables, 4];
+    console.log(numerosInmutables); // Salida: [1, 2, 3] (sin cambios)
+    console.log(nuevoArray);       // Salida: [1, 2, 3, 4]
+    ```
+
+#### 3\. Funciones de Orden Superior (Higher-Order Functions)
+
+Una función de orden superior es una función que hace una de dos cosas (o ambas):
+
+  * Toma una o más funciones como argumentos.
+  * Devuelve una función como resultado.
+
+Esto es muy común en JavaScript y Python. Piensa en métodos de array como `map`, `filter` y `reduce`.
+
+  * **Ejemplo en JavaScript:**
+    ```javascript
+    const numeros = [1, 2, 3];
+
+    // .map() es una función de orden superior.
+    // Toma una función (multiplicarPorDos) como argumento.
+    const multiplicarPorDos = (numero) => numero * 2;
+    const numerosDuplicados = numeros.map(multiplicarPorDos);
+
+    console.log(numerosDuplicados); // Salida: [2, 4, 6]
+    ```
+
+-----
+
+### ¿Por Qué Usar Programación Funcional?
+
+La programación funcional no es solo una moda; ofrece beneficios tangibles que resuelven problemas comunes en el desarrollo de software.
+
+  * **Predecibilidad y Facilidad de Depuración:** Como las funciones puras no tienen efectos secundarios, sabes que si una función falla, es debido a su entrada. Esto hace que la depuración sea mucho más sencilla.
+  * **Código Conciso y Reutilizable:** Las funciones de orden superior y la composición de funciones permiten escribir menos código para lograr tareas complejas.
+  * **Soporte para Concurrencia:** La inmutabilidad de los datos es ideal para entornos de programación paralela y concurrente, ya que no hay riesgo de que diferentes hilos de ejecución modifiquen el mismo dato al mismo tiempo. Esto evita los errores de "condición de carrera".
+  * **Facilidad de Pruebas Unitarias:** Probar funciones puras es trivial: solo tienes que pasarle una entrada y verificar la salida. No necesitas configurar un estado complejo ni simular efectos secundarios.
+
+-----
+
+### Diferencias Clave con la Programación Orientada a Objetos (POO)
+
+| Característica | Programación Funcional | Programación Orientada a Objetos |
+| :--- | :--- | :--- |
+| **Concepto Central** | Funciones puras, inmutabilidad. | Objetos, clases, estado mutable. |
+| **Filosofía** | ¿Qué hace la función? (Verbos) | ¿Qué es este objeto? (Sustantivos) |
+| **Manejo del Estado** | Evita el estado mutable. | Encapsula el estado y lo gestiona. |
+| **Colaboración** | Funciones que componen otras funciones. | Objetos que interactúan entre sí. |
+| **Pilar Clave** | Funciones puras, inmutabilidad. | Encapsulamiento, herencia, polimorfismo. |
+
+### Resumen
+
+En resumen, la programación funcional es un paradigma poderoso que te anima a pensar en tu código como una serie de transformaciones de datos. Al abrazar la inmutabilidad y las funciones puras, puedes escribir código más robusto, predecible y fácil de mantener. Es una forma de pensar que complementa, en lugar de reemplazar, a otros paradigmas como la POO.
