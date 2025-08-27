@@ -1,0 +1,53 @@
+---
+title: Cifrado
+date: '2025-08-28'
+tags: ['cifrado', 'algoritmos', 'seguridad', 'sistemas']
+draft: false
+images: ['/static/images/blog/cifrado/cifrado.png']
+summary: 'El cifrado es un proceso fundamental en la seguridad de la información, que transforma datos legibles en un formato ilegible para proteger su confidencialidad.'
+---
+
+<Image
+  alt={`cifrado image`}
+  src={`/static/images/blog/cifrado/cifrado.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Es la ciencia de codificar y decodificar información para protegerla de terceros. Su objetivo es asegurar que un mensaje solo sea legible para el destinatario previsto. La historia de la criptografía es tan antigua como la escritura misma, evolucionando a la par de las tecnologías y los conflictos humanos.
+
+---
+
+### Criptografía Clásica: De la Antigüedad al Siglo XX
+
+En la antigüedad, el cifrado se basaba en métodos manuales, principalmente utilizando el papel y la pluma. Se caracterizaban por ser esquemas de sustitución o transposición.
+
+* **Antigua Grecia y Roma:** Los primeros métodos conocidos son el **cifrado Escitala** espartano y el **Cifrado César** romano. La escitala consistía en una tira de cuero que se enrollaba en un bastón de un diámetro específico. El mensaje se escribía a lo largo de la tira, y al desenrollarla, el texto se volvía ininteligible. El Cifrado César, mucho más simple, sustituía cada letra del texto original por otra que se encontraba un número fijo de posiciones más adelante en el alfabeto. Por ejemplo, con un desplazamiento de 3, "A" se convertiría en "D". 
+* **Edad Media y Renacimiento:** La criptografía se volvió más compleja. Surgieron los **cifrados de sustitución polialfabética**, como el **Cifrado de Vigenère**. En lugar de usar un solo desplazamiento para todo el mensaje, el Vigenère utilizaba una palabra clave para determinar un desplazamiento diferente para cada letra, haciendo el cifrado mucho más robusto contra el análisis de frecuencia de letras.
+* **Siglo XIX:** El desarrollo del telégrafo hizo necesario métodos de cifrado más rápidos. La **Máquina de Enigma**, creada por los alemanes, fue el pináculo de la criptografía clásica durante la Segunda Guerra Mundial.
+
+---
+
+### La Revolución de la Criptografía Moderna: El Cifrado de Clave Secreta y Clave Pública
+
+La era digital trajo consigo la necesidad de cifrados mucho más complejos y eficientes. El punto de inflexión fue la invención de los ordenadores.
+
+* **Cifrado de Clave Secreta (Cifrado Simétrico):** También conocido como cifrado simétrico, utiliza la misma clave para cifrar y descifrar la información. Esto es rápido y eficiente, pero plantea un problema de distribución de la clave: ¿cómo se comparte la clave de forma segura entre el emisor y el receptor? El estándar más conocido en esta categoría es el **AES (Advanced Encryption Standard)**, utilizado actualmente por gobiernos, bancos y empresas de todo el mundo.
+* **Cifrado de Clave Pública (Cifrado Asimétrico):** Fue una revolución que resolvió el problema de la distribución de claves. Creado en la década de 1970, utiliza dos claves matemáticamente relacionadas: una **clave pública** y una **clave privada**. La clave pública se puede compartir libremente, y se usa para cifrar un mensaje. La clave privada, que solo conoce el destinatario, se usa para descifrarlo. Si bien es mucho más lento que el cifrado simétrico, es la base de la seguridad en Internet. Un ejemplo clave es el algoritmo **RSA**. 
+
+---
+
+### Criptografía en la Era Digital: La Seguridad en Internet
+
+La criptografía moderna es la columna vertebral de la seguridad en el mundo actual.
+
+* **SSL/TLS:** Los protocolos **SSL (Secure Sockets Layer)** y su sucesor, **TLS (Transport Layer Security)**, son los que garantizan la seguridad de las conexiones web. Cuando ves un candado en la barra de direcciones de tu navegador, significa que la conexión entre tu navegador y el servidor está cifrada usando TLS. Utiliza una combinación de cifrado asimétrico (para el intercambio de claves) y simétrico (para el flujo de datos) para ser a la vez seguro y eficiente.
+* **Criptomonedas:** La **tecnología blockchain** utiliza la criptografía para asegurar la integridad de las transacciones. Las firmas digitales (basadas en claves públicas y privadas) garantizan que las transacciones no puedan ser alteradas y verifican la identidad de los participantes.
+* **El Futuro: Criptografía Cuántica:** El desarrollo de la computación cuántica representa un desafío y una oportunidad. Las computadoras cuánticas son teóricamente capaces de romper muchos de los algoritmos de cifrado asimétrico actuales. Por ello, los científicos están investigando nuevas formas de criptografía, como la **criptografía post-cuántica**, que será resistente a los ataques de los ordenadores cuánticos.
+
+---
+
+### Resumen
+
+Desde la simple sustitución de letras hasta algoritmos complejos que aseguran miles de millones de transacciones diarias, la criptografía ha evolucionado de una herramienta militar a una necesidad fundamental en la sociedad digital.
