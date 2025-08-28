@@ -1,0 +1,53 @@
+---
+title: Algoritmos de Cifrado
+date: '2025-08-29'
+tags: ['cifrado', 'algoritmos', 'seguridad', 'sistemas']
+draft: false
+images: ['/static/images/blog/algoritmos-cifrado/algoritmos-cifrado.png']
+summary: 'Los algoritmos de cifrado son fundamentales para la seguridad de la información, transformando datos legibles en formatos ilegibles para proteger su confidencialidad.'
+---
+
+<Image
+  alt={`Algoritmos cifrado image`}
+  src={`/static/images/blog/algoritmos-cifrado/algoritmos-cifrado.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Son reglas o procedimientos matemáticos que transforman datos (texto plano) en un formato ilegible (texto cifrado). Este proceso se conoce como **cifrado**. El proceso inverso, de convertir el texto cifrado de nuevo en texto plano, se llama **descifrado**.
+
+Estos algoritmos son el corazón de la criptografía, garantizando la confidencialidad, integridad y autenticidad de la información.
+
+Existen dos categorías principales de algoritmos de cifrado: simétricos y asimétricos.
+
+---
+
+### Algoritmos de Cifrado Simétrico (Cifrado de Clave Secreta)
+
+Los algoritmos simétricos utilizan la **misma clave** para cifrar y descifrar los datos. La clave debe ser mantenida en secreto y conocida únicamente por el emisor y el receptor. Son extremadamente rápidos y eficientes, por lo que son ideales para cifrar grandes volúmenes de datos. Sin embargo, su principal desafío es la distribución segura de la clave.
+
+* **AES (Advanced Encryption Standard):** Es el estándar de cifrado simétrico más utilizado en la actualidad. Fue adoptado por el gobierno de EE. UU. y es el preferido por la industria para proteger datos sensibles. Es considerado muy seguro y se usa en una amplia gama de aplicaciones, desde servicios de mensajería hasta la encriptación de discos duros. 
+* **3DES (Triple Data Encryption Standard):** Una versión mejorada del antiguo estándar DES. Cifra los datos tres veces con tres claves diferentes, lo que lo hace más seguro que su predecesor. Aunque es más lento que AES, todavía se utiliza en sistemas financieros y bancarios heredados.
+* **Blowfish:** Un algoritmo diseñado por Bruce Schneier. Es rápido y libre de patentes, lo que lo hizo popular en el pasado. Es una alternativa a AES, aunque su uso ha disminuido.
+
+---
+
+### Algoritmos de Cifrado Asimétrico (Cifrado de Clave Pública)
+
+A diferencia de los simétricos, los algoritmos asimétricos utilizan **dos claves matemáticamente relacionadas**: una **clave pública** y una **clave privada**. La clave pública se puede compartir libremente, mientras que la privada debe permanecer en secreto. Los datos cifrados con la clave pública solo pueden ser descifrados con la clave privada correspondiente, y viceversa. Son mucho más lentos que los algoritmos simétricos, por lo que se utilizan principalmente para asegurar la comunicación y para las firmas digitales.
+
+* **RSA:** Nombrado así por sus creadores (Rivest, Shamir y Adleman), es el algoritmo asimétrico más conocido y utilizado. Se basa en el problema matemático de la factorización de números primos. Se usa en protocolos como **SSL/TLS** para el intercambio seguro de claves y en firmas digitales.
+* **ECC (Elliptic Curve Cryptography):** La criptografía de curva elíptica es un enfoque más moderno y eficiente. Ofrece el mismo nivel de seguridad que RSA, pero con claves mucho más pequeñas. Esto la hace ideal para dispositivos con recursos limitados, como teléfonos móviles.
+* **DSA (Digital Signature Algorithm):** Utilizado para generar y verificar firmas digitales. Es un estándar federal del gobierno de EE. UU. y se basa en la dificultad del problema del logaritmo discreto.
+
+---
+
+### Algoritmos Híbridos y Firmas Digitales
+
+En la práctica, la mayoría de los protocolos de seguridad combinan ambos tipos de algoritmos para aprovechar lo mejor de cada uno. Este es el caso de **SSL/TLS**.
+
+1.  El cliente y el servidor intercambian claves públicas y privadas (asimétrico) para establecer una conexión segura.
+2.  Una vez que la conexión es segura, se crea una **clave de sesión simétrica** que se usa para cifrar y descifrar el resto del flujo de datos. Esto garantiza la eficiencia y velocidad en la transferencia de datos.
+
+Además, los algoritmos asimétricos son la base de las **firmas digitales**, un proceso que garantiza la autenticidad y la no repudiación de un mensaje. El emisor cifra un hash del mensaje con su clave privada, creando una firma. El receptor utiliza la clave pública del emisor para verificar la firma, lo que confirma que el mensaje no ha sido alterado y que proviene de la persona correcta.
