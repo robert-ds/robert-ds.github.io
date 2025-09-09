@@ -1,0 +1,58 @@
+---
+title: Monolito
+date: '2025-09-10'
+tags: ['software','sistemas','fundamentos', 'arquitectura']
+draft: false
+images: ['/static/images/blog/monolito/monolito.png.png']
+summary: 'Un monolito es una arquitectura de software en la que todos los componentes y funcionalidades de una aplicación están integrados en un único sistema cohesivo.'
+---
+
+<Image
+  alt={`Monolito image`}
+  src={`/static/images/blog/monolito/monolito.png.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Son una arquitectura de software donde todos los componentes de una aplicación (la interfaz de usuario, la lógica de negocio y la capa de acceso a datos) están unidos en una sola unidad.  Piensa en ello como una gran y única pieza de software. Todos los servicios y funcionalidades de la aplicación residen en un solo repositorio de código y se ejecutan en un solo proceso.
+
+Esto contrasta con las arquitecturas más modernas, como los microservicios, donde la aplicación se divide en múltiples servicios independientes que pueden desarrollarse, desplegarse y escalarse por separado.
+
+---
+
+### Características Principales
+
+* **Aplicación Única:** La aplicación completa se despliega como un solo archivo ejecutable o un solo archivo de despliegue (como un `.war` en Java o un `.exe` en Windows).
+* **Base de Código Unificada:** Todos los módulos, como la gestión de usuarios, los pagos y los productos, están en un mismo proyecto. Los desarrolladores trabajan en el mismo repositorio de código.
+* **Acoplamiento Fuerte:** Los componentes están fuertemente interconectados. Un cambio en una parte de la aplicación puede requerir pruebas exhaustivas en otras áreas, ya que la funcionalidad no está aislada.
+
+---
+
+### Ventajas de los Monolitos
+
+* **Simplicidad en el Desarrollo Inicial:** Para equipos pequeños o proyectos que están empezando, una arquitectura monolítica es más fácil de configurar y desplegar. No hay necesidad de gestionar múltiples servicios o comunicaciones complejas.
+* **Facilidad de Depuración:** Dado que todo el código se ejecuta en un solo proceso, es más fácil rastrear los errores y depurar el código. Puedes usar un depurador para seguir la ejecución de un extremo a otro.
+* **Despliegue Sencillo:** El proceso de despliegue es simple: solo hay que subir un único archivo ejecutable o un contenedor. No hay que preocuparse por la coordinación de múltiples servicios.
+* **Rendimiento en la Comunicación:** Los componentes internos se comunican a través de llamadas a funciones o métodos en el mismo proceso, lo que es mucho más rápido que la comunicación a través de una red.
+
+---
+
+### Desventajas de los Monolitos
+
+* **Dificultad de Escalabilidad:** Para escalar un monolito, tienes que replicar la aplicación completa, incluso si solo una pequeña parte de ella (por ejemplo, el módulo de procesamiento de pagos) está recibiendo mucho tráfico. Esto es ineficiente y costoso.
+* **Complejidad y Mantenimiento:** A medida que el código base crece, se vuelve cada vez más difícil de entender y mantener. Los cambios en una parte del código pueden tener efectos secundarios inesperados en otras partes.
+* **Falta de Flexibilidad Tecnológica:** Si el monolito está escrito en un solo lenguaje de programación, es muy difícil introducir nuevas tecnologías o frameworks sin reescribir una gran parte de la aplicación.
+* **Bloqueo del Despliegue:** Un pequeño cambio en el código requiere la reconstrucción y el despliegue de toda la aplicación, lo que puede ser lento y riesgoso. Un error en un solo módulo puede derribar toda la aplicación.
+
+### ¿Cuándo Usar un Monolito?
+
+A pesar de sus desventajas a gran escala, los monolitos son una excelente opción en ciertos escenarios:
+
+* **Proyectos Pequeños o de Prueba de Concepto (PoC):** Son ideales para validar una idea de negocio rápidamente.
+* **Startups con Equipos Reducidos:** Cuando la velocidad de desarrollo es la prioridad y el equipo es pequeño, la simplicidad de un monolito puede ser muy beneficiosa.
+* **Aplicaciones con Baja Complejidad:** Si la aplicación no tiene una lógica de negocio compleja ni un alto volumen de tráfico, un monolito puede ser suficiente y más eficiente de gestionar.
+
+### Resumen
+
+En resumen, los monolitos son una arquitectura sólida y confiable para iniciar un proyecto, pero su complejidad y rigidez pueden convertirse en un obstáculo a medida que la aplicación crece.
