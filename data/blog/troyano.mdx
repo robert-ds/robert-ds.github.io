@@ -1,0 +1,55 @@
+---
+title: Troyanos
+date: '2025-09-11'
+tags: ['software','sistemas','malware', 'seguridad']
+draft: false
+images: ['/static/images/blog/troyano/troyano.png']
+summary: 'Un troyano es un tipo de malware que se presenta como un software legítimo para engañar a los usuarios y obtener acceso no autorizado a sus sistemas.'
+---
+
+<Image
+  alt={`Troyanos image`}
+  src={`/static/images/blog/troyano/troyano.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Su nombre proviene del mito griego del caballo de Troya, ya que engaña a los usuarios para que lo instalen, creyendo que es un programa inofensivo, pero en realidad contiene un código malicioso oculto que se ejecuta en segundo plano.  A diferencia de los virus, los troyanos no pueden replicarse por sí mismos ni propagarse a otros archivos. Su principal objetivo es abrir una "puerta trasera" en el sistema para que un atacante pueda controlarlo de forma remota.
+
+---
+
+### Tipos de Troyanos Más Comunes
+
+Los troyanos se clasifican según la acción maliciosa que realizan una vez que infectan un sistema.
+
+* **Puerta Trasera (Backdoor Trojan):** Es el tipo más común. Permite al atacante tomar el control total del equipo infectado. Un pirata informático puede usar este acceso para robar datos, instalar más malware o convertir el equipo en parte de una red de bots (botnet) para lanzar ataques a gran escala.
+* **Troyano Ladrón de Contraseñas (Password Stealing Trojan - PST):** Diseñado para robar información de autenticación, como nombres de usuario, contraseñas, datos bancarios y números de tarjetas de crédito.
+* **Troyano de Acceso Remoto (Remote Access Trojan - RAT):** Permite al atacante controlar de forma remota la computadora de la víctima. Puede ver el escritorio, acceder a archivos, usar la cámara web o el micrófono, y registrar las pulsaciones del teclado (keylogging) sin que el usuario se dé cuenta.
+* **Troyano DDoS (Distributed Denial of Service):** Convierte el equipo de la víctima en un "bot" para ser usado en un ataque de denegación de servicio distribuido (DDoS). Los atacantes usan redes de bots para enviar una cantidad masiva de tráfico a un servidor, sobrecargándolo y dejando el servicio inaccesible.
+* **Troyano de Banca (Banking Trojan):** Especializado en robar información financiera. Puede inyectar código malicioso en el navegador para interceptar datos bancarios mientras la víctima realiza transacciones en línea.
+
+---
+
+### ¿Cómo Funciona un Troyano?
+
+El ciclo de vida de un troyano es simple, pero efectivo:
+
+1.  **Ingeniería Social:** El atacante utiliza técnicas de ingeniería social para engañar a la víctima. El troyano se disfraza de algo atractivo o útil, como un juego, un software gratuito, una actualización de sistema falsa, un archivo adjunto en un correo electrónico o un video.
+2.  **Infección:** La víctima, sin saberlo, descarga y ejecuta el archivo. El troyano se instala discretamente en segundo plano.
+3.  **Apertura de la Puerta Trasera:** Una vez instalado, el troyano se conecta a un servidor de comando y control (C&C) del atacante, abriendo una conexión remota que permite al atacante tomar el control del sistema.
+
+---
+
+### ¿Cómo Protegerse?
+
+La prevención es la mejor defensa contra los troyanos.
+
+* **Evitar Descargas Sospechosas:** No descargues software de fuentes no oficiales o de sitios web dudosos. Confía solo en las tiendas de aplicaciones y sitios web del desarrollador.
+* **Analizar los Archivos Adjuntos:** Ten cuidado con los archivos adjuntos en correos electrónicos, especialmente si provienen de remitentes desconocidos. Un archivo `pdf` o una imagen pueden ser troyanos.
+* **Usar Antivirus y Firewall:** Un buen software antivirus detecta y elimina los troyanos conocidos, mientras que un firewall puede bloquear las conexiones no autorizadas que un troyano intenta establecer.
+* **Mantener el Software Actualizado:** Las actualizaciones de seguridad de los sistemas operativos y las aplicaciones a menudo parchean vulnerabilidades que los troyanos podrían explotar.
+
+### Resumen
+
+En resumen, los troyanos son una amenaza significativa en el mundo de la ciberseguridad debido a su capacidad para engañar a los usuarios y comprometer la seguridad de sus sistemas. La conciencia y las prácticas de seguridad adecuadas son esenciales para protegerse contra estos tipos de malware.
