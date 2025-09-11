@@ -1,0 +1,76 @@
+---
+title: Arquitectura Hexagonal
+date: '2025-09-12'
+tags: ['software','sistemas','hexagonal', 'arquitectura']
+draft: false
+images: ['/static/images/blog/hexagonal/hexagonal.png']
+summary: 'La arquitectura hexagonal es un patrón de diseño que promueve la separación de preocupaciones y la independencia de la infraestructura.'
+---
+
+<Image
+  alt={`Arquitectura Hexagonal image`}
+  src={`/static/images/blog/hexagonal/hexagonal.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>La arquitectura hexagonal, también conocida como "puertos y adaptadores", es un patrón de diseño que promueve la separación de preocupaciones y la independencia de la infraestructura.
+
+Su objetivo es crear aplicaciones que sean más fáciles de probar, mantener y escalar. En este enfoque, la lógica de negocio se encuentra en el centro de la aplicación, rodeada de capas que se encargan de la interacción con el mundo exterior, como bases de datos, servicios web y interfaces de usuario.
+
+El nombre "hexagonal" es una metáfora. Imagina la lógica de tu aplicación en el centro de un hexágono. Cada lado del hexágono es un "puerto" por donde la aplicación se comunica con el mundo exterior. Los "adaptadores" son los componentes que se conectan a estos puertos, traduciendo los datos de un formato a otro.
+
+### Componentes Clave de la Arquitectura Hexagonal
+
+1. **Núcleo de la Aplicación**: Contiene la lógica de negocio y las reglas de la aplicación. Es independiente de cualquier tecnología o infraestructura específica.
+2. **Puertos**: Son interfaces que definen cómo la aplicación interactúa con el mundo exterior. Pueden ser puertos de entrada (para recibir datos) o puertos de salida (para enviar datos).
+3. **Adaptadores**: Son implementaciones concretas de los puertos. Por ejemplo, un adaptador de base de datos que implementa un puerto de salida para almacenar datos.
+4. **Infraestructura**: Incluye todos los componentes externos, como bases de datos, servicios web, y sistemas de mensajería. Estos componentes interactúan con la aplicación a través de los adaptadores.
+
+--
+
+### Conceptos Clave
+
+1.  **Lógica de Dominio (Hexágono Central):**
+    * Es el núcleo de la aplicación. Contiene la lógica de negocio, las reglas del negocio y las entidades principales.
+    * No tiene conocimiento alguno de cómo se presentan los datos (web, línea de comandos) o cómo se almacenan (SQL, NoSQL).
+    * Solo se comunica con el exterior a través de los **puertos**.
+
+2.  **Puertos (Ports):**
+    * Son las interfaces o puntos de entrada y salida de la aplicación. Definen los "contratos" de comunicación.
+    * Hay dos tipos principales de puertos:
+        * **Controladores (Drivers):** Usados por el mundo exterior para interactuar con la aplicación. Por ejemplo, una interfaz para un controlador web.
+        * **Impulsados (Driven):** Usados por la aplicación para interactuar con el mundo exterior. Por ejemplo, una interfaz para un repositorio de base de datos o un servicio de email.
+
+3.  **Adaptadores (Adapters):**
+    * Son las implementaciones concretas de los puertos. Conectan la lógica de negocio a la tecnología externa.
+    * Traducen las llamadas a las interfaces de la aplicación en llamadas a la API de un framework o en consultas a una base de datos.
+    * Los adaptadores se pueden cambiar sin afectar la lógica de negocio.
+
+---
+
+### Ventajas de la Arquitectura Hexagonal
+
+* **Aislamiento del Dominio:** La lógica de negocio está completamente aislada de la tecnología externa. Si quieres cambiar la base de datos de MySQL a MongoDB, solo necesitas escribir un nuevo adaptador sin tocar el núcleo de la aplicación.
+* **Facilidad de Pruebas:** Al estar el dominio desacoplado, es muy fácil de probar. Puedes simular o "mockear" los adaptadores (por ejemplo, una base de datos en memoria) para probar la lógica de negocio de forma rápida y sencilla.
+* **Flexibilidad Tecnológica:** Permite cambiar la tecnología de la interfaz de usuario (de una API REST a una interfaz de línea de comandos) o los servicios de persistencia sin reescribir la lógica central.
+* **Claridad de Responsabilidades:** Separa claramente la lógica de negocio (el "qué" se hace) de los detalles técnicos (el "cómo" se hace).
+
+---
+
+### Ejemplo Práctico
+
+Imagina que estás construyendo una aplicación de gestión de usuarios.
+
+* **Dominio (Hexágono Central):** La clase `UserService` contiene la lógica para crear un usuario, validar sus datos, etc. Esta clase solo conoce una interfaz llamada `UserRepository`.
+* **Puerto (`Driven`):** La interfaz `UserRepository` tiene un método `guardarUsuario(Usuario usuario)`.
+* **Adaptadores:**
+    * **`UserRepositorySQL`:** Un adaptador que implementa la interfaz `UserRepository` y utiliza un framework de base de datos como JPA para guardar el usuario en una base de datos SQL.
+    * **`UserRepositoryMongoDB`:** Otro adaptador que implementa la misma interfaz, pero guarda el usuario en una base de datos NoSQL como MongoDB.
+
+* **Controlador (`Driver`):** Un controlador web que recibe solicitudes HTTP para crear usuarios y llama al `UserService`.
+
+### Resumen
+
+La arquitectura hexagonal es un enfoque poderoso para diseñar aplicaciones que sean flexibles, mantenibles y fáciles de probar. Al separar la lógica de negocio de los detalles técnicos, permite a los desarrolladores centrarse en lo que realmente importa: resolver problemas de negocio sin preocuparse por las tecnologías subyacentes. Este patrón es especialmente útil en entornos donde la tecnología cambia rápidamente o donde se requiere una alta calidad en las pruebas.
