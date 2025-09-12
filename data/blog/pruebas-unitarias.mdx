@@ -1,0 +1,101 @@
+---
+title: Pruebas Unitarias
+date: '2025-09-13'
+tags: ['software','sistemas','pruebas']
+draft: false
+images: ['/static/images/blog/pruebas-unitarias/pruebas-unitarias.png']
+summary: 'Explorando la importancia de las pruebas unitarias en el desarrollo de software y cómo implementarlas eficazmente.'
+---
+
+<Image
+  alt={`Pruebas Unitarias image`}
+  src={`/static/images/blog/pruebas-unitarias/pruebas-unitarias.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Son un tipo de prueba de software que se enfoca en verificar que las unidades de código más pequeñas de una aplicación, como funciones, métodos o clases, funcionen correctamente de forma aislada.
+
+El objetivo es detectar errores en las primeras etapas del desarrollo, antes de que el código se integre con otros componentes. Piénsalo como si estuvieras probando cada ladrillo de una casa antes de usarlo en la construcción, en lugar de esperar a que la pared entera se derrumbe.
+
+-----
+
+## ¿Por qué son importantes las pruebas unitarias?
+
+1. **Detección temprana de errores**: Al probar pequeñas unidades de código, es más fácil identificar y corregir errores antes de que se conviertan en problemas mayores.
+
+2. **Facilitan el mantenimiento**: Cuando el código está cubierto por pruebas unitarias, los desarrolladores pueden hacer cambios con mayor confianza, sabiendo que las pruebas ayudarán a detectar cualquier problema introducido.
+
+3. **Documentación viva**: Las pruebas unitarias actúan como una forma de documentación que explica cómo se espera que funcione el código.
+
+4. **Mejor diseño de código**: La necesidad de escribir pruebas unitarias a menudo conduce a un diseño de código más modular y desacoplado, lo que facilita la comprensión y el mantenimiento.
+
+5. **Refactorización segura**: Permiten a los desarrolladores refactorizar el código sin temor a romper funcionalidades existentes, ya que las pruebas pueden validar que todo sigue funcionando correctamente.
+
+-----
+
+### ¿Cómo funcionan?
+
+Las pruebas unitarias se escriben y ejecutan en el mismo lenguaje de programación que el código de la aplicación. Se basan en tres pasos clave:
+
+1.  **Arreglo (Arrange):** Se prepara el entorno para la prueba, configurando los objetos, variables y dependencias necesarias.
+2.  **Actuación (Act):** Se llama al método o función que se va a probar con los datos preparados en el paso anterior.
+3.  **Verificación (Assert):** Se verifica que el resultado de la ejecución sea el esperado. Si el resultado no coincide, la prueba falla.
+
+-----
+
+### Ejemplo Práctico en Java
+
+Imaginemos una clase simple `Calculadora` con un método para sumar dos números.
+
+```java
+// Clase a ser probada
+public class Calculadora {
+    public int sumar(int a, int b) {
+        return a + b;
+    }
+}
+```
+
+Para probar esta clase, usaríamos un **framework de pruebas unitarias** como **JUnit**. El código de la prueba se vería así:
+
+```java
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+public class CalculadoraTest {
+    
+    @Test
+    void testSumarDosNumeros() {
+        // 1. Arreglo: Se crea una instancia de la clase a probar
+        Calculadora calculadora = new Calculadora();
+        
+        // 2. Actuación: Se llama al método con los valores de prueba
+        int resultado = calculadora.sumar(5, 3);
+        
+        // 3. Verificación: Se compara el resultado obtenido con el resultado esperado
+        Assertions.assertEquals(8, resultado); 
+    }
+    
+    @Test
+    void testSumarNumerosNegativos() {
+        // 1. Arreglo
+        Calculadora calculadora = new Calculadora();
+        
+        // 2. Actuación
+        int resultado = calculadora.sumar(-5, -3);
+        
+        // 3. Verificación
+        Assertions.assertEquals(-8, resultado);
+    }
+}
+```
+
+En este ejemplo, `@Test` marca un método como una prueba unitaria. `Assertions.assertEquals()` es el método que compara el resultado de la función con el valor que esperamos. Si la función `sumar` devuelve 8, la primera prueba pasará. Si devuelve cualquier otro valor, la prueba fallará, indicando un error. Este simple proceso nos permite tener la certeza de que nuestra función `sumar` siempre funcionará como se espera.
+
+-----
+
+# Resumen
+
+Las pruebas unitarias son una herramienta esencial en el desarrollo de software moderno. No solo ayudan a detectar errores tempranamente, sino que también facilitan el mantenimiento del código, mejoran su diseño y proporcionan una documentación viva. Al implementar pruebas unitarias, los desarrolladores pueden trabajar con mayor confianza, sabiendo que su código está respaldado por una red de seguridad que garantiza su correcto funcionamiento.
