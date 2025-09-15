@@ -1,0 +1,111 @@
+---
+title: Docker
+date: '2025-09-14'
+tags: ['software','sistemas','contenedores', 'docker']
+draft: false
+images: ['/static/images/blog/docker-img/docker.png']
+summary: 'Docker es una plataforma de software que permite crear, desplegar y gestionar aplicaciones dentro de contenedores ligeros y portátiles. Facilita la automatización del despliegue de aplicaciones al empaquetarlas con todas sus dependencias en un entorno aislado.'
+---
+
+<Image
+  alt={`Docker image`}
+  src={`/static/images/blog/docker-img/docker.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Es una plataforma de software de código abierto que simplifica la creación, el despliegue y la ejecución de aplicaciones utilizando **contenedores**. Los contenedores permiten empaquetar una aplicación y todas sus dependencias (bibliotecas, configuraciones, etc.) en un paquete autónomo que puede ejecutarse de manera consistente en cualquier entorno, ya sea en un servidor, una máquina virtual o en la computadora de un desarrollador.
+
+Piensa en Docker como una solución para el problema clásico de "funciona en mi máquina". Con Docker, la aplicación siempre se ejecutará de la misma manera, ya que el contenedor incluye todo lo que necesita para funcionar, independientemente de la configuración del sistema operativo subyacente.
+
+## Componentes principales de Docker
+
+1. **Docker Engine**: Es el motor de Docker que permite crear y ejecutar contenedores. Está compuesto por un servidor (daemon) que gestiona los contenedores, una API REST para interactuar con el daemon y una interfaz de línea de comandos (CLI) para ejecutar comandos de Docker.
+
+2. **Imágenes de Docker**: Son plantillas inmutables que contienen todo lo necesario para ejecutar una aplicación, incluyendo el código, las bibliotecas y las configuraciones. Las imágenes se crean a partir de un archivo llamado `Dockerfile`, que define los pasos para construir la imagen.
+
+3. **Contenedores de Docker**: Son instancias en ejecución de las imágenes de Docker. Cada contenedor es un entorno aislado que ejecuta una aplicación específica. Los contenedores son ligeros y se inician rápidamente, lo que los hace ideales para el desarrollo y la producción.
+
+4. **Docker Hub**: Es un servicio en línea que actúa como un repositorio para compartir y almacenar imágenes de Docker. Los desarrolladores pueden subir sus propias imágenes o descargar imágenes públicas creadas por otros.
+
+-----
+
+### Conceptos Clave
+
+1.  **Contenedor:** Es una unidad de software estandarizada que empaqueta el código de una aplicación y todas sus dependencias. Los contenedores comparten el mismo kernel del sistema operativo anfitrión, lo que los hace mucho más ligeros y rápidos que las máquinas virtuales.
+2.  **Imagen:** Una imagen es una plantilla de solo lectura que contiene las instrucciones para crear un contenedor. Es como un plano o una receta que incluye el código, las dependencias y la configuración. Las imágenes se almacenan en un registro centralizado, como Docker Hub.
+3.  **Docker Hub:** Es un servicio de registro en la nube donde los desarrolladores pueden almacenar y compartir imágenes de contenedores. Es similar a GitHub, pero para imágenes de Docker.
+4.  **Dockerfile:** Es un archivo de texto que contiene las instrucciones para construir una imagen de Docker. Le dice a Docker cómo debe ser el entorno del contenedor (qué sistema operativo usar, qué dependencias instalar, etc.).
+
+-----
+
+### Ejemplo de Flujo de Trabajo con Docker
+
+Imagina que tienes una aplicación web simple en Python y quieres empaquetarla en un contenedor.
+
+#### Paso 1: Crear el Dockerfile
+
+Primero, creas un archivo llamado `Dockerfile` en la raíz de tu proyecto.
+
+```dockerfile
+# Usamos una imagen base oficial de Python
+FROM python:3.9
+
+# Establecemos el directorio de trabajo dentro del contenedor
+WORKDIR /app
+
+# Copiamos el archivo de requisitos e instalamos las dependencias
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copiamos el resto del código de la aplicación
+COPY . .
+
+# Expone el puerto 8000 para la aplicación
+EXPOSE 8000
+
+# Comando para ejecutar la aplicación cuando el contenedor se inicie
+CMD ["python", "app.py"]
+```
+
+#### Paso 2: Construir la Imagen
+
+Desde la línea de comandos en la misma carpeta que el `Dockerfile`, ejecutas el comando `docker build` para crear la imagen.
+
+```bash
+docker build -t mi-app-python .
+```
+
+Este comando le dice a Docker que construya una imagen a partir del `Dockerfile` en el directorio actual (`.`) y la etiquete (`-t`) con el nombre `mi-app-python`.
+
+#### Paso 3: Ejecutar el Contenedor
+
+Una vez que la imagen ha sido construida, puedes ejecutarla como un contenedor.
+
+```bash
+docker run -p 8080:8000 mi-app-python
+```
+
+Este comando:
+
+  * `docker run`: Ejecuta un nuevo contenedor.
+  * `-p 8080:8000`: Mapea el puerto 8080 de tu máquina local al puerto 8000 dentro del contenedor, permitiendo que la aplicación sea accesible desde el exterior.
+  * `mi-app-python`: El nombre de la imagen que quieres ejecutar.
+
+Ahora, tu aplicación se está ejecutando dentro de un contenedor aislado, sin importar qué sistema operativo tengas. Si compartes esta imagen con otro desarrollador, este podrá ejecutar el mismo comando y la aplicación funcionará exactamente igual.
+
+-----
+
+### Ventajas de Usar Docker
+
+  * **Portabilidad:** Los contenedores pueden ejecutarse en cualquier lugar, lo que simplifica los despliegues y la colaboración entre equipos.
+  * **Aislamiento:** Cada contenedor es un entorno aislado, lo que evita conflictos de dependencias entre diferentes aplicaciones.
+  * **Eficiencia:** Los contenedores son ligeros y se inician en segundos, a diferencia de las máquinas virtuales que pueden tardar minutos en arrancar.
+  * **Consistencia:** Garantiza que el código funcione de la misma manera en desarrollo, pruebas y producción. Esto elimina el problema de las discrepancias entre entornos.
+
+-----
+
+### Resumen
+
+Docker es una herramienta poderosa que ha revolucionado la forma en que los desarrolladores crean, despliegan y gestionan aplicaciones. Al utilizar contenedores, Docker ofrece una solución eficiente y portátil para el desarrollo de software moderno, facilitando la colaboración y mejorando la consistencia en los entornos de ejecución.
