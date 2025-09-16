@@ -1,0 +1,108 @@
+---
+title: Kubernetes
+date: '2025-09-16'
+tags: ['software','sistemas','contenedores', 'kubernetes', 'orquestación']
+draft: false
+images: ['/static/images/blog/kubernetes-img/kubernetes.png']
+summary: 'Kubernetes es una plataforma de código abierto que automatiza la implementación, el escalado y la gestión de aplicaciones en contenedores. '
+---
+
+<Image
+  alt={`Kubernetes image`}
+  src={`/static/images/blog/kubernetes-img/kubernetes.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Facilita la orquestación de contenedores, permitiendo a los desarrolladores y administradores de sistemas gestionar aplicaciones complejas de manera eficiente y escalable.
+
+A menudo abreviado como K8s, es un sistema de orquestación de código abierto que automatiza el despliegue, el escalado y la gestión de aplicaciones en contenedores. Creado por Google y donado a la Cloud Native Computing Foundation, K8s resuelve los desafíos de gestionar miles de contenedores, que son la base de las aplicaciones modernas.
+
+Si Docker te ayuda a empaquetar una aplicación en un contenedor, Kubernetes te ayuda a gestionar y coordinar esos contenedores a escala.
+
+---
+
+### Conceptos Clave
+
+  * **Clúster:** Es el componente principal de Kubernetes, formado por un conjunto de máquinas (físicas o virtuales) que trabajan juntas. El clúster tiene dos tipos de nodos:
+      * **Nodo Maestro (Control Plane):** Es el cerebro del clúster. Gestiona el estado deseado de la aplicación, programa las cargas de trabajo en los nodos de trabajo y maneja la comunicación entre ellos.
+      * **Nodos de Trabajo:** Estas son las máquinas donde se ejecutan los contenedores. Cada nodo tiene un motor de contenedores (como Docker) y un agente llamado **Kubelet** que se comunica con el nodo maestro.
+  * **Pod:** La unidad más pequeña de despliegue en Kubernetes. Un Pod es una abstracción que agrupa uno o más contenedores que comparten almacenamiento, recursos de red y las mismas especificaciones. Los contenedores dentro de un Pod están estrechamente relacionados y siempre se ejecutan en el mismo nodo.
+  * **Despliegue (Deployment):** Es un objeto de Kubernetes que describe el estado deseado de una aplicación, incluyendo el número de réplicas de Pods que deseas ejecutar. Los Despliegues son responsables de gestionar el ciclo de vida de los Pods y de asegurar que el número de réplicas sea el correcto.
+  * **Servicio (Service):** Un Servicio es una forma abstracta de exponer una aplicación que se ejecuta en un conjunto de Pods como un servicio de red. Un Servicio proporciona una dirección IP y un nombre de DNS estables, permitiendo que los Pods se encuentren entre sí y que el tráfico externo llegue a la aplicación, incluso si los Pods subyacentes cambian de nodo.
+
+---
+
+## ¿Por qué es importante Kubernetes?
+
+Kubernetes es crucial en el desarrollo y despliegue de aplicaciones modernas por varias razones:
+
+1. **Automatización**: Automatiza tareas repetitivas como el despliegue, la actualización y la gestión de aplicaciones, reduciendo errores humanos y aumentando la eficiencia.
+
+2. **Escalabilidad**: Permite escalar aplicaciones hacia arriba o hacia abajo según la demanda, asegurando que los recursos se utilicen de manera óptima.
+
+3. **Alta disponibilidad**: Garantiza que las aplicaciones estén siempre disponibles mediante la replicación y el balanceo de carga, incluso en caso de fallos de hardware o software.
+
+4. **Portabilidad**: Facilita la migración de aplicaciones entre diferentes entornos, ya sea en la nube, en servidores locales o en entornos híbridos.
+
+5. **Ecosistema robusto**: Cuenta con una amplia gama de herramientas y extensiones que mejoran su funcionalidad, como Helm para la gestión de paquetes y Prometheus para la monitorización.
+
+---
+
+### ¿Cómo Funciona Kubernetes?
+
+Kubernetes opera basándose en un modelo de **estado deseado**. El desarrollador define en un archivo de configuración (**YAML** o **JSON**) cómo debe ser su aplicación: qué imágenes de Docker usar, cuántas réplicas de Pods debe haber y cómo deben ser accesibles. El trabajo de Kubernetes es tomar ese estado deseado y mover el clúster desde el estado actual al estado deseado, gestionando fallos, escalando o volviendo a desplegar contenedores según sea necesario.
+
+  * **Autocuración:** Si un Pod deja de funcionar o un nodo falla, Kubernetes detecta el problema y reinicia el Pod automáticamente en otro nodo saludable.
+  * **Escalado Automático:** Puedes configurar Kubernetes para que escale horizontalmente el número de Pods basándose en la carga de la CPU o la memoria.
+  * **Balanceo de Carga:** El tráfico entrante se distribuye automáticamente entre los Pods que ejecutan tu aplicación, lo que asegura una alta disponibilidad.
+  * **Actualizaciones sin tiempo de inactividad:** Kubernetes permite realizar actualizaciones de aplicaciones sin interrumpir el servicio, mediante estrategias como el despliegue continuo y las actualizaciones progresivas.
+  * **Gestión de Configuración y Secretos:** Kubernetes proporciona mecanismos para gestionar configuraciones y secretos de manera segura, permitiendo que las aplicaciones accedan a ellos sin necesidad de incluirlos en las imágenes de los contenedores.
+  * **Almacenamiento Persistente:** Kubernetes puede gestionar volúmenes de almacenamiento que persisten más allá del ciclo de vida de un Pod, permitiendo que los datos se mantengan incluso si los Pods se reinician o se eliminan.
+  * **Extensibilidad:** Kubernetes es altamente extensible mediante la adición de controladores personalizados, operadores y otros componentes que pueden ampliar su funcionalidad para satisfacer necesidades específicas.
+
+---
+
+### Ejemplo de Configuración con YAML
+
+Imaginemos que quieres desplegar una aplicación web con 3 réplicas. Crearías un archivo `deployment.yaml` como este:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mi-aplicacion-web
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mi-app-web
+  template:
+    metadata:
+      labels:
+        app: mi-app-web
+    spec:
+      containers:
+      - name: mi-app-web
+        image: tu-imagen-de-docker/mi-app:1.0
+        ports:
+        - containerPort: 80
+```
+
+Para aplicar esta configuración, usarías el siguiente comando:
+
+```bash
+kubectl apply -f deployment.yaml
+```
+
+Kubernetes se asegura entonces de que tres Pods con tu aplicación estén en ejecución. Si uno de los Pods falla, K8s automáticamente lanzará uno nuevo para reemplazarlo.
+
+---
+
+### Resumen
+
+Kubernetes es una herramienta poderosa que ha revolucionado la forma en que se despliegan y gestionan las aplicaciones en contenedores. Su capacidad para automatizar, escalar y asegurar aplicaciones lo convierte en una pieza fundamental del ecosistema de desarrollo moderno. Si estás trabajando con contenedores, aprender Kubernetes es una inversión valiosa para tu carrera en tecnología.
+
+
+
