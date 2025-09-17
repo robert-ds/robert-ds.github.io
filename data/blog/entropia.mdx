@@ -1,0 +1,61 @@
+---
+title: Entropía
+date: '2025-09-18'
+tags: ['teoria','sistemas',]
+draft: false
+images: ['/static/images/blog/entropia/entropia.png']
+summary: 'Explorando la entropía en sistemas y su impacto en la gestión de aplicaciones.'
+---
+
+<Image
+  alt={`Entropía image`}
+  src={`/static/images/blog/entropia/entropia.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>En el contexto de la **teoría de la información** e informática, es una medida de la incertidumbre, la aleatoriedad o el desorden de un conjunto de datos o una fuente de información. A mayor entropía, más impredecible es la información. Este concepto fue introducido por Claude Shannon, el "padre de la teoría de la información", para cuantificar la información contenida en un mensaje.
+
+---
+
+### Entropía en la Teoría de la Información
+
+En la teoría de la información, la entropía se utiliza para medir la cantidad de información promedio que produce una fuente. Se expresa en bits por símbolo.
+
+* **Fuentes de Baja Entropía:** Una fuente con baja entropía es predecible. Si sabes que en un idioma la letra "E" es la más común, la aparición de una "E" en un texto no te da mucha información nueva. Por lo tanto, el mensaje tiene baja entropía.
+* **Fuentes de Alta Entropía:** Una fuente de alta entropía es impredecible. Imagina una secuencia de 0s y 1s generada al azar; cada bit tiene la misma probabilidad de ser 0 o 1. Conocer el valor del bit anterior no te ayuda a predecir el siguiente, por lo que la secuencia tiene una alta entropía.
+
+La fórmula de la entropía de Shannon ($H$) para una fuente de información con $n$ símbolos posibles es:
+
+$H(X) = -\sum_{i=1}^{n} P(x_i) \log_2 P(x_i)$
+
+Donde:
+* $P(x_i)$ es la probabilidad de que ocurra el símbolo $x_i$.
+* El logaritmo en base 2 se utiliza para que el resultado se exprese en bits.
+
+---
+
+### Entropía en la Informática
+
+El concepto de entropía es fundamental en varias áreas de la informática:
+
+* **Compresión de Datos:** Los algoritmos de compresión como ZIP o GZIP buscan reducir la redundancia en los datos. La entropía es el límite teórico de la compresión sin pérdidas. Un archivo de texto con muchas repeticiones tiene baja entropía y puede comprimirse fácilmente. Un archivo de video o audio encriptado (que parece aleatorio) tiene una alta entropía y es muy difícil de comprimir sin pérdidas, porque ya hay poca redundancia que eliminar.
+* **Generación de Números Aleatorios:** Para generar números verdaderamente aleatorios (como los que se usan en criptografía), las computadoras necesitan una fuente de alta entropía. Como los sistemas informáticos son deterministas, no pueden generar aleatoriedad por sí solos. Por ello, utilizan fuentes de entropía del entorno, como los movimientos del ratón, las pulsaciones del teclado o la latencia de la red, para sembrar (o inicializar) sus generadores de números pseudoaleatorios. 
+* **Criptografía:** En criptografía, la seguridad de un cifrado depende en gran medida de la entropía de la clave utilizada. Una clave con alta entropía es una cadena de bits verdaderamente aleatoria, lo que la hace muy difícil de adivinar o descifrar mediante ataques de fuerza bruta. Una clave de baja entropía (como "123456") es predecible y vulnerable.
+* **Seguridad Informática:** El concepto de entropía se utiliza para medir la "aleatoriedad" de los datos en un sistema. Por ejemplo, la entropía de una contraseña se puede calcular para determinar su fortaleza. Una contraseña como "aBcDeFgH" tiene más entropía que una como "password123".
+
+---
+
+### Entropía en sistemas
+
+En sistemas, la entropía se refiere a la tendencia natural de los sistemas a evolucionar hacia un estado de mayor desorden o caos con el tiempo. Esto puede manifestarse en varios contextos:
+- **Sistemas físicos**: En termodinámica, la entropía mide el desorden molecular. Los sistemas tienden a moverse hacia estados de mayor entropía, lo que significa que la energía se dispersa y se vuelve menos útil para realizar trabajo.
+- **Sistemas informáticos**: En informática, la entropía puede referirse a la complejidad y el desorden en el código, la arquitectura del sistema o los datos. A medida que los sistemas crecen y evolucionan, tienden a volverse más complejos y difíciles de gestionar, lo que puede llevar a errores y fallos.
+- **Sistemas sociales**: En sociología, la entropía puede describir la tendencia de las organizaciones y sociedades a volverse más caóticas y desorganizadas con el tiempo, a menos que se implementen mecanismos de control y orden.
+
+---
+
+### Resumen
+
+En resumen, la entropía en informática es una medida de la imprevisibilidad que es crucial para la compresión eficiente, la seguridad de las claves criptográficas y la generación de números aleatorios de alta calidad. Es la forma en que los ingenieros cuantifican y aprovechan la aleatoriedad.
