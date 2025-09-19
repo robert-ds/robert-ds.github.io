@@ -1,0 +1,56 @@
+---
+title: Ataque de Denegación de Servicio Distribuido (DDoS)
+date: '2025-09-20'
+tags: ['ciberseguridad','sistemas','seguridad','ddos']
+draft: false
+images: ['/static/images/blog/ddos/ddos.png']
+summary: 'Explorando el concepto de Ataque de Denegación de Servicio Distribuido (DDoS) y su impacto en la seguridad de las aplicaciones.'
+---
+
+<Image
+  alt={`Backend as a Service image`}
+  src={`/static/images/blog/ddos/ddos.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Es un ciberataque que busca dejar un servicio o servidor en línea inaccesible para sus usuarios legítimos.  El atacante logra esto inundando el objetivo con una cantidad masiva de tráfico falso, lo que satura su capacidad y lo deja sin poder responder a las solicitudes reales.
+
+---
+
+### ¿Cómo Funciona un Ataque DDoS?
+
+El ataque DDoS es una versión a gran escala del ataque de denegación de servicio (DoS). La diferencia clave es que un ataque DoS utiliza una sola fuente, mientras que un ataque DDoS utiliza **múltiples fuentes,** lo que lo hace mucho más difícil de mitigar.
+
+1.  **Botnet:** El atacante primero crea una red de computadoras controladas de forma remota, conocida como **botnet**. Esto se logra infectando dispositivos de usuarios desprevenidos (computadoras, teléfonos, cámaras de seguridad) con malware, a menudo a través de un **troyano**.
+2.  **Lanzamiento:** El atacante envía una orden a todos los dispositivos de la botnet (llamados "bots" o "zombies") para que comiencen a enviar solicitudes de tráfico al objetivo al mismo tiempo.
+3.  **Saturación:** El servidor objetivo recibe millones de solicitudes falsas por segundo desde miles de dispositivos diferentes. No puede distinguir el tráfico legítimo del malicioso, por lo que intenta procesar todas las solicitudes.
+4.  **Denegación de Servicio:** El servidor se sobrecarga, se agota de recursos (como ancho de banda o CPU) y colapsa, lo que impide que los usuarios legítimos puedan acceder al sitio web o servicio.
+
+---
+
+### Tipos de Ataques DDoS
+
+Los ataques DDoS se pueden clasificar según la capa del modelo OSI que atacan:
+
+* **Ataques de Volumetría:** Son los más comunes. Su objetivo es saturar el ancho de banda del objetivo con un tráfico masivo, como si fueran un "diluvio". Ejemplos incluyen el **ataque de inundación UDP** o el **ataque de inundación ICMP**.
+* **Ataques de Protocolo:** Explotan vulnerabilidades en protocolos de red de la capa 3 y 4, como la capa de red y transporte. Un ejemplo es el **ataque de inundación SYN**, que inicia una conexión TCP pero nunca la completa, dejando al servidor esperando y consumiendo recursos.
+* **Ataques de la Capa de Aplicación:** Estos ataques son más sofisticados porque imitan el comportamiento de un usuario real. Atacan la capa 7 (aplicación), la capa más alta del modelo OSI. Un ejemplo es el **ataque de inundación HTTP**, que envía peticiones HTTP complejas o incompletas para saturar los recursos del servidor de aplicaciones. Son más difíciles de detectar porque el tráfico se parece al tráfico legítimo.
+
+---
+
+### ¿Cómo Protegerse de un Ataque DDoS?
+
+Mitigar un ataque DDoS requiere una combinación de herramientas y estrategias:
+
+1.  **Servicios de Mitigación de DDoS:** Proveedores como Cloudflare o Akamai actúan como un "filtro" entre tu servidor y el tráfico entrante. Analizan las solicitudes en busca de patrones maliciosos, bloquean el tráfico DDoS y solo permiten el paso del tráfico legítimo.
+2.  **Balanceadores de Carga:** Si el ataque es de menor escala, un balanceador de carga puede distribuir el tráfico entre varios servidores, evitando que uno solo se sature.
+3.  **Filtrado de Tráfico (Firewalls):** Un firewall de aplicaciones web (WAF) puede ser configurado para detectar y bloquear peticiones sospechosas basadas en reglas predefinidas.
+4.  **Respuesta Rápida:** La detección temprana de un ataque es crucial. Los equipos de seguridad deben tener un plan de respuesta para redirigir el tráfico, limitar las tasas de solicitudes y contactar al proveedor de servicios para una mitigación rápida.
+
+---
+
+### Resumen
+
+Un ataque DDoS es una amenaza significativa para la disponibilidad de servicios en línea. Al comprender cómo funcionan estos ataques y adoptar medidas preventivas, las organizaciones pueden proteger sus infraestructuras y garantizar que sus usuarios legítimos puedan acceder a sus servicios sin interrupciones.
