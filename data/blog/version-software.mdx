@@ -1,0 +1,59 @@
+---
+title: Guía definitiva del versionamiento de software
+date: '2025-09-23'
+tags: ['versionamiento','software','mejores-practicas']
+draft: false
+images: ['/static/images/blog/version-software/versionamiento.png']
+summary: 'Todo lo que necesitas saber sobre el versionamiento de software y cómo implementarlo de manera efectiva.'
+---
+
+<Image
+  alt={`Versionamiento de software`}
+  src={`/static/images/blog/version-software/versionamiento.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Si alguna vez has instalado una actualización de software y has visto un número de versión como `3.2.1`, es posible que te hayas preguntado qué significan esos números.
+
+Asignar una versión a un software es una práctica común en el desarrollo, y aunque cada empresa puede crear sus propias reglas, existen pautas generales que se siguen. Una de las más comunes se basa en un sistema de tres números: **X.Y.Z.**
+
+---
+
+### Versiones por Número
+
+Esta es una de las formas más comunes de asignar una versión a un software, y cada número tiene un significado específico. Este formato se conoce como **Versionamiento Semántico**.
+
+* El primer número, **X**, es la **versión mayor**. Este número se actualiza cuando se lanza una **versión principal del software** que incluye cambios que no son compatibles con versiones anteriores. Por ejemplo, si un programa cambia de la versión `1.0.0` a la `2.0.0`, significa que hay cambios significativos y que el código existente podría no funcionar.
+* El segundo número, **Y**, es la **versión menor**. Este número indica que se han agregado **nuevas funcionalidades de manera compatible** con versiones anteriores. Por ejemplo, si el software cambia de la versión `1.2.0` a la `1.3.0`, significa que se han añadido nuevas características sin romper la funcionalidad existente.
+* El tercer número, **Z**, es la **revisión** o **parche**. Este número se incrementa cuando se han **corregido errores** que no afectan la compatibilidad del software. Por ejemplo, un cambio de la versión `1.2.2` a la `1.2.3` indica que se ha solucionado un fallo en el código.
+
+---
+
+### Versiones por Estabilidad
+
+Además de los números, el software a menudo incluye una clasificación que indica su estabilidad y la etapa de desarrollo en la que se encuentra.
+
+* **Alpha:** Esta es una versión inicial e inestable, a menudo con muchos errores y funcionalidades incompletas. Se utiliza para pruebas internas o para encontrar errores graves. Un ejemplo sería `1.0.0a`.
+* **Beta:** Esta versión es más estable que la Alpha y generalmente contiene todas las funcionalidades del producto. Se utiliza para probar el rendimiento, la usabilidad y los módulos bajo un entorno menos controlado. Aquí es donde entra el rol del "Beta Tester". Un ejemplo sería `2.0.0b`.
+* **Release Candidate (RC):** También conocida como candidata a lanzamiento, es una versión que está casi lista para ser lanzada al público. Solo se le hacen los últimos ajustes y correcciones. Por ejemplo, `3.0.0-RC`.
+* **Stable/Final:** Esta es la versión oficial y estable del software, lista para ser utilizada por el público en general. Un ejemplo sería `1.0.0` o `2.1.3`.
+
+---
+
+### Otros Tipos de Versionamiento
+
+Aunque el versionamiento semántico es el más común, existen otras estrategias que las empresas pueden utilizar, especialmente para casos más complejos como sistemas operativos, videojuegos o librerías.
+
+* **Versión de Parche:** En algunos casos, se puede añadir un cuarto número para indicar un parche específico, resultando en un formato como `X.Y.Z.P`.
+* **Versión por Fecha:** En este sistema, la versión del software se basa en la fecha en que se publicó. Existen muchas variaciones, como `1.2.3.1543` donde `15` es el año `2015`, `4` el mes y `3` el día.
+* **Versión por Nombre:** Algunas empresas utilizan nombres en lugar de números para sus versiones, como "Windows XP" o "Ubuntu 20.04 LTS". Estos nombres a menudo reflejan características o temas específicos.
+
+No existe una regla oficial que regule las versiones del software. La clave es elegir una estrategia que funcione para tu producto y tu equipo, y mantener la consistencia para que los usuarios sepan qué esperar de cada actualización.
+
+---
+
+### Resumen
+
+El versionamiento de software es una práctica esencial para gestionar y comunicar los cambios en un producto. Utilizar un sistema claro y consistente ayuda a los desarrolladores y usuarios a entender la evolución del software y a manejar las actualizaciones de manera efectiva. Ya sea que utilices el versionamiento semántico, por fecha o por nombre, lo importante es que todos los involucrados comprendan el significado detrás de cada versión y cómo afecta al uso del software.
