@@ -1,0 +1,55 @@
+---
+title: Diferencias entre Hilos y Procesos
+date: '2025-09-28'
+tags: ['programacion','sistemas','hilos','procesos']
+draft: false
+images: ['/static/images/blog/hilos-procesos/hilos-procesos.png']
+summary: 'Explora las diferencias clave entre hilos y procesos en la programación y cómo afectan el rendimiento de las aplicaciones.'
+---
+
+<Image
+  alt={`Diferencias entre Hilos y Procesos`}
+  src={`/static/images/blog/hilos-procesos/hilos-procesos.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>La diferencia principal entre **procesos** e **hilos (threads)** radica en cómo el sistema operativo los gestiona y la forma en que comparten recursos. Ambos son unidades de ejecución, pero operan a diferentes niveles de granularidad, lo que afecta su eficiencia y su aislamiento.
+
+---
+
+### Proceso (Process)
+
+Un **proceso** es una instancia de un programa en ejecución. Piensa en él como un **programa completamente independiente** con su propio espacio de memoria, recursos y contexto de ejecución.
+
+* **Aislamiento y Recursos:** Cada proceso tiene su propio **espacio de direcciones de memoria virtual** totalmente independiente. Esto significa que los datos de un proceso están protegidos de otros procesos, lo que proporciona **aislamiento** y estabilidad al sistema operativo. Un fallo en un proceso no debería afectar a otros.
+* **Comunicación (IPC):** Los procesos son independientes y para comunicarse entre sí deben usar mecanismos especiales llamados **Comunicación Entre Procesos (IPC)**, como *pipes*, *sockets* o *memoria compartida*.
+* **Creación y Conmutación de Contexto:** Crear un nuevo proceso o cambiar de un proceso a otro (**conmutación de contexto**) es una operación relativamente "pesada" o lenta para el sistema operativo, ya que requiere copiar o guardar una gran cantidad de información sobre el estado de la memoria y los registros.
+
+---
+
+### Hilo (Thread)
+
+Un **hilo** o *thread* es la unidad básica de utilización de la CPU. Un hilo es una **secuencia de ejecución dentro de un proceso**. Piensa en él como una "mini-tarea" dentro de un programa más grande.
+
+* **Recursos Compartidos:** Múltiples hilos dentro del mismo proceso **comparten** el mismo espacio de direcciones de memoria, los mismos archivos abiertos y otros recursos del proceso. Esto hace que la comunicación entre hilos sea muy rápida y sencilla (simplemente acceden a variables compartidas).
+* **Concurrencia:** La capacidad de dividir un proceso en múltiples hilos permite que diferentes partes de la misma aplicación se ejecuten al mismo tiempo (**concurrencia**), lo que mejora el rendimiento, especialmente en arquitecturas multi-núcleo.
+* **Creación y Conmutación de Contexto:** Crear un nuevo hilo y conmutar entre hilos es una operación "ligera" o rápida, ya que el sistema operativo solo tiene que guardar una pequeña porción del estado de ejecución (registros, contador de programa), y la memoria ya está compartida.
+
+---
+
+### Tabla Comparativa
+
+| Característica | Proceso | Hilo (Thread) |
+| :--- | :--- | :--- |
+| **Definición** | Programa en ejecución. | Unidad de ejecución dentro de un proceso. |
+| **Memoria** | Espacio de direcciones **independiente**. | **Comparte** el espacio de direcciones del proceso. |
+| **Aislamiento** | Alto (un fallo no afecta a otros procesos). | Bajo (un fallo en un hilo puede colapsar todo el proceso). |
+| **Comunicación** | Lenta (requiere mecanismos IPC especiales). | Rápida (acceso directo a memoria compartida). |
+| **Conmutación**| Pesada y lenta (más sobrecarga del SO). | Ligera y rápida (menos sobrecarga del SO). |
+| **Jerarquía** | Puede contener uno o más hilos. | Pertenece a un único proceso. |
+
+### Resumen
+
+En resumen, los **procesos** proporcionan **aislamiento y seguridad** a expensas de la velocidad, mientras que los **hilos** ofrecen **rapidez y eficiencia** en la comunicación y conmutación a expensas de la seguridad (un fallo afecta a todo el proceso). La mayoría de las aplicaciones complejas utilizan múltiples procesos (para aislamiento) que a su vez contienen múltiples hilos (para concurrencia).
