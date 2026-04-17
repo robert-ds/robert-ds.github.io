@@ -1,0 +1,198 @@
+---
+title: Comandos básicos de Git que todo desarrollador debe conocer 🔧
+date: '2026-04-18'
+tags: ['versionamiento','software','git','comandos git']
+draft: false
+images: ['/static/images/blog/comandos-git/comandos-git.png']
+summary: 'Git es una herramienta esencial para el control de versiones en el desarrollo de software. '
+---
+
+<Image
+  alt={`git commands image`}
+  src={`/static/images/blog/comandos-git/comandos-git.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Git es una herramienta esencial en el desarrollo moderno. Permite gestionar versiones de código, colaborar en equipo y mantener un historial completo de cambios.
+
+Si estás comenzando o quieres reforzar tus bases, aquí tienes un listado claro y práctico de los comandos más importantes de Git.
+
+---
+
+## 🚀 Inicialización y clonación
+
+### `git init`
+Inicializa un nuevo repositorio en tu proyecto.
+
+```bash
+git init
+````
+
+### `git clone`
+
+Clona un repositorio remoto a tu máquina local.
+
+```bash
+git clone https://github.com/usuario/repositorio.git
+```
+
+---
+
+## 📊 Estado y seguimiento de cambios
+
+### `git status`
+
+Muestra el estado actual del repositorio.
+
+```bash
+git status
+```
+
+### `git add .`
+
+Agrega todos los cambios al área de preparación (staging).
+
+```bash
+git add .
+```
+
+---
+
+## 💾 Guardar cambios
+
+### `git commit -m "mensaje"`
+
+Guarda los cambios con un mensaje descriptivo.
+
+```bash
+git commit -m "feat: agregar login de usuario"
+```
+
+---
+
+## ☁️ Trabajo con repositorios remotos
+
+### `git push`
+
+Sube los cambios al repositorio remoto.
+
+```bash
+git push origin main
+```
+
+### `git pull`
+
+Trae y fusiona cambios desde el repositorio remoto.
+
+```bash
+git pull origin main
+```
+
+### `git fetch`
+
+Obtiene cambios del remoto sin fusionarlos automáticamente.
+
+```bash
+git fetch
+```
+
+---
+
+## 🌿 Manejo de ramas
+
+### `git checkout`
+
+Cambia entre ramas existentes.
+
+```bash
+git checkout develop
+```
+
+### `git checkout -b rama`
+
+Crea una nueva rama y cambia a ella.
+
+```bash
+git checkout -b feature/nueva-funcionalidad
+```
+
+### `git branch`
+
+Lista todas las ramas disponibles.
+
+```bash
+git branch
+```
+
+### `git merge`
+
+Fusiona una rama con la actual.
+
+```bash
+git merge feature/nueva-funcionalidad
+```
+
+---
+
+## 🕓 Historial y comparación
+
+### `git log`
+
+Muestra el historial de commits.
+
+```bash
+git log
+```
+
+### `git diff`
+
+Muestra las diferencias entre cambios.
+
+```bash
+git diff
+```
+
+---
+
+## ⚠️ Revertir y manejar cambios
+
+### `git reset`
+
+Deshace cambios en el repositorio.
+
+```bash
+git reset --hard HEAD
+```
+
+> ⚠️ Usa este comando con cuidado, ya que puede eliminar cambios permanentemente.
+
+### `git stash`
+
+Guarda cambios temporalmente sin hacer commit.
+
+```bash
+git stash
+```
+
+---
+
+## 🧠 Buenas prácticas
+
+* Escribe mensajes de commit claros y descriptivos.
+* Haz commits pequeños y frecuentes.
+* Usa ramas para nuevas funcionalidades.
+* Mantén tu rama principal (`main` o `master`) estable.
+* Sincroniza constantemente con `git pull`.
+
+---
+
+## 🏁 Resumen
+
+Dominar estos comandos básicos de Git te permitirá trabajar de forma más eficiente, mantener tu código organizado y colaborar sin fricciones.
+
+Git no es solo una herramienta, es una habilidad esencial en cualquier stack moderno de desarrollo.
+
+---
+
