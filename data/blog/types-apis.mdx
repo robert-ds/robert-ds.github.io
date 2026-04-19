@@ -1,0 +1,252 @@
+---
+title: Tipos de APIs en desarrollo web (Guía completa con ejemplos) 🌐
+date: '2026-04-19'
+tags: ['api', 'desarrollo web', 'programación']
+draft: false
+images: ['/static/images/blog/types-apis/types-apis.png']
+summary: 'Descubre los diferentes tipos de APIs y cómo utilizarlas en el desarrollo web.'
+
+---
+
+<Image
+  alt={`types of apis image`}
+  src={`/static/images/blog/types-apis/types-apis.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Las APIs son el corazón de la comunicación entre sistemas en el desarrollo web moderno. Elegir el tipo adecuado puede impactar directamente en el rendimiento, escalabilidad y mantenibilidad de tu aplicación.
+
+En este artículo exploramos los principales tipos de APIs, cómo funcionan y cuándo utilizarlas, con ejemplos prácticos.
+
+---
+
+## 1. 🔗 REST API
+
+Las **REST APIs** (Representational State Transfer) son el estándar más utilizado en la web. Se basan en el protocolo HTTP y utilizan métodos como `GET`, `POST`, `PUT` y `DELETE`.
+
+### 🧠 Características
+- Stateless (sin estado)
+- Basadas en recursos (URLs)
+- Uso de JSON como formato principal
+- Fácil integración con frontend
+
+### 🛠 Ejemplo
+
+```http
+GET /api/users/1
+````
+
+```json
+{
+  "id": 1,
+  "name": "Juan Pérez",
+  "email": "juan@example.com"
+}
+```
+
+### ✅ Cuándo usar REST
+
+* Aplicaciones CRUD
+* APIs públicas
+* Sistemas simples o medianos
+
+---
+
+## 2. 🧩 GraphQL
+
+**GraphQL** es un lenguaje de consulta para APIs que permite al cliente pedir exactamente los datos que necesita.
+
+### 🧠 Características
+
+* Evita over-fetching y under-fetching
+* Un solo endpoint
+* Tipado fuerte
+* Muy flexible para frontend
+
+### 🛠 Ejemplo
+
+```graphql
+query {
+  user(id: 1) {
+    name
+    email
+  }
+}
+```
+
+```json
+{
+  "data": {
+    "user": {
+      "name": "Juan Pérez",
+      "email": "juan@example.com"
+    }
+  }
+}
+```
+
+### ✅ Cuándo usar GraphQL
+
+* Apps con múltiples vistas complejas
+* Frontends que necesitan optimizar datos
+* Microservicios con agregación de datos
+
+---
+
+## 3. ⚡ WebSocket API
+
+Las **WebSocket APIs** permiten comunicación bidireccional en tiempo real entre cliente y servidor.
+
+### 🧠 Características
+
+* Conexión persistente
+* Baja latencia
+* Comunicación en tiempo real
+
+### 🛠 Ejemplo (JavaScript)
+
+```javascript
+const socket = new WebSocket("wss://example.com/socket");
+
+socket.onmessage = (event) => {
+  console.log("Mensaje recibido:", event.data);
+};
+
+socket.send("Hola servidor");
+```
+
+### ✅ Cuándo usar WebSockets
+
+* Chats en tiempo real
+* Notificaciones push
+* Juegos online
+* Dashboards en vivo
+
+---
+
+## 4. 🚀 gRPC
+
+**gRPC** es un framework de comunicación de alto rendimiento desarrollado por Google, basado en HTTP/2 y Protocol Buffers.
+
+### 🧠 Características
+
+* Muy rápido y eficiente
+* Tipado estricto
+* Soporta streaming
+* Ideal para microservicios
+
+### 🛠 Ejemplo (.proto)
+
+```proto
+service UserService {
+  rpc GetUser (UserRequest) returns (UserResponse);
+}
+```
+
+### ✅ Cuándo usar gRPC
+
+* Comunicación entre microservicios
+* Sistemas distribuidos
+* Aplicaciones de alto rendimiento
+
+---
+
+## 5. 🧾 SOAP
+
+**SOAP** (Simple Object Access Protocol) es un protocolo más antiguo basado en XML.
+
+### 🧠 Características
+
+* Altamente estructurado
+* Seguridad integrada (WS-Security)
+* Uso común en entornos empresariales
+
+### 🛠 Ejemplo
+
+```xml
+<soap:Envelope>
+  <soap:Body>
+    <GetUser>
+      <Id>1</Id>
+    </GetUser>
+  </soap:Body>
+</soap:Envelope>
+```
+
+### ✅ Cuándo usar SOAP
+
+* Sistemas legacy
+* Integraciones bancarias o empresariales
+* Aplicaciones que requieren alta seguridad
+
+---
+
+## 6. ☁️ Serverless API
+
+Las **Serverless APIs** funcionan mediante funciones en la nube sin necesidad de gestionar servidores.
+
+### 🧠 Características
+
+* Escalado automático
+* Pago por uso
+* Fácil despliegue
+* Integración con servicios cloud
+
+### 🛠 Ejemplo (Node.js en AWS Lambda)
+
+```javascript
+exports.handler = async (event) => {
+  return {
+    statusCode: 200,
+    body: JSON.stringify({ message: "Hola desde serverless" }),
+  };
+};
+```
+
+### ✅ Cuándo usar Serverless
+
+* Proyectos rápidos (MVPs)
+* APIs ligeras
+* Backends sin infraestructura compleja
+
+---
+
+## ⚖️ Comparativa rápida
+
+| Tipo       | Velocidad | Flexibilidad | Tiempo real | Complejidad |
+| ---------- | --------- | ------------ | ----------- | ----------- |
+| REST       | Media     | Media        | ❌           | Baja        |
+| GraphQL    | Media     | Alta         | ❌           | Media       |
+| WebSocket  | Alta      | Media        | ✅           | Media       |
+| gRPC       | Muy alta  | Media        | ✅ (stream)  | Alta        |
+| SOAP       | Baja      | Baja         | ❌           | Alta        |
+| Serverless | Variable  | Alta         | ❌           | Baja        |
+
+---
+
+## 🧠 Buenas prácticas
+
+* Diseña APIs pensando en el consumidor
+* Documenta con herramientas como Swagger / OpenAPI
+* Implementa versionado (`/v1/`, `/v2/`)
+* Maneja correctamente errores HTTP
+* Añade autenticación (JWT, OAuth)
+
+---
+
+## 🏁 Resumen
+
+No existe una única API “mejor”, todo depende del contexto:
+
+* **REST** para simplicidad
+* **GraphQL** para flexibilidad
+* **WebSockets** para tiempo real
+* **gRPC** para alto rendimiento
+* **SOAP** para entornos enterprise
+* **Serverless** para velocidad de desarrollo
+
+Elegir bien tu arquitectura desde el inicio puede ahorrarte muchos problemas a futuro.
+
+---
