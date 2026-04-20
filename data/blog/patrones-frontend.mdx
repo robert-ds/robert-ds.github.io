@@ -1,0 +1,266 @@
+---
+title: Patrones de arquitectura en frontend (Guía completa con ejemplos) ⚡
+date: '2026-04-21'
+tags: ['frontend', 'arquitectura', 'programación']
+draft: false
+images: ['/static/images/blog/patrones-frontend/patrones-frontend.png']
+summary: 'Descubre los diferentes patrones de arquitectura en frontend y cómo implementarlos en tu aplicación.'
+
+---
+
+<Image
+  alt={`patrones de arquitectura en frontend image`}
+  src={`/static/images/blog/patrones-frontend/patrones-frontend.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>A medida que las aplicaciones frontend crecen, mantener el código organizado y escalable se vuelve crítico. Aquí es donde entran los **patrones de arquitectura**, que nos ayudan a estructurar mejor nuestras aplicaciones y a facilitar su mantenimiento.
+
+En este artículo exploramos los patrones más utilizados en frontend moderno, especialmente en ecosistemas como React.
+
+---
+
+## 1. 🧱 Container / Presentational
+
+Este patrón separa la **lógica de negocio** de la **interfaz de usuario (UI)**.
+
+### 🧠 Concepto
+- **Container**: maneja estado, lógica, llamadas a APIs.
+- **Presentational**: solo renderiza UI basada en props.
+
+### 🛠 Ejemplo
+
+```jsx id="k9p3d1"
+// Presentational
+const UserList = ({ users }) => (
+  <ul>
+    {users.map(user => <li key={user.id}>{user.name}</li>)}
+  </ul>
+);
+
+// Container
+const UserListContainer = () => {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    fetch("/api/users")
+      .then(res => res.json())
+      .then(setUsers);
+  }, []);
+
+  return <UserList users={users} />;
+};
+````
+
+### ✅ Cuándo usarlo
+
+* Aplicaciones medianas/grandes
+* Cuando quieres separar responsabilidades claramente
+
+---
+
+## 2. 🪝 Custom Hooks
+
+Permiten reutilizar lógica entre componentes en React.
+
+### 🧠 Concepto
+
+Encapsular lógica en funciones reutilizables.
+
+### 🛠 Ejemplo
+
+```jsx id="p4z7x2"
+const useFetch = (url) => {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    fetch(url)
+      .then(res => res.json())
+      .then(setData);
+  }, [url]);
+
+  return data;
+};
+
+// Uso
+const Users = () => {
+  const users = useFetch("/api/users");
+
+  return <div>{JSON.stringify(users)}</div>;
+};
+```
+
+### ✅ Cuándo usarlo
+
+* Reutilizar lógica (fetching, formularios, auth)
+* Reducir duplicación de código
+
+---
+
+## 3. 🧩 Feature-Based Structure
+
+Organiza el proyecto por **funcionalidades**, no por tipo de archivo.
+
+### 🧠 Concepto
+
+Agrupar todo lo relacionado a una feature en un mismo lugar.
+
+### 📁 Ejemplo de estructura
+
+```bash id="t7v2yq"
+src/
+  features/
+    auth/
+      components/
+      hooks/
+      services/
+    dashboard/
+      components/
+      hooks/
+      services/
+```
+
+### ✅ Cuándo usarlo
+
+* Apps grandes
+* Equipos trabajando en paralelo
+* Escalabilidad a largo plazo
+
+---
+
+## 4. ⚛️ Atomic Design
+
+Divide la UI en niveles jerárquicos.
+
+### 🧠 Niveles
+
+* **Atoms**: botones, inputs
+* **Molecules**: combinación de atoms
+* **Organisms**: bloques complejos
+* **Templates / Pages**
+
+### 🛠 Ejemplo
+
+```jsx id="m8z3qk"
+// Atom
+const Button = ({ children }) => <button>{children}</button>;
+
+// Molecule
+const SearchBox = () => (
+  <div>
+    <input placeholder="Buscar..." />
+    <Button>Buscar</Button>
+  </div>
+);
+```
+
+### ✅ Cuándo usarlo
+
+* Design systems
+* UI consistente
+* Equipos de diseño + desarrollo
+
+---
+
+## 5. 🔄 State Lifting (Lifting State Up)
+
+Consiste en mover el estado a un componente padre para compartirlo entre hijos.
+
+### 🧠 Concepto
+
+El estado vive en el nivel más alto común.
+
+### 🛠 Ejemplo
+
+```jsx id="q2n8vx"
+const Parent = () => {
+  const [count, setCount] = useState(0);
+
+  return (
+    <>
+      <ChildA count={count} />
+      <ChildB setCount={setCount} />
+    </>
+  );
+};
+```
+
+### ✅ Cuándo usarlo
+
+* Compartir estado entre componentes hermanos
+* Evitar duplicación de estado
+
+---
+
+## 6. 🌐 Global State (Context / Zustand)
+
+Permite compartir estado en toda la aplicación sin pasar props manualmente.
+
+### 🧠 Opciones comunes
+
+* React Context
+* Zustand
+* Redux (más avanzado)
+
+### 🛠 Ejemplo con Context
+
+```jsx id="x5b9lm"
+const ThemeContext = createContext();
+
+const App = () => {
+  const [theme, setTheme] = useState("dark");
+
+  return (
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      <Page />
+    </ThemeContext.Provider>
+  );
+};
+
+const Page = () => {
+  const { theme } = useContext(ThemeContext);
+  return <div className={theme}>Contenido</div>;
+};
+```
+
+### ✅ Cuándo usarlo
+
+* Estado global (auth, tema, usuario)
+* Evitar prop drilling
+
+---
+
+## ⚖️ Comparativa rápida
+
+| Patrón                   | Escalabilidad | Complejidad | Reutilización |
+| ------------------------ | ------------- | ----------- | ------------- |
+| Container/Presentational | Media         | Baja        | Media         |
+| Custom Hooks             | Alta          | Baja        | Alta          |
+| Feature-based            | Muy alta      | Media       | Alta          |
+| Atomic Design            | Alta          | Media       | Alta          |
+| State Lifting            | Media         | Baja        | Baja          |
+| Global State             | Alta          | Media/Alta  | Alta          |
+
+---
+
+## 🧠 Buenas prácticas
+
+* Combina patrones, no uses solo uno
+* Evita sobreingeniería en proyectos pequeños
+* Define convenciones desde el inicio
+* Mantén consistencia en la estructura
+* Prioriza legibilidad sobre complejidad
+
+---
+
+## 🏁 Resumen
+
+No existe un único patrón correcto. Las mejores aplicaciones combinan varios:
+
+* **Custom Hooks + Feature-based** → Escalabilidad
+* **Atomic Design** → UI consistente
+* **Global State + State Lifting** → Manejo de datos eficiente
+
+Elegir bien desde el inicio te ahorra refactors costosos en el futuro.
