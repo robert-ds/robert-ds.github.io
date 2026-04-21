@@ -1,0 +1,236 @@
+---
+title: Manejo de errores en aplicaciones (Guía completa con ejemplos) ⚠️
+date: '2026-04-22'
+tags: ['errores', 'manejo de errores', 'programación']
+draft: false
+images: ['/static/images/blog/manejo-errores/manejo-errores.png']
+summary: 'Aprende a manejar errores de manera efectiva en tus aplicaciones con esta guía completa, que incluye ejemplos prácticos y mejores prácticas.'
+
+---
+
+<Image
+  alt={`manejo errores image`}
+  src={`/static/images/blog/manejo-errores/manejo-errores.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>El manejo de errores no es un “extra”, es una parte crítica del desarrollo. Una aplicación robusta no es la que nunca falla, sino la que **sabe cómo fallar correctamente**.
+
+En este artículo exploramos las principales estrategias para manejar errores en aplicaciones modernas, tanto en frontend como backend.
+
+---
+
+## 1. 🧯 Try / Catch
+
+Es la forma más básica de capturar errores en tiempo de ejecución.
+
+### 🧠 Concepto
+Permite interceptar excepciones y evitar que la app se rompa.
+
+### 🛠 Ejemplo (JavaScript)
+
+```javascript id="t1x9zq"
+try {
+  const data = JSON.parse(response);
+} catch (error) {
+  console.error("Error parseando JSON:", error);
+}
+````
+
+### ⚠️ Buenas prácticas
+
+* No abuses de `try/catch`
+* Captura errores específicos cuando sea posible
+* Siempre maneja el error (no lo ignores)
+
+---
+
+## 2. 🧩 Error Middleware (Express)
+
+En backend, especialmente con Express, puedes centralizar el manejo de errores.
+
+### 🧠 Concepto
+
+Un middleware que captura todos los errores de la app.
+
+### 🛠 Ejemplo
+
+```javascript id="m8d2ka"
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+
+  res.status(err.status || 500).json({
+    message: err.message || "Error interno del servidor",
+  });
+});
+```
+
+### ✅ Ventajas
+
+* Centralización
+* Código más limpio
+* Manejo consistente de errores
+
+---
+
+## 3. 🏷️ Custom Errors
+
+Crear clases de errores personalizadas mejora la claridad y control.
+
+### 🧠 Concepto
+
+Extender la clase `Error` para definir errores específicos.
+
+### 🛠 Ejemplo
+
+```javascript id="c7p4lm"
+class NotFoundError extends Error {
+  constructor(message) {
+    super(message);
+    this.status = 404;
+  }
+}
+
+// Uso
+throw new NotFoundError("Usuario no encontrado");
+```
+
+### ✅ Cuándo usarlo
+
+* APIs complejas
+* Lógica de negocio específica
+* Manejo detallado de errores
+
+---
+
+## 4. 📊 Logs (console / servicios)
+
+Registrar errores es clave para debug y monitoreo.
+
+### 🧠 Concepto
+
+Guardar información de errores para análisis posterior.
+
+### 🛠 Ejemplo
+
+```javascript id="v2n8bx"
+console.error("Error en login:", {
+  user: "user123",
+  error: err.message,
+});
+```
+
+### 🔧 Herramientas recomendadas
+
+* Sentry
+* LogRocket
+* Datadog
+
+### ✅ Buenas prácticas
+
+* No loguear datos sensibles
+* Añadir contexto (usuario, endpoint, etc.)
+* Diferenciar niveles (info, warn, error)
+
+---
+
+## 5. 🎨 Fallback UI
+
+En frontend, cuando algo falla, debes mostrar una interfaz amigable.
+
+### 🧠 Concepto
+
+Evitar pantallas en blanco y mejorar UX.
+
+### 🛠 Ejemplo (React Error Boundary)
+
+```jsx id="k3m9qp"
+class ErrorBoundary extends React.Component {
+  state = { hasError: false };
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <h1>Algo salió mal 😢</h1>;
+    }
+
+    return this.props.children;
+  }
+}
+```
+
+### ✅ Beneficios
+
+* Mejor experiencia de usuario
+* Mayor resiliencia visual
+* Evita crashes visibles
+
+---
+
+## 6. 🔁 Retry Requests
+
+Reintentar peticiones fallidas puede mejorar la confiabilidad.
+
+### 🧠 Concepto
+
+Volver a intentar una operación que falló (especialmente en redes).
+
+### 🛠 Ejemplo
+
+```javascript id="r8w2lx"
+const fetchWithRetry = async (url, retries = 3) => {
+  try {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error("Error en request");
+    return res.json();
+  } catch (err) {
+    if (retries > 0) {
+      return fetchWithRetry(url, retries - 1);
+    }
+    throw err;
+  }
+};
+```
+
+### ⚠️ Buenas prácticas
+
+* Usar backoff exponencial
+* Evitar loops infinitos
+* No reintentar errores lógicos (solo de red)
+
+---
+
+## ⚖️ Estrategia completa de manejo de errores
+
+Una app robusta combina múltiples técnicas:
+
+```txt
+Try/Catch → Custom Errors → Middleware → Logs → Fallback UI → Retry
+```
+
+---
+
+## 🧠 Buenas prácticas generales
+
+* Nunca expongas errores internos al usuario
+* Usa mensajes claros y amigables
+* Centraliza el manejo de errores
+* Monitorea constantemente
+* Testea escenarios de fallo
+
+---
+
+## 🏁 Resumen
+
+El manejo de errores es una inversión en calidad. Implementar estas estrategias te permite:
+
+* Detectar problemas rápidamente
+* Mejorar la experiencia del usuario
+* Construir aplicaciones más resilientes
+
+---
