@@ -1,0 +1,238 @@
+---
+title:  Tipos de caché en aplicaciones web (Guía completa con ejemplos) ⚡
+date: '2026-04-24'
+tags: ['caché', 'aplicaciones web', 'programación']
+draft: false
+images: ['/static/images/blog/types-cache/types-cache.png']
+summary: 'Aprende sobre los diferentes tipos de caché que puedes implementar en tus aplicaciones web, con ejemplos prácticos y mejores prácticas.'
+
+---
+
+<Image
+  alt={`tipos de caché image`}
+  src={`/static/images/blog/types-cache/types-cache.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>El uso de caché es una de las estrategias más efectivas para mejorar el rendimiento de una aplicación web. Permite **reducir tiempos de carga**, **disminuir la carga del servidor** y ofrecer una mejor experiencia al usuario.
+
+En este artículo exploramos los principales tipos de caché, cómo funcionan y cuándo utilizarlos.
+
+---
+
+## 1. 🌐 Browser Cache
+
+El **Browser Cache** almacena archivos estáticos directamente en el navegador del usuario.
+
+### 🧠 ¿Qué guarda?
+- CSS  
+- JavaScript  
+- Imágenes  
+- Fuentes  
+
+### 🛠 Ejemplo (Headers)
+
+```http
+Cache-Control: public, max-age=31536000
+````
+
+### ✅ Beneficios
+
+* Carga más rápida en visitas repetidas
+* Menos solicitudes al servidor
+
+### ⚠️ Consideraciones
+
+* Usa versionado de archivos (`app.v2.js`) para evitar caché obsoleta
+
+---
+
+## 2. 📡 HTTP Cache
+
+Se controla mediante headers HTTP enviados por el servidor.
+
+### 🧠 Concepto
+
+Define cómo y por cuánto tiempo se cachea una respuesta.
+
+### 🛠 Ejemplo
+
+```http
+Cache-Control: no-cache
+ETag: "abc123"
+```
+
+### 🔍 Tipos de control
+
+* `no-cache` → valida antes de usar
+* `no-store` → no guardar
+* `max-age` → tiempo de vida
+
+### ✅ Cuándo usarlo
+
+* APIs públicas
+* Recursos dinámicos controlados
+
+---
+
+## 3. 🌍 CDN Cache
+
+Una **CDN (Content Delivery Network)** distribuye contenido en servidores alrededor del mundo.
+
+### 🧠 Concepto
+
+Servir contenido desde el nodo más cercano al usuario.
+
+### 🛠 Ejemplo
+
+* Cloudflare
+* AWS CloudFront
+
+### ✅ Beneficios
+
+* Menor latencia
+* Alta disponibilidad
+* Escalabilidad global
+
+### 📌 Ideal para
+
+* Archivos estáticos
+* Imágenes, videos, assets
+
+---
+
+## 4. ⚙️ Service Worker Cache
+
+Utilizado en aplicaciones PWA para habilitar funcionalidades offline.
+
+### 🧠 Concepto
+
+Un script que intercepta requests y sirve contenido cacheado.
+
+### 🛠 Ejemplo
+
+```javascript id="sw1x2z"
+self.addEventListener("fetch", (event) => {
+  event.respondWith(
+    caches.match(event.request).then((response) => {
+      return response || fetch(event.request);
+    })
+  );
+});
+```
+
+### ✅ Casos de uso
+
+* Apps offline
+* Experiencias rápidas en móviles
+* Apps tipo Uber, Twitter Lite
+
+---
+
+## 5. 🔌 API Cache
+
+Consiste en almacenar respuestas de APIs para evitar llamadas repetidas.
+
+### 🧠 Concepto
+
+Cachear datos del backend temporalmente.
+
+### 🛠 Ejemplo (Node.js con Redis)
+
+```javascript id="ap1c4ch3"
+const redis = require("redis");
+const client = redis.createClient();
+
+app.get("/users", async (req, res) => {
+  const cached = await client.get("users");
+
+  if (cached) {
+    return res.json(JSON.parse(cached));
+  }
+
+  const users = await getUsersFromDB();
+  await client.setEx("users", 60, JSON.stringify(users));
+
+  res.json(users);
+});
+```
+
+### ✅ Beneficios
+
+* Reduce carga en base de datos
+* Mejora tiempos de respuesta
+
+---
+
+## 6. 🧠 In-Memory Cache
+
+Almacena datos directamente en memoria RAM del servidor.
+
+### 🧠 Concepto
+
+Acceso ultra rápido, pero volátil.
+
+### 🛠 Ejemplo
+
+```javascript id="m3m0ry1"
+const cache = new Map();
+
+function getUser(id) {
+  if (cache.has(id)) return cache.get(id);
+
+  const user = db.find(id);
+  cache.set(id, user);
+
+  return user;
+}
+```
+
+### ✅ Cuándo usarlo
+
+* Datos frecuentes
+* Cálculos costosos
+* Sesiones temporales
+
+### ⚠️ Limitaciones
+
+* Se pierde al reiniciar el servidor
+* No escalable sin herramientas externas
+
+---
+
+## ⚖️ Comparativa rápida
+
+| Tipo            | Velocidad | Persistencia | Escala   | Uso principal         |
+| --------------- | --------- | ------------ | -------- | --------------------- |
+| Browser Cache   | Alta      | Media        | Alta     | Assets estáticos      |
+| HTTP Cache      | Media     | Media        | Alta     | Control de respuestas |
+| CDN Cache       | Muy alta  | Alta         | Muy alta | Distribución global   |
+| Service Worker  | Alta      | Media        | Media    | Offline / PWA         |
+| API Cache       | Alta      | Alta         | Alta     | Backend optimization  |
+| In-Memory Cache | Muy alta  | Baja         | Baja     | Datos temporales      |
+
+---
+
+## 🧠 Estrategia recomendada
+
+Una app moderna combina múltiples capas de caché:
+
+```txt id="c4ch3-str4t"
+Browser → CDN → HTTP → API → In-Memory → Database
+```
+
+---
+
+## 🏁 Resumen
+
+El caché no es una optimización opcional, es una necesidad en aplicaciones modernas.
+
+Bien implementado, permite:
+
+* ⚡ Mejorar el rendimiento
+* 💸 Reducir costos de infraestructura
+* 🚀 Escalar sin problemas
+
+---
