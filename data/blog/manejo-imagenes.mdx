@@ -1,0 +1,204 @@
+---
+title: Estrategias de optimización de imágenes en la web 🖼️
+date: '2026-04-26'
+tags: ['rendimiento', 'optimización', 'imágenes', 'web']
+draft: false
+images: ['/static/images/blog/manejo-imagenes/manejo-imagenes.png']
+summary: 'En este artículo, exploraremos diversas estrategias para optimizar imágenes en la web, mejorando el rendimiento y la experiencia del usuario.'
+
+---
+
+<Image
+  alt={`manejo de imágenes image`}
+  src={`/static/images/blog/manejo-imagenes/manejo-imagenes.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Las imágenes suelen ser el recurso más pesado en una aplicación web. Si no se optimizan correctamente, pueden afectar significativamente el rendimiento, el SEO y la experiencia del usuario.
+
+---
+
+## 1. 🗜️ Compresión de imágenes
+
+Reducir el tamaño de las imágenes sin perder calidad perceptible.
+
+### 🧠 Concepto
+Eliminar información innecesaria para hacer archivos más ligeros.
+
+### 🛠 Ejemplo (herramientas)
+- TinyPNG
+- ImageOptim
+- Squoosh
+
+### 💻 Ejemplo CLI (Sharp - Node.js)
+
+```javascript id="c0mpr3ss"
+const sharp = require("sharp");
+
+sharp("input.jpg")
+  .resize(800)
+  .jpeg({ quality: 80 })
+  .toFile("output.jpg");
+````
+
+### ✅ Beneficios
+
+* Menor tiempo de carga
+* Menor consumo de ancho de banda
+
+---
+
+## 2. 🧩 Formatos modernos (WebP / AVIF)
+
+Nuevos formatos que ofrecen mejor compresión que JPG o PNG.
+
+### 🧠 Comparativa
+
+* **WebP** → Soporte amplio
+* **AVIF** → Mejor compresión, menor tamaño
+
+### 🛠 Ejemplo HTML
+
+```html id="w3bp4v1f"
+<picture>
+  <source srcset="image.avif" type="image/avif" />
+  <source srcset="image.webp" type="image/webp" />
+  <img src="image.jpg" alt="Imagen optimizada" />
+</picture>
+```
+
+### ✅ Beneficios
+
+* Hasta 50% menos tamaño
+* Mejor rendimiento
+
+---
+
+## 3. ⚡ Lazy Loading
+
+Carga imágenes solo cuando entran en el viewport.
+
+### 🧠 Concepto
+
+Evitar cargar imágenes que el usuario aún no ve.
+
+### 🛠 Ejemplo
+
+```html id="l4zyx1"
+<img src="image.jpg" loading="lazy" alt="Imagen" />
+```
+
+### 🚀 Beneficios
+
+* Mejora el First Load
+* Reduce consumo de datos
+
+---
+
+## 4. 📱 Responsive Images (`srcset`)
+
+Sirve diferentes tamaños de imagen según el dispositivo.
+
+### 🧠 Concepto
+
+No enviar imágenes grandes a dispositivos pequeños.
+
+### 🛠 Ejemplo
+
+```html id="srcs3t"
+<img
+  src="small.jpg"
+  srcset="small.jpg 480w, medium.jpg 768w, large.jpg 1200w"
+  sizes="(max-width: 600px) 480px, (max-width: 1024px) 768px, 1200px"
+  alt="Imagen responsive"
+/>
+```
+
+### ✅ Beneficios
+
+* Mejor rendimiento en móviles
+* Ahorro de ancho de banda
+
+---
+
+## 5. 🌍 CDN de imágenes
+
+Distribuye imágenes desde servidores cercanos al usuario.
+
+### 🧠 Concepto
+
+Reducir latencia usando ubicaciones geográficas.
+
+### 🛠 Ejemplo
+
+* Cloudflare Images
+* Imgix
+* Cloudinary
+
+### 🚀 Beneficios
+
+* Entrega rápida global
+* Transformaciones en tiempo real (resize, crop, format)
+
+---
+
+## 6. 🎨 Placeholder / Blur
+
+Mostrar una versión borrosa o placeholder mientras carga la imagen.
+
+### 🧠 Concepto
+
+Mejorar la percepción de carga.
+
+### 🛠 Ejemplo (React / Next.js)
+
+```jsx id="bl4r1mg"
+<Image
+  src="/image.jpg"
+  alt="Imagen"
+  placeholder="blur"
+  blurDataURL="data:image/jpeg;base64,..."
+/>
+```
+
+### ✅ Beneficios
+
+* Mejor UX
+* Evita saltos visuales (layout shift)
+
+---
+
+## ⚖️ Comparativa rápida
+
+| Estrategia         | Impacto rendimiento | Complejidad | Uso recomendado    |
+| ------------------ | ------------------- | ----------- | ------------------ |
+| Compresión         | Alto                | Baja        | Siempre            |
+| WebP / AVIF        | Alto                | Baja        | Producción moderna |
+| Lazy Loading       | Alto                | Baja        | Listas / feeds     |
+| Responsive Images  | Alto                | Media       | Multi-dispositivo  |
+| CDN                | Muy alto            | Baja        | Apps globales      |
+| Placeholder / Blur | Medio               | Baja        | UX visual          |
+
+---
+
+## 🧠 Estrategia recomendada
+
+Una implementación moderna combina varias técnicas:
+
+```txt id="1m4g3-str4t"
+Formato moderno + Compresión + Lazy Loading + CDN + Responsive + Placeholder
+```
+
+---
+
+## 🏁 Resumen
+
+Optimizar imágenes no es opcional, es clave para:
+
+* ⚡ Mejorar velocidad de carga
+* 📈 Aumentar SEO
+* 📱 Optimizar experiencia en móviles
+
+---
