@@ -1,0 +1,287 @@
+---
+title: Tipos de arquitecturas backend 🏗️
+date: '2026-04-27'
+tags: ['backend', 'arquitectura', 'software']
+draft: false
+images: ['/static/images/blog/arquitecturas-backend/arquitecturas-backend.png']
+summary: 'En este artículo, exploraremos los diferentes tipos de arquitecturas backend, sus características y cuándo es apropiado utilizarlas. Desde la arquitectura monolítica hasta la arquitectura de microservicios, cada enfoque tiene sus ventajas y desventajas.
+
+---
+
+<Image
+  alt={`arquitecturas backend image`}
+  src={`/static/images/blog/arquitecturas-backend/arquitecturas-backend.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Elegir la arquitectura backend correcta es una de las decisiones más importantes al construir una aplicación. Impacta directamente en la **escalabilidad, mantenibilidad y rendimiento** del sistema.
+
+---
+
+## 1. 🧱 Monolítica (Monolith)
+
+Toda la aplicación vive en un solo proyecto y se despliega como una única unidad.
+
+### 🧠 Concepto
+Un único código base que contiene:
+- Lógica de negocio  
+- API  
+- Acceso a datos  
+
+### 🛠 Ejemplo (Node.js + Express)
+
+```javascript
+app.get("/users", async (req, res) => {
+  const users = await db.getUsers();
+  res.json(users);
+});
+````
+
+### ✅ Ventajas
+
+* Fácil de desarrollar al inicio
+* Menor complejidad
+* Despliegue simple
+
+### ⚠️ Desventajas
+
+* Difícil de escalar a gran tamaño
+* Acoplamiento alto
+* Deploys más riesgosos
+
+### 🎯 Cuándo usarlo
+
+* MVPs
+* Proyectos pequeños/medianos
+* Equipos pequeños
+
+---
+
+## 2. 🧩 Microservicios
+
+Divide la aplicación en múltiples servicios independientes.
+
+### 🧠 Concepto
+
+Cada servicio maneja una funcionalidad específica.
+
+### 🛠 Ejemplo
+
+```txt
+Auth Service
+User Service
+Payment Service
+Notification Service
+```
+
+### ✅ Ventajas
+
+* Escalado independiente
+* Mejor mantenibilidad
+* Equipos trabajando en paralelo
+
+### ⚠️ Desventajas
+
+* Alta complejidad
+* Comunicación entre servicios
+* Debugging más difícil
+
+### 🎯 Cuándo usarlo
+
+* Sistemas grandes
+* Alto tráfico
+* Equipos múltiples
+
+---
+
+## 3. ⚡ Serverless
+
+No gestionas servidores, ejecutas funciones bajo demanda.
+
+### 🧠 Concepto
+
+Funciones que se ejecutan en la nube cuando ocurre un evento.
+
+### 🛠 Ejemplo (AWS Lambda)
+
+```javascript
+exports.handler = async (event) => {
+  return {
+    statusCode: 200,
+    body: JSON.stringify({ message: "Hello Serverless" }),
+  };
+};
+```
+
+### ✅ Ventajas
+
+* Escalado automático
+* Pago por uso
+* Deploy rápido
+
+### ⚠️ Desventajas
+
+* Cold starts
+* Limitaciones de ejecución
+* Debugging complejo
+
+### 🎯 Cuándo usarlo
+
+* APIs ligeras
+* MVPs rápidos
+* Procesos event-driven
+
+---
+
+## 4. 🧬 Arquitectura en capas (Layered / N-Tier)
+
+Divide la aplicación en capas bien definidas.
+
+### 🧠 Capas típicas
+
+* Controller (API)
+* Service (lógica)
+* Repository (datos)
+
+### 🛠 Ejemplo
+
+```javascript
+// Controller
+app.get("/users", userController.getUsers);
+
+// Service
+const getUsers = () => userRepository.findAll();
+
+// Repository
+const findAll = () => db.query("SELECT * FROM users");
+```
+
+### ✅ Ventajas
+
+* Código organizado
+* Separación de responsabilidades
+* Fácil mantenimiento
+
+### ⚠️ Desventajas
+
+* Puede volverse verboso
+* Overhead en apps pequeñas
+
+### 🎯 Cuándo usarlo
+
+* Apps empresariales
+* Backend estructurado
+
+---
+
+## 5. 🔌 Event-Driven (Arquitectura orientada a eventos)
+
+Los servicios se comunican mediante eventos.
+
+### 🧠 Concepto
+
+Un servicio emite eventos y otros reaccionan.
+
+### 🛠 Ejemplo
+
+```txt
+User Registered → Event → Send Email Service
+```
+
+### 🛠 Ejemplo (pseudo código)
+
+```javascript
+eventBus.emit("user.created", user);
+
+eventBus.on("user.created", sendWelcomeEmail);
+```
+
+### ✅ Ventajas
+
+* Bajo acoplamiento
+* Alta escalabilidad
+* Ideal para sistemas distribuidos
+
+### ⚠️ Desventajas
+
+* Difícil de depurar
+* Complejidad en trazabilidad
+
+### 🎯 Cuándo usarlo
+
+* Sistemas con muchas integraciones
+* Procesos asíncronos
+
+---
+
+## 6. 🧠 Hexagonal (Ports & Adapters)
+
+Separa el core de la aplicación de las dependencias externas.
+
+### 🧠 Concepto
+
+El dominio no depende de frameworks o bases de datos.
+
+### 🛠 Ejemplo
+
+```txt
+Core (Business Logic)
+  ↑
+Ports (Interfaces)
+  ↓
+Adapters (DB, APIs, UI)
+```
+
+### ✅ Ventajas
+
+* Alta testabilidad
+* Independencia tecnológica
+* Código limpio
+
+### ⚠️ Desventajas
+
+* Curva de aprendizaje
+* Mayor complejidad inicial
+
+### 🎯 Cuándo usarlo
+
+* Sistemas críticos
+* Aplicaciones con larga vida útil
+
+---
+
+## ⚖️ Comparativa rápida
+
+| Arquitectura   | Escalabilidad | Complejidad | Flexibilidad | Ideal para            |
+| -------------- | ------------- | ----------- | ------------ | --------------------- |
+| Monolito       | Media         | Baja        | Baja         | MVPs                  |
+| Microservicios | Muy alta      | Alta        | Alta         | Sistemas grandes      |
+| Serverless     | Alta          | Media       | Media        | Apps event-driven     |
+| En capas       | Media         | Media       | Media        | Apps empresariales    |
+| Event-Driven   | Muy alta      | Alta        | Alta         | Sistemas distribuidos |
+| Hexagonal      | Alta          | Alta        | Muy alta     | Software robusto      |
+
+---
+
+## 🧠 Arquitectura recomendada (realista)
+
+No necesitas elegir solo una. Las mejores soluciones combinan varias:
+
+```txt
+API (Layered) → Services → Events → Microservices → Serverless Workers
+```
+
+---
+
+## 🏁 Resumen
+
+No existe una arquitectura perfecta, solo la **adecuada para tu contexto**:
+
+* 🚀 Empieza con monolito
+* 📈 Evoluciona a capas
+* 🔥 Escala con microservicios o eventos
+* 🧠 Usa hexagonal si necesitas robustez extrema
+
+---
