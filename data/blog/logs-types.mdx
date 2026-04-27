@@ -1,0 +1,227 @@
+---
+title: Tipos de Logs en aplicaciones 📊
+date: '2026-04-28'
+tags: ['Backend', 'Logs', 'Observabilidad', 'Monitoreo']
+draft: false
+images: ['/static/images/blog/logs-types/logs-types.png']
+summary: 'En este artículo, exploraremos los diferentes tipos de logs que se pueden generar en una aplicación, su importancia y cómo utilizarlos para mejorar la observabilidad y el monitoreo de tus sistemas.'
+
+---
+
+<Image
+  alt={`logs types image`}
+  src={`/static/images/blog/logs-types/logs-types.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Los logs son esenciales para entender qué está pasando dentro de una aplicación. Son la base para el **debugging, monitoreo, seguridad y auditoría**.
+
+---
+
+## 1. ❌ Error Logs
+
+Registran fallos críticos o excepciones en la aplicación.
+
+### 🧠 ¿Qué incluyen?
+- Mensaje de error  
+- Stack trace  
+- Contexto (usuario, endpoint, payload)
+
+### 🛠 Ejemplo
+
+```javascript id="errl0g"
+try {
+  throw new Error("Error en la base de datos");
+} catch (err) {
+  logger.error("DB Error", {
+    message: err.message,
+    stack: err.stack,
+  });
+}
+````
+
+### 🚨 Cuándo usarlo
+
+* Fallos del sistema
+* Errores inesperados
+* Problemas en producción
+
+---
+
+## 2. 🌐 Access Logs
+
+Registran todas las peticiones que llegan al sistema.
+
+### 🧠 ¿Qué incluyen?
+
+* IP del cliente
+* Método HTTP
+* Ruta
+* Código de respuesta
+* Tiempo de respuesta
+
+### 🛠 Ejemplo (Express + Morgan)
+
+```javascript id="4cc355"
+app.use(require("morgan")("combined"));
+```
+
+### 📊 Uso
+
+* Monitoreo de tráfico
+* Análisis de uso
+* Seguridad
+
+---
+
+## 3. 🐛 Debug Logs
+
+Información detallada para desarrollo y debugging.
+
+### 🧠 Concepto
+
+Logs muy verbosos que ayudan a entender el flujo interno.
+
+### 🛠 Ejemplo
+
+```javascript id="d3bug1"
+logger.debug("Usuario obtenido", {
+  userId: id,
+  data: user,
+});
+```
+
+### ⚠️ Importante
+
+* No usar en producción (o con cuidado)
+* Puede afectar rendimiento
+
+---
+
+## 4. ⚠️ Warning Logs
+
+Alertan sobre posibles problemas que aún no rompen la app.
+
+### 🧠 Ejemplos
+
+* Uso de API deprecada
+* Datos inconsistentes
+* Configuración incorrecta
+
+### 🛠 Ejemplo
+
+```javascript id="w4rn1ng"
+if (!user.email) {
+  logger.warn("Usuario sin email", { userId: user.id });
+}
+```
+
+### 🎯 Objetivo
+
+Prevenir errores futuros
+
+---
+
+## 5. ℹ️ Info Logs
+
+Eventos normales dentro del sistema.
+
+### 🧠 Ejemplos
+
+* Login de usuario
+* Inicio de servidor
+* Acciones importantes
+
+### 🛠 Ejemplo
+
+```javascript id="1nf0l0g"
+logger.info("Usuario logueado", {
+  userId: user.id,
+  timestamp: new Date(),
+});
+```
+
+### ✅ Uso
+
+* Seguimiento de comportamiento
+* Métricas de negocio
+
+---
+
+## 6. 🧾 Audit Logs
+
+Registro detallado de acciones críticas para auditoría.
+
+### 🧠 ¿Qué incluyen?
+
+* Quién hizo la acción
+* Qué hizo
+* Cuándo
+* Desde dónde
+
+### 🛠 Ejemplo
+
+```javascript id="4ud1t"
+logger.info("Cambio de contraseña", {
+  userId: user.id,
+  ip: req.ip,
+  action: "password_change",
+});
+```
+
+### 🔐 Importancia
+
+* Seguridad
+* Cumplimiento (compliance)
+* Trazabilidad
+
+---
+
+## ⚖️ Niveles de logging (jerarquía)
+
+```txt id="l0g-l3v3l5"
+ERROR > WARN > INFO > DEBUG
+```
+
+---
+
+## 🧠 Buenas prácticas
+
+* Usa niveles correctamente (no todo es `error`)
+* No registres datos sensibles (passwords, tokens)
+* Usa formato estructurado (JSON)
+* Centraliza logs (ELK, Datadog, etc.)
+* Añade contexto (userId, requestId)
+* Implementa rotación de logs
+
+---
+
+## 🛠 Ejemplo completo (Winston)
+
+```javascript id="w1n570n"
+const winston = require("winston");
+
+const logger = winston.createLogger({
+  level: "info",
+  format: winston.format.json(),
+  transports: [
+    new winston.transports.Console(),
+    new winston.transports.File({ filename: "app.log" }),
+  ],
+});
+```
+
+---
+
+## 🏁 Resumen
+
+Un buen sistema de logs te permite:
+
+* 🔍 Detectar errores rápidamente
+* 📊 Entender el comportamiento del sistema
+* 🔐 Mejorar la seguridad
+* 🚀 Tomar decisiones basadas en datos
+
+---
