@@ -1,0 +1,263 @@
+---
+title: 🔐 Tipos de autenticación de API
+date: '2026-04-29'
+tags: ['Backend', 'Autenticación', 'APIs']
+draft: false
+images: ['/static/images/blog/api-authentication/api-authentication.png']
+summary: 'Explora los diferentes tipos de autenticación de API, sus ventajas y desventajas, y cómo elegir el adecuado para tu aplicación.'
+
+---
+
+<Image
+  alt={`api authentication image`}
+  src={`/static/images/blog/api-authentication/api-authentication.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>La autenticación es una pieza clave en cualquier API. Define **quién puede acceder** y **cómo se valida esa identidad**.
+
+---
+
+## 1. 🔑 API Key
+
+Una clave única que se envía en cada petición para identificar al cliente.
+
+### 🧠 ¿Cómo funciona?
+El cliente envía una clave en headers o query params.
+
+### 🛠 Ejemplo
+
+```http
+GET /api/data
+x-api-key: 123456abcdef
+````
+
+### ✅ Ventajas
+
+* Fácil de implementar
+* Ideal para servicios públicos
+
+### ⚠️ Desventajas
+
+* Baja seguridad si se expone
+* No identifica usuarios, solo apps
+
+### 🎯 Cuándo usarlo
+
+* APIs públicas
+* Proyectos simples
+* Integraciones básicas
+
+---
+
+## 2. 🎟️ Bearer Token (JWT)
+
+Uso de tokens (normalmente JWT) enviados en headers.
+
+### 🧠 ¿Cómo funciona?
+
+El usuario se autentica → recibe un token → lo envía en cada request.
+
+### 🛠 Ejemplo
+
+```http
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+```
+
+### 🛠 Ejemplo (Node.js)
+
+```javascript
+const token = jwt.sign({ userId: user.id }, "secret", {
+  expiresIn: "1h",
+});
+```
+
+### ✅ Ventajas
+
+* Stateless (no requiere sesiones)
+* Escalable
+* Muy usado en SPAs y móviles
+
+### ⚠️ Desventajas
+
+* Difícil invalidar tokens
+* Requiere buena gestión de expiración
+
+### 🎯 Cuándo usarlo
+
+* APIs modernas
+* Apps móviles
+* Frontend desacoplado
+
+---
+
+## 3. 🌐 OAuth 2.0
+
+Permite autenticarse mediante terceros (Google, GitHub, etc.).
+
+### 🧠 ¿Cómo funciona?
+
+El usuario autoriza a un proveedor externo que devuelve un token.
+
+### 🛠 Ejemplo (flujo simplificado)
+
+```txt
+Usuario → Google → Token → Tu API
+```
+
+### 🛠 Caso real
+
+* "Iniciar sesión con Google"
+* "Login con GitHub"
+
+### ✅ Ventajas
+
+* Alta seguridad
+* No manejas credenciales directamente
+
+### ⚠️ Desventajas
+
+* Implementación compleja
+* Dependencia de terceros
+
+### 🎯 Cuándo usarlo
+
+* Apps con login social
+* SaaS
+* Integraciones empresariales
+
+---
+
+## 4. 🪪 Basic Auth
+
+Usuario y contraseña enviados en cada request (codificados en base64).
+
+### 🧠 ¿Cómo funciona?
+
+```http
+Authorization: Basic dXNlcjpwYXNzd29yZA==
+```
+
+### ✅ Ventajas
+
+* Muy simple
+* Soportado nativamente
+
+### ⚠️ Desventajas
+
+* Inseguro sin HTTPS
+* No escalable
+
+### 🎯 Cuándo usarlo
+
+* Testing
+* APIs internas simples
+
+---
+
+## 5. 🔐 HMAC
+
+Firma criptográfica de cada request usando una clave secreta.
+
+### 🧠 ¿Cómo funciona?
+
+El cliente genera una firma basada en:
+
+* Payload
+* Timestamp
+* Secret
+
+### 🛠 Ejemplo (Node.js)
+
+```javascript
+const crypto = require("crypto");
+
+const signature = crypto
+  .createHmac("sha256", SECRET)
+  .update(payload)
+  .digest("hex");
+```
+
+### ✅ Ventajas
+
+* Muy seguro
+* Previene ataques de replay
+
+### ⚠️ Desventajas
+
+* Complejo de implementar
+* Requiere sincronización de tiempo
+
+### 🎯 Cuándo usarlo
+
+* APIs financieras
+* Integraciones críticas
+
+---
+
+## 6. 🍪 Session Auth
+
+Autenticación basada en sesiones almacenadas en el servidor.
+
+### 🧠 ¿Cómo funciona?
+
+* Usuario inicia sesión
+* Servidor crea sesión
+* Se guarda en cookies
+
+### 🛠 Ejemplo
+
+```javascript
+req.session.userId = user.id;
+```
+
+### ✅ Ventajas
+
+* Fácil de invalidar sesiones
+* Seguro con cookies httpOnly
+
+### ⚠️ Desventajas
+
+* No es stateless
+* Difícil de escalar sin almacenamiento distribuido
+
+### 🎯 Cuándo usarlo
+
+* Apps tradicionales (SSR)
+* Sistemas con login clásico
+
+---
+
+## ⚖️ Comparativa rápida
+
+| Método       | Seguridad | Escalabilidad | Complejidad | Uso típico         |
+| ------------ | --------- | ------------- | ----------- | ------------------ |
+| API Key      | Baja      | Alta          | Baja        | APIs públicas      |
+| JWT          | Alta      | Muy alta      | Media       | Apps modernas      |
+| OAuth 2.0    | Muy alta  | Alta          | Alta        | Login social       |
+| Basic Auth   | Baja      | Media         | Baja        | Testing            |
+| HMAC         | Muy alta  | Alta          | Alta        | APIs críticas      |
+| Session Auth | Alta      | Media         | Media       | Apps tradicionales |
+
+---
+
+## 🧠 Recomendación práctica
+
+* 🚀 Proyecto moderno → **JWT + Refresh Tokens**
+* 🔐 Seguridad avanzada → **OAuth 2.0 o HMAC**
+* 🧪 Pruebas rápidas → **Basic Auth o API Key**
+* 🏢 App clásica → **Session Auth**
+
+---
+
+## 🏁 Resumen
+
+La autenticación correcta depende de:
+
+* Tipo de aplicación
+* Nivel de seguridad requerido
+* Escalabilidad esperada
+
+---
