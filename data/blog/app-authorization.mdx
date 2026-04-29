@@ -1,0 +1,267 @@
+---
+title: 🔐 Estrategias de autorización en aplicaciones
+date: '2026-04-30'
+tags: ['autenticación', 'autorización', 'API', 'seguridad']
+draft: false
+images: ['/static/images/blog/app-authorization/app-authorization.png']
+summary: 'Explora los diferentes tipos de autorización en aplicaciones, sus ventajas y desventajas, y cómo elegir el adecuado para tu aplicación.'
+
+---
+
+<Image
+  alt={`app authorization image`}
+  src={`/static/images/blog/app-authorization/app-authorization.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>La **autorización** define *qué puede hacer un usuario* dentro de tu sistema, una vez autenticado. Es clave para proteger recursos, datos y funcionalidades.
+
+---
+
+## 1. 🛡️ Role-Based Access Control (RBAC)
+
+Permisos basados en roles (admin, user, editor, etc.).
+
+### 🧠 ¿Cómo funciona?
+Asignas roles a usuarios y cada rol tiene permisos predefinidos.
+
+### 🛠 Ejemplo
+
+```javascript
+const roles = {
+  admin: ["create", "read", "update", "delete"],
+  user: ["read"],
+};
+
+function can(user, action) {
+  return roles[user.role].includes(action);
+}
+````
+
+### ✅ Ventajas
+
+* Fácil de implementar
+* Escalable en sistemas simples
+
+### ⚠️ Desventajas
+
+* Poco flexible en casos complejos
+
+### 🎯 Cuándo usarlo
+
+* Apps tradicionales
+* Sistemas con jerarquías claras
+
+---
+
+## 2. 🔑 Permission-Based Access
+
+Permisos asignados directamente a usuarios o recursos.
+
+### 🧠 Concepto
+
+En lugar de roles, defines permisos específicos:
+
+* `user:create`
+* `post:edit`
+* `invoice:delete`
+
+### 🛠 Ejemplo
+
+```javascript
+function can(user, permission) {
+  return user.permissions.includes(permission);
+}
+```
+
+### ✅ Ventajas
+
+* Gran flexibilidad
+* Control fino
+
+### ⚠️ Desventajas
+
+* Difícil de mantener a gran escala
+
+### 🎯 Cuándo usarlo
+
+* Apps con lógica compleja
+* Sistemas personalizados
+
+---
+
+## 3. 🧠 Attribute-Based Access Control (ABAC)
+
+Acceso basado en atributos y contexto.
+
+### 🧠 ¿Qué evalúa?
+
+* Usuario (rol, edad, ubicación)
+* Recurso (propietario, tipo)
+* Contexto (hora, IP, dispositivo)
+
+### 🛠 Ejemplo
+
+```javascript
+function canAccess(user, resource) {
+  return user.id === resource.ownerId || user.role === "admin";
+}
+```
+
+### ✅ Ventajas
+
+* Muy flexible y potente
+* Ideal para reglas complejas
+
+### ⚠️ Desventajas
+
+* Implementación compleja
+* Difícil de depurar
+
+### 🎯 Cuándo usarlo
+
+* Sistemas empresariales
+* Apps con reglas dinámicas
+
+---
+
+## 4. 📂 Ownership Access
+
+Solo el dueño del recurso puede acceder o modificarlo.
+
+### 🧠 Concepto
+
+El acceso depende de la propiedad del recurso.
+
+### 🛠 Ejemplo
+
+```javascript
+if (resource.userId !== currentUser.id) {
+  throw new Error("No autorizado");
+}
+```
+
+### ✅ Ventajas
+
+* Simple
+* Seguro
+
+### ⚠️ Desventajas
+
+* Limitado si hay roles o colaboración
+
+### 🎯 Cuándo usarlo
+
+* Apps personales (notas, tareas)
+* CRUD básico
+
+---
+
+## 5. 🚩 Feature Flags
+
+Controlar acceso a funcionalidades según usuario, plan o entorno.
+
+### 🧠 ¿Cómo funciona?
+
+Activas/desactivas features dinámicamente.
+
+### 🛠 Ejemplo
+
+```javascript
+if (user.plan === "pro") {
+  enableFeature("advancedAnalytics");
+}
+```
+
+### ✅ Ventajas
+
+* Despliegues seguros
+* Testing en producción
+* Control por segmentos
+
+### ⚠️ Desventajas
+
+* Puede generar complejidad si no se gestiona bien
+
+### 🎯 Cuándo usarlo
+
+* SaaS
+* Lanzamiento progresivo
+* A/B testing
+
+---
+
+## 6. 🏢 Multi-Tenant Isolation
+
+Separación de datos entre clientes o empresas.
+
+### 🧠 Concepto
+
+Cada tenant (cliente) solo accede a sus propios datos.
+
+### 🛠 Ejemplo
+
+```javascript
+const data = await db.find({
+  tenantId: currentUser.tenantId,
+});
+```
+
+### ✅ Ventajas
+
+* Seguridad entre clientes
+* Escalabilidad en SaaS
+
+### ⚠️ Desventajas
+
+* Complejidad en diseño
+* Requiere buen modelado de datos
+
+### 🎯 Cuándo usarlo
+
+* Plataformas SaaS
+* Apps multiempresa
+
+---
+
+## ⚖️ Comparativa rápida
+
+| Estrategia    | Flexibilidad | Complejidad | Escalabilidad | Ideal para         |
+| ------------- | ------------ | ----------- | ------------- | ------------------ |
+| RBAC          | Media        | Baja        | Alta          | Apps simples       |
+| Permissions   | Alta         | Media       | Media         | Sistemas complejos |
+| ABAC          | Muy alta     | Alta        | Alta          | Empresas grandes   |
+| Ownership     | Baja         | Baja        | Media         | CRUD básico        |
+| Feature Flags | Alta         | Media       | Alta          | SaaS               |
+| Multi-Tenant  | Alta         | Alta        | Muy alta      | Plataformas SaaS   |
+
+---
+
+## 🧠 Arquitectura recomendada (realista)
+
+En la práctica, se combinan varias estrategias:
+
+```txt
+RBAC + Ownership + Feature Flags + Multi-Tenant
+```
+
+Ejemplo real:
+
+* RBAC → define roles
+* Ownership → protege datos
+* Feature flags → controla features
+* Multi-tenant → separa clientes
+
+---
+
+## 🏁 Resumen
+
+No existe una única estrategia perfecta. La clave está en:
+
+* 🔍 Entender tu dominio
+* 🔐 Definir reglas claras
+* ⚙️ Mantener el sistema simple al inicio
+
+---
