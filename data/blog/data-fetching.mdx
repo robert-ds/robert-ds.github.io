@@ -1,0 +1,264 @@
+---
+title: ⚡ Estrategias de carga de datos (Data Fetching) en aplicaciones web
+date: '2026-05-01'
+tags: ['data fetching', 'carga de datos', 'aplicaciones web', 'rendimiento', 'optimización']
+draft: false
+images: ['/static/images/blog/data-fetching/data-fetching.png']
+summary: 'En este artículo, exploraremos las diferentes estrategias de carga de datos (data fetching) en aplicaciones web, sus ventajas y desventajas, y cómo elegir la mejor opción para tu proyecto.'
+
+---
+
+<Image
+  alt={`data fetching image`}
+  src={`/static/images/blog/data-fetching/data-fetching.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>La forma en la que cargas datos impacta directamente en la **experiencia del usuario, rendimiento y escalabilidad** de tu aplicación.
+
+---
+
+## 1. ⚡ Fetch on Load
+
+Carga los datos cuando la página o componente se monta.
+
+### 🧠 ¿Cómo funciona?
+Se ejecuta la petición al iniciar el componente.
+
+### 🛠 Ejemplo (React)
+
+```javascript
+useEffect(() => {
+  fetch("/api/users")
+    .then(res => res.json())
+    .then(setUsers);
+}, []);
+````
+
+### ✅ Ventajas
+
+* Fácil de implementar
+* Datos siempre actualizados
+
+### ⚠️ Desventajas
+
+* Puede generar tiempos de carga lentos
+* Bloquea el render inicial
+
+### 🎯 Cuándo usarlo
+
+* Datos críticos para la vista
+* Dashboards simples
+
+---
+
+## 2. ⏳ Lazy Fetching
+
+Carga los datos solo cuando se necesitan.
+
+### 🧠 Concepto
+
+La petición se ejecuta bajo demanda (click, scroll, interacción).
+
+### 🛠 Ejemplo
+
+```javascript
+const loadData = async () => {
+  const res = await fetch("/api/details");
+  setData(await res.json());
+};
+```
+
+### ✅ Ventajas
+
+* Mejora el rendimiento inicial
+* Reduce consumo innecesario
+
+### ⚠️ Desventajas
+
+* Puede introducir delays en interacción
+
+### 🎯 Cuándo usarlo
+
+* Modales
+* Tabs
+* Secciones opcionales
+
+---
+
+## 3. 🚀 Prefetching
+
+Carga datos antes de que el usuario los necesite.
+
+### 🧠 Concepto
+
+Anticipas la navegación o acción del usuario.
+
+### 🛠 Ejemplo (React Query)
+
+```javascript
+queryClient.prefetchQuery("users", fetchUsers);
+```
+
+### ✅ Ventajas
+
+* UX rápida
+* Reduce tiempos de espera
+
+### ⚠️ Desventajas
+
+* Puede consumir recursos innecesarios
+
+### 🎯 Cuándo usarlo
+
+* Navegación entre páginas
+* Apps predictivas
+
+---
+
+## 4. 🔄 Polling
+
+Consulta datos en intervalos regulares.
+
+### 🧠 Concepto
+
+Se hacen requests cada cierto tiempo.
+
+### 🛠 Ejemplo
+
+```javascript
+setInterval(async () => {
+  const res = await fetch("/api/status");
+  setStatus(await res.json());
+}, 5000);
+```
+
+### ✅ Ventajas
+
+* Fácil de implementar
+* No requiere WebSockets
+
+### ⚠️ Desventajas
+
+* Ineficiente
+* Puede generar carga innecesaria
+
+### 🎯 Cuándo usarlo
+
+* Datos que cambian ocasionalmente
+* Sistemas simples
+
+---
+
+## 5. 📡 Real-time (WebSocket)
+
+Comunicación en tiempo real entre cliente y servidor.
+
+### 🧠 Concepto
+
+El servidor envía datos automáticamente sin necesidad de polling.
+
+### 🛠 Ejemplo
+
+```javascript
+const socket = new WebSocket("ws://localhost:3000");
+
+socket.onmessage = (event) => {
+  const data = JSON.parse(event.data);
+  setMessages(prev => [...prev, data]);
+};
+```
+
+### ✅ Ventajas
+
+* Tiempo real real 😉
+* Eficiente
+
+### ⚠️ Desventajas
+
+* Mayor complejidad
+* Manejo de conexiones
+
+### 🎯 Cuándo usarlo
+
+* Chats
+* Notificaciones
+* Trading / dashboards en vivo
+
+---
+
+## 6. 🧠 Caching (React Query / SWR)
+
+Almacena datos para evitar peticiones repetidas.
+
+### 🧠 Concepto
+
+Los datos se guardan temporalmente y se reutilizan.
+
+### 🛠 Ejemplo (React Query)
+
+```javascript
+const { data } = useQuery("users", fetchUsers, {
+  staleTime: 1000 * 60, // 1 minuto
+});
+```
+
+### ✅ Ventajas
+
+* Mejor rendimiento
+* Menos requests
+* UX más fluida
+
+### ⚠️ Desventajas
+
+* Manejo de invalidación
+* Posible data desactualizada
+
+### 🎯 Cuándo usarlo
+
+* Apps con muchas consultas
+* APIs costosas
+
+---
+
+## ⚖️ Comparativa rápida
+
+| Estrategia    | Rendimiento | Complejidad | UX        | Uso ideal          |
+| ------------- | ----------- | ----------- | --------- | ------------------ |
+| Fetch on Load | Media       | Baja        | Media     | Datos críticos     |
+| Lazy          | Alta        | Baja        | Media     | Carga bajo demanda |
+| Prefetch      | Alta        | Media       | Alta      | Navegación rápida  |
+| Polling       | Baja        | Baja        | Media     | Datos periódicos   |
+| Real-time     | Muy alta    | Alta        | Excelente | Apps en vivo       |
+| Caching       | Muy alta    | Media       | Excelente | Apps complejas     |
+
+---
+
+## 🧠 Estrategia recomendada (realista)
+
+En aplicaciones modernas se combinan varias:
+
+```txt
+Fetch on Load + Caching + Prefetch + Real-time (cuando aplica)
+```
+
+Ejemplo real:
+
+* Fetch inicial → carga datos
+* Cache → evita repetir llamadas
+* Prefetch → mejora navegación
+* WebSocket → actualiza en vivo
+
+---
+
+## 🏁 Resumen
+
+Elegir bien tu estrategia de data fetching puede:
+
+* ⚡ Mejorar el rendimiento
+* 🚀 Optimizar la experiencia de usuario
+* 💰 Reducir costos de infraestructura
+
+---
