@@ -1,0 +1,198 @@
+---
+title: 🧠 ¿Qué es una Decisión Arquitectónica?
+date: '2026-05-03'
+tags: ['programación', 'arquitectura de software', 'decisiones arquitectónicas']
+draft: false
+images: ['/static/images/blog/architectural-decision/architectural-decision.png']
+summary: 'En este artículo, exploraremos qué es una decisión arquitectónica, sus características principales, y cómo puede ayudarte a desarrollar aplicaciones de manera más eficiente.'
+
+---
+
+<Image
+  alt={`architectural decision image`}
+  src={`/static/images/blog/architectural-decision/architectural-decision.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+Una **decisión arquitectónica** es una elección importante sobre **cómo diseñar un sistema**, que impacta directamente en:
+
+* ⚙️ Funcionalidad (qué hace el sistema)
+* 🚀 Rendimiento
+* 🔐 Seguridad
+* 📈 Escalabilidad
+* 🧩 Mantenibilidad
+
+👉 No es cualquier decisión técnica, solo las que **tienen impacto significativo en la arquitectura**.
+
+---
+
+## 💡 Ejemplos reales (explicados)
+
+### 🧱 ¿Monolito o Microservicios?
+
+* **Monolito:** todo en una sola aplicación
+* **Microservicios:** app dividida en servicios independientes
+
+📌 Ejemplo:
+
+* Startup pequeña → Monolito (simple y rápido)
+* Sistema tipo Netflix → Microservicios (escalabilidad)
+
+---
+
+### 🗄️ ¿SQL o NoSQL?
+
+* **SQL (PostgreSQL, MySQL):**
+
+  * Datos estructurados
+  * Relaciones fuertes
+* **NoSQL (MongoDB, Redis):**
+
+  * Flexible
+  * Escalable horizontalmente
+
+📌 Ejemplo:
+
+* Banco → SQL
+* App de chats o logs → NoSQL
+
+---
+
+### 🔌 ¿REST o GraphQL?
+
+* **REST:** múltiples endpoints (`/users`, `/posts`)
+* **GraphQL:** un endpoint, consultas específicas
+
+📌 Ejemplo:
+
+* API simple → REST
+* App con frontend complejo → GraphQL
+
+---
+
+## 📄 ¿Qué es un ADR?
+
+**ADR (Architecture Decision Record)** = Documento donde registras decisiones arquitectónicas.
+
+👉 No es burocracia inútil: es memoria técnica del proyecto.
+
+---
+
+## 🧩 Estructura de un ADR (bien explicado)
+
+Un buen ADR incluye:
+
+### 1. 🏷️ Título
+
+> "Uso de GraphQL para la API pública"
+
+---
+
+### 2. 🌍 Contexto
+
+> Necesitamos optimizar el consumo de datos en frontend y reducir overfetching.
+
+---
+
+### 3. ✅ Decisión
+
+> Se implementará GraphQL en lugar de REST.
+
+---
+
+### 4. 🔄 Alternativas
+
+* REST (descartado)
+* gRPC (no aplica para frontend web)
+
+---
+
+### 5. ⚖️ Consecuencias
+
+✔ Ventajas:
+
+* Menos datos innecesarios
+* Mayor flexibilidad
+
+❌ Desventajas:
+
+* Mayor complejidad
+* Curva de aprendizaje
+
+---
+
+## 🔁 Ciclo de vida de un ADR
+
+1. 🟡 **Propuesto** → idea inicial
+2. 🔵 **En revisión** → discusión del equipo
+3. 🟢 **Aceptado** → decisión oficial
+4. ⚫ **Obsoleto** → ya no aplica
+5. 🔴 **Reemplazado** → sustituido por otro
+
+---
+
+## 🚀 ¿Por qué documentar decisiones?
+
+### 🧠 Evita repetir debates
+
+No vuelves a discutir lo mismo cada mes.
+
+---
+
+### 🤝 Alineación del equipo
+
+Todos entienden **por qué se eligió algo**.
+
+---
+
+### 🔍 Trazabilidad técnica
+
+Sabes qué decisión causó qué resultado.
+
+---
+
+### ⏳ Contexto para el futuro
+
+Tu “yo del futuro” (o nuevos devs) entenderán todo.
+
+---
+
+## 🧪 Ejemplo real completo de ADR
+
+```md id="8b1i0l"
+# ADR-001: Uso de Redis para caché
+
+## Contexto
+La API tiene tiempos de respuesta altos por consultas repetidas.
+
+## Decisión
+Se implementará Redis como caché en memoria.
+
+## Alternativas
+- Caché en base de datos (lento)
+- No usar caché (descartado)
+
+## Consecuencias
++ Respuestas más rápidas
++ Menor carga en DB
+- Complejidad adicional
+```
+
+---
+
+## ⚠️ Error común (muy importante)
+
+❌ Documentar TODO
+✔ Documentar SOLO decisiones importantes
+
+👉 Si documentas cosas triviales, nadie lo va a leer.
+
+---
+
+## 🔥 Mensaje clave
+
+👉 *Las decisiones arquitectónicas no solo definen tu sistema… también determinan su éxito o fracaso.*
+
+---
