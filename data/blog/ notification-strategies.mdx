@@ -1,0 +1,233 @@
+---
+title: 🔔 Estrategias de Notificaciones en Apps
+date: '2026-05-04'
+tags: ['notificaciones', 'estrategias', 'apps', 'desarrollo de software']
+draft: false
+images: ['/static/images/blog/notification-strategies/notification-strategies.png']
+summary: 'Explorando la importancia de las estrategias de notificaciones en aplicaciones móviles y cómo implementarlas eficazmente.'
+---
+
+<Image
+  alt={`Estrategias de Notificaciones en Apps image`}
+  src={`/static/images/blog/notification-strategies/notification-strategies.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Las notificaciones son un canal clave para **engagement, retención y comunicación** con el usuario. Pero mal usadas → generan abandono 😅
+
+👉 La clave no es enviar más… sino enviar **mejor**.
+
+---
+
+## 1️⃣ 📲 In-App Notifications
+
+Notificaciones dentro de la aplicación (UI).
+
+### 🧠 Cuándo usarlas:
+
+* Usuario ya está activo en la app
+* No necesitas interrumpirlo fuera
+
+### 📌 Ejemplos:
+
+* 🔔 “Tienes 3 mensajes nuevos”
+* 🆕 “Nueva funcionalidad disponible”
+* 💬 “Alguien respondió tu comentario”
+
+### 🛠️ Implementación:
+
+* React: estado global + componentes de notificación
+* Backend: eventos → frontend (WebSocket o polling)
+
+---
+
+## 2️⃣ 📡 Push Notifications
+
+Notificaciones fuera de la app (móvil o navegador).
+
+### 🧠 Cuándo usarlas:
+
+* Re-engagement
+* Alertas importantes
+
+### 📌 Ejemplos:
+
+* 🛒 “Tu carrito te está esperando”
+* ⏰ “Tu pedido está en camino”
+* 🎁 “Oferta por tiempo limitado”
+
+### 🛠️ Tecnologías:
+
+* Firebase Cloud Messaging (FCM)
+* Apple Push Notification Service (APNs)
+* Web Push API
+
+---
+
+## 3️⃣ 📧 Email Notifications
+
+### 🧠 Cuándo usarlas:
+
+* Información no urgente
+* Comunicación formal o detallada
+
+### 📌 Ejemplos:
+
+* ✔ Confirmación de registro
+* 🔐 Recuperación de contraseña
+* 📊 Reportes semanales
+
+### 🛠️ Stack típico:
+
+* Backend: Node + Nodemailer / SendGrid
+* Plantillas: HTML + variables dinámicas
+
+---
+
+## 4️⃣ 📱 SMS Notifications
+
+### 🧠 Cuándo usarlas:
+
+* Alta urgencia o seguridad
+* Cuando necesitas garantizar entrega
+
+### 📌 Ejemplos:
+
+* 🔑 Código OTP (2FA)
+* 🚨 Alertas de seguridad
+* 📦 Confirmación crítica
+
+### ⚠️ Ojo:
+
+* Más costoso
+* Debe usarse con moderación
+
+---
+
+## 5️⃣ ⚡ Real-time Notifications (WebSockets)
+
+### 🧠 Cuándo usarlas:
+
+* Necesitas actualización instantánea
+
+### 📌 Ejemplos:
+
+* 💬 Chats (WhatsApp, Slack)
+* 📈 Dashboard en vivo
+* 🤝 Colaboración (Google Docs)
+
+### 🛠️ Tecnologías:
+
+* WebSocket
+* Socket.io
+* Server-Sent Events (SSE)
+
+---
+
+## 6️⃣ 📅 Scheduled Notifications
+
+### 🧠 Cuándo usarlas:
+
+* Eventos predecibles o programados
+
+### 📌 Ejemplos:
+
+* 🎂 Cumpleaños
+* ⏰ Recordatorios
+* 📣 Campañas de marketing
+
+### 🛠️ Implementación:
+
+* Cron jobs
+* Queues (Bull, RabbitMQ)
+* Servicios como AWS EventBridge
+
+---
+
+# ⭐ Buenas prácticas (esto es lo que realmente marca la diferencia)
+
+## 🎯 Sé relevante
+
+No envíes notificaciones genéricas
+✔ Usa comportamiento del usuario
+
+---
+
+## 👤 Personaliza
+
+* Nombre
+* Preferencias
+* Historial
+
+👉 Ejemplo:
+❌ “Oferta disponible”
+✔ “Carlos, 20% en lo que te gusta”
+
+---
+
+## 🚫 No abuses
+
+* Demasiadas notificaciones = desinstalación
+* Define límites (rate limiting)
+
+---
+
+## 📊 Mide y optimiza
+
+* CTR (click rate)
+* Open rate
+* Conversiones
+
+👉 Usa A/B testing
+
+---
+
+## 🔐 Respeta la privacidad
+
+* GDPR / consentimiento
+* Permite desactivar notificaciones
+
+---
+
+# 🧠 Ejemplo real de arquitectura
+
+```txt
+Usuario → Acción
+        ↓
+Backend (evento)
+        ↓
+Queue (RabbitMQ / Kafka)
+        ↓
+Worker
+        ↓
+Servicio de notificaciones
+        ↓
+Push / Email / SMS
+```
+
+✔ Escalable
+✔ Desacoplado
+✔ Fácil de mantener
+
+---
+
+# 🔥 Error común
+
+❌ Usar un solo canal para todo
+✔ Elegir el canal según contexto
+
+👉 Ejemplo:
+
+* OTP → SMS
+* Promoción → Push
+* Reporte → Email
+
+---
+
+# 🚀 Mensaje clave
+
+👉 *No se trata de notificar más… se trata de notificar en el momento correcto, por el canal correcto y con el mensaje correcto.*
+
+---
