@@ -1,0 +1,118 @@
+---
+title: 🔌 ¿Qué es una API?
+date: '2026-05-05'
+tags: ['API', 'desarrollo de software', 'tecnología']
+draft: false
+images: ['/static/images/blog/api-description/api-description.png']
+summary: 'Es uno de los conceptos más fundamentales y poderosos en el desarrollo de software moderno'
+---
+
+<Image
+  alt={`api description image`}
+  src={`/static/images/blog/api-description/api-description.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Una API es básicamente un **intermediario** que permite que dos sistemas se comuniquen.
+
+Una API (**Application Programming Interface** o Interfaz de Programación de Aplicaciones) es un conjunto de reglas y protocolos que permiten que diferentes aplicaciones o sistemas se comuniquen entre sí. Es como un contrato que define cómo los desarrolladores pueden interactuar con una aplicación, servicio o plataforma.
+
+Sin ellas, la web tal como la conocemos —donde aplicaciones de diferentes empresas se comunican entre sí— simplemente no existiría.
+
+👉 Piensa en ella como un mesero:
+
+* Tú (usuario/app) haces un pedido
+* El mesero (API) lo lleva a la cocina (servidor)
+* La cocina prepara la comida (procesa datos)
+* El mesero te trae el resultado (respuesta)
+
+---
+
+## Cómo funciona una API?
+El proceso de comunicación de una API sigue un ciclo estándar llamado **Solicitud-Respuesta (Request-Response)**:
+
+1.  **Solicitud (Request):** Una aplicación envía un mensaje a un servidor. Este mensaje suele incluir:
+    * **Endpoint (URL):** La dirección a donde va el pedido (ej. `api.clima.com/v1/hoy`).
+    * **Método:** Qué quieres hacer (GET para leer datos, POST para enviar datos nuevos).
+    * **Headers:** Información extra como contraseñas o tokens de seguridad.
+2.  **Procesamiento:** El servidor recibe la solicitud, verifica si tienes permiso y busca la información.
+3.  **Respuesta (Response):** El servidor envía los datos de vuelta, generalmente en un formato ligero llamado **JSON**.
+
+👉 Todo esto ocurre en segundos.
+
+---
+
+## 🧾 Formato JSON
+
+Las APIs normalmente devuelven datos en formato **JSON**, que es fácil de leer:
+
+```json
+{
+  "ciudad": "Barranquilla",
+  "temperatura": 30,
+  "clima": "soleado"
+}
+```
+
+👉 Es como un diccionario estructurado.
+
+---
+
+## Tipos de APIs según su acceso
+No todas las APIs son iguales ni están disponibles para todos:
+
+* **APIs Públicas (Abiertas):** Disponibles para cualquier desarrollador (como la API de Google Maps o Twitter).
+* **APIs Privadas (Internas):** Se usan dentro de una misma empresa para conectar sus propios sistemas (ej. conectar la base de datos de empleados con la app de nómina).
+* **APIs de Socios (Partner APIs):** Solo accesibles para empresas que tienen un acuerdo comercial específico.
+
+---
+
+## Protocolos y Arquitecturas comunes
+Aunque existen varias formas de construir una API, estas son las más populares:
+
+* **REST (Representational State Transfer):** Es el estándar más usado en la web. Usa el protocolo HTTP y es famoso por ser ligero, escalable y fácil de usar con JSON.
+* **SOAP (Simple Object Access Protocol):** Más antiguo y estricto. Se usa mucho en entornos bancarios o sistemas legados donde la seguridad extrema es prioridad. Usa formato XML.
+* **GraphQL:** Una tecnología más moderna creada por Facebook que permite al cliente pedir exactamente los datos que necesita, ni más ni menos, evitando cargar información innecesaria.
+
+---
+
+## ¿Por qué son importantes las APIs?
+
+Las APIs permiten la **innovación rápida** y la **modularidad**:
+
+1.  **Abstracción:** Un desarrollador no necesita saber cómo funciona el algoritmo de procesamiento de pagos de Stripe; solo "llama" a la API y el pago sucede.
+2.  **Integración:** Permiten que apps distintas trabajen juntas. Por ejemplo, cuando usas "Iniciar sesión con Google" en una app de juegos, estás usando una API.
+3.  **Seguridad:** Funcionan como un filtro. El servidor no expone toda su base de datos al público, solo los "puntos de entrada" que la API permite.
+4.  **Automatización:** Permiten que las máquinas hablen con máquinas, eliminando la necesidad de intervención humana en procesos repetitivos.
+
+---
+
+## Ejemplos de la vida real
+* **Clima en el móvil:** Tu app de clima no tiene satélites propios; consulta la API de un servicio meteorológico.
+* **Pagos Online:** Una tienda de ropa usa la API de PayPal para procesar transacciones sin tener que manejar datos bancarios sensibles.
+* **Redes Sociales:** Cuando compartes un artículo de un blog en Facebook mediante un botón, ese botón usa la API de Facebook para publicar el contenido.
+
+---
+
+## 💡 Consejo práctico
+
+Si estás aprendiendo desarrollo:
+
+* Empieza con **APIs públicas**
+* Usa herramientas como Postman
+* Aprende a leer JSON
+* Haz proyectos pequeños (ej: app del clima)
+
+---
+
+## 🧠 Idea clave
+
+> Las APIs son el **lenguaje invisible** con el que se comunican las aplicaciones.
+
+---
+
+## Resumen técnico
+
+Si eres desarrollador, piensa en la API como el **contrato** de un servicio: define qué puedes pedir, cómo debes pedirlo y qué recibirás a cambio. Dominar el consumo y la creación de APIs es, posiblemente, la habilidad más crítica en el desarrollo web hoy en día.
