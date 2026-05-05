@@ -1,0 +1,118 @@
+---
+title: 🧠 ¿Qué es un diccionario (Map / HashMap)?
+date: '2026-05-06'
+tags: ['diccionario', 'programación', 'tecnología']
+draft: false
+images: ['/static/images/blog/dictionary/dictionary.png']
+summary: 'En el mundo de las estructuras de datos, los Diccionarios (también conocidos como Maps, HashMaps o Objetos Literales en JS) son, posiblemente, la herramienta más utilizada después de los arrays'
+---
+
+<Image
+  alt={`dictionary image`}
+  src={`/static/images/blog/dictionary/dictionary.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Un diccionario te permite encontrar cualquier dato **al instante usando una clave**, sin perder tiempo buscando.
+
+---
+
+## 🧠 ¿Qué es un Diccionario (Map / HashMap)?
+
+Un diccionario es una estructura de datos que almacena elementos en pares de **Llave (Key)** y **Valor (Value)**. A diferencia de un array, donde accedes a los elementos por su índice numérico ($0, 1, 2...$), en un diccionario accedes a la información mediante una clave única.
+
+> **Regla de oro:** En un diccionario, las llaves son únicas. No puedes tener dos llaves iguales, pero sí puedes tener valores repetidos en llaves distintas.
+
+Ejemplo:
+
+```json
+{
+  "nombre": "Ana",
+  "edad": 25
+}
+```
+
+* **clave**: identificador único
+* **valor**: dato asociado
+
+---
+
+## 💡 Idea clave
+
+* Cada clave es **única**
+* Permite acceso **directo** (sin recorrer todo)
+* Está optimizado para búsquedas rápidas ⚡
+
+---
+
+## 👉 ¿Cómo funciona por dentro? (El Hashing)
+
+Aquí es donde entra el nombre **HashMap**. Cuando guardas una llave, la computadora no la busca recorriendo toda la lista. Usa una **Función Hash**.
+
+1.  La **Función Hash** toma tu llave (ej. "id") y la convierte en un número matemático complejo.
+2.  Ese número apunta a una dirección de memoria específica (un "bucket").
+3.  Esto permite que encontrar un valor sea casi instantáneo, sin importar si tienes 10 o 1,000,000 de registros.
+
+>No busca uno por uno como una lista.
+
+---
+
+## 🧩 ¿Dónde se usa?
+
+* Sistemas de usuarios (ID → datos)
+* Configuraciones (clave → valor)
+* Cachés ⚡
+* APIs (respuestas en JSON)
+* Bases de datos
+
+---
+
+## ✅ Ventajas
+
+* 🚀 Muy rápido → acceso en **O(1)**
+* 🎯 Acceso directo
+* 🔧 Flexible (claves personalizadas)
+* 📈 Escalable
+
+---
+
+## ⚠️ Consideraciones
+
+* Usa más memoria que otras estructuras
+* No mantiene orden (en algunos lenguajes)
+* Puede haber **colisiones** (dos claves con mismo hash)
+
+---
+
+## 🔥 ¿Por qué es tan importante?
+
+Porque permite:
+
+* Búsquedas instantáneas
+* Sistemas eficientes
+* Manejo de grandes volúmenes de datos
+
+👉 Es base de casi todo: APIs, bases de datos, backend moderno.
+
+---
+
+## Diferencias clave: Map vs. HashMap vs. Object
+
+Dependiendo del lenguaje, los términos varían un poco:
+
+| Concepto | Descripción |
+| :--- | :--- |
+| **Map** | Término genérico para la estructura llave-valor. En JS, `Map` es un objeto que recuerda el orden de inserción. |
+| **HashMap** | Implementación específica que usa *hashing* para máxima velocidad. Muy común en Java y C#. |
+| **Object** | En JavaScript, un objeto literal puede ser utilizado como un diccionario, pero no mantiene el orden de inserción. |
+
+---
+
+## 🧠 Idea final
+
+> Un diccionario te permite encontrar cualquier dato **al instante usando una clave**, sin perder tiempo buscando.
+
+---
+
