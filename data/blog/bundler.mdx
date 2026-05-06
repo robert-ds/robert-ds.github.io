@@ -1,0 +1,137 @@
+---
+title: 📦 ¿Qué es un Bundler?
+date: '2026-05-07'
+tags: ['bundler', 'programación', 'tecnología']
+draft: false
+images: ['/static/images/blog/bundler/bundler.png']
+summary: 'Un bundler es una herramienta que toma múltiples archivos y los combina en uno o varios archivos para optimizar la carga de una aplicación web'
+---
+
+<Image
+  alt={`bundler image`}
+  src={`/static/images/blog/bundler/bundler.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>En los inicios de la web, bastaba con un archivo `index.html` y un `script.js`. Pero hoy, nuestras aplicaciones tienen cientos de archivos, dependencias de npm, imágenes y archivos CSS (o SASS). Un **Bundler** es la herramienta que toma este caos de archivos y los transforma en un paquete optimizado y listo para producción.
+
+Es una herramienta que toma todos los archivos de tu proyecto:
+
+* JavaScript 🟨
+* CSS 🎨
+* Imágenes 🖼️
+* Otros recursos
+
+👉 y los convierte en **uno o pocos archivos optimizados** para producción.
+
+---
+
+## ⚡ ¿Por qué lo necesitamos?
+Los navegadores modernos han mejorado mucho, pero siguen teniendo dificultades para manejar cientos de solicitudes HTTP simultáneas para archivos pequeños. Además, los desarrolladores usamos sintaxis que el navegador no entiende directamente (como TypeScript, JSX o módulos de ES6 antiguos).
+
+El Bundler resuelve tres problemas críticos:
+*   **Gestión de Dependencias:** Entiende cómo un archivo depende de otro.
+*   **Compatibilidad:** Transforma código moderno a versiones que todos los navegadores entiendan.
+*   **Rendimiento:** Reduce el tamaño de los archivos (minificación) y agrupa archivos para que la carga sea más rápida.
+
+Un bundler no es opcional en proyectos grandes, sirve para:
+
+* Reducir el tamaño del proyecto 📉
+* Optimizar recursos
+* Preparar el código para producción
+
+---
+
+## ⚙️ El Proceso: ¿Cómo funciona un Bundler?
+
+El funcionamiento se puede resumir en tres etapas principales:
+
+1.  **Dependency Graph (Grafo de Dependencias):** El bundler empieza por un "punto de entrada" (generalmente `index.js`). Lee los `import` y `require`, y rastrea todos los archivos conectados para crear un mapa de todo lo que tu app necesita.
+2.  **Transformación:** Mientras recorre el mapa, utiliza "loaders" o "plugins" para convertir archivos que no son JS (como CSS, imágenes o TypeScript) en módulos válidos de JavaScript.
+3.  **Output (Salida):** Genera uno o varios archivos finales (los llamados *bundles*) que están minificados, comprimidos y listos para ser servidos al usuario.
+
+4. Analiza tu proyecto
+5. Detecta dependencias (imports/exports)
+6. Agrupa archivos
+7. Aplica optimizaciones
+
+👉 Básicamente transforma muchos archivos en algo más eficiente.
+
+---
+
+## ⭐ Funciones Clave de un Bundler Moderno
+
+Para que un Bundler sea eficiente (como mencionamos en las estrategias de rendimiento), debe incluir:
+
+*   **Tree Shaking:** Es el proceso de eliminar el "código muerto". Si importas una librería gigante pero solo usas una función, el bundler "sacude el árbol" y solo deja el código que realmente se ejecuta.
+*   **Hot Module Replacement (HMR):** Permite ver los cambios en el navegador en tiempo real mientras programas, sin recargar toda la página.
+*   **Minificación y Compresión:** Elimina espacios en blanco, comentarios y renombra variables para que el archivo final pese lo menos posible.
+* **Code Splitting** → divide el código en partes (carga por demanda)
+* **Optimización automática**
+* Soporte para múltiples tipos de archivos
+
+---
+
+## 💡 Los Bundlers más populares hoy
+
+| Bundler | Características |
+| :--- | :--- |
+| **Webpack** | El estándar de la industria. Es extremadamente configurable y tiene un ecosistema gigante, aunque su configuración puede ser compleja. |
+| **Vite** | El favorito actual por su velocidad. Usa ES Modules nativos durante el desarrollo, lo que lo hace casi instantáneo. |
+| **Rollup** | Muy utilizado para crear librerías, ya que genera bundles muy limpios y eficientes con un excelente *tree shaking*. |
+| **Parcel** | El bundler "zero config". Ideal para proyectos rápidos donde no quieres pasar tiempo configurando archivos JSON. |
+| **esbuild** | El más rápido del mercado, escrito en Go. Es ideal para proyectos grandes que necesitan tiempos de construcción ultrarrápidos. |
+| **Turbopack** | Nueva generación de bundler, creada por el equipo de Vite, promete ser aún más rápida que esbuild. |
+
+---
+
+## 🧩 Ejemplo simple
+
+Imagina que tienes:
+
+```
+main.js
+styles.css
+utils.js
+logo.png
+```
+
+👉 El bundler lo convierte en algo como:
+
+```
+bundle.js
+bundle.css
+assets/
+```
+
+Todo optimizado y listo para el navegador.
+
+---
+
+## 💡 Tips prácticos
+
+* Usa **Vite** para proyectos modernos (rápido y simple)
+* Aprende lo básico antes de configuraciones avanzadas
+* Evita sobreconfigurar sin necesidad
+* Siempre genera build para producción
+
+---
+
+## 🧠 ¿Por qué es tan importante?
+
+Porque permite:
+
+* Apps más rápidas ⚡
+* Menos archivos que cargar
+* Mejor experiencia de usuario
+* Proyectos escalables
+
+---
+
+## Resumen
+
+Si el código es el material de construcción, el **Bundler** es la maquinaria que ensambla las piezas, pule las superficies y entrega la casa terminada. Sin él, manejar aplicaciones modernas como React, Vue o Angular sería una pesadilla logística.
+
+> Un bundler convierte tu proyecto en una versión **optimizada, rápida y lista para producción**.
