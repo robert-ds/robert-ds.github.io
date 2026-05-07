@@ -1,0 +1,141 @@
+---
+title: 🌐 ¿Qué es un CDN (Content Delivery Network)?
+date: '2026-05-08'
+tags: ['cdn', 'programación', 'tecnología']
+draft: false
+images: ['/static/images/blog/cdn/cdn.png']
+summary: 'Un CDN es una red de servidores distribuidos que entregan contenido web a los usuarios según su ubicación geográfica para mejorar el tiempo de carga y el rendimiento de la aplicación'
+---
+
+<Image
+  alt={`cdn image`}
+  src={`/static/images/blog/cdn/cdn.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Un CDN es una red de servidores distribuidos por diferentes partes del mundo que se encarga de entregar contenido web de forma más rápida y eficiente.
+
+👉 Su objetivo es acercar el contenido al usuario.
+
+---
+
+## 🧩 ¿Cómo funciona un CDN?
+
+En lugar de que todos los usuarios del mundo se conecten a un único servidor central (llamado **Servidor de Origen**), se conectan al servidor del CDN que esté más cerca de su ubicación física. Estos servidores locales se conocen como **Edge Servers** (Servidores de Borde).
+
+---
+
+## ⚡ Idea principal
+
+Cuando visitas una página web, el CDN entrega archivos como:
+
+* Imágenes 🖼️
+* Videos 🎥
+* CSS 🎨
+* JavaScript 📜
+* Fuentes 🔤
+
+desde el servidor más cercano a tu ubicación.
+
+---
+
+## 🧠 El proceso en 3 pasos:
+1.  **Solicitud:** El usuario ingresa a tu URL.
+2.  **Enrutamiento:** El CDN detecta la ubicación del usuario y lo dirige al *Edge Server* más cercano.
+3.  **Entrega:** Si el servidor tiene una copia guardada (caché) de tus archivos (JS, CSS, Imágenes), se los entrega instantáneamente. Si no, los pide al origen una sola vez y los guarda para el siguiente usuario.
+
+👉 Esto reduce tiempo de carga y latencia.
+
+---
+
+## 🎯 Idea visual
+
+Piensa en un CDN como una cadena de sucursales:
+
+* Sin CDN → todo viene desde una sola oficina 🏢
+* Con CDN → recibes el contenido desde la sucursal más cercana 📍
+
+---
+
+## 🚀 ¿Para qué sirve?
+
+* Acelerar páginas web ⚡
+* Reducir carga del servidor principal
+* Mejorar disponibilidad
+* Soportar muchos usuarios al mismo tiempo
+* Proteger contra ataques DDoS 🛡️
+
+---
+
+## 🎟️ Beneficios clave para el Frontend
+
+### ⚡ Reducción de la Latencia
+Al reducir la distancia física entre los datos y el usuario, el tiempo de respuesta (TTFB - *Time to First Byte*) disminuye drásticamente.
+
+### 🛡️ Disponibilidad y Escalabilidad
+Si tu servidor de origen se cae o recibe un pico masivo de tráfico, el CDN puede seguir sirviendo la versión en caché de tu sitio, evitando que la web quede fuera de servicio.
+
+### 🔒 Seguridad Mejorada
+Muchos CDNs modernos actúan como un escudo, ofreciendo protección contra ataques **DDoS** y filtrando tráfico malicioso antes de que llegue a tu servidor real.
+
+---
+
+## ⭐ Características importantes
+
+* Distribución global 🌎
+* Balanceo de carga
+* Optimización automática de archivos
+
+---
+
+## 🛠 ¿Qué archivos se deben servir por CDN?
+
+Históricamente, los CDNs se usaban solo para archivos estáticos, pero hoy manejan casi todo:
+* **Archivos Estáticos:** Imágenes (PNG, WebP), videos y fuentes.
+* **Librerías de Frontend:** Los bundles de JavaScript y archivos CSS generados por tu *Bundler*.
+* **Contenido Dinámico:** Gracias a tecnologías como *Edge Computing*, algunos CDNs pueden ejecutar lógica de código cerca del usuario.
+
+---
+
+## 🧩 Ejemplo práctico
+
+Sin CDN:
+
+```id="h2s7lq"
+Usuario → Servidor en EE.UU.
+```
+
+Con CDN:
+
+```id="w9q2mk"
+Usuario → Nodo CDN cercano → Contenido
+```
+
+👉 Mucho más rápido.
+
+---
+
+## 🌐 CDNs Populares en la industria
+
+| Proveedor | Ideal para... |
+| :--- | :--- |
+| **Cloudflare** | Seguridad y facilidad de uso (tiene un plan gratuito excelente). |
+| **CloudFront (AWS)** | Proyectos que ya están integrados en el ecosistema de Amazon. |
+| **Vercel / Netlify** | Despliegue automático de aplicaciones modernas (React, Next.js). Tienen su propio CDN optimizado. |
+| **Akamai** | Soluciones empresariales a gran escala y streaming de video. |
+
+---
+
+## 🏁 Resumen
+
+### CDN = velocidad + disponibilidad + seguridad
+
+Ayuda a que las aplicaciones y sitios web carguen más rápido al distribuir el contenido globalmente.
+
+---
+
+## 🧠 Mensaje clave
+
+> Un CDN acerca el contenido al usuario para que las aplicaciones sean más rápidas, estables y seguras.
