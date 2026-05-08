@@ -1,0 +1,154 @@
+---
+title: 🧩 ¿Qué es la deuda técnica?
+date: '2026-05-09'
+tags: ['deuda técnica', 'software', 'desarrollo']
+draft: false
+images: ['/static/images/blog/deuda-tecnica/deuda-tecnica.png']
+summary: 'La deuda técnica es el costo futuro de tomar decisiones rápidas o “temporales” en el desarrollo de software.'
+---
+
+<Image
+  alt={`deuda técnica image`}
+  src={`/static/images/blog/deuda-tecnica/deuda-tecnica.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>👉 Es cuando haces algo “rápido” hoy, pero luego será más difícil de mantener, mejorar o escalar.
+
+El interés que pagas por el código rápido
+
+En el desarrollo de software, existe una presión constante por entregar nuevas funcionalidades. A veces, para cumplir con una fecha de entrega, tomamos "atajos" en el código. Esos atajos no son necesariamente errores, sino decisiones de diseño que priorizan la velocidad actual sobre la mantenibilidad futura. A esto lo llamamos **Deuda Técnica**.
+
+---
+
+## 📚 ¿Cómo funciona la metáfora?
+
+Al igual que un préstamo bancario:
+
+* **El Capital:** Es el tiempo que te ahorras hoy al no hacer las cosas de la manera "correcta" o más robusta.
+* **El Interés:** Es el esfuerzo extra que tendrás que dedicar en el futuro para trabajar sobre ese código desordenado o para corregirlo.
+
+Si dejas que la deuda técnica crezca demasiado sin "pagarla" (refactorizar), los intereses pueden llegar a ser tan altos que el equipo ya no pueda entregar nada nuevo, porque todo su tiempo se va en arreglar lo que ya existe.
+
+Esos intereses aparecen como:
+
+* Bugs
+* Código difícil de entender
+* Desarrollo más lento
+* Problemas de rendimiento
+
+---
+
+## ⚙️ ¿Cómo se genera?
+
+La deuda técnica aparece cuando:
+
+* Se escribe código apresurado
+* No hay buenas prácticas
+* Falta documentación
+* Se duplican soluciones
+* No se hacen pruebas (testing)
+* Se pospone refactorización
+
+---
+
+## 😵 Tipos de Deuda Técnica
+
+No toda la deuda es igual. Martin Fowler la clasifica en un cuadrante basado en la **intención** y la **prudencia**:
+
+1. **Imprudente y Deliberada:** "No tenemos tiempo para pruebas, solo escribe el código y súbelo". (Muy peligrosa).
+2. **Prudente y Deliberada:** "Necesitamos lanzar esto ya para validar el mercado. Sabemos que el diseño no es perfecto, pero lo refactorizaremos en el siguiente sprint".
+3. **Imprudente e Inadvertida:** Ocurre cuando el equipo no tiene la experiencia suficiente y diseña mal sin saberlo.
+4. **Prudente e Inadvertida:** Ocurre en equipos expertos que, después de terminar el proyecto, se dan cuenta de que había una mejor forma de hacerlo. Es parte del aprendizaje natural.
+
+---
+
+## 🧠 Ejemplo sencillo
+
+Imagina este código:
+
+```javascript id="2mx81d"
+if(userType == 1){
+  // admin
+}
+if(userType == 2){
+  // editor
+}
+```
+
+Funciona ✔️
+Pero con el tiempo:
+
+* aparecen más tipos de usuario
+* el código crece desordenado
+* mantenerlo se vuelve difícil
+
+👉 Eso genera deuda técnica.
+
+---
+
+## 📈 ¿Cómo detectar que tienes mucha deuda?
+
+Si notas estos síntomas en tu proyecto, es hora de encender las alarmas:
+
+* **Velocidad en caída:** Cada vez tardas más en implementar tareas que antes eran sencillas.
+* **Efecto dominó:** Arreglas un bug en un módulo y aparecen tres nuevos en partes del sistema que no deberían estar relacionadas.
+* **Miedo al código:** El equipo evita tocar ciertas partes del sistema ("No toques eso, que si lo mueves se cae todo").
+* **Documentación nula:** Nadie sabe realmente cómo funciona un proceso crítico y el código es ilegible.
+
+---
+
+## 🛠️ ¿Cómo reducirla?
+
+* Refactorizar código regularmente
+* Mantener buenas prácticas
+* Hacer testing ✅
+* Documentar procesos 📚
+* Revisiones de código (code review)
+* Mejorar arquitectura gradualmente
+
+---
+
+## 👉 Estrategias para gestionar la deuda
+
+Ignorar la deuda no la hace desaparecer. Aquí te digo cómo manejarla:
+
+* **Regla del Boy Scout:** "Deja el código un poco más limpio de como lo encontraste". Si vas a tocar un archivo para una tarea, aprovecha para limpiar una pequeña parte.
+* **Sprints de Refactorización:** Dedica un porcentaje de cada ciclo (por ejemplo, el 20%) exclusivamente a pagar deuda técnica y mejorar la arquitectura.
+* **Visibilidad:** Mantén un registro de la deuda. Si deciden tomar un atajo, documéntalo y crea un ticket en el backlog para solucionarlo después.
+* **Pruebas Automatizadas:** La mejor forma de pagar deuda sin romper nada es tener una buena suite de tests que te respalde mientras refactorizas.
+
+---
+
+## 🚀 ¿Por qué es importante?
+
+Porque una deuda técnica grande puede:
+
+* detener proyectos
+* volver difícil agregar funciones
+* afectar usuarios y negocio
+
+👉 Muchas apps lentas o inestables tienen años de deuda acumulada.
+
+---
+
+## 🧩 Señales de alerta
+
+* “Nadie quiere tocar ese módulo” 😅
+* Cada cambio rompe algo
+* El código es difícil de leer
+* Hay demasiados parches temporales
+
+---
+
+## 🏁 Resumen
+
+La deuda técnica no es "mala" por definición; es una herramienta estratégica. A veces, pedir un "préstamo" para llegar primero al mercado es la decisión correcta para el negocio. El problema no es tener deuda, el problema es **no tener un plan para pagarla**.
+
+Como ingenieros, nuestra responsabilidad es mantener el equilibrio entre la velocidad de entrega y la salud del código a largo plazo.
+
+## 🧠 Mensaje clave
+
+> La deuda técnica no se elimina ignorándola; se controla manteniendo un equilibrio entre velocidad y calidad del software.
