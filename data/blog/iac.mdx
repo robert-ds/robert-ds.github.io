@@ -1,0 +1,204 @@
+---
+title: ☁️ Infrastructure as Code (IaC)
+date: '2026-05-10'
+tags: ['infrastructure', 'code', 'devops', 'cloud']
+draft: false
+images: ['/static/images/blog/iac/iac.png']
+summary: 'En el mundo del desarrollo moderno y DevOps, la **Infraestructura como Código (IaC)** es lo que permite que una aplicación escale de 10 a 10,000 usuarios en cuestión de minutos.'
+---
+
+<Image
+  alt={`IaC image`}
+  src={`/static/images/blog/iac/iac.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Infrastructure as Code (IaC) es una práctica que permite crear y administrar infraestructura usando código en lugar de configuraciones manuales.
+
+## 💡¿Qué es Infrastructure as Code (IaC)? Gestiona servidores como si fueran software
+
+Hace años, si un desarrollador necesitaba un servidor, tenía que pedirlo a un equipo de sistemas que configuraba físicamente una máquina o hacía clic manualmente en un panel de control. Hoy, gracias a la **Infraestructura como Código (IaC)**, podemos crear servidores, bases de datos y redes escribiendo simples archivos de texto.
+
+Con IaC puedes definir:
+
+* Servidores 🖥️
+* Redes 🌐
+* Bases de datos 🗄️
+* Balanceadores ⚖️
+* Recursos cloud ☁️
+
+usando archivos de código. Esto hace que la infraestructura sea tan fácil de versionar, compartir y automatizar como el código de tu aplicación.
+
+👉 En vez de crear servidores “a mano”, escribes archivos de configuración que automatizan todo.
+
+---
+
+## ⚙️ ¿Cómo funciona?
+
+### Flujo básico:
+
+1. Escribes archivos de configuración
+2. Defines recursos e infraestructura
+3. Una herramienta interpreta el código
+4. Se crean automáticamente los recursos
+
+👉 Todo sin intervención manual.
+
+---
+
+## ⚡ Los dos enfoques: Declarativo vs. Imperativo
+
+A la hora de escribir IaC, existen dos filosofías principales:
+
+* **Enfoque Declarativo (El "Qué"):** Tú defines el estado final deseado. "Quiero 3 servidores web y una base de datos SQL". La herramienta se encarga de averiguar cómo llegar a ese estado. (Ejemplo: **Terraform**, **CloudFormation**).
+* **Enfoque Imperativo (El "Cómo"):** Tú defines los pasos exactos que la herramienta debe seguir. "Crea un servidor, luego instala Node.js, luego abre el puerto 80". (Ejemplo: **Ansible**, scripts de Bash).
+
+---
+
+## 🧠 Idea visual
+
+En lugar de:
+
+```id="1x9a7v"
+Click → Click → Configurar → Crear servidor
+```
+
+Ahora haces:
+
+```yaml id="5m2r8c"
+server:
+  cpu: 2
+  memory: 4GB
+  region: us-east
+```
+
+👉 Y la infraestructura se genera automáticamente.
+
+---
+
+## ☸️ Beneficios de tratar tu infraestructura como código
+
+¿Por qué los desarrolladores web aman la IaC? Por las mismas razones que aman Git:
+
+### ✅ Repetibilidad y Consistencia
+
+Si tu entorno de "Staging" y el de "Producción" están definidos por el mismo código, garantizas que sean idénticos. Se acabó el clásico *"en mi máquina funciona pero en el servidor no"*.
+
+### ✅ Control de Versiones
+
+Puedes subir tu infraestructura a GitHub o GitLab. Si algo sale mal, puedes hacer un **Rollback** a la versión anterior de tu infraestructura con un solo comando.
+
+### ✅ Velocidad y Eficiencia
+
+Puedes desplegar arquitecturas complejas en múltiples regiones del mundo simultáneamente en segundos.
+
+### ✅ Documentación "Viva"
+
+El código de la infraestructura sirve como documentación. Cualquier desarrollador nuevo puede leer los archivos de configuración y entender cómo está montada la red del proyecto.
+
+---
+
+## 🚀 Ventajas principales
+
+* ⚡ Automatización completa
+* 🔁 Infraestructura reproducible
+* ❌ Menos errores humanos
+* 📈 Escalabilidad rápida
+* 🌍 Despliegues consistentes
+
+---
+
+## ⚠️ Desventajas
+
+* Curva de aprendizaje técnica 📚
+* Un error puede afectar toda la infraestructura 😵
+* Dependencia de herramientas externas
+* Requiere buenas prácticas DevOps
+
+---
+
+## 📈 El Ciclo de Vida de IaC
+
+1. **Codificar:** Escribes la configuración en archivos `.tf`, `.yaml` o `.json`.
+2. **Planear:** La herramienta te muestra qué cambios va a realizar antes de ejecutarlos.
+3. **Aplicar:** La infraestructura se crea o modifica automáticamente en la nube.
+4. **Destruir:** Cuando dejas de necesitar los recursos, los eliminas con un comando, evitando gastos innecesarios.
+
+---
+
+## 🔥 Herramientas populares
+
+Las herramientas más usadas para IaC son:
+
+* Terraform
+* Ansible
+* Pulumi
+* AWS CloudFormation
+* Chef
+
+---
+
+## 🧩 ¿Dónde se usa?
+
+* Infraestructura cloud ☁️
+* DevOps 🔄
+* Kubernetes ☸️
+* CI/CD 🚀
+* Ambientes de desarrollo y producción
+
+---
+
+## 🛠️ Ejemplo práctico
+
+Con Terraform podrías crear un servidor así:
+
+```hcl id="v8q0dm"
+resource "aws_instance" "web" {
+  ami           = "ami-123456"
+  instance_type = "t2.micro"
+}
+```
+
+👉 Al ejecutar el código, el servidor se crea automáticamente.
+
+---
+
+## 🎯 Niveles de aprendizaje
+
+### Básico
+
+* Entender IaC y automatización
+
+### Intermedio
+
+* Crear infraestructura simple
+
+### Avanzado
+
+* Multi-cloud y despliegues complejos
+
+### Experto
+
+* Arquitecturas automatizadas a gran escala
+
+---
+
+## 💡 Consejos para empezar
+
+* Aprende conceptos cloud primero
+* Empieza con Terraform básico
+* Usa entornos pequeños
+* Guarda todo en Git
+* Practica automatización progresivamente
+
+---
+
+## 🏁 Resumen
+
+### IaC = infraestructura + automatización + código
+
+La **Infraestructura como Código** elimina la barrera entre el desarrollo y las operaciones (DevOps). Al convertir el hardware en software, permitimos que las aplicaciones sean más resilientes, escalables y, sobre todo, mucho más fáciles de gestionar para nosotros los desarrolladores.
+
+> Infrastructure as Code transforma la infraestructura en algo automático, reproducible y escalable mediante código.
