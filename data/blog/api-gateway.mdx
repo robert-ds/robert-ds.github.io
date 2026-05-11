@@ -1,0 +1,172 @@
+---
+title: 🚪 ¿Qué es un API Gateway?
+date: '2026-05-12'
+tags: ['API Gateway', 'Microservicios', 'Arquitectura de Software']
+draft: false
+images: ['/static/images/blog/api-gateway/api-gateway.png']
+summary: 'Un API Gateway es un punto de entrada para todas las solicitudes HTTP que llegan a una API. Actúa como intermediario entre los clientes y los servicios backend, proporcionando funcionalidades como autenticación, control de acceso, balanceo de carga y registro de solicitudes.'
+---
+
+<Image
+  alt={`API Gateway image`}
+  src={`/static/images/blog/api-gateway/api-gateway.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Un API Gateway es un intermediario que actúa como la “puerta de entrada” entre los clientes y los servicios o microservicios de una aplicación.
+
+En arquitecturas modernas, especialmente cuando trabajamos con **microservicios**, una aplicación no es un solo bloque de código, sino decenas de pequeños servicios independientes (uno para usuarios, otro para pagos, otro para inventario).
+
+Un **API Gateway** es un servidor que actúa como un punto de entrada único para todas esas APIs. En lugar de que el cliente (tu app móvil o web) hable con 20 servicios diferentes, solo habla con el Gateway.
+
+👉 Todas las solicitudes pasan primero por el API Gateway.
+
+---
+
+## 💡 Idea principal
+
+En lugar de que el cliente se comunique directamente con muchos servicios:
+
+```id="q1a9w2"
+App → Usuarios
+App → Pagos
+App → Productos
+App → Notificaciones
+```
+
+Con API Gateway:
+
+```id="f8m2zc"
+App → API Gateway → Servicios
+```
+
+👉 Centraliza toda la comunicación.
+
+---
+
+
+## 📊 ¿Qué problemas resuelve?
+
+Sin un Gateway, el cliente tendría que conocer la URL de cada microservicio, manejar la autenticación en cada uno y lidiar con diferentes protocolos. Esto genera un caos de conexiones y problemas de seguridad.
+
+El API Gateway centraliza estas tareas, permitiendo que los desarrolladores de frontend tengan una experiencia mucho más limpia.
+
+Ademas:
+
+* Evita múltiples conexiones directas
+* Centraliza autenticación
+* Simplifica el frontend
+* Controla tráfico y seguridad
+* Reduce complejidad en microservicios
+
+---
+
+## 🔄 Funciones principales de un API Gateway
+
+Un buen Gateway no solo redirige tráfico; hace mucho trabajo pesado por nosotros:
+
+* **Enrutamiento (Routing):** Toma la solicitud del cliente y la envía al microservicio correcto basándose en la URL.
+* **Autenticación y Autorización:** Verifica si el usuario tiene permiso para entrar. Si el token no es válido, el Gateway rechaza la petición antes de que llegue a tus servidores internos.
+* **Limitación de Tasa (Rate Limiting):** Evita abusos. Puedes configurar que un usuario solo pueda hacer, por ejemplo, 100 peticiones por minuto.
+* **Balanceo de Carga:** Reparte las peticiones entre varios servidores para que ninguno se sature.
+* **Transformación de Protocolos:** Puede recibir una petición en formato moderno (como REST/JSON) y "traducirla" a un protocolo antiguo que use un servicio interno (como SOAP/XML).
+* **Verifica tokens, usuarios y permisos.**
+
+---
+
+## 💡 Ventajas para el equipo de desarrollo
+
+### 🚀 Simplicidad para el Frontend
+
+El desarrollador de frontend solo necesita configurar una URL base. No importa si por detrás cambias la tecnología de un microservicio o mueves un servidor de lugar; para el cliente, todo sigue igual.
+
+### 🛡️ Seguridad Centralizada
+
+Al tener un único punto de entrada, es mucho más fácil aplicar parches de seguridad, certificados SSL y reglas de firewall en un solo lugar en lugar de en cincuenta servicios.
+
+### 📊 Monitoreo y Logs
+
+Es el lugar perfecto para medir cuánto tráfico recibe la app, cuáles son los errores más comunes y qué tan rápido responden los servicios.
+
+Tambien nos permite:
+
+* Arquitectura más organizada
+* Mayor seguridad 🛡️
+* Escalabilidad 📈
+* Menos complejidad para clientes
+
+---
+
+## ⚠️ Desventajas
+
+* Puede convertirse en punto único de fallo
+* Añade latencia mínima
+* Configuración compleja en sistemas grandes
+
+---
+
+## 🧩 Ejemplo real
+
+Imagina una app de delivery:
+
+* `/users` → servicio de usuarios
+* `/orders` → servicio de pedidos
+* `/payments` → servicio de pagos
+
+El cliente solo conoce:
+
+```id="z7d1xe"
+api.midominio.com
+```
+
+👉 El Gateway decide a dónde enviar cada request.
+
+---
+
+## 🌐 ¿Dónde se usa?
+
+* Microservicios
+* Apps móviles 📱
+* Plataformas cloud ☁️
+* Sistemas empresariales
+* APIs públicas
+
+---
+
+## 🛠️ Relación con microservicios
+
+El API Gateway es muy común en arquitecturas de microservicios porque:
+
+* cada servicio hace una sola tarea
+* el gateway unifica acceso y control
+
+👉 Es como la recepción de un edificio grande.
+
+---
+
+## ⚙️ Herramientas líderes en el mercado
+
+| Herramienta | Contexto |
+| --- | --- |
+| **Amazon API Gateway** | La opción estándar si ya estás usando AWS. |
+| **Kong** | Un Gateway de código abierto muy potente y extensible mediante plugins. |
+| **Apigee (Google Cloud)** | Enfocado en empresas que gestionan APIs a gran escala con análisis profundo. |
+| **NGINX** | Aunque es un servidor web, se usa muchísimo como un API Gateway ligero y rápido. |
+
+---
+
+## 🏁 Resumen
+
+### API Gateway =
+
+**control + seguridad + comunicación centralizada**
+
+El **API Gateway** es la pieza que aporta orden al caos de los microservicios. Proporciona una capa de abstracción que protege tu infraestructura interna y facilita la vida de quienes consumen tus datos. Si tu aplicación está creciendo y empezando a separarse en múltiples servicios, el Gateway no es una opción, es una necesidad.
+
+---
+
+## 🧠 Mensaje clave
+
+> Un API Gateway es la puerta inteligente que organiza, protege y dirige las solicitudes entre clientes y servicios.
