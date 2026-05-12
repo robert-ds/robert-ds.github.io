@@ -1,0 +1,178 @@
+---
+title: 📉 ¿Qué es el Rate of Failure en sistemas?
+date: '2026-05-13'
+tags: ['sistemas', 'rate of failure', 'fiabilidad']
+draft: false
+images: ['/static/images/blog/rate-failure/rate-failure.png']
+summary: 'Abordaremos un término que a menudo causa ansiedad pero que es vital para la resiliencia de cualquier sistema: la Tasa de Fallos (Rate of Failure)'
+---
+
+<Image
+  alt={`Rate of Failure image`}
+  src={`/static/images/blog/rate-failure/rate-failure.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>En el desarrollo web y la ingeniería de sistemas, no se trata de si algo va a fallar, sino de **cuándo** y cómo vamos a reaccionar.
+
+---
+
+# 📦 Rate of Failure: Midiendo la salud de tu sistema
+
+En un mundo ideal, nuestro código funcionaría perfectamente el 100% del tiempo. En el mundo real, los servidores se caen, las APIs externas fallan y las bases de datos se saturan. La **Tasa de Fallos** es la métrica que cuantifica estos errores para ayudarnos a construir software más robusto.
+
+>El **Rate of Failure** (tasa de fallos) es una métrica que mide con qué frecuencia ocurren errores o fallos en un sistema.
+
+---
+
+## 🌐 ¿Qué es la Tasa de Fallos?
+
+Es la frecuencia con la que un sistema o componente falla en relación con un periodo de tiempo o un número de solicitudes. Generalmente se expresa como un porcentaje:
+
+$$Rate\ of\ Failure = \left( \frac{Total\ de\ errores}{Total\ de\ solicitudes} \right) \times 100$$
+
+Si tu API recibe 1,000 peticiones y 10 de ellas devuelven un error `500 Internal Server Error`, tu tasa de fallos es del **1%**.
+
+👉 Ayuda a saber qué tan estable y confiable es una aplicación.
+
+---
+
+## 💡 Idea principal
+
+Mientras más errores ocurran:
+
+* menor estabilidad ❌
+* menor confiabilidad ⚠️
+* peor experiencia de usuario 😵
+
+👉 Un sistema saludable mantiene una tasa de fallos muy baja.
+
+---
+
+## ⚙️ ¿Cómo funciona el monitoreo?
+
+### 1️⃣ Recolección de datos
+
+El sistema registra:
+
+* peticiones
+* errores
+* caídas
+* tiempos de respuesta
+
+---
+
+## 📈 Métricas clave relacionadas
+
+Para entender el fallo, los ingenieros utilizamos tres siglas fundamentales:
+
+* **MTBF (Mean Time Between Failures):** El tiempo promedio que transcurre entre un fallo y el siguiente. Queremos que este número sea lo más **alto** posible.
+* **MTTR (Mean Time To Recovery):** El tiempo promedio que tarda el equipo en solucionar el problema y volver a la normalidad. Queremos que este número sea lo más **bajo** posible.
+* **Availability (Disponibilidad):** El porcentaje de tiempo que el sistema está operativo (los famosos "nueves", como el 99.9%).
+
+---
+
+## 🔍 ¿Por qué es importante medirla?
+
+1. **Detección Temprana:** Un aumento repentino en la tasa de fallos es la primera señal de un despliegue defectuoso o un ataque externo.
+2. **SLAs (Service Level Agreements):** Si vendes un software (SaaS), sueles prometer por contrato una tasa de fallos mínima. Si la superas, podrías enfrentar penalizaciones.
+3. **Priorización de Deuda Técnica:** Si un módulo específico tiene una tasa de fallos mayor al promedio, es un candidato urgente para refactorización.
+
+---
+
+## 🧠 Estrategias para reducir el impacto de los fallos
+
+Como desarrolladores, usamos patrones de diseño para que un fallo no tire toda la aplicación:
+
+* **Circuit Breaker (Disyuntor):** Si un servicio empieza a fallar, el "disyuntor" se abre y detiene las peticiones hacia él para evitar que el sistema colapse por completo.
+* **Retries (Reintentos):** Si un fallo es temporal, la app intenta de nuevo automáticamente después de unos milisegundos.
+* **Graceful Degradation:** Si falla una función secundaria (ej. las recomendaciones personalizadas), la web sigue funcionando y mostrando el contenido principal en lugar de una pantalla de error.
+
+---
+
+## ⏱️ El Factor Humano: La Cultura del Post-Mortem
+
+Cuando la tasa de fallos sube, lo más importante no es buscar culpables, sino hacer un **Post-Mortem sin culpa**.
+
+* ¿Qué causó el fallo?
+* ¿Por qué no lo detectamos antes?
+* ¿Cómo podemos evitar que esta causa específica vuelva a ocurrir?
+
+---
+
+### 3️⃣ Alertas y reportes
+
+Si la tasa supera cierto límite:
+
+* se generan alertas 🚨
+* el equipo investiga problemas
+* se evita una caída mayor
+
+---
+
+## 🧠 ¿Qué mide realmente?
+
+El Rate of Failure responde a esta pregunta:
+
+> “¿Qué tan probable es que el sistema falle?”
+
+---
+
+## 📊 Características clave
+
+### 🚨 Indica fallas
+
+Muestra cuántos errores ocurren.
+
+---
+
+### 📈 Mide estabilidad
+
+Evalúa la salud general del sistema.
+
+---
+
+### 🔍 Detecta problemas
+
+Ayuda a identificar errores en producción antes de que empeoren.
+
+---
+
+## 🛠️ Herramientas comunes de monitoreo
+
+* Prometheus
+* Grafana
+* Datadog
+* New Relic
+* Sentry
+
+---
+
+## 📌 Relación con otras métricas
+
+El Rate of Failure suele analizarse junto con:
+
+* Latencia ⏱️
+* Uptime 🌐
+* Throughput 📦
+* Availability 📈
+
+---
+
+## 🏁 Resumen
+
+### Rate of Failure =
+
+**frecuencia de errores en un sistema**
+
+La tasa de fallos no es una medida de tu fracaso como desarrollador, sino una herramienta de diagnóstico. Los mejores sistemas no son los que nunca fallan, sino los que están diseñados para **fallar con elegancia** y recuperarse rápido.
+
+Mientras menor sea la tasa:
+
+* mayor estabilidad
+* mayor confianza
+* mejor experiencia
+
+---
