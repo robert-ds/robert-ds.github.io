@@ -1,0 +1,199 @@
+---
+title: 🧩 ¿Qué es el Teorema CAP?
+date: '2026-05-14'
+tags: ['teorema cap', 'sistemas distribuidos', 'consistencia', 'disponibilidad']
+draft: false
+images: ['/static/images/blog/teorema-cap/teorema-cap.png']
+summary: 'Es un principio de sistemas distribuidos que dice que una aplicación solo puede garantizar **2 de estas 3 propiedades al mismo tiempo**'
+---
+
+<Image
+  alt={`Teorema CAP image`}
+  src={`/static/images/blog/teorema-cap/teorema-cap.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+El **Teorema CAP** (también conocido como el Teorema de Brewer) es un principio fundamental en el diseño de sistemas distribuidos que todo ingeniero de sistemas debe conocer al escalar aplicaciones. Este teorema establece que es imposible para un sistema de datos distribuido garantizar simultáneamente más de dos de las siguientes tres propiedades:
+
+* **Consistency (Consistencia)**
+* **Availability (Disponibilidad)**
+* **Partition Tolerance (Tolerancia a particiones)**
+
+👉 En sistemas distribuidos no puedes tener las tres al 100% simultáneamente.
+
+---
+
+## 💡 Idea principal
+
+Cuando ocurre un problema de red entre servidores (partición), el sistema debe elegir:
+
+* seguir funcionando aunque algunos datos no estén sincronizados
+  **o**
+* detener respuestas hasta asegurar consistencia
+
+---
+
+## 1️⃣ Consistency (C)
+
+Todos los nodos muestran los mismos datos al mismo tiempo.
+
+👉 Si actualizas un dato, todos ven la versión más reciente.
+
+Ejemplo:
+
+```id="n4x8qa"
+Saldo bancario actualizado instantáneamente
+```
+
+---
+
+## 2️⃣ Availability (A)
+
+El sistema siempre responde, incluso si hay fallos.
+
+👉 Nunca “se cae”.
+
+Aunque:
+
+* la respuesta podría no tener el dato más reciente.
+
+---
+
+## 3️⃣ Partition Tolerance (P)
+
+El sistema sigue funcionando aunque exista una falla de comunicación entre servidores.
+
+👉 Fundamental en sistemas distribuidos modernos.
+
+---
+
+## ⚙️ El Dilema: ¿Por qué no podemos tener las tres?
+
+En un mundo ideal donde la red nunca falla, podríamos tener consistencia y disponibilidad. Sin embargo, las redes del mundo real son imperfectas. Cuando ocurre una **partición (P)**, el sistema debe elegir entre:
+
+* **CP (Consistencia + Tolerancia a la Partición):** El sistema decide sacrificar la disponibilidad. Si los nodos no pueden comunicarse para sincronizar datos, el sistema bloquea las respuestas hasta que la partición se resuelva para asegurar que nadie lea datos desactualizados.
+* **AP (Disponibilidad + Tolerancia a la Partición):** El sistema decide sacrificar la consistencia. Los nodos siguen respondiendo a las solicitudes, pero existe el riesgo de que diferentes nodos entreguen versiones distintas de los mismos datos hasta que la red se restablezca.
+
+> **Nota importante:** En sistemas distribuidos modernos, la **Tolerancia a la Partición (P)** no es opcional; es una necesidad debido a la naturaleza de las redes. Por lo tanto, la verdadera decisión suele ser entre **Consistencia** o **Disponibilidad** durante un fallo.
+
+Cuando ocurre una partición de red:
+
+El sistema debe elegir entre:
+
+```id="y7d3lc"
+CP → Consistency + Partition Tolerance
+```
+
+o:
+
+```id="m8v1tr"
+AP → Availability + Partition Tolerance
+```
+
+👉 Porque la tolerancia a particiones es prácticamente obligatoria en sistemas distribuidos reales.
+
+---
+
+# 🧠 Explicación visual
+
+## 🔒 CP Systems
+
+Priorizan:
+
+* datos correctos
+* consistencia
+
+Sacrifican:
+
+* disponibilidad temporal
+
+Ejemplo:
+
+* sistemas bancarios 💳
+
+---
+
+## ⚡ AP Systems
+
+Priorizan:
+
+* disponibilidad
+* respuestas rápidas
+
+Aceptan:
+
+* consistencia eventual
+
+Ejemplo:
+
+* redes sociales 📱
+
+---
+
+## Casos de Uso y Ejemplos
+
+| Combinación | Prioridad | Ejemplo Típico |
+| --- | --- | --- |
+| **CP** | Integridad de datos absoluta. | Sistemas bancarios, gestión de inventario crítico. |
+| **AP** | El sistema nunca debe "caerse". | Redes sociales (feeds), carritos de compra (donde ver un ítem de más es mejor que no poder comprar nada). |
+| **CA** | Consistencia y disponibilidad (sin particiones). | Bases de datos relacionales locales (no distribuidas). |
+
+---
+
+# 🔥 Ejemplos reales
+
+## CP (Consistencia primero)
+
+* MongoDB (configuración CP)
+* HBase
+* ZooKeeper
+
+---
+
+## AP (Disponibilidad primero)
+
+* Cassandra
+* DynamoDB
+* Riak
+
+---
+
+# 📊 Consistencia eventual
+
+Muchos sistemas AP usan:
+
+```id="p2z9wj"
+Eventually Consistent
+```
+
+👉 Los datos pueden tardar un poco en sincronizarse, pero eventualmente todos tendrán la misma información.
+
+---
+
+# 🚀 ¿Por qué es importante?
+
+El Teorema CAP ayuda a:
+
+* diseñar arquitecturas distribuidas
+* entender bases de datos modernas
+* decidir prioridades del sistema
+* manejar fallos de red
+
+---
+
+# 🏁 Resumen
+
+Entender el Teorema CAP nos permite tomar decisiones de arquitectura realistas. No existe una base de datos "perfecta" para todo; existe la base de datos que ofrece el equilibrio adecuado de CAP según las necesidades de tu negocio y la tolerancia a fallos de tu infraestructura.
+
+## CAP =
+
+### Consistency + Availability + Partition Tolerance
+
+En un sistema distribuido real:
+
+* puedes maximizar dos
+* pero no las tres al mismo tiempo
+
+---
