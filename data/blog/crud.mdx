@@ -1,0 +1,222 @@
+---
+title: 🧩 ¿Qué es CRUD?
+date: '2026-05-15'
+tags: ['crud', 'base de datos', 'operaciones básicas']
+draft: false
+images: ['/static/images/blog/crud/crud.png']
+summary: 'CRUD es un acrónimo que representa las 4 operaciones básicas de gestión de datos: Create, Read, Update y Delete'
+---
+
+<Image
+  alt={`Crud image`}
+  src={`/static/images/blog/crud/crud.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Para un desarrollador web, el **CRUD** es el pan de cada día. Representa las cuatro operaciones básicas que puedes realizar en cualquier base de datos o sistema de gestión de información.
+
+Si estás construyendo desde una lista de tareas hasta una red social, estarás implementando un CRUD.
+
+CRUD es el conjunto de las 4 operaciones básicas utilizadas para manejar datos en una aplicación:
+
+* **C** → Create (Crear)
+* **R** → Read (Leer)
+* **U** → Update (Actualizar)
+* **D** → Delete (Eliminar)
+
+---
+
+## 📦 CRUD en el ciclo de vida del desarrollo
+
+Para un desarrollador, el CRUD se manifiesta en tres capas principales:
+
+1. **Interfaz de Usuario (Frontend):** Son los botones de "Guardar", "Editar" o "Eliminar" que ve el usuario.
+2. **API / Servidor (Backend):** Son los *endpoints* que reciben las peticiones y validan que el usuario tenga permiso para realizar la acción.
+3. **Base de Datos:** Donde ocurre la acción física. Aquí el CRUD se traduce a lenguaje SQL (`INSERT`, `SELECT`, `UPDATE`, `DELETE`).
+
+---
+
+## ⚙️ Las 4 operaciones CRUD
+
+---
+
+### 🟢 CREATE (Crear)
+
+Permite agregar nuevos datos.
+
+Ejemplo:
+
+```sql id="8k2mqp"
+INSERT INTO usuarios (nombre, email)
+VALUES ('Ana', 'ana@email.com');
+```
+
+👉 Crea registros en la base de datos.
+
+---
+
+### 🔵 READ (Leer)
+
+Permite consultar u obtener información.
+
+Ejemplo:
+
+```sql id="v1r8zs"
+SELECT *
+FROM usuarios
+WHERE activo = 1;
+```
+
+👉 Recupera datos almacenados.
+
+---
+
+### 🟠 UPDATE (Actualizar)
+
+Modifica información existente.
+
+Ejemplo:
+
+```sql id="n7d4xt"
+UPDATE usuarios
+SET email = 'nuevo@email.com'
+WHERE id = 1;
+```
+
+👉 Mantiene los datos actualizados.
+
+---
+
+### 🔴 DELETE (Eliminar)
+
+Borra datos que ya no se necesitan.
+
+Ejemplo:
+
+```sql id="e3w9lc"
+DELETE FROM usuarios
+WHERE id = 1;
+```
+
+👉 Elimina registros permanentemente.
+
+---
+
+## 🌐 CRUD en APIs REST
+
+En desarrollo backend, CRUD suele relacionarse con métodos HTTP:
+
+| Operación | HTTP        |
+| --------- | ----------- |
+| Create    | POST        |
+| Read      | GET         |
+| Update    | PUT / PATCH |
+| Delete    | DELETE      |
+
+---
+
+## 🧠 Ejemplo real
+
+Imagina una app de tareas:
+
+* Crear tarea ➜ CREATE
+* Ver tareas ➜ READ
+* Editar tarea ➜ UPDATE
+* Eliminar tarea ➜ DELETE
+
+👉 Todo el sistema gira alrededor de CRUD.
+
+---
+
+## 🛠️ ¿Por qué es importante dominarlo?
+
+Dominar el flujo de un CRUD es el primer paso para convertirte en un desarrollador profesional. Casi todos los sistemas complejos (Amazon, Netflix, Spotify) son, en su núcleo, **CRUDs extremadamente avanzados** con capas adicionales de seguridad, lógica de negocio y optimización.
+
+Al diseñar un CRUD, debes considerar siempre:
+
+* **Validación:** No permitas que se "Cree" o "Actualice" información basura.
+* **Seguridad:** Asegúrate de que un usuario solo pueda "Borrar" o "Actualizar" sus propios datos.
+* **Feedback:** Informa al usuario si la operación fue exitosa o si ocurrió un error.
+
+Está presente en:
+
+* webs
+* apps móviles
+* APIs
+* sistemas empresariales
+* bases de datos
+
+---
+
+## ⚡ Desarrollo más rápido
+
+CRUD proporciona un patrón estándar fácil de implementar.
+
+---
+
+## 🔒 Integridad de datos
+
+Permite manejar información de forma controlada y consistente.
+
+---
+
+## 📈 Escalable y flexible
+
+Se adapta desde proyectos pequeños hasta plataformas gigantes.
+
+---
+
+# 🔥 ¿Dónde encontramos CRUD?
+
+CRUD está en casi cualquier sistema:
+
+* 🛒 E-commerce
+* 📱 Redes sociales
+* 🏦 Bancos
+* 🏥 Sistemas de salud
+* 📦 Inventarios
+* 🎓 Plataformas educativas
+
+---
+
+## 🛠️ CRUD en Backend
+
+Frameworks modernos suelen generar CRUD automáticamente.
+
+Ejemplos:
+
+* Laravel
+* Django
+* Express.js
+* Spring Boot
+
+---
+
+## 📊 Relación con bases de datos
+
+CRUD es la forma principal de interactuar con:
+
+* SQL
+* NoSQL
+* APIs
+* ORMs
+
+👉 Sin CRUD, una aplicación no puede manejar datos.
+
+---
+
+## 🏁 Resumen
+
+El CRUD es la estructura ósea de las aplicaciones. Una vez que entiendes cómo fluye la información desde el formulario en el navegador hasta la fila en la base de datos, habrás desbloqueado la capacidad de construir prácticamente cualquier herramienta digital.
+
+### CRUD =
+
+**Crear + Leer + Actualizar + Eliminar**
+
+Son las operaciones fundamentales para administrar información en software.
+
+
+
+
