@@ -1,0 +1,205 @@
+---
+title: ⚙️ ¿Qué es un Service Worker?
+date: '2026-05-16'
+tags: ['service worker', 'web development', 'caching', 'offline support']
+draft: false
+images: ['/static/images/blog/service-worker/service-worker.png']
+summary: ' Es el "superpoder" que permite que tu sitio funcione incluso cuando el usuario no tiene internet.'
+---
+
+<Image
+  alt={`Service worker image`}
+  src={`/static/images/blog/service-worker/service-worker.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Es un script que tu navegador ejecuta en segundo plano, separado de la página web.
+
+Su función principal es actuar como un **proxy de red**, interceptando todas las peticiones que tu aplicación hace hacia internet. Lo que lo hace especial es que no tiene acceso directo al DOM, pero tiene un control total sobre el almacenamiento en caché y la gestión de peticiones.
+
+👉 Funciona entre la aplicación y la red.
+
+---
+
+## 💡 Idea principal
+
+El Service Worker actúa como un intermediario inteligente que puede:
+
+* almacenar archivos en caché 📦
+* interceptar peticiones 🌐
+* funcionar sin internet 📡
+* enviar notificaciones push 🔔
+* mejorar rendimiento ⚡
+
+---
+
+## 🧠 Idea visual
+
+Sin Service Worker:
+
+```id="q9w2ld"
+Usuario → Navegador → Internet
+```
+
+Con Service Worker:
+
+```id="m7x4pr"
+Usuario → Navegador → Service Worker → Internet
+```
+
+👉 El Service Worker decide si usar red o caché.
+
+---
+
+## 🔔 El ciclo de vida: Instalación y Activación
+
+A diferencia de un archivo JS normal, un Service Worker pasa por varias etapas antes de empezar a trabajar:
+
+1. **Registro:** El código de tu frontend le dice al navegador dónde está el archivo del Service Worker.
+2. **Instalación (`install`):** Es el momento ideal para que el worker descargue y guarde en la caché los archivos estáticos (HTML, CSS, JS) que la app necesita para funcionar sin red.
+3. **Activación (`activate`):** Aquí se realiza la limpieza de versiones antiguas de la caché.
+4. **Funcionamiento:** Una vez activo, el worker queda "escuchando" eventos.
+
+---
+
+# 🧠 Capacidades Principales
+
+### 📡 Intercepción de red (Estrategias de Caché)
+
+Cuando la app pide una imagen o un archivo, el Service Worker puede decidir:
+
+* Ir a buscarlo a internet (Network First).
+* Entregarlo desde la caché para que sea instantáneo (Cache First).
+* Mostrar una página de "Offline" personalizada si no hay conexión.
+
+### 🔔 Notificaciones Push
+
+Permiten enviar notificaciones al escritorio o al móvil del usuario, incluso si la pestaña del navegador está cerrada. Es una herramienta vital para el *engagement*.
+
+### 🔄 Sincronización en segundo plano (Background Sync)
+
+Si un usuario intenta enviar un formulario o un mensaje sin internet, el Service Worker lo guarda y lo envía automáticamente en cuanto la conexión regrese, sin que el usuario tenga que hacer nada.
+
+---
+
+# 🚀 ¿Para qué sirve?
+
+## 📦 Caché inteligente
+
+Guarda archivos importantes:
+
+* HTML
+* CSS
+* JavaScript
+* imágenes
+
+👉 Reduce tiempos de carga.
+
+---
+
+## 📡 Soporte offline
+
+La app puede seguir funcionando sin internet.
+
+👉 Base de las PWA (Progressive Web Apps).
+
+---
+
+## ⚡ Mejor rendimiento
+
+Reduce peticiones innecesarias al servidor.
+
+---
+
+# 🔥 Estrategias comunes de caché
+
+## Cache First
+
+Busca primero en caché.
+
+👉 Más rápido.
+
+---
+
+## Network First
+
+Busca primero en internet.
+
+👉 Datos más actualizados.
+
+---
+
+## Stale While Revalidate
+
+Muestra caché mientras actualiza en segundo plano.
+
+👉 Muy usado en apps modernas.
+
+---
+
+## ⚙️ Seguridad: Solo HTTPS
+
+Debido a que un Service Worker puede interceptar peticiones y modificar respuestas (lo cual sería un riesgo enorme en manos equivocadas), los navegadores **solo permiten su uso bajo el protocolo HTTPS**. La única excepción es `localhost` para que podamos hacer pruebas durante el desarrollo.
+
+---
+
+## 💡 ¿Por qué es vital para el Rendimiento?
+
+Como vimos en el post de **Estrategias de Frontend**, el rendimiento es clave. Con un Service Worker puedes implementar:
+
+* **Carga instantánea:** Al servir archivos desde la caché local, eliminas el tiempo de espera de la red.
+* **Reducción de carga en el servidor:** El servidor recibe menos peticiones de archivos estáticos que ya están guardados en el dispositivo del usuario.
+
+Porque permite:
+
+* apps más rápidas
+* menos dependencia de internet
+* mejor experiencia móvil
+* comportamiento similar a apps nativas
+
+👉 Es una tecnología clave del frontend moderno.
+
+---
+
+# 🌐 ¿Dónde se usa?
+
+* Progressive Web Apps (PWA) 📱
+* Apps offline
+* Sitios rápidos ⚡
+* Notificaciones push
+* Experiencias móviles modernas
+
+---
+
+# 🛠️ Herramientas relacionadas
+
+* Workbox
+* Lighthouse
+* Chrome DevTools
+
+---
+
+# ⚠️ Limitaciones
+
+* Solo funciona con HTTPS 🔒
+* Puede ser complejo de depurar
+* Manejar caché incorrectamente causa errores difíciles
+
+---
+
+# 🏁 Resumen
+
+El Service Worker es el puente que cierra la brecha entre la web y las aplicaciones nativas. Si quieres que tu proyecto se sienta rápido, profesional y resiliente ante las conexiones inestables, aprender a implementar un Service Worker es el siguiente paso lógico en tu carrera.
+
+### Service Worker =
+
+**caché + offline + rendimiento + control de red**
+
+---
+
+# 🧠 Mensaje clave
+
+> Un Service Worker convierte una web normal en una experiencia más rápida, inteligente y capaz de funcionar incluso sin conexión.
+
