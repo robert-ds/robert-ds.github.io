@@ -1,0 +1,199 @@
+---
+title: 🔀 ¿Qué es un Middleware?
+date: '2026-05-17'
+tags: ['middleware', 'web development', 'request handling', 'server-side']
+draft: false
+images: ['/static/images/blog/middleware/middleware.png']
+summary: ' Se le conoce comúnmente como el "software invisible" o el "pegamento" de las aplicaciones.'
+---
+
+<Image
+  alt={`Middleware image`}
+  src={`/static/images/blog/middleware/middleware.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Un **middleware** es una función o capa intermedia que procesa solicitudes y respuestas entre el cliente y el servidor.
+
+En el desarrollo web, un **Middleware** es una función o capa de software que se ejecuta entre la recepción de una solicitud (*Request*) y la generación de una respuesta (*Response*). Su trabajo es procesar la información antes de que llegue a su destino final o antes de que el cliente reciba el resultado.
+
+👉 Actúa como un “filtro” o “puente” antes de que una petición llegue a su destino.
+
+---
+
+## 💡 Idea principal
+
+Imagina que estás entrando a un club exclusivo:
+
+1. **El Cliente:** Eres tú intentando entrar.
+2. **El Middleware:** Es el guardia de seguridad en la puerta. Revisa tu identificación (autenticación), verifica que cumplas el código de vestimenta (validación de datos) y cuenta cuántas personas entran (monitoreo).
+3. **El Servidor:** Es la fiesta dentro. Si el guardia te deja pasar, finalmente llegas al lugar donde ocurre la acción.
+
+Cuando una aplicación recibe una petición:
+
+```id="x8m2qp"
+Cliente → Middleware → Servidor
+```
+
+El middleware puede:
+
+* validar datos
+* autenticar usuarios
+* registrar logs
+* modificar requests/responses
+* bloquear accesos
+
+---
+
+## ⚙️ ¿Cómo funciona?
+
+1️⃣ El cliente envía una request
+2️⃣ El middleware intercepta la petición
+3️⃣ Ejecuta lógica adicional
+4️⃣ Decide:
+
+* continuar ✅
+* modificar 🔄
+* bloquear ❌
+
+5️⃣ La request llega al servidor o controlador
+
+---
+
+## 🔥 ¿Para qué se utiliza?
+
+Un middleware puede tener múltiples responsabilidades. Las más comunes en una API son:
+
+* **Autenticación y Autorización:** Comprobar si el usuario ha iniciado sesión y si tiene los permisos necesarios para acceder a una ruta específica.
+* **Manejo de Errores:** Capturar fallos en cualquier parte de la aplicación y devolver una respuesta amigable (como un error 500) en lugar de romper el servidor.
+* **Logging (Registro):** Guardar un historial de quién entró, a qué hora y qué pidió.
+* **Parsing (Análisis):** Convertir el cuerpo de una petición (que llega como texto plano) en un objeto JSON que el código pueda entender.
+* **CORS (Cross-Origin Resource Sharing):** Gestionar qué dominios externos tienen permiso para consumir tu API.
+
+### 🔐 Autenticación
+
+Verifica usuarios y tokens.
+
+Ejemplo:
+
+```id="n7v4ks"
+¿El usuario inició sesión?
+```
+
+### 🛡️ Autorización
+
+Controla permisos.
+
+Ejemplo:
+
+```id="f2x9qa"
+¿Puede acceder al panel admin?
+```
+
+### 📊 Logging
+
+Registra actividad y errores.
+
+### ⚡ Manejo de errores
+
+Captura excepciones globales.
+
+### 🌐 CORS
+
+Controla acceso entre dominios.
+
+### 📦 Transformación de datos
+
+Puede:
+
+* modificar headers
+* agregar información
+* transformar respuestas
+
+---
+
+## ⚙️ Funcionamiento: El patrón "Pipeline"
+
+Los middlewares suelen organizarse en una **cadena o pipeline**. Una solicitud pasa por el Middleware A, luego por el B, y así sucesivamente hasta llegar al controlador final.
+
+En frameworks como Express (Node.js) o ASP.NET Core, cada middleware tiene una función llamada `next()`. Si todo está en orden, el middleware llama a `next()` para pasar la estafeta al siguiente. Si algo falla (por ejemplo, el usuario no tiene permiso), el middleware "corta" la cadena y devuelve la respuesta de inmediato.
+
+---
+
+## 💡 Tipos de Middleware
+
+1. **De Aplicación:** Se aplican a todas las rutas de tu servidor (ej. un logger de visitas).
+2. **De Ruta:** Se aplican solo a endpoints específicos (ej. solo la ruta `/admin` requiere el middleware de administrador).
+3. **De Terceros:** Librerías listas para usar que resuelven problemas comunes (ej. `helmet` para seguridad o `compression` para optimizar el tamaño de las respuestas).
+
+### Global
+
+Se ejecuta en todas las rutas.
+
+### De errores
+
+Captura fallos centralizados.
+
+---
+
+## 🌐 ¿Dónde se usa?
+
+* APIs REST
+* Backend moderno
+* Microservicios
+* Frameworks web
+* Seguridad y autenticación
+
+---
+
+## 🔥 Frameworks que usan middleware
+
+* Express.js
+* Laravel
+* Django
+* ASP.NET Core
+* NestJS
+
+---
+
+## ⚡ Ventajas
+
+* Código modular 🧩
+* Reutilización
+* Mejor organización
+* Seguridad centralizada 🔒
+* Fácil mantenimiento
+
+---
+
+## ⚠️ Desventajas
+
+* Demasiados middleware pueden afectar rendimiento
+* Orden incorrecto puede causar bugs
+* Debugging más complejo en cadenas largas
+
+---
+
+## 📈 ¿Por qué es importante?
+
+Porque permite separar responsabilidades y agregar funcionalidades transversales sin ensuciar la lógica principal de la aplicación.
+
+👉 Es fundamental en arquitecturas backend modernas.
+
+---
+
+# 🏁 Resumen
+
+El middleware es lo que permite que nuestro código sea **modular y limpio**. En lugar de repetir la lógica de seguridad en cada una de tus 50 rutas, creas un middleware una sola vez y lo inyectas donde sea necesario. Es la clave para una arquitectura escalable y fácil de mantener.
+
+### Middleware =
+
+**capa intermedia que procesa requests y responses**
+
+---
+
+## 🧠 Mensaje clave
+
+> Un middleware actúa como un filtro inteligente que controla, transforma y protege la comunicación entre cliente y servidor.
