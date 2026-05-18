@@ -1,0 +1,293 @@
+---
+title: 🔄 ¿Qué es el Event Loop en JavaScript?
+date: '2026-05-19'
+tags: ['javascript', 'nodejs', 'event loop']
+draft: false
+images: ['/static/images/blog/event-loop/event-loop.png']
+summary: 'Es el mecanismo que permite a JavaScript manejar tareas asíncronas sin bloquear la ejecución principal.'
+---
+
+<Image
+  alt={`Event loop image`}
+  src={`/static/images/blog/event-loop/event-loop.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>El **Event Loop** (Bucle de Eventos) es el corazón de Node.js y del JavaScript en el navegador. Es el mecanismo que permite que JavaScript sea "multitarea" a pesar de ser **single-threaded** (de un solo hilo).
+
+Para entender el Event Loop, primero debemos aceptar una realidad: JavaScript solo puede hacer una cosa a la vez. Sin embargo, gracias al Event Loop, puede delegar tareas pesadas al sistema operativo y seguir procesando otras cosas mientras espera.
+
+Sin el Event Loop, tu navegador se congelaría cada vez que hicieras una petición a una API o cargaras una imagen pesada.
+
+👉 Gracias al Event Loop, JavaScript puede “simular multitarea” aunque sea single-threaded (un solo hilo).
+
+---
+
+# 💡 Idea principal
+
+JavaScript ejecuta código de forma secuencial, pero el Event Loop coordina:
+
+* callbacks
+* timers
+* promesas
+* eventos
+* peticiones HTTP
+
+👉 Todo sin detener la aplicación.
+
+---
+
+# 🧠 Idea clave
+
+> JavaScript no ejecuta varias cosas al mismo tiempo en un solo hilo…
+> pero el Event Loop hace que parezca concurrente.
+
+---
+
+# ⚙️ ¿Cómo funciona el Event Loop?
+
+El sistema se compone de varias partes:
+
+---
+
+## 1️⃣ Call Stack
+
+Es la pila donde se ejecuta el código síncrono.
+
+Ejemplo:
+
+```javascript id="z9q4rm"
+console.log("Inicio")
+console.log("Fin")
+```
+
+👉 Se ejecuta línea por línea.
+
+---
+
+# 2️⃣ Web APIs / Node APIs
+
+Aquí el navegador o Node.js manejan tareas asíncronas como:
+
+* `setTimeout`
+* `fetch`
+* eventos DOM
+* peticiones HTTP
+
+---
+
+## 3️⃣ Task Queue (Macrotasks)
+
+Cola donde esperan tareas como:
+
+* `setTimeout`
+* `setInterval`
+* callbacks de eventos
+
+---
+
+## 4️⃣ Microtask Queue
+
+Cola especial con prioridad alta.
+
+Aquí van:
+
+* `Promise.then()`
+* `catch`
+* `finally`
+* `queueMicrotask`
+
+👉 Las microtareas siempre se ejecutan antes que las tareas normales.
+
+---
+
+# 5️⃣ Event Loop
+
+El Event Loop verifica:
+
+```id="x2m8cv"
+¿El Call Stack está vacío?
+```
+
+Si está libre:
+
+* toma tareas de las colas
+* las mueve al Stack
+* ejecuta el siguiente proceso
+
+---
+
+## 🔄 Microtasks vs. Macrotasks
+
+No todas las tareas asíncronas son iguales. El Event Loop prioriza ciertas colas sobre otras:
+
+* **Microtasks (Alta prioridad):** Promesas (`.then`, `async/await`) y `process.nextTick` en Node. Se ejecutan inmediatamente después de la tarea actual, antes de que el Event Loop pase a la siguiente macrotarea.
+* **Macrotasks (Baja prioridad):** `setTimeout`, `setInterval`, eventos de I/O.
+
+Si tienes una promesa y un timeout listos al mismo tiempo, **la promesa siempre ganará.**
+
+---
+
+## 💡 ¿Por qué es importante para el rendimiento?
+
+El mayor pecado en JavaScript es **"bloquear el Event Loop"**. Si ejecutas un cálculo matemático extremadamente pesado de forma síncrona, el stack nunca se vacía. Como el Event Loop no puede trabajar, la interfaz de usuario no responde, los botones no funcionan y las animaciones se detienen.
+
+**Regla de oro:** Mantén tus funciones rápidas y delega el trabajo pesado a procesos asíncronos.
+
+---
+
+## 🔥 Ejemplo clásico
+
+```javascript id="k7d3pw"
+console.log("Inicio")
+
+setTimeout(() => {
+  console.log("Timeout")
+}, 0)
+
+Promise.resolve().then(() => {
+  console.log("Promise")
+})
+
+console.log("Fin")
+```
+---
+
+## 📊 Orden de salida
+
+Resultado:
+
+```id="n5v1qa"
+Inicio
+Fin
+Promise
+Timeout
+```
+---
+
+## 🧠 ¿Por qué ocurre eso?
+
+## Paso a paso:
+
+### ✅ Código síncrono primero
+
+```id="b8q6tp"
+Inicio
+Fin
+```
+---
+
+## ✅ Luego Microtasks
+
+Las Promises tienen prioridad.
+
+```id="t2x4zc"
+Promise
+```
+---
+
+## ✅ Finalmente Macrotasks
+
+`setTimeout` entra después.
+
+```id="m4r9ks"
+Timeout
+```
+---
+
+## 🚀 ¿Qué problemas resuelve?
+
+El Event Loop permite:
+
+* interfaces fluidas
+* operaciones async
+* peticiones HTTP
+* timers
+* concurrencia no bloqueante
+
+👉 Sin bloquear la aplicación.
+
+---
+
+## 🌐 ¿Dónde se usa?
+
+* Navegadores 🌍
+* Node.js
+* APIs web
+* Frontend moderno
+* Backend con JavaScript
+
+---
+
+# 🔥 Conceptos importantes
+
+## 📦 Callback Queue
+
+Cola de callbacks normales.
+
+---
+
+## ⚡ Microtask Queue
+
+Cola prioritaria para Promises.
+
+---
+
+## ⏱️ setTimeout
+
+No se ejecuta exactamente al tiempo indicado.
+
+👉 Solo entra a la cola después del tiempo mínimo.
+
+---
+
+## ⚠️ Error común
+
+Muchos creen que:
+
+```javascript id="c9n1vx"
+setTimeout(fn, 0)
+```
+
+significa:
+
+```id="u7w2ml"
+ejecutar inmediatamente
+```
+
+❌ Incorrecto.
+
+👉 Solo significa:
+
+> “Ejecuta esto cuando el Stack quede libre”.
+
+---
+
+## 📈 ¿Por qué es importante?
+
+Porque es la base del comportamiento asíncrono de JavaScript.
+
+Permite:
+
+* apps rápidas
+* servidores escalables
+* interfaces reactivas
+* programación no bloqueante
+
+---
+
+# 🏁 Resumen
+
+El Event Loop es lo que hace que JavaScript sea increíblemente eficiente para aplicaciones con mucho tráfico de entrada y salida (I/O), como chats en tiempo real o servidores de streaming. Entenderlo es la diferencia entre un desarrollador que escribe código "por suerte" y uno que entiende exactamente cómo se comporta su aplicación bajo presión.
+
+### Event Loop =
+
+**mecanismo que coordina tareas síncronas y asíncronas en JavaScript**
+
+---
+
+# 🧠 Mensaje clave
+
+> El Event Loop permite que JavaScript maneje operaciones asíncronas de forma eficiente sin ejecutar múltiples hilos directamente.
