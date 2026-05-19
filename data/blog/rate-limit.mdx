@@ -1,0 +1,271 @@
+---
+title: 🚦 ¿Qué es el Rate Limiting?
+date: '2026-05-20'
+tags: ['JavaScript', 'Node.js', 'API', 'Seguridad']
+draft: false
+images: ['/static/images/blog/rate-limit/rate-limit.png']
+summary: 's una técnica que limita la cantidad de solicitudes que un cliente puede hacer a una API o servidor en un tiempo determinado.'
+---
+
+<Image
+  alt={`Rate limit image`}
+  src={`/static/images/blog/rate-limit/rate-limit.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Es un mecanismo de control de tráfico que restringe el número de solicitudes que un usuario, dirección IP o cliente puede realizar a una API o servidor dentro de un período de tiempo determinado.
+
+Si un cliente supera ese límite, el servidor bloquea temporalmente las siguientes solicitudes, respondiendo comúnmente con el código de estado HTTP **`429 Too Many Requests`**.
+
+👉 Su objetivo es proteger sistemas contra abusos, sobrecarga y ataques.
+
+---
+
+## 💡 Idea principal
+
+El Rate Limiting funciona como un control de tráfico:
+
+```id="k2x7qp"
+Cliente → límite de peticiones → API
+```
+
+👉 Si el cliente supera el límite, las solicitudes extra son bloqueadas.
+
+---
+
+## 🧠 Idea visual
+
+Piensa en una autopista 🚗:
+
+* demasiados carros = tráfico y colapso
+* el rate limiting controla cuántos pasan
+
+👉 Así evita que la API “se caiga”.
+
+---
+
+## 🧩 ¿Por qué es fundamental en la Arquitectura de Software?
+
+1. **Prevención de Ataques DoS/DDoS:** Evita que scripts maliciosos o ataques de denegación de servicio saturen los recursos del servidor y tiren la aplicación.
+2. **Protección contra el abuso (Web Scraping y Fuerza Bruta):** Frena a los bots que intentan extraer datos masivos de tu plataforma o adivinar contraseñas mediante fuerza bruta.
+3. **Control de Costos e Infraestructura:** En entornos de nube, el tráfico inesperado puede disparar los costos de auto-scaling. Limitar el ratio mantiene el presupuesto bajo control.
+4. **Políticas de Monetización (SaaS):** Permite estructurar planes de pago. Por ejemplo: un plan gratuito permite 60 solicitudes por minuto, mientras que el plan Premium permite 10,000.
+
+---
+
+# ⚙️ ¿Cómo funciona?
+
+## 1️⃣ Se define un límite
+
+Ejemplo:
+
+```id="z8m1tw"
+100 requests por minuto
+```
+
+## 2️⃣ Se cuentan las peticiones
+
+Cada request incrementa un contador.
+
+## 3️⃣ Si supera el límite…
+
+La API:
+
+* bloquea temporalmente 🚫
+* retrasa respuestas
+* devuelve error HTTP
+
+## 4️⃣ El contador se reinicia
+
+Después del intervalo:
+
+```id="q3v9la"
+1 minuto
+```
+
+el usuario puede volver a hacer requests.
+
+---
+
+# 📦 Algoritmos Comunes de Rate Limiting
+
+Para implementar un Rate Limiter, se suelen utilizar diferentes estructuras de datos y algoritmos según la precisión y la memoria que requiera el sistema:
+
+## 🟢 Token Bucket (Cubo de Tokens)
+
+* **Cómo funciona:** Imagina un cubo con una capacidad máxima de $N$ tokens. El servidor añade tokens al cubo a un ritmo constante (ej. 3 tokens por segundo). Cada solicitud que llega consume un token. Si el cubo está vacío, la solicitud se rechaza.
+* **Ventaja:** Permite ráfagas (*bursts*) de tráfico si el cubo está lleno.
+* **Uso común:** AWS API Gateway, Stripe.
+
+## 🟢 Leaky Bucket (Cubo Goteante)
+
+* **Cómo funciona:** Las solicitudes entran a un cubo (una cola FIFO) y van saliendo por un agujero en el fondo a un ritmo constante para ser procesadas. Si entran demasiadas solicitudes de golpe y el cubo se llena, las nuevas se desbordan (se descartan).
+* **Ventaja:** Suaviza el tráfico, garantizando un flujo de salida completamente constante hacia el backend.
+* **Uso común:** Nginx.
+
+## 🟢 Fixed Window Counter (Contador de Ventana Fija)
+
+* **Cómo funciona:** Divide el tiempo en ventanas fijas (ej. de 1:00 a 1:01). Mantiene un contador para cada usuario. Si el contador supera el límite dentro de esa ventana, se bloquea el acceso hasta que comience la siguiente ventana y el contador se reinicie.
+* **Desventaja:** "Problema del borde". Si un usuario envía todo su límite al final de la ventana A y otra ráfaga al inicio de la ventana B, puede duplicar el tráfico permitido en un lapso de tiempo muy corto.
+
+## 🟢 Sliding Window Log / Counter (Ventana Deslizante)
+
+* **Cómo funciona:** Realiza un seguimiento dinámico del tiempo exacto de cada solicitud. En lugar de ventanas rígidas, calcula el límite mirando hacia atrás en el tiempo (ej. los últimos 60 segundos exactos desde el milisegundo actual).
+* **Ventaja:** Altamente preciso, elimina el problema del borde.
+* **Desventaja:** Consume mucha más memoria (especialmente el enfoque de *Log*), ya que requiere guardar las marcas de tiempo de todas las solicitudes de cada usuario.
+
+---
+
+# 🔥 Respuesta típica
+
+Cuando se excede el límite:
+
+```http id="t7n4xs"
+HTTP 429 Too Many Requests
+```
+
+👉 Significa:
+
+> “Estás enviando demasiadas solicitudes”.
+
+---
+
+# 🧩 Ejemplo práctico
+
+Una API permite:
+
+```id="m5r2kc"
+60 requests/min
+```
+
+Si un usuario envía:
+
+```id="d1x8qe"
+100 requests
+```
+
+👉 Las solicitudes extra serán bloqueadas.
+
+---
+
+# 🚀 ¿Para qué sirve?
+
+## 🛡️ Protección contra abuso
+
+Evita spam y ataques.
+
+---
+
+## ⚡ Estabilidad
+
+Reduce sobrecarga del servidor.
+
+---
+
+## 💸 Protección de recursos
+
+Controla consumo de CPU, RAM y ancho de banda.
+
+---
+
+## 🤖 Prevención de bots
+
+Muy usado en:
+
+* login
+* APIs públicas
+* scraping
+
+---
+
+## 🌐 ¿Dónde se usa?
+
+En una arquitectura moderna, el Rate Limiting rara vez se maneja directamente dentro del código de la aplicación principal (el microservicio). En su lugar, se delega a capas superiores:
+
+* **API Gateways / Proxies:** Herramientas como **Kong, Nginx, AWS API Gateway o Traefik** son los lugares ideales para colocar el Rate Limiter, interceptando las peticiones antes de que toquen tus servidores de aplicación.
+* **Capa de Almacenamiento (Caché):** Para rastrear los contadores o tokens de millones de usuarios de forma ultra rápida, se suele utilizar **Redis** debido a su velocidad en operaciones de lectura/escritura en memoria y su soporte para expiración de llaves (`TTL`).
+
+* APIs REST
+* Cloud services ☁️
+* Login y autenticación 🔐
+* Plataformas SaaS
+
+---
+
+## 🔥 Herramientas populares
+
+* NGINX
+* Kong
+* Redis
+* Cloudflare
+* Envoy
+
+---
+
+## 🛠️ Ejemplo en Express.js
+
+```javascript id="f9k2vr"
+const rateLimit = require("express-rate-limit")
+
+const limiter = rateLimit({
+  windowMs: 60 * 1000,
+  max: 100
+})
+
+app.use(limiter)
+```
+
+👉 Limita a 100 requests por minuto.
+
+---
+
+## ⚠️ Problemas que evita
+
+* DDoS simples
+* abuso de APIs
+* fuerza bruta 🔓
+* scraping excesivo
+* saturación del servidor
+
+---
+
+## 🔐 Buenas Prácticas y Cabeceras HTTP
+
+Cuando implementas Rate Limiting, es una buena práctica informar al cliente sobre su estado actual mediante cabeceras HTTP estándar en la respuesta:
+
+* `X-RateLimit-Limit`: El número máximo de solicitudes permitidas en el período actual.
+* `X-RateLimit-Remaining`: El número de solicitudes que le quedan disponibles dentro de la ventana actual.
+* `X-RateLimit-Reset`: El tiempo restante (en formato Unix timestamp o segundos) para que el contador se reinicie.
+* `Retry-After`: Incluido específicamente en las respuestas `429`, indica cuántos segundos debe esperar el cliente antes de volver a intentarlo.}
+
+---
+
+## 📈 ¿Por qué es importante?
+
+Porque mantiene:
+
+* disponibilidad
+* estabilidad
+* seguridad
+* rendimiento
+
+👉 Es fundamental en APIs modernas.
+
+---
+
+# 🏁 Resumen
+
+## Rate Limiting =
+
+**control de solicitudes para proteger sistemas**
+
+---
+
+## 🧠 Mensaje clave
+
+> El Rate Limiting actúa como un guardia de tráfico que evita que una API sea sobrecargada o abusada.
+
+
+
