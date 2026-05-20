@@ -1,0 +1,281 @@
+---
+title: 🏗️ ¿Qué es el Modelo MVC?
+date: '2026-05-21'
+tags: ['mvc', 'model-view-controller', 'arquitectura de software']
+draft: false
+images: ['/static/images/blog/mvc/mvc.png']
+summary: 'Es un patrón de arquitectura de software que organiza una aplicación separando responsabilidades en tres partes.'
+---
+
+<Image
+  alt={`MVC image`}
+  src={`/static/images/blog/mvc/mvc.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>El **Modelo-Vista-Controlador (MVC)** es uno de los patrones de arquitectura de software más antiguos, probados y utilizados en la historia del desarrollo web. Su objetivo principal es separar las responsabilidades de una aplicación para que el código sea organizado, escalable y fácil de mantener.
+
+MVC es un patrón que divide la lógica de una aplicación en tres componentes distintos. Esta separación significa que puedes cambiar el diseño visual de tu página sin tener que modificar la lógica de la base de datos, y viceversa.
+
+>Si estás trabajando con frameworks como Django, Laravel, Ruby on Rails o ASP.NET, estás usando MVC (o una variante de él) todos los días.
+
+---
+
+## 💡 Idea principal
+
+MVC divide la aplicación en:
+
+* **Model** → maneja datos y lógica
+* **View** → muestra la interfaz
+* **Controller** → conecta todo
+
+---
+
+## 🧠 Idea visual
+
+```id="q7m2vc"
+Usuario ↔ View ↔ Controller ↔ Model ↔ Base de Datos
+```
+
+👉 Cada componente tiene una responsabilidad específica.
+
+---
+
+# ⚙️ Los Tres Pilares de MVC
+
+## 🟢 Model (Modelo)
+
+Es el encargado de gestionar los **datos** y la **lógica de negocio** de la aplicación.
+
+* **Su función:** Se comunica directamente con la base de datos. Sabe cómo guardar, editar, borrar y validar la información.
+* **Ejemplo:** Si tienes una tienda online, el Modelo sabe qué campos tiene un `Producto` (nombre, precio, stock) y contiene las reglas para aplicar un descuento.
+
+👉 Representa la información de la aplicación.
+
+Ejemplo:
+
+```javascript id="n2x8qp"
+Usuario.findById(1)
+```
+
+---
+
+## 🔵 View (Vista)
+
+Es la **interfaz de usuario** (lo que el cliente ve en su pantalla).
+
+* **Su función:** Toma los datos que le envía el Controlador y los renderiza en un formato visual (HTML, CSS, JSON, etc.). La Vista no calcula precios ni valida contraseñas; solo muestra información.
+* **Ejemplo:** La página web con el catálogo de productos, los botones de compra y el diseño visual de la tienda.
+
+La View es la interfaz que ve el usuario.
+
+Puede ser:
+
+* páginas web
+* formularios
+* componentes UI
+* respuestas JSON
+
+👉 Solo muestra información.
+
+---
+
+## 🟠 Controller (Controlador)
+
+Es el **intermediario o cerebro** del sistema. Actúa como el puente entre el Modelo y la Vista.
+
+* **Su función:** Escucha las peticiones del usuario (por ejemplo, cuando hace clic en un botón). Luego, le pide datos al Modelo y decide qué Vista debe mostrarse con esa información.
+* **Ejemplo:** Cuando el usuario hace clic en "Ver Producto de ID 5", el Controlador recibe la orden, va al Modelo a buscar el producto 5 y le pasa ese producto a la Vista para que la pinte en pantalla.
+
+El Controller recibe solicitudes y coordina todo.
+
+👉 Actúa como intermediario entre:
+
+* View
+* Model
+
+Ejemplo:
+
+```javascript id="v4r9ks"
+function getUser(req, res) {
+  const user = User.find(req.params.id)
+  res.render("profile", { user })
+}
+```
+
+---
+
+# 🔄 ¿Cómo funciona MVC?
+
+## 1️⃣ El usuario interactúa con la View
+
+Ejemplo:
+
+```id="f8w3qa"
+Click en botón "Login"
+```
+
+---
+
+## 2️⃣ La solicitud llega al Controller
+
+El controlador procesa la acción.
+
+---
+
+## 3️⃣ El Controller usa el Model
+
+Consulta o modifica datos.
+
+---
+
+## 4️⃣ El Model responde
+
+Devuelve información procesada.
+
+---
+
+## 5️⃣ El Controller actualiza la View
+
+El usuario ve el resultado.
+
+---
+
+# 🧩 Ejemplo práctico
+
+En una app de usuarios:
+
+## 📄 View
+
+Formulario de registro.
+
+---
+
+## 🎮 Controller
+
+Procesa:
+
+```id="m9t2xe"
+POST /register
+```
+
+---
+
+## 🗄️ Model
+
+Guarda usuario en base de datos.
+
+---
+
+# 🚀 Ventajas del MVC
+
+## 🧹 Código organizado
+
+Cada parte tiene su responsabilidad.
+
+---
+
+## 🔄 Reutilización
+
+La lógica puede reutilizarse fácilmente.
+
+---
+
+## 👥 Trabajo en equipo
+
+Frontend y backend pueden trabajar separados.
+
+---
+
+## 📈 Escalabilidad
+
+Facilita crecimiento de proyectos grandes.
+
+---
+
+## 🛠️ Mantenimiento sencillo
+
+Más fácil encontrar y corregir errores.
+
+---
+
+# ⚠️ Desventajas
+
+* Puede ser complejo para proyectos pequeños
+* Más archivos y estructura
+* Requiere entender bien arquitectura
+
+---
+
+# 🌐 ¿Dónde se usa?
+
+MVC es muy común en:
+
+* aplicaciones web
+* backend
+* frameworks modernos
+* sistemas empresariales
+
+---
+
+# 🔥 Frameworks que usan MVC
+
+* Laravel
+* Django
+* Ruby on Rails
+* ASP.NET MVC
+* Spring MVC
+
+---
+
+# 📊 Relación con CRUD
+
+MVC suele trabajar junto con CRUD:
+
+| MVC        | CRUD                 |
+| ---------- | -------------------- |
+| Controller | maneja requests      |
+| Model      | interactúa con datos |
+| View       | muestra resultados   |
+
+---
+
+## 💡 ¿Por qué sigue siendo tan popular?
+
+* **Separación de conceptos (SoC):** Permite que un desarrollador Frontend trabaje en las Vistas (diseño y maquetación) al mismo tiempo que un desarrollador Backend optimiza los Modelos (consultas a la base de datos), sin pisarse el código.
+* **Reutilización de código:** Un mismo Modelo puede alimentar a múltiples Vistas. Por ejemplo, los datos de un producto pueden mostrarse en una página web (HTML) o enviarse a una app móvil en formato JSON.
+* **Mantenimiento sencillo:** Si necesitas cambiar la base de datos de MySQL a PostgreSQL, solo modificas el código en el Modelo; el Controlador y la Vista no se enteran del cambio.
+
+---
+
+# 🧠 ¿Por qué es importante?
+
+Porque permite construir aplicaciones:
+
+* organizadas
+* mantenibles
+* escalables
+* fáciles de entender
+
+👉 Es uno de los patrones más usados en desarrollo web.
+
+---
+
+# 🏁 Resumen
+
+El modelo MVC revolucionó la forma en que construimos software porque impuso orden sobre el caos de los scripts monolíticos antiguos. Aunque hoy en día en el Frontend dominan las arquitecturas basadas en componentes (como React o Vue), entender MVC en el Backend sigue siendo un pilar indispensable para cualquier ingeniero de software.
+
+### MVC =
+
+**Model + View + Controller**
+
+Un patrón que separa datos, interfaz y lógica para crear aplicaciones más limpias y escalables.
+
+---
+
+# 🧠 Mensaje clave
+
+> MVC organiza una aplicación dividiendo responsabilidades entre datos, interfaz y control de lógica.
+
