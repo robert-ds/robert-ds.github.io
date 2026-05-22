@@ -1,0 +1,291 @@
+---
+title: ⏱️ ¿Qué es la Latencia?
+date: '2026-05-23'
+tags: ['latencia', 'rendimiento', 'redes']
+draft: false
+images: ['/static/images/blog/latencia/latencia.png']
+summary: 'La Latencia es el enemigo invisible contra el que luchamos constantemente para que los sistemas se sientan rápidos.'
+---
+
+<Image
+  alt={`Latencia image`}
+  src={`/static/images/blog/latencia/latencia.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>En el desarrollo web, solemos confundir "velocidad de internet" con qué tan rápido carga una página. Puedes tener una conexión de fibra óptica de 1 Gbps, pero si tu **latencia** es alta, la experiencia de usuario se sentirá lenta y pesada.
+
+Entender la latencia y cómo reducirla es lo que diferencia a una aplicación web común de una de alto rendimiento.
+
+La **latencia** es el tiempo que tarda un dato en viajar desde un punto a otro dentro de un sistema o red.
+
+👉 En pocas palabras:
+
+> Es el retraso entre una solicitud y la respuesta.
+
+---
+
+## 💡 Idea principal
+
+La latencia es el **tiempo de retraso** que tarda un paquete de datos en viajar desde su punto de origen hasta su destino (y, por lo general, de regreso). En términos sencillos, es el tiempo de espera entre que haces clic en un botón y el servidor empieza a responder.
+
+Se mide en **milisegundos (ms)** y se suele evaluar mediante el **RTT (Round Trip Time)**, que es el tiempo total de ida y vuelta de una solicitud.
+
+Cuando haces una acción:
+
+```id="x9m2vc"
+Click → petición → servidor → respuesta
+```
+
+La latencia mide cuánto tarda todo ese recorrido.
+
+---
+
+## 🧠 Idea visual
+
+Piensa en enviar un mensaje 📩:
+
+* Tú envías el mensaje
+* Viaja por internet 🌐
+* El servidor responde
+
+Otra Analogía seria la siguiente:
+
+Imagina que la conexión a internet es una tubería de agua:
+
+* **El Ancho de Banda (Velocidad):** Es el *grosor* de la tubería. Cuanto más gruesa, más agua (datos) puede pasar a la vez.
+* **La Latencia:** Es la *longitud* de la tubería. No importa qué tan gruesa sea, si la tubería mide miles de kilómetros, el agua tardará un tiempo físico en llegar desde el grifo hasta el otro extremo.
+
+👉 Ese tiempo de ida y vuelta es la latencia.
+
+---
+
+## ⚙️ ¿Cómo funciona?
+
+La latencia aparece por:
+
+La latencia no depende de un solo factor; es la suma de varios retrasos en el camino:
+
+* **Distancia física 🌍 (Retraso de propagación):** Los datos viajan a través de cables de fibra óptica a la velocidad de la luz, pero la luz tiene un límite. Cruzar el océano Atlántico toma tiempo físico.
+* **Medios de transmisión:** El tipo de conexión influye. Las conexiones satelitales o redes móviles (3G/4G) tienen intrínsecamente más latencia que la fibra óptica cableada.
+* **Retraso de enrutamiento:** Cada vez que tus datos pasan por un router, un switch o un servidor intermedio en internet, se pierde una pequeña fracción de tiempo mientras la máquina decide a dónde enviar el paquete.
+* **Carga del servidor:** Si tu backend está saturado procesando código o consultas a la base de datos, tardará más en procesar la petición, aumentando la latencia percibida (TTFB - *Time to First Byte*).
+
+Ademas, la latencia puede ser causada por:
+
+* procesamiento del servidor 🖥️
+* congestión de red 🚦
+* bases de datos lentas 🗄️
+* APIs externas 🔌
+
+---
+
+## 📏 ¿Cómo se mide?
+
+Normalmente en:
+
+```id="k7d4qp"
+milisegundos (ms)
+```
+
+Ejemplos:
+
+* 5ms → muy rápida ⚡
+* 50ms → buena 👍
+* 300ms → lenta 🐢
+
+---
+
+# 🔥 Tipos de latencia
+
+## 🌐 Latencia de red
+
+Tiempo que tarda la información en viajar por internet.
+
+Ejemplo:
+
+```id="m8x3rt"
+Cliente ↔ Servidor
+```
+
+---
+
+## 🖥️ Latencia del servidor
+
+Tiempo que tarda el backend en procesar una solicitud.
+
+---
+
+## 🗄️ Latencia de base de datos
+
+Tiempo requerido para consultar o guardar datos.
+
+---
+
+## 📡 Latencia de API
+
+Retraso en respuestas de servicios externos.
+
+---
+
+# 🧩 Ejemplo práctico
+
+## ⚡ Baja latencia
+
+```id="f3v8qs"
+Respuesta en 20ms
+```
+
+Resultado:
+
+* app fluida
+* experiencia rápida
+
+---
+
+## 🐢 Alta latencia
+
+```id="c2n7we"
+Respuesta en 800ms
+```
+
+Consecuencias:
+
+* cargas lentas
+* lag
+* usuarios frustrados
+
+---
+
+
+# 🚀 ¿Por qué es importante?
+
+La latencia afecta directamente:
+
+* velocidad de aplicaciones
+* videojuegos 🎮
+* streaming 📺
+* videollamadas 📹
+* APIs
+* sistemas en tiempo real
+
+👉 Menor latencia = mejor experiencia.
+
+---
+
+## 🚀 ¿Por qué es importante?
+
+La latencia afecta directamente:
+
+* velocidad de aplicaciones
+* videojuegos 🎮
+* streaming 📺
+* videollamadas 📹
+* APIs
+* sistemas en tiempo real
+
+👉 Menor latencia = mejor experiencia.
+
+---
+
+## 🔥 ¿Cómo nos afecta en el Frontend?
+
+Una latencia alta destruye las métricas de rendimiento de tu sitio, especialmente:
+
+* **TTFB (Time to First Byte):** El tiempo que pasa el navegador esperando la primera respuesta del servidor.
+* **FID (First Input Delay):** El tiempo desde que el usuario interactúa con la página hasta que el navegador responde.
+
+Si la latencia supera los **200ms**, el usuario empezará a notar que la interfaz va "pesada". Si supera los **500ms**, la frustración está garantizada.
+
+---
+
+## 📏 Factores que aumentan la latencia
+
+* Servidores lejanos 🌍
+* Mala conexión
+* Mucho tráfico
+* Consultas pesadas
+* APIs lentas
+* Infraestructura deficiente
+
+---
+
+# ⚡ ¿Cómo reducir la latencia?
+
+## 🌐 Usar CDN
+
+Acerca contenido al usuario.
+
+---
+
+## 📦 Caché
+
+Reduce consultas repetidas.
+
+---
+
+## ☁️ Mejor infraestructura
+
+Servidores más rápidos y cercanos.
+
+---
+
+## 🔄 Optimizar consultas
+
+Mejorar bases de datos y APIs.
+
+---
+
+## 🚀 Compresión y minificación
+
+Menos datos = respuestas más rápidas.
+
+---
+
+# 📊 Diferencia entre Latencia y Ancho de Banda
+
+| Concepto       | Significado                    |
+| -------------- | ------------------------------ |
+| Latencia       | Tiempo de respuesta            |
+| Ancho de banda | Cantidad de datos transferidos |
+
+👉 Puedes tener mucho ancho de banda y aun así alta latencia.
+
+---
+
+## 🌐 ¿Dónde se usa?
+
+* Redes
+* Cloud computing ☁️
+* APIs
+* Juegos online 🎮
+* Streaming
+* Microservicios
+* Sistemas distribuidos
+
+---
+
+## 🛠️ Herramientas para medir latencia
+
+* Ping
+* Wireshark
+* Grafana
+* Prometheus
+
+---
+
+## 🏁 Resumen
+
+El ancho de banda nos permite descargar archivos gigantescos como películas en segundos, pero la **latencia** es la que hace que una aplicación web se sienta instantánea al interactuar con ella. En la optimización web, cada milisegundo cuenta.
+
+### Latencia =
+
+**tiempo que tarda una solicitud en obtener respuesta**
+
+---
+
+# 🧠 Mensaje clave
+
+> La latencia mide qué tan rápido responde un sistema; mientras menor sea, más fluida será la experiencia del usuario.
