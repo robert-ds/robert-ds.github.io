@@ -1,0 +1,220 @@
+---
+title: 🧵 Programación Multihilo
+date: '2026-05-27'
+tags: ['programación', 'multihilo', 'concurrencia']
+draft: false
+images: ['/static/images/blog/programacion-multihilo/programacion-multihilo.png']
+summary: 'Este concepto es el pilar de la concurrencia en lenguajes de backend (como Java, C#, Go o C++) e incluso tiene su espacio en el frontend moderno.'
+---
+
+<Image
+  alt={`Latencia image`}
+  src={`/static/images/blog/programacion-multihilo/programacion-multihilo.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>La **programación multihilo** (multithreading) es una técnica que permite ejecutar múltiples tareas o procesos de manera concurrente dentro de una aplicación.
+
+👉 Un “hilo” (thread) es una unidad de ejecución dentro de un programa.
+
+## 🧵 Programación Multihilo: Maximizando el Poder del Procesador
+
+Por defecto, cuando ejecutas un programa, este se ejecuta de forma secuencial en una línea de tiempo única llamada **Hilo (Thread)**. Pero los procesadores modernos tienen múltiples núcleos capaces de realizar millones de operaciones simultáneas.
+
+La **Programación Multihilo** es la técnica que permite a una aplicación dividir su carga de trabajo en múltiples hilos de ejecución paralelos para aprovechar al máximo el hardware.
+
+---
+
+## 💡 Idea principal
+
+Un hilo es la unidad más pequeña de ejecución que el sistema operativo puede planificar.
+
+Para entenderlo, imagina una **fábrica textil (Tu Aplicación)**:
+
+* **Monohilo:** Tienes un solo sastre trabajando. Si tiene que cortar tela, coser un botón y planchar una camisa, debe terminar una tarea antes de empezar la siguiente. Si se queda esperando a que caliente la plancha, todo el trabajo se detiene.
+* **Multihilo:** Tienes a varios sastres trabajando en paralelo dentro de la misma fábrica. Mientras uno corta la tela, otro cose los botones y un tercero plancha. Todos comparten las mismas tijeras, hilos y telas (la memoria del programa).
+
+En lugar de ejecutar tareas una por una:
+
+```id="v2m8qp"
+Tarea A → Tarea B → Tarea C
+```
+
+La programación multihilo permite:
+
+```id="x7d4rt"
+Tarea A
+Tarea B
+Tarea C
+al mismo tiempo
+```
+
+👉 Mejorando rendimiento y capacidad de respuesta.
+
+---
+
+## ⚙️ ¿Cómo funciona?
+
+Cada hilo:
+
+* tiene su propia ejecución
+* comparte memoria del proceso principal
+* puede ejecutar tareas independientes
+
+El sistema operativo coordina:
+
+* tiempo de CPU
+* prioridades
+* sincronización
+
+---
+
+## 📦 Concurrencia vs. Paralelismo (El Gran Malentendido)
+
+Aunque suenan igual, no significan lo mismo en la arquitectura de sistemas:
+
+* **Concurrencia:** Es la habilidad de gestionar múltiples tareas al mismo tiempo, pero no necesariamente ejecutándose en el mismo instante. El procesador va alternando entre hilos tan rápido (conmutación de contexto) que da la ilusión de simultaneidad.
+* **Paralelismo:** Ocurre cuando las tareas se ejecutan literalmente al mismo tiempo, lo cual es posible únicamente si el equipo tiene un procesador con múltiples núcleos físicos.
+
+---
+
+## 🔥 Diferencia entre proceso e hilo
+
+| Concepto      | Característica                 |
+| ------------- | ------------------------------ |
+| Proceso       | Programa independiente         |
+| Hilo (Thread) | Subproceso dentro del programa |
+
+👉 Un proceso puede tener múltiples hilos.
+
+---
+
+## 🧩 Ejemplo práctico
+
+Una aplicación puede usar hilos para:
+
+* descargar archivos 📥
+* reproducir música 🎵
+* actualizar interfaz 🖥️
+* ejecutar cálculos 🔢
+
+todo simultáneamente.
+
+---
+
+# 🚀 ¿Dónde se usa?
+
+* Navegadores web 🌐
+* Videojuegos 🎮
+* Servidores backend
+* Apps móviles 📱
+* Sistemas operativos
+* Inteligencia artificial 🤖
+
+---
+
+## 🚀 Ventaja - Mejor rendimiento
+
+Las tareas intensivas de cómputo (como el procesamiento de imágenes, renderizado 3D o machine learning) se pueden dividir entre varios hilos, reduciendo el tiempo total de ejecución.
+
+👉 Aprovecha múltiples núcleos del CPU.
+
+### 🛡️ Aplicaciones más Responsivas
+
+En aplicaciones de escritorio o móviles, puedes dejar un hilo exclusivo para la interfaz de usuario (UI Thread) y enviar las peticiones de red o cálculos pesados a hilos de fondo (Background Threads). Así, la app nunca se congela.
+
+### 📊 Eficiencia en Servidores Backend
+
+Un servidor web multihilo (como Tomcat en Java o Kestrel en .NET) puede asignar un hilo independiente para atender la solicitud de cada usuario que ingresa, permitiendo procesar miles de visitas concurrentes de forma eficiente.
+
+### 🖥️ Interfaces fluidas
+
+Evita que la app se “congele”.
+
+### ⏱️ Ejecución concurrente
+
+Varias tareas al mismo tiempo.
+
+### 📈 Mayor escalabilidad
+
+Ideal para sistemas grandes.
+
+---
+
+##  El Lado Oscuro: Los Desafíos del Multihilo
+
+Compartir la misma memoria entre varios hilos puede generar problemas complejos de resolver (y muy difíciles de replicar en entornos de prueba):
+
+* **Condición de Carrera (Race Condition):** Ocurre cuando dos hilos intentan modificar el mismo dato al mismo tiempo. Si el Hilo A y el Hilo B intentan restar $1$ al saldo de una cuenta bancaria simultáneamente, el resultado final puede ser erróneo.
+* **Bloqueo Mutuo (Deadlock):** Sucede cuando el Hilo 1 está esperando un recurso que tiene el Hilo 2, y el Hilo 2 está esperando un recurso que tiene el Hilo 1. Ambos se bloquean mutuamente para siempre.
+* **Sincronización:** Para evitar los problemas anteriores, los desarrolladores debemos usar mecanismos de control como **Mutex**, **Semáforos** o bloques `lock`. Sin embargo, abusar de la sincronización puede hacer que tu programa vuelva a ser tan lento como uno monohilo.
+
+## 📦 Consumo adicional
+
+Más hilos = más memoria y contexto.
+
+---
+
+# 🛠️ Ejemplo simple en Java
+
+```java id="f8k2qm"
+class MiHilo extends Thread {
+    public void run() {
+        System.out.println("Ejecutando hilo");
+    }
+}
+
+MiHilo hilo = new MiHilo();
+hilo.start();
+```
+
+👉 `.start()` crea un nuevo hilo de ejecución.
+
+---
+
+## 🔥 Lenguajes con soporte multihilo
+
+* Java
+* C++
+* C#
+* Go
+* Rust
+
+---
+
+## 💡 ¿Y qué pasa en el Frontend (JavaScript)?
+
+Como mencionamos en el post del *Event Loop*, JavaScript es monohilo por naturaleza. Sin embargo, el desarrollo web moderno exige cada vez más potencia. Para solucionar esto sin perder la simplicidad de JS, nacieron los **Web Workers**.
+
+Los Web Workers permiten ejecutar scripts en hilos de fondo separados del hilo principal de la UI. Aunque no comparten memoria directamente (se comunican mediante mensajes), permiten realizar tareas pesadas en el navegador sin bloquear la pantalla del usuario.
+
+---
+
+
+## 📈 ¿Por qué es importante?
+
+La programación multihilo permite:
+
+* apps más rápidas
+* mejor uso del hardware
+* sistemas concurrentes
+* procesamiento intensivo eficiente
+
+👉 Es fundamental en software moderno.
+
+---
+
+# 🏁 Resumen
+
+La programación multihilo es como manejar un auto de carreras: te da una potencia y velocidad increíbles, pero requiere una precisión absoluta. Diseñar sistemas multihilo eficientes y libres de *deadlocks* es una de las habilidades más respetadas y valoradas en la ingeniería de software de alto nivel.
+
+### Multihilo =
+
+**ejecutar múltiples hilos concurrentemente dentro de una aplicación**
+
+---
+
+
+
