@@ -1,0 +1,345 @@
+---
+title: 🧩 Domain-Driven Design (DDD)
+date: '2026-05-28'
+tags: ['programación', 'diseño de software', 'arquitectura de software']
+draft: false
+images: ['/static/images/blog/ddd/ddd.png']
+summary: 'Es una metodología de diseño de software enfocada en modelar el negocio de forma clara y organizada para crear aplicaciones más mantenibles y escalables.'
+---
+
+<Image
+  alt={`Domain-Driven Design image`}
+  src={`/static/images/blog/ddd/ddd.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Es un enfoque de desarrollo que no se centra en la tecnología o en las bases de datos, sino en el **problema real de negocio** que estás intentando resolver.
+
+## 🧩 Entendiendo Domain-Driven Design (DDD): El negocio manda, el código obedece
+
+Cuando los proyectos de software crecen, el mayor problema rara vez es la tecnología. El verdadero dolor de cabeza suele ser la falta de alineación entre lo que los desarrolladores entienden y lo que el negocio realmente necesita.
+
+**Domain-Driven Design (DDD)**, introducido por Eric Evans en 2003, es un enfoque metodológico y de modelado de software que propone que la estructura y el lenguaje de tu código deben coincidir directamente con el dominio del negocio.
+
+👉 La idea principal es:
+
+>El código debe representar el dominio del negocio lo más fielmente posible.
+
+---
+
+## 💡 Idea principal
+
+DDD busca que:
+
+* desarrolladores 👨‍💻
+* expertos del negocio 🧠
+* arquitectos 🏗️
+
+hablen el mismo lenguaje y entiendan el sistema de la misma manera.
+
+---
+
+## 🧠 Conceptos Core de DDD
+
+Para entender DDD, primero debemos dominar sus tres términos fundamentales:
+
+* **El Dominio (Domain):** Es la esfera de conocimiento, actividad o negocio a la que se dedica la empresa. Por ejemplo, en Uber, el dominio es el transporte logístico; en un banco, son las transacciones financieras.
+
+👉 Cada uno tiene reglas y procesos propios.
+
+* **Expertos del Dominio (Domain Experts):** Son las personas que entienden el negocio a la perfección pero no necesariamente saben programar (ej. contadores, gerentes de logística, abogados).
+* **Modelo de Dominio (Domain Model):** Es una abstracción simplificada del negocio que los desarrolladores y los expertos del dominio crean juntos para resolver el problema.
+
+---
+
+## ⚙️ Objetivo del DDD
+
+DDD ayuda a:
+
+* manejar sistemas complejos
+* organizar lógica de negocio
+* separar responsabilidades
+* construir software mantenible
+
+---
+
+## 🔥 ¿Cuándo deberías usar DDD?
+
+DDD no es una bala de plata y añade una capa considerable de complejidad inicial.
+
+* **Deberías usarlo si:** El negocio tiene reglas muy complejas, el software va a durar años y el equipo es lo suficientemente grande como para requerir una separación clara de contextos (ideal para arquitecturas de microservicios).
+* **NO deberías usarlo si:** Estás construyendo un proyecto pequeño, una landing page o un **CRUD sencillo**. Si la única lógica de tu app es guardar y leer datos sin reglas complejas de negocio, aplicar DDD es sobreingeniería de manual.
+
+---
+
+# 🧩 Componentes principales del DDD
+
+Una vez que has dividido el sistema estratégicamente, DDD ofrece patrones de diseño para estructurar tu código por dentro:
+
+## 🟢 Entidades (Entities)
+
+** Objetos que tienen una identidad única que persiste en el tiempo. Ej: Un `Usuario` (definido por su ID, no importa si cambia de nombre).
+
+Los objetos que tienen identidad única.
+
+Ejemplo:
+
+```id="x7m3qp"
+Usuario #123
+Pedido #900
+```
+
+👉 Aunque cambien sus datos, siguen siendo el mismo objeto.
+
+---
+
+## 🔵 Objetos de Valor (Value Objects)
+
+Objetos definidos por sus atributos, no por identidad.
+
+** Objetos que no tienen identidad propia y se definen únicamente por sus atributos. Son inmutables. Ej: Una `Dirección` o una cantidad de `Dinero` (si cambias el valor, es un objeto totalmente nuevo).
+
+Ejemplo:
+
+```id="k2v9rt"
+Dirección
+Dinero
+Coordenadas
+```
+
+👉 Si los valores cambian, se considera otro objeto.
+
+---
+
+## 🟠 Agregados (Aggregates)
+
+Grupo de objetos relacionados tratados como una sola unidad.
+
+** Un grupo de entidades y objetos de valor que se tratan como una sola unidad para la consistencia de los datos. Tienen un "Aggregate Root" (Raíz del Agregado) a través del cual se realizan todas las modificaciones.
+
+Ejemplo:
+
+```id="q4w8zc"
+Pedido
+ ├── Productos
+ ├── Cliente
+ └── Pago
+```
+
+👉 Protegen consistencia del dominio.
+
+---
+
+## 🟣 Repositorios (Repositories)
+
+Encargados de acceder y guardar datos.
+
+** Una interfaz encargada de persistir y recuperar los agregados de la base de datos, abstrayendo por completo la tecnología de almacenamiento del modelo de negocio.
+
+👉 Separan lógica de negocio de la persistencia.
+
+Ejemplo:
+
+```id="f9x2ml"
+UsuarioRepository
+PedidoRepository
+```
+
+---
+
+## 🔴 Servicios de Dominio
+
+Lógica de negocio que no pertenece a una sola entidad.
+
+Ejemplo:
+
+```id="t3n7qa"
+Calcular impuestos
+Procesar pagos
+```
+
+---
+
+## 🌐 Bounded Context
+
+Uno de los conceptos más importantes.
+
+En aplicaciones grandes (monolitos gigantes o microservicios), una palabra puede significar cosas distintas según el departamento. Por ejemplo, la palabra **"Producto"** significa una cosa para el equipo de Ventas (precio, descripción) y algo muy diferente para el equipo de Envíos (peso, dimensiones, stock).
+
+DDD resuelve esto mediante los **Bounded Contexts (Contextos Delimitados)**. En lugar de intentar crear un único modelo unificado de "Producto" para toda la empresa, DDD divide el sistema en límites claros. Cada contexto tiene su propio modelo y su propio Lenguaje Ubicuo.
+
+👉 Divide el sistema en contextos independientes.
+
+Ejemplo:
+
+* módulo de pagos
+* módulo de usuarios
+* módulo de inventario
+
+Cada contexto:
+
+* tiene reglas propias
+* lenguaje propio
+* modelos propios
+
+---
+
+## 🗣️ Ubiquitous Language
+
+Uno de los pilares más importantes de DDD es la eliminación de la "barrera de traducción". A menudo, el equipo de negocio habla de "Usuarios que adquieren una licencia" y los desarrolladores hablan de `id_usuario` y registros en la tabla `user_subscriptions`.
+
+DDD exige la creación de un **Lenguaje Ubicuo**: un vocabulario común que sea utilizado tanto por los expertos del dominio en las reuniones, como por los programadores en el código (nombres de variables, clases, funciones y APIs). Si el negocio lo llama `Client`, en tu backend no debería llamarse `Customer`.
+
+DDD promueve un lenguaje común entre:
+
+* negocio
+* desarrollo
+* arquitectura
+
+👉 Los nombres del código deben reflejar términos reales del negocio.
+
+Ejemplo:
+
+```id="m8r1kp"
+Order
+Invoice
+Customer
+```
+
+y no nombres ambiguos.
+
+---
+
+# 🔥 Ejemplo práctico
+
+En un e-commerce:
+
+## Dominio:
+
+```id="v6q2tw"
+Ventas
+```
+
+---
+
+## Entidades:
+
+* Cliente
+* Pedido
+* Producto
+
+---
+
+## Value Objects:
+
+* Dirección
+* Precio
+
+---
+
+## Servicios:
+
+* Procesar compra
+* Calcular envío
+
+---
+
+# 🚀 Ventajas del DDD
+
+## 🧠 Mejor comprensión del negocio
+
+El código refleja procesos reales.
+
+---
+
+## 📈 Escalabilidad
+
+Ideal para sistemas complejos y grandes.
+
+---
+
+## 🧩 Arquitectura modular
+
+Facilita separar contextos y microservicios.
+
+---
+
+## 🔄 Mantenimiento más sencillo
+
+Menos acoplamiento.
+
+---
+
+## 👥 Mejor comunicación
+
+Negocio y desarrollo hablan el mismo idioma.
+
+---
+
+## ⚠️ Desventajas
+
+* Curva de aprendizaje alta 📚
+* Puede ser excesivo para proyectos pequeños
+* Requiere colaboración constante con expertos del dominio
+* Diseño inicial más complejo
+
+---
+
+## 🌐 ¿Dónde se usa?
+
+DDD es común en:
+
+* sistemas empresariales
+* microservicios
+* fintech 💳
+* e-commerce
+* plataformas grandes
+
+---
+
+## 🔥 Relación con Microservicios
+
+Muchos sistemas modernos usan:
+
+```id="z1d4cv"
+DDD + Microservices
+```
+
+👉 Cada microservicio suele representar un Bounded Context.
+
+---
+
+## 🛠️ Tecnologías relacionadas
+
+* Spring Boot
+* NestJS
+* Hibernate
+* Axon Framework
+
+---
+
+## 📊 DDD vs CRUD
+
+| CRUD                     | DDD                           |
+| ------------------------ | ----------------------------- |
+| Centrado en datos        | Centrado en negocio           |
+| Más simple               | Más estratégico               |
+| Ideal para apps pequeñas | Ideal para sistemas complejos |
+
+---
+
+# 🏁 Resumen
+
+Domain-Driven Design nos enseña que los desarrolladores somos, ante todo, modeladores de la realidad de un negocio. Al poner el foco en el dominio y hablar el mismo idioma que los expertos, reducimos la fricción, evitamos malentendidos y construimos software que realmente refleja y escala con los objetivos de la empresa.
+
+### DDD =
+
+**diseñar software basado en el dominio y reglas del negocio**
+
+---
+
+# 🧠 Mensaje clave
+
+> Domain-Driven Design busca que el software represente el negocio de forma clara, modular y alineada con el mundo real.
