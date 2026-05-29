@@ -1,0 +1,282 @@
+---
+title: Vistas en Bases de Datos
+date: '2026-05-30'
+tags: ['Base de Datos', 'Vistas', 'SQL']
+draft: false
+images: ['/static/images/blog/vistas/vistas.png']
+summary: 'Una **vista (VIEW)** es una tabla virtual creada a partir de una consulta SQL.'
+---
+
+<Image
+  alt={`Vistas en Bases de Datos image`}
+  src={`/static/images/blog/vistas/vistas.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Una **Vista** en una base de datos es, esencialmente, una **consulta SQL predefinida que se almacena en el servidor y a la que puedes guardar y consultar como si fuera una tabla virtual**.
+
+👉 No almacena datos físicamente (en la mayoría de los casos), sino que muestra información obtenida de otras tablas.
+
+---
+
+## 💡 Idea principal
+
+Una vista funciona como una “ventana” hacia los datos.
+
+Ejemplo:
+
+```id="x2m7qp"
+Tabla usuarios
+Tabla pedidos
+```
+
+👉 La vista puede combinar ambas y mostrar solo la información necesaria.
+
+---
+
+## 🧠 Idea visual
+
+## Tablas reales
+
+```id="k8v3rt"
+usuarios
+pedidos
+productos
+```
+
+## Vista
+
+```id="n4q9zc"
+vista_clientes_activos
+```
+
+👉 La vista consulta datos automáticamente desde las tablas originales.
+
+---
+
+## 🧠 ¿Cómo funcionan? Tablas Reales vs. Virtuales
+
+A diferencia de una tabla común, una vista **no almacena datos físicamente** en el disco duro (con la excepción de las vistas indexadas o materializadas). Cada vez que consultas una vista, la base de datos ejecuta la consulta empaquetada que tiene por dentro en tiempo real.
+
+### Ejemplo Práctico:
+
+Imagina que tienes una tabla de `usuarios` y una de `compras`. Para saber qué ha comprado cada usuario, normalmente harías esto:
+
+```sql
+SELECT usuarios.nombre, compras.producto, compras.precio
+FROM usuarios
+JOIN compras ON usuarios.id = compras.usuario_id;
+
+```
+
+Si creas una vista llamada `resumen_compras`, a partir de ese momento solo necesitas escribir:
+
+```sql
+SELECT * FROM resumen_compras;
+
+```
+
+---
+
+## ⚙️ ¿Cómo funciona?
+
+1️⃣ Se crea una consulta SQL
+2️⃣ Esa consulta se guarda como VIEW
+3️⃣ Cada vez que alguien consulta la vista:
+
+* se ejecuta la consulta
+* se muestran resultados actualizados
+
+---
+
+## 🛠️ Sintaxis básica
+
+```sql id="m7x1te"
+CREATE VIEW vista_usuarios AS
+SELECT nombre, email
+FROM usuarios
+WHERE activo = 1;
+```
+
+👉 Ahora puedes consultar:
+
+```sql id="p2w8qa"
+SELECT * FROM vista_usuarios;
+```
+
+---
+
+## 💡 Las Grandes Ventajas de usar Vistas
+
+### ⚡ Simplicidad y Reutilización
+
+Abstraen la complejidad del backend. En lugar de que tus desarrolladores de software tengan que recordar relaciones complejas entre diez tablas distintas, simplemente les proporcionas una vista con los datos ya limpios y ordenados.
+
+### 🛡️ Seguridad y Control de Acceso
+
+Las vistas actúan como un filtro de seguridad excelente. Si tienes una tabla `empleados` con columnas sensibles como `salario` y `numero_seguridad_social`, puedes crear una vista que solo muestre el `nombre` y el `departamento`. Luego, le das permisos al equipo de desarrollo o de analítica para ver la vista, pero les bloqueas el acceso a la tabla real.
+
+### 🔄 Independencia de Datos (Refactorización)
+
+Si en el futuro decides cambiar el nombre de una tabla física o dividirla en dos para optimizar el rendimiento, la aplicación frontend podría romperse. Sin embargo, si la aplicación consume una vista, solo tienes que modificar la consulta interna de la vista para adaptarla a la nueva estructura. Para el resto de la aplicación, nada habrá cambiado.
+
+### 📊 Organización
+
+Presentan datos de forma más clara para usuarios o reportes.
+
+---
+
+## 🚀 Ejemplo práctico
+
+## Tablas originales
+
+### usuarios
+
+| id | nombre |
+| -- | ------ |
+| 1  | Ana    |
+
+### pedidos
+
+| usuario_id | total |
+| ---------- | ----- |
+| 1          | 300   |
+
+---
+
+## Vista
+
+```sql id="q9t4mv"
+CREATE VIEW resumen_clientes AS
+SELECT usuarios.nombre, pedidos.total
+FROM usuarios
+JOIN pedidos
+ON usuarios.id = pedidos.usuario_id;
+```
+
+👉 Resultado:
+
+| nombre | total |
+| ------ | ----- |
+| Ana    | 300   |
+
+---
+
+---
+
+## ⚙️ Tipos de Vistas
+
+
+### 👁️ Vista simple
+
+Basada en una sola tabla. Ejecutan la consulta interna cada vez que las llamas. Son ideales para datos que cambian constantemente.
+
+### 🔗 Vista compleja
+
+Usa:
+
+* JOIN
+* GROUP BY
+* funciones agregadas
+
+### 📦 Vistas Materializadas (Materialized Views)
+
+Muy comunes en bases de datos a gran escala (como PostgreSQL u Oracle). Estas sí guardan el resultado físicamente en disco y se actualizan periódicamente. Son extremadamente rápidas para reportes pesados, aunque los datos pueden no estar actualizados al milisegundo.
+
+👉 Muy usada en Big Data y analytics.
+
+---
+
+## ⚡ Ventajas
+
+### 🧹 Consultas más simples
+
+Reduce complejidad SQL.
+
+### 🔒 Mayor seguridad
+
+Controla acceso a datos sensibles.
+
+### 🔄 Reutilización
+
+Centraliza lógica de consultas.
+
+### 📊 Mejor organización
+
+Facilita reportes y dashboards.
+
+---
+
+## ⚠️ Desventajas
+
+### 🐢 Rendimiento
+
+Vistas complejas pueden ser lentas.
+
+### 🔄 Dependencia
+
+Si cambia una tabla, la vista puede romperse.
+
+### ⚡ Actualización limitada
+
+Algunas vistas no permiten INSERT o UPDATE.
+
+---
+
+## 🌐 ¿Dónde se usan?
+
+* Sistemas empresariales
+* Dashboards 📊
+* Reportes
+* Business Intelligence
+* APIs
+* Sistemas financieros 💳
+
+---
+
+## 🛠️ Bases de datos que soportan vistas
+
+* MySQL
+* PostgreSQL
+* Oracle Database
+* Microsoft SQL Server
+
+---
+
+## 🔒 ¿Se pueden modificar datos a través de una vista?
+
+Esta es una pregunta clásica en entrevistas de trabajo técnicas. La respuesta es: **Depende**.
+
+En la mayoría de los motores de bases de datos (como MySQL o SQL Server), puedes ejecutar un `UPDATE` o `INSERT` a través de una vista **solo si** la vista apunta a una única tabla y es simple. Si la vista contiene `JOIN`, funciones como `SUM()` o agrupaciones (`GROUP BY`), se vuelve **de solo lectura**.
+
+---
+
+## 📈 ¿Por qué son importantes?
+
+Porque permiten:
+
+* simplificar consultas
+* proteger información
+* reutilizar lógica SQL
+* organizar mejor los datos
+
+👉 Son fundamentales en sistemas grandes y reportes empresariales.
+
+---
+
+## 🏁 Resumen
+
+Las vistas en bases de datos son el equivalente a crear "atajos inteligentes" en tu infraestructura de datos. No solo limpian tu código backend al eliminar consultas SQL repetitivas, sino que blindan la seguridad de tu información sensible. Si estás diseñando la arquitectura de un sistema mediano o grande, las vistas deben formar parte de tu estrategia de diseño de base de datos.
+
+### VIEW =
+
+**tabla virtual basada en una consulta SQL**
+
+---
+
+# 🧠 Mensaje clave
+
+> Una vista permite mostrar datos de forma organizada, segura y reutilizable sin duplicar información físicamente.
+
