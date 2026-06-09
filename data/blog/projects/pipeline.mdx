@@ -1,0 +1,274 @@
+---
+title: Pipeline de Despliegue
+date: '2026-06-10'
+tags: ['pipeline', 'despliegue', 'devops']
+draft: false
+images: ['/static/images/blog/pipeline/pipeline.png']
+summary: 'Es un flujo automatizado que lleva una aplicación desde el código fuente hasta un entorno de producción.'
+---
+
+<Image
+  alt={`Pipeline de Despliegue image`}
+  src={`/static/images/blog/pipeline/pipeline.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>En los viejos tiempos del desarrollo web, cuando terminabas de programar una nueva función, tenías que compilar el código en tu máquina, conectarte al servidor por FTP y arrastrar los archivos manualmente. Si olvidabas actualizar una variable de entorno o subías un archivo equivocado, la página se caía.
+
+Un **Pipeline de Despliegue** es una tubería automatizada que toma tu código desde el momento en que lo subes a tu repositorio y lo lleva de forma segura, probada y automática hasta las manos del usuario final.
+
+👉 Su objetivo es automatizar la construcción, prueba y publicación del software de forma segura y repetible.
+
+---
+
+# 💡 Idea principal
+
+En lugar de desplegar manualmente:
+
+```id="a1b2c3"
+Programador → Compilar → Probar → Subir → Producción
+```
+
+Un pipeline realiza todo automáticamente.
+
+---
+
+# 🧠 Idea visual
+
+```id="d4e5f6"
+Código
+  ↓
+Build
+  ↓
+Testing
+  ↓
+Deploy
+  ↓
+Producción
+```
+
+👉 Cada etapa valida que el software esté listo para avanzar.
+
+---
+
+## 🌐 El concepto fundamental: CI/CD
+
+El pipeline es el motor de una filosofía de desarrollo llamada **CI/CD**:
+
+* **Integración Continua (CI - Continuous Integration):** Cada vez que un desarrollador sube código (por ejemplo, mediante un *Pull Request* en GitHub), el sistema automáticamente descarga el código, lo compila y ejecuta pruebas automatizadas para asegurar que los nuevos cambios no rompieron lo que ya funcionaba.
+* **Despliegue Continuo (CD - Continuous Deployment):** Si todas las pruebas de la fase de CI pasan con éxito, el sistema toma ese código empaquetado y lo sube automáticamente a los servidores de producción (o *Staging*) sin intervención humana.
+
+---
+
+# ⚙️ ¿Cómo funciona?
+
+Aunque cada empresa diseña su pipeline a medida, la mayoría sigue estas cuatro fases esenciales:
+
+## 1️⃣ Commit de código
+
+El desarrollador realiza cambios y los envía al repositorio.
+
+El pipeline se dispara automáticamente ante un evento en tu sistema de control de versiones. Por ejemplo, cuando haces un `git push` a la rama `main` o se aprueba un *Pull Request*.
+
+```bash id="g7h8i9"
+git push origin main
+```
+
+---
+
+## 2️⃣ Build
+
+Se compila o empaqueta la aplicación.
+
+Aquí entra en juego el **Bundler** (como Vite o Webpack). El pipeline toma el código fuente, descarga las dependencias de npm, minifica los archivos, procesa TypeScript o SASS y genera los archivos estáticos listos para producción.
+
+Ejemplos:
+
+* Generar archivos de producción
+* Construir imágenes Docker
+* Empaquetar artefactos
+
+---
+
+## 3️⃣ Testing
+
+Se ejecutan pruebas automáticas:
+
+El entorno ejecuta toda tu suite de pruebas automatizadas:
+
+* **Tests Unitarios ✅:** Para verificar funciones aisladas.
+* **Tests de Integración ✅:** Para ver si los módulos hablan bien entre sí.
+* **Linters ✅:** Para asegurar que el código cumple con las reglas de estilo del equipo.
+* End-to-End (E2E) ✅: Para simular el comportamiento del usuario y verificar que todo funcione como se espera.
+
+Si un solo test falla, **el pipeline se detiene inmediatamente**, se cancela el proceso y se notifica al equipo (por ejemplo, con un mensaje en Slack o Discord). Así se evita que el código defectuoso llegue a los usuarios.
+
+👉 Si una prueba falla, el pipeline se detiene.
+
+---
+
+## 4️⃣ Deploy
+
+La aplicación se despliega automáticamente.
+
+Si el código es seguro, el pipeline interactúa con tu infraestructura en la nube. Puede subir los archivos a un bucket de AWS S3 conectado a un **CDN**, construir una imagen de Docker o actualizar los servidores utilizando scripts de **IaC**. ¡Tu nueva versión ya está en vivo!
+
+Puede ser en:
+
+* Desarrollo (Dev)
+* Pruebas (QA)
+* Staging
+* Producción
+
+---
+
+# 🧩 Ejemplo práctico
+
+Un desarrollador modifica una API:
+
+```id="m4n5o6"
+Nueva funcionalidad de login
+```
+
+Al hacer:
+
+```bash id="p7q8r9"
+git push
+```
+
+El pipeline:
+
+1. Descarga el código
+2. Instala dependencias
+3. Ejecuta pruebas
+4. Genera build
+5. Despliega automáticamente
+
+👉 Sin intervención manual.
+
+---
+
+# 🔄 Relación con CI/CD
+
+## CI (Continuous Integration)
+
+Integra cambios continuamente.
+
+Ejemplos:
+
+* Compilación automática
+* Ejecución de pruebas
+
+---
+
+## CD (Continuous Delivery / Deployment)
+
+Entrega cambios automáticamente.
+
+👉 El pipeline es el corazón de CI/CD.
+
+---
+
+## 📊 ¿Por qué tu proyecto lo necesita?
+
+* **Adiós al "En mi máquina funcionaba":** Como el código se compila y prueba en un entorno limpio y aislado en la nube, garantizas que el comportamiento sea idéntico en producción.
+* **Entregas más rápidas:** En lugar de hacer despliegues estresantes una vez al mes, el equipo puede subir mejoras o correcciones de bugs diez veces al día de forma segura y transparente.
+* **Feedback inmediato:** Si cometiste un error, te enteras en un par de minutos gracias a los reportes automatizados del pipeline.
+
+---
+
+# 🚀 Ventajas
+
+## ⚡ Automatización
+
+Reduce tareas manuales.
+
+---
+
+## 🔒 Menos errores humanos
+
+Todo sigue procesos definidos.
+
+---
+
+## 📈 Entregas más rápidas
+
+Permite publicar nuevas versiones con frecuencia.
+
+---
+
+## 🧪 Mayor calidad
+
+Las pruebas automáticas detectan errores temprano.
+
+---
+
+## 🔄 Consistencia
+
+Todos los despliegues siguen el mismo procedimiento.
+
+---
+
+## ⚠️ Desafíos
+
+* Configuración inicial compleja
+* Costos de infraestructura
+* Mantenimiento del pipeline
+* Pruebas lentas pueden retrasar entregas
+
+---
+
+## 🛠️ Herramientas populares
+
+* [GitHub Actions](https://github.com/features/actions?utm_source=chatgpt.com)
+* [GitLab CI/CD](https://about.gitlab.com/stages-devops-lifecycle/continuous-integration/?utm_source=chatgpt.com)
+* [Jenkins](https://www.jenkins.io?utm_source=chatgpt.com)
+* [Azure DevOps](https://azure.microsoft.com/products/devops?utm_source=chatgpt.com)
+* [CircleCI](https://circleci.com?utm_source=chatgpt.com)
+* [Bitbucket Pipelines](https://bitbucket.org/product/features/pipelines?utm_source=chatgpt.com)
+
+---
+
+## 🌐 ¿Dónde se usa?
+
+* Desarrollo web 🌍
+* Aplicaciones móviles 📱
+* Microservicios 🔗
+* DevOps ⚙️
+* Cloud Computing ☁️
+* Sistemas empresariales 🏢
+
+---
+
+# 📊 Pipeline Tradicional vs Automatizado
+
+| Manual                | Pipeline Automatizado |
+| --------------------- | --------------------- |
+| Más lento             | Más rápido            |
+| Propenso a errores    | Más confiable         |
+| Difícil de escalar    | Fácil de escalar      |
+| Requiere intervención | Automatizado          |
+
+---
+
+# 🎯 Buenas prácticas
+
+* Mantener pruebas rápidas
+* Automatizar validaciones
+* Versionar configuraciones
+* Monitorear despliegues
+* Implementar rollback automático
+
+---
+
+# 🏁 Resumen
+
+Un pipeline de despliegue es como la línea de ensamblaje en una fábrica de autos moderna: elimina los errores humanos, estandariza la calidad y acelera la entrega. Pasar de los despliegues manuales a un pipeline automatizado es el paso definitivo para transformar un proyecto de código amateur en un producto de software profesional y de nivel empresarial.
+
+### Pipeline de Despliegue =
+
+**proceso automatizado que construye, prueba y despliega software desde el repositorio hasta producción**
+
+---
