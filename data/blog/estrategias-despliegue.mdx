@@ -1,0 +1,378 @@
+---
+title: 🚀 Estrategias de Despliegue
+date: '2026-06-16'
+tags: ['Despliegue', 'Estrategias', 'Software']
+draft: false
+images: ['/static/images/blog/estrategias-despliegue/estrategias-despliegue.png']
+summary: 'Es una metodología de diseño de software enfocada en modelar el negocio de forma clara y organizada para crear aplicaciones más mantenibles y escalables.'
+---
+
+<Image
+  alt={`Estrategias de Despliegue image`}
+  src={`/static/images/blog/estrategias-despliegue/estrategias-despliegue.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Son métodos utilizados para publicar nuevas versiones de una aplicación en producción minimizando riesgos, interrupciones y errores.
+
+Imagínate que tu aplicación tiene miles de usuarios activos en este preciso momento y necesitas desplegar una actualización crítica. ¿Cómo subes el nuevo código sin desconectar a nadie, sin perder transacciones y, sobre todo, teniendo un plan de escape si algo sale mal?
+
+Las **Estrategias de Despliegue** son las diferentes metodologías que utilizamos en DevOps para transicionar de una versión antigua de nuestro software (V1) a una nueva versión (V2) de forma controlada y segura.
+
+👉 Definen **cómo** una nueva versión reemplaza o convive con la versión actual.
+
+---
+
+## 💡 Idea principal
+
+Cuando una aplicación recibe una actualización, existen varias formas de desplegarla:
+
+```id="a8m2qp"
+Versión Actual
+      ↓
+Nueva Versión
+```
+
+La estrategia elegida determina:
+
+* disponibilidad del servicio
+* tiempo de inactividad
+* facilidad de rollback
+* experiencia del usuario
+
+---
+
+## ⚙️ ¿Por qué son importantes?
+
+Permiten:
+
+* reducir riesgos ⚠️
+* evitar caídas 🚫
+* probar cambios gradualmente 🧪
+* facilitar recuperación 🔄
+* mejorar experiencia de usuario 🚀
+
+---
+
+# 🧑‍💻 Tipos de Estrategias de Despliegue
+
+## 🔵 Recreate Deployment
+
+La estrategia más simple.
+
+Es la forma más antigua y simple. Consiste en apagar los servidores con la versión V1, subir el nuevo código de la versión V2 y volver a encenderlos.
+
+## Funcionamiento
+
+```id="b4x7rt"
+Versión Antigua
+      ↓
+Detener
+      ↓
+Desplegar Nueva
+```
+
+---
+
+## Ventajas
+
+* Fácil de implementar
+* Menor consumo de recursos
+
+---
+
+## Desventajas
+
+* Produce tiempo de inactividad (downtime)
+* Riesgo de interrupción del servicio
+
+---
+
+## Casos de uso
+
+* Aplicaciones internas
+* Sistemas pequeños
+
+---
+
+## 🟢 Rolling Deployment (Actualización Progresiva)
+
+Actualiza servidores gradualmente.
+
+Es la estrategia por defecto en plataformas modernas como Kubernetes. Consiste en actualizar los servidores uno por uno o en pequeños grupos, manteniendo la versión antigua (V1) funcionando mientras se despliega la nueva versión (V2).
+
+* **Cómo funciona:** Si tu aplicación corre en 4 servidores diferentes detrás de un balanceador de carga, el pipeline no los actualiza todos a la vez. Toma el Servidor 1, lo saca del balanceador, lo actualiza a la V2 y lo vuelve a conectar. Luego repite el proceso con el Servidor 2, y así sucesivamente.
+
+```id="c9v3ks"
+Servidor 1 → Actualizar
+Servidor 2 → Actualizar
+Servidor 3 → Actualizar
+```
+
+👉 Siempre hay instancias funcionando.
+
+---
+
+## Ventajas
+
+* Sin interrupciones
+* Menor riesgo
+
+---
+
+## Desventajas
+
+* Conviven versiones distintas temporalmente
+* Rollback más complejo
+
+---
+
+## Muy usado en
+
+* Kubernetes
+* Microservicios
+* Aplicaciones web modernas
+
+---
+
+## 🟣 Blue-Green Deployment
+
+Mantiene dos entornos idénticos.
+
+Esta estrategia elimina el downtime duplicando por completo el entorno de producción. Se crean dos entornos idénticos: el **Blue** (actual) y el **Green** (nuevo). El tráfico se dirige al Blue mientras se despliega la nueva versión en el Green. Una vez que el Green está listo, se redirige todo el tráfico hacia él.
+
+* **Cómo funciona:** Tienes dos entornos idénticos. El entorno **Azul** está activo y recibiendo todo el tráfico de los usuarios (V1). Mientras tanto, tú despliegas la nueva versión (V2) en el entorno **Verde**, de forma aislada. Haces todas las pruebas necesarias en el entorno Verde y, cuando estás seguro de que todo funciona, configuras el **API Gateway** o balanceador de carga para que redirija instantáneamente todo el tráfico del entorno Azul al Verde.
+
+```id="d7q2mx"
+Blue  = Producción actual
+Green = Nueva versión
+```
+
+Cuando todo está listo:
+
+```id="n5t8zc"
+Tráfico
+Blue → Green
+```
+
+---
+
+## Ventajas
+
+* Cero downtime
+* Rollback inmediato
+
+---
+
+## Desventajas
+
+* Requiere más infraestructura
+* Mayor costo
+
+---
+
+## Ideal para
+
+* Sistemas críticos
+* E-commerce
+* Fintech
+
+---
+
+## 🟡 Canary Deployment
+
+Libera la nueva versión a un pequeño grupo de usuarios.
+
+Inspirado en la antigua práctica de los mineros que llevaban un canario a las minas para detectar gases tóxicos. Consiste en introducir la nueva versión de forma gradual.
+
+* **Cómo funciona:** Despliegas la versión V2 solo en una pequeña fracción de tus servidores (por ejemplo, el 5%). El balanceador de carga envía únicamente al 5% de tus usuarios a la nueva versión, mientras el 95% restante sigue en la V1. El equipo de ingeniería monitorea de cerca la **Tasa de Fallos (Rate of Failure)** y las métricas de rendimiento de ese 5%. Si todo va bien, aumentan el tráfico al 25%, luego al 50%, hasta llegar al 100%.
+
+## Funcionamiento
+
+```id="r3m7qa"
+95% → Versión actual
+5% → Nueva versión
+```
+
+Si funciona correctamente:
+
+```id="v8x1tp"
+50% → Nueva
+100% → Nueva
+```
+
+---
+
+## Ventajas
+
+* Detecta errores temprano
+* Reduce impacto
+
+---
+
+## Desventajas
+
+* Configuración más compleja
+* Requiere monitoreo constante
+
+---
+
+## Usado por
+
+Grandes plataformas como:
+
+* Streaming
+* Redes sociales
+* SaaS
+
+---
+
+## 🟠 A/B Deployment
+
+Permite comparar dos versiones simultáneamente.
+
+Es una estrategia que se utiliza principalmente para probar cambios en la experiencia del usuario. Consiste en dividir a los usuarios en dos grupos: el Grupo A sigue utilizando la versión actual (V1), mientras que el Grupo B recibe la nueva versión (V2). Esto permite comparar métricas clave como conversiones, clics y comportamiento del usuario entre ambas versiones.
+
+```id="w2n9kr"
+Grupo A → Versión A
+Grupo B → Versión B
+```
+
+---
+
+## Objetivo
+
+No solo probar estabilidad.
+
+También medir:
+
+* conversiones
+* clics
+* comportamiento del usuario
+
+---
+
+## 🔴 Shadow Deployment
+
+La nueva versión recibe tráfico real sin afectar usuarios.
+
+Es una estrategia avanzada que permite probar la nueva versión (V2) en producción sin que los usuarios finales la vean. El tráfico de producción se duplica: una copia va a la versión actual (V1) y otra copia va a la nueva versión (V2). Esto permite evaluar el rendimiento y detectar errores en V2 utilizando datos reales, sin impactar a los usuarios.
+
+```id="y6q4mv"
+Usuario → Producción
+          ↓
+      Copia tráfico
+          ↓
+      Nueva versión
+```
+
+---
+
+## Ventajas
+
+* Prueba con datos reales
+* Sin impacto al usuario
+
+---
+
+## Desventajas
+
+* Alto consumo de recursos
+
+---
+
+## 📊 Comparación rápida
+
+| Estrategia  | Downtime | Riesgo   | Rollback  |
+| ----------- | -------- | -------- | --------- |
+| Recreate    | Alto     | Alto     | Fácil     |
+| Rolling     | Bajo     | Medio    | Medio     |
+| Blue-Green  | Nulo     | Bajo     | Muy fácil |
+| Canary      | Nulo     | Muy bajo | Fácil     |
+| A/B Testing | Nulo     | Bajo     | Fácil     |
+| Shadow      | Nulo     | Muy bajo | Fácil     |
+
+---
+
+## 🛠️ Herramientas comunes
+
+* [Kubernetes](https://kubernetes.io?utm_source=chatgpt.com)
+* [Docker](https://www.docker.com?utm_source=chatgpt.com)
+* [Argo Rollouts](https://argo-rollouts.readthedocs.io?utm_source=chatgpt.com)
+* [Spinnaker](https://spinnaker.io?utm_source=chatgpt.com)
+* [GitHub Actions](https://github.com/features/actions?utm_source=chatgpt.com)
+* [GitLab CI/CD](https://about.gitlab.com?utm_source=chatgpt.com)
+
+---
+
+## 🌐 Relación con CI/CD
+
+Las estrategias de despliegue suelen ejecutarse al final del pipeline:
+
+```id="k4p8zs"
+Código
+  ↓
+Build
+  ↓
+Testing
+  ↓
+Deploy
+  ↓
+Estrategia de Despliegue
+  ↓
+Producción
+```
+
+---
+
+# 🎯 ¿Cuál elegir?
+
+### Recreate
+
+Proyectos pequeños.
+
+### Rolling
+
+Aplicaciones web comunes.
+
+### Blue-Green
+
+Sistemas críticos.
+
+### Canary
+
+Grandes plataformas y microservicios.
+
+### A/B
+
+Optimización de negocio y UX.
+
+### Shadow
+
+Validación avanzada antes de producción.
+
+---
+
+## 💡 Resumen: ¿Cuál elegir?
+
+| Estrategia | Downtime | Costo de Infraestructura | Complejidad | Riesgo |
+| --- | --- | --- | --- | --- |
+| **Recreate** | Sí | Bajo | Muy Baja | Alto |
+| **Blue-Green** | No | Alto | Media | Muy Bajo |
+| **Canary** | No | Bajo / Medio | Alta | Mínimo |
+| **Rolling** | No | Bajo | Media | Bajo |
+
+---
+
+# 🏁 Resumen
+
+No existe una estrategia de despliegue superior a otra; todo depende de la tolerancia al riesgo de tu negocio y de tu presupuesto de infraestructura. Para un blog o un proyecto personal, un despliegue *Rolling* o *Recreate* es suficiente. Pero cuando manejas sistemas de alta disponibilidad donde cada segundo fuera de línea cuesta miles de dólares, dominar estrategias como *Blue-Green* o *Canary* es lo que separa a los administradores de sistemas de los ingenieros DevOps de élite.
+
+### Estrategias de Despliegue =
+
+**métodos para publicar nuevas versiones minimizando riesgos y garantizando disponibilidad**
+
+---
+
