@@ -1,0 +1,338 @@
+---
+title: 🔌 Arduino
+date: '2026-07-25'
+tags: ['Arduino', 'Electrónica', 'Programación', 'Hardware', 'Microcontroladores', 'Embedded Systems']
+draft: false
+images: ['/static/images/blog/arduino/arduino.png', '/static/images/blog/arduino/arduino-desc.png']
+summary: 'Arduino es una plataforma de prototipado electrónico de código abierto basada en un microcontrolador.'
+---
+
+<Image
+  alt={`Arduino image`}
+  src={`/static/images/blog/arduino/arduino.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Hasta ahora hemos hablado de código que vive dentro de servidores, navegadores o bases de datos. Pero, ¿qué pasa cuando quieres que tu software interactúe con el mundo real? ¿Cómo haces para que una página web abra una puerta, encienda una luz o lea la temperatura de una habitación?
+
+Aquí es donde entra **Arduino**: la plataforma de hardware libre que democratizó la electrónica y la robótica para desarrolladores, makers y diseñadores de todo el mundo.
+
+---
+
+## 🧠 ¿Qué es exactamente Arduino?
+
+Arduino es una plataforma de desarrollo basada en una **placa con un microcontrolador** y un entorno de desarrollo (IDE) diseñado para facilitar el uso de la electrónica en proyectos multidisciplinares.
+
+Se compone de dos partes esenciales:
+
+* **Hardware:** La placa física con entradas (sensores) y salidas (motores, luces, pantallas) y un microcontrolador que actúa como su "cerebro".
+* **Software (Arduino IDE):** El programa que instalas en tu computadora para escribir el código (basado en C/C++) y "cargarlo" en la placa a través de un cable USB.
+
+👉 Permite controlar dispositivos físicos mediante código, sensores y actuadores.
+
+---
+
+## 💡 Idea principal
+
+Arduino funciona como un pequeño computador que puede:
+
+* Leer información del entorno 🌡️
+* Procesar datos 🧠
+* Ejecutar acciones ⚙️
+
+Ejemplo:
+
+```id="a7m2qp"
+Sensor de humedad
+        ↓
+      Arduino
+        ↓
+Bomba de agua activa
+
+```
+---
+
+## 💡 ¿Qué es una placa Arduino?
+
+Una placa Arduino contiene un **microcontrolador**, que es el componente encargado de ejecutar instrucciones programadas.
+
+Sus elementos principales son:
+
+* 🧩 Microcontrolador
+* 🔌 Pines digitales y analógicos
+* ⚡ Puerto USB
+* 🔋 Entrada de alimentación
+* ⏱️ Reloj interno
+* 💾 Memoria
+
+<Image
+  alt={`Arduino image`}
+  src={`/static/images/blog/arduino/arduino-desc.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+---
+
+## ⚙️ ¿Cómo funciona Arduino?
+
+El funcionamiento básico sigue este proceso:
+
+## 1️⃣ Entrada de datos
+
+Arduino recibe información desde sensores:
+
+Ejemplos:
+
+* temperatura 🌡️
+* humedad 💧
+* luz ☀️
+* movimiento 🚶
+
+---
+
+## 2️⃣ Procesamiento
+
+El microcontrolador analiza los datos mediante un programa.
+
+Ejemplo:
+
+```cpp id="m8x3rt"
+if(humedad < 30){
+  activarBomba();
+}
+```
+
+---
+
+## 3️⃣ Salida de acciones
+
+Arduino controla dispositivos:
+
+* motores ⚙️
+* LEDs 💡
+* pantallas 📺
+* relés 🔌
+
+---
+
+## 🌱 Ejemplo práctico
+
+Sistema automático de riego:
+
+Componentes:
+
+* Arduino 🌐
+* Sensor capacitivo de humedad 💧
+* Relé 🔌
+* Bomba de agua 🚰
+
+Funcionamiento:
+
+```
+Sensor mide humedad
+        ↓
+Arduino procesa dato
+        ↓
+Si suelo está seco
+        ↓
+Activa bomba
+```
+
+---
+
+## 🧩 Las Dos Funciones Fundamentales del Código Arduino
+
+Todo programa en Arduino (llamado *sketch*) se divide en dos estructuras principales que se ejecutan secuencialmente:
+
+```cpp
+void setup() {
+  // Se ejecuta UNA SOLA VEZ cuando la placa se enciende.
+  // Ideal para configurar pines, iniciar sensores y conexiones.
+  pinMode(13, OUTPUT);
+}
+
+void loop() {
+  // Se ejecuta EN BUCLE INFINITO mientras la placa tenga energía.
+  // Es el corazón donde vive la lógica del proyecto.
+  digitalWrite(13, HIGH); // Enciende un LED
+  delay(1000);           // Espera 1 segundo
+  digitalWrite(13, LOW);  // Apaga el LED
+  delay(1000);           // Espera 1 segundo
+}
+
+```
+
+---
+
+## 🌐 Arduino e IoT (Internet de las Cosas)
+
+Arduino puede conectarse a internet mediante módulos:
+
+* ESP8266
+* ESP32
+* Ethernet Shield
+
+Esto permite:
+
+* monitoreo remoto 📱
+* envío de datos ☁️
+* automatización inteligente 🤖
+
+Ejemplo:
+
+```
+Sensor
+  ↓
+Arduino
+  ↓
+WiFi
+  ↓
+Plataforma IoT
+  ↓
+Usuario
+```
+
+---
+
+## 🚀 ¿Para qué se usa Arduino?
+
+## 🤖 Robótica
+
+* robots móviles
+* brazos robóticos
+
+---
+
+## 🏠 Domótica
+
+* luces inteligentes
+* control de temperatura
+
+---
+
+## 🌱 Agricultura inteligente
+
+* monitoreo de humedad
+* sistemas de riego automático
+
+---
+
+## 🏭 Automatización
+
+* control industrial
+* sensores
+
+---
+
+## 🎓 Educación
+
+* enseñanza de programación
+* electrónica básica
+
+---
+
+## 🔥 Placas Arduino populares
+
+## Arduino Uno
+
+La placa más utilizada para aprendizaje.
+
+Características:
+
+* fácil de usar
+* gran comunidad
+* ideal para principiantes
+
+---
+
+## Arduino Mega
+
+Diseñada para proyectos grandes.
+
+Ventajas:
+
+* más pines
+* más memoria
+
+---
+
+## Arduino Nano
+
+Versión pequeña para proyectos compactos.
+
+---
+
+## ⚙️ El Ecosistema IoT y sus Aplicaciones Realistas
+
+Arduino ya no se limita a proyectos escolares de encender LEDs. En el desarrollo moderno, se utiliza para:
+
+* **Sistemas de Domótica:** Control de iluminación, cerraduras inteligentes y monitoreo de plantas o climatización.
+* **Prototipado Industrial:** Creación rápida de pruebas de concepto para sensores de inventario o automatización de maquinaria.
+* **Robótica:** Control de servos, motores paso a paso y robots autónomos.
+* **Integración Web (IoT):** Utilizando placas modernas con conectividad Wi-Fi/Bluetooth (o módulos como el ESP8266/ESP32), Arduino puede enviar datos de sensores en tiempo real a una API REST, un broker MQTT o un dashboard web.
+
+---
+
+## ⚡ Ventajas de Arduino
+
+* Código abierto 🌍
+* Bajo costo 💰
+* Fácil aprendizaje 📚
+* Gran comunidad 👥
+* Muchos sensores compatibles 🔌
+
+---
+
+## ⚠️ Limitaciones
+
+* Menor potencia que un computador completo
+* Memoria limitada
+* No ideal para procesamiento pesado
+* Requiere módulos externos para algunas funciones
+
+---
+
+## 📊 Arduino vs Computadora tradicional
+
+| Arduino               | Computadora            |
+| --------------------- | ---------------------- |
+| Control físico        | Aplicaciones generales |
+| Bajo consumo          | Mayor potencia         |
+| Tiempo real           | Procesamiento complejo |
+| Sensores y actuadores | Software avanzado      |
+
+---
+
+## 🚀 Arduino vs. Raspberry Pi (La Gran Confusión)
+
+Es muy común confundirlos, pero responden a necesidades totalmente distintas:
+
+* **Arduino (Microcontrolador):** Ejecuta **un solo programa en bucle continuo**. No tiene sistema operativo, consume ínfimos niveles de energía y es ultra rápido para reaccionar a señales electrónicas (como presionar un botón).
+* **Raspberry Pi (Microordenador):** Es una computadora completa en miniatura con sistema operativo (Linux), procesador potente, salida HDMI y puertos USB. Puede ejecutar múltiples aplicaciones pesadas al mismo tiempo.
+
+> **Regla general:** Si necesitas leer un sensor y mover un motor de forma inmediata, usa **Arduino**. Si necesitas procesar video, correr una base de datos o montar un servidor web, usa **Raspberry Pi**.
+
+---
+
+
+## 💾 ¿Por qué todo desarrollador debería probarlo?
+
+Aprender Arduino cambia la forma en que entiendes la computación:
+
+1. **Te enseña gestión de recursos rígida:** En la nube tienes gigabytes de memoria RAM; en un Arduino UNO tienes solo **2 KB de SRAM**. Te obliga a escribir código extremadamente eficiente.
+2. **Entendimiento del hardware:** Comprendes conceptos clave como señales analógicas vs. digitales, interrupciones de hardware y protocolos de comunicación física (`I2C`, `SPI`, `UART`).
+3. **Satisfacción inmediata:** Ver que una línea de código que escribiste en tu pantalla hace que un objeto físico se mueva en tu escritorio es una de las experiencias más gratificantes de la programación.
+
+---
+
+## 🏁 Resumen
+
+Arduino demuestra que la programación no está encerrada detrás de una pantalla. Si eres desarrollador web o backend, sumar conocimientos básicos de microcontroladores te abre las puertas al fascinante universo del Internet de las Cosas (IoT), donde el software y el mundo físico se fusionan.
+
+
+
+
