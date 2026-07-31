@@ -1,0 +1,431 @@
+---
+title: 🛰️ ¿Qué son los Nano Satélites?
+date: '2026-08-01'
+tags: ['Nano Satélites', 'Tecnología Espacial', 'Innovación','System Embedded']
+draft: false
+images: ['/static/images/blog/nano-satelites/nano-satelites.png']
+summary: 'Los nano satélites democratizan el acceso al espacio al permitir que universidades, empresas y organizaciones desarrollen soluciones de comunicación, investigación y monitoreo utilizando sistemas espaciales compactos y eficientes.'
+---
+
+<Image
+  alt={`Nano Satélites image`}
+  src={`/static/images/blog/nano-satelites/nano-satelites.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Los **nano satélites** son pequeños satélites artificiales diseñados para realizar misiones espaciales utilizando una estructura compacta, menor costo y bajo consumo energético.
+
+# Nanosatélites y CubeSats: Democratizando el Acceso al Espacio
+
+Tradicionalmente, un satélite geoestacionario pesaba varias toneladas, costaba cientos de millones de dólares y tomaba una década en construirse. Un **Nanosatélite** es cualquier satélite con una masa total entre **1 kg y 10 kg**.
+
+Esta revolución no habría sido posible sin el estándar **CubeSat**, creado en 1999 por las universidades de Stanford y Cal Poly para permitir a los estudiantes diseñar, construir y probar satélites reales en plazos de desarrollo reducidos.
+
+👉 A pesar de su reducido tamaño, pueden realizar tareas científicas, educativas, de comunicación y observación terrestre.
+
+---
+
+## 🛰️ El Estándar CubeSat: Bloques de Construcción Espaciales
+
+Un CubeSat se mide en unidades **"U"**:
+
+* **1U:** Un cubo estandarizado de 10cm x 10cm x 10cm con un peso aproximado de 1.33kg.
+* **Escalabilidad:** Se pueden agrupar varias unidades para formar satélites más complejos: **2U, 3U, 6U** o incluso **12U**.
+
+```id="p7n2xc"
+1U = 10 cm × 10 cm × 10 cm
+```
+
+Ejemplos:
+
+* 1U → pequeño
+* 3U → tres unidades
+* 6U → mayor capacidad
+
+Al tener dimensiones universales, los cohetes comerciales "como Falcon 9 de SpaceX" pueden llevar decenas de estos pequeños satélites como "carga secundaria" **rideshare** a un costo drásticamente inferior.
+
+---
+
+## 🛠️ Componentes COTS: Electrónica de Consumo en el Espacio
+
+La verdadera clave que conecta este tema con la ingeniería de software moderna es el uso de componentes **COTS (Commercial Off-The-Shelf)**. En lugar de desarrollar chips aeroespaciales ultra costosos desde cero, los nanosatélites modernos utilizan versiones adaptadas de microcontroladores y procesadores comerciales.
+
+## ⚡ Subsistemas de un Nanosatélite:
+
+1. **OBC (On-Board Computer):** El cerebro del satélite. A menudo impulsado por procesadores ARM de bajo consumo, microcontroladores robustos o arquitecturas tipo **FreeRTOS** y **Linux embebido**.
+2. **EPS (Electrical Power System):** Paneles solares externos que cargan baterías de iones de litio y regulan el voltaje del sistema.
+3. **COMM (Comunicaciones):** Transceptores de radio que operan en bandas VHF/UHF, S-Band o incluso protocolos ligeros como **LoRa** para comunicarse con estaciones terrenas (*Ground Stations*).
+4. **ADCS (Attitude Determination and Control System):** Sensores (magnetómetros, giroscopios) y actuadores (ruedas de reacción, *magnetorquers*) para estabilizar el satélite y orientarlo hacia la Tierra o el Sol.
+
+---
+
+## 💡 Idea principal
+
+Los nano satélites permiten llevar tecnología espacial al alcance de universidades, empresas y organizaciones pequeñas.
+
+Ejemplo:
+
+```id="a7m2qp"
+Sensor espacial
+      ↓
+Nano satélite
+      ↓
+Comunicación con estación terrestre
+      ↓
+Análisis de datos
+```
+
+---
+
+## 🧠 ¿Qué es un satélite Artificial?
+
+Un satélite es un objeto construido por el ser humano que orbita alrededor de un cuerpo celeste, generalmente la Tierra.
+
+Sus funciones pueden ser:
+
+* 📡 Comunicación
+* 🌎 Observación terrestre
+* 🔬 Investigación científica
+* 🌦️ Monitoreo ambiental
+* 🛰️ Navegación
+
+---
+
+## ⚙️ ¿Qué caracteriza a un nano satélite?
+
+Los nano satélites se clasifican principalmente por su masa:
+
+| Categoría         | Peso aproximado |
+| ----------------- | --------------- |
+| Picosatélite      | 0,1 - 1 kg      |
+| **Nano satélite** | **1 - 10 kg**   |
+| Microsatélite     | 10 - 100 kg     |
+
+---
+
+# 🧩 Componentes principales de un nano satélite
+
+Un nano satélite está formado por varios subsistemas:
+
+---
+
+## 🧠 1. Computadora de a bordo (OBC)
+
+Es el cerebro del satélite.
+
+Funciones:
+
+* Procesar información
+* Controlar sistemas
+* Ejecutar instrucciones
+
+Ejemplo:
+
+```id="m8x3rt"
+Sensores
+  ↓
+Computadora de a bordo
+  ↓
+Acciones del satélite
+```
+
+---
+
+## ⚡ 2. Sistema de energía
+
+Proporciona electricidad al satélite.
+
+Incluye:
+
+* Paneles solares ☀️
+* Baterías 🔋
+* Controladores de energía
+
+---
+
+## 📡 3. Sistema de comunicación
+
+Permite enviar y recibir información.
+
+Incluye:
+
+* Antenas
+* Transmisores
+* Receptores
+
+Ejemplo:
+
+```id="k4v9zs"
+Nano satélite
+      ↓
+Señal RF
+      ↓
+Estación terrestre
+```
+
+---
+
+## 🧭 4. Sistema de orientación y control
+
+Permite controlar la posición del satélite.
+
+Utiliza:
+
+* sensores de orientación
+* giroscopios
+* magnetómetros
+* ruedas de reacción
+
+---
+
+## 📷 5. Carga útil (Payload)
+
+Es la parte encargada de la misión.
+
+Puede incluir:
+
+* cámaras
+* sensores ambientales
+* equipos científicos
+* sistemas de comunicación
+
+---
+
+## 🚀 ¿Cómo funcionan los nano satélites?
+
+Proceso básico:
+
+## 1️⃣ Lanzamiento
+
+El satélite es enviado al espacio mediante un vehículo lanzador.
+
+---
+
+## 2️⃣ Entrada en órbita
+
+Normalmente se colocan en:
+
+* Órbita baja terrestre (LEO)
+
+---
+
+## 3️⃣ Recolección de datos
+
+Los sensores recopilan información.
+
+Ejemplo:
+
+* temperatura
+* imágenes
+* radiación
+* ubicación
+
+---
+
+## 4️⃣ Comunicación
+
+Los datos son enviados a estaciones terrestres.
+
+---
+
+## 🌎 Aplicaciones de los nano satélites
+
+## 🌦️ Observación terrestre
+
+Permiten estudiar:
+
+* clima
+* incendios forestales
+* agricultura
+* cambios ambientales
+
+Ejemplo:
+
+```id="x9n3ks"
+Cámara satelital
+      ↓
+Imagen del terreno
+      ↓
+Análisis agrícola
+```
+
+---
+
+## 📡 Comunicaciones IoT
+
+Una aplicación importante es conectar dispositivos remotos.
+
+Ejemplo:
+
+```id="v9x3rt"
+Sensor IoT remoto
+        ↓
+Nano satélite
+        ↓
+Centro de datos
+```
+
+Útil en:
+
+* zonas rurales
+* océanos
+* lugares sin cobertura terrestre
+
+---
+
+## 🌱 Agricultura inteligente
+
+Los nano satélites pueden complementar sistemas IoT agrícolas mediante:
+
+* imágenes de cultivos
+* detección de cambios ambientales
+* análisis de vegetación
+
+---
+
+## 🔬 Investigación científica
+
+Permiten realizar experimentos sobre:
+
+* atmósfera
+* radiación espacial
+* tecnología electrónica
+
+---
+
+## 🎓 Educación
+
+Universidades utilizan nano satélites para enseñar:
+
+* electrónica
+* programación
+* comunicaciones
+* ingeniería espacial
+
+---
+
+## ⚡ Ventajas de los nano satélites
+
+## 💰 Bajo costo
+
+Son mucho más económicos que los satélites tradicionales.
+
+---
+
+## ⏱️ Desarrollo rápido
+
+Pueden construirse en meses en lugar de años.
+
+---
+
+## 🧩 Diseño modular
+
+Permiten agregar componentes según la misión.
+
+---
+
+## 🎓 Accesibilidad educativa
+
+Permiten que universidades participen en proyectos espaciales.
+
+---
+
+## ⚠️ Limitaciones
+
+## 📦 Capacidad reducida
+
+Menos espacio para:
+
+* sensores grandes
+* combustible
+* sistemas complejos
+
+---
+
+## ⚡ Energía limitada
+
+Dependen del tamaño de sus paneles solares.
+
+---
+
+## 📡 Comunicación limitada
+
+Requieren planificación para enviar datos.
+
+---
+
+## 🛰️ Vida útil limitada
+
+Muchos operan durante algunos años.
+
+---
+
+## 📊 Nano satélites vs satélites tradicionales
+
+| Característica | Nano satélite | Satélite tradicional |
+| -------------- | ------------- | -------------------- |
+| Tamaño         | Pequeño       | Grande               |
+| Costo          | Bajo          | Muy alto             |
+| Construcción   | Rápida        | Años                 |
+| Misión         | Específica    | Compleja             |
+| Lanzamiento    | Compartido    | Individual           |
+
+---
+
+## 🔗 Relación con IoT
+
+Los nano satélites están impulsando el concepto de **IoT espacial**.
+
+Ejemplo:
+
+```id="n4q8zc"
+Sensor remoto
+      ↓
+Nano satélite
+      ↓
+Red espacial
+      ↓
+Plataforma IoT
+      ↓
+Usuario
+```
+
+Permiten conectar dispositivos donde:
+
+* no existe WiFi
+* no hay cobertura celular
+* la infraestructura terrestre es limitada
+
+---
+
+## 🛠️ Tecnologías relacionadas
+
+* LoRa
+* IoT satelital
+* Sistemas embebidos
+* Comunicaciones RF
+* Inteligencia artificial en el borde (Edge AI)
+
+---
+
+## 🧩 El Gran Desafío: El Entorno Espacial y la Basura Orbital
+
+Llevar componentes electrónicos comerciales al espacio conlleva riesgos técnicos severos que el equipo de desarrollo debe mitigar desde el código y el hardware:
+
+* **Radiación "Single Event Upsets - SEU":** Las partículas cargadas del espacio pueden cambiar el valor de un bit en la memoria RAM 0 a 1. El software debe implementar sistemas de detección y corrección de errores "ECC" y redundancia de código.
+* **Ciclado Térmico:** El satélite pasa de ser expuesto a +120 °C bajo la radiación solar directa a -80 °C en la sombra de la Tierra cada 90 minutos.
+* **Desechos Espaciales:** Al operar en órbitas bajas "LEO, entre 400km" y "600km", los nanosatélites decaen naturalmente debido al rozamiento atmosférico leve y se reabsorben desintegrándose completamente en un periodo de $2$ a $5$ años, evitando generar basura espacial permanente.
+
+---
+
+## 🏁 Resumen
+
+Los nanosatélites demuestran que las barreras entre el desarrollo de software web, los sistemas embebidos de bajo nivel y la ingeniería aeroespacial se han disuelto. Hoy en día, un equipo de ingenieros con conocimientos sólidos de Linux, C/C++, redes y hardware libre puede escribir el código que controle un objeto orbitando el planeta a 27.000km/h.
+
+### Nano satélite =
+
+**pequeño satélite artificial diseñado para realizar misiones espaciales con bajo costo, bajo consumo y aplicaciones específicas.**
+
+---
