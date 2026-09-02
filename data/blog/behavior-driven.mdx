@@ -1,0 +1,493 @@
+---
+title: 🎯 Behavior-Driven Development (BDD)
+date: '2026-09-03'
+tags: ['Behavior-Driven Development', 'Desarrollo de Software', 'Metodologías Ágiles', 'Especificaciones de Software']
+draft: false
+images: ['/static/images/blog/behavior-driven/behavior-driven.png']
+summary: 'Behavior-Driven Development (BDD) es una metodología de desarrollo de software que se centra en la creación de comportamientos descriptivos antes de comenzar la implementación del código.'
+---
+
+<Image
+  alt={`Behavior-Driven Development image`}
+  src={`/static/images/blog/behavior-driven/behavior-driven.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Desarrollo Dirigido por el Comportamiento, es una metodología de desarrollo de software que se enfoca en **definir y validar cómo debe comportarse una aplicación desde la perspectiva del usuario y del negocio**.
+
+Uno de los mayores riesgos en el desarrollo de software no es escribir mal el código, sino **escribir el código equivocado**. A menudo, las historias de usuario redactadas por el equipo de producto son interpretadas de formas completamente distintas por los desarrolladores y el equipo de QA.
+
+**Behavior-Driven Development (BDD)**, creado por Dan North como una evolución de TDD, resuelve esta brecha al definir el comportamiento del software mediante **ejemplos concretos expresados en lenguaje natural estructurado**.
+
+👉 La idea principal es que desarrolladores, testers y personas del negocio compartan una descripción clara de **qué debe hacer el sistema y qué resultado espera**.
+
+---
+
+## 💡 Idea principal
+
+BDD transforma los requisitos del negocio en comportamientos verificables:
+
+```text
+Necesidad del usuario
+        ↓
+Comportamiento esperado
+        ↓
+Escenarios
+        ↓
+Pruebas automatizadas
+        ↓
+Código
+```
+
+En lugar de comenzar pensando únicamente en:
+
+> "¿Cómo voy a programarlo?"
+
+BDD comienza preguntando:
+
+> **"¿Cómo debería comportarse el sistema para el usuario?"**
+
+---
+
+## 🧠 Ejemplo sencillo
+
+Supongamos que estamos desarrollando un sistema de inicio de sesión.
+
+Un requisito tradicional podría ser:
+
+```text
+El sistema debe permitir iniciar sesión.
+```
+
+En BDD se describe el comportamiento:
+
+```text
+Dado que el usuario está registrado
+Cuando introduce un correo y contraseña válidos
+Entonces debe acceder a su cuenta.
+```
+
+👉 Esto permite que tanto un programador como una persona no técnica entiendan el requisito.
+
+---
+
+## 🔄 El patrón Given - When - Then
+
+BDD utiliza frecuentemente la estructura:
+
+### **Given — Dado**
+
+Define el contexto inicial.
+
+### **When — Cuando**
+
+Describe la acción realizada.
+
+### **Then — Entonces**
+
+Define el resultado esperado.
+
+```text
+Given → Estado inicial
+  ↓
+When → Acción
+  ↓
+Then → Resultado esperado
+```
+
+---
+
+## 📝 La Filosofía de los "Tres Amigos"
+
+BDD no es solo una técnica de pruebas, es una práctica de comunicación. Promueve que antes de escribir código se reúnan los **Tres Amigos**:
+
+1. **Producto / Negocio (Product Owner):** Define *qué* problema necesitamos resolver y cuál es el valor esperado.
+2. **Desarrollo (Dev):** Entiende *cómo* implementar técnicamente la solución.
+3. **Control de Calidad (QA):** Cuestiona los casos de borde (*edge cases*) y valida *cómo* verificar que la función sea correcta.
+
+👉 El resultado de esta conversación no son documentos estáticos de cien páginas, sino **escenarios de comportamiento ejecutables**.
+
+---
+
+## 🧩 Ejemplo práctico
+
+## Funcionalidad: Registro de usuario
+
+```text
+Feature: Registro de usuario
+
+Scenario: Registro exitoso
+
+Given el usuario está en el formulario de registro
+
+When introduce un correo válido y una contraseña válida
+
+Then el sistema debe crear su cuenta
+```
+
+👉 Este escenario puede convertirse posteriormente en una prueba automatizada.
+
+---
+
+## 🧪 ¿Cómo funciona BDD?
+
+## 1️⃣ Identificar la necesidad
+
+El equipo determina qué necesita el usuario.
+
+```text
+"Quiero poder recuperar mi contraseña."
+```
+
+---
+
+## 2️⃣ Definir el comportamiento
+
+Se describe qué debería suceder.
+
+```text
+Dado que el usuario olvidó su contraseña
+Cuando solicita recuperarla
+Entonces debe recibir un enlace de recuperación.
+```
+
+---
+
+## 3️⃣ Crear escenarios
+
+Se contemplan diferentes situaciones:
+
+```text
+✓ Correo válido
+✗ Correo inexistente
+✗ Correo vacío
+✗ Enlace expirado
+```
+
+---
+
+## 4️⃣ Automatizar las pruebas
+
+Los escenarios pueden convertirse en pruebas automatizadas.
+
+```text
+Escenario BDD
+      ↓
+Test automatizado
+      ↓
+Aplicación
+      ↓
+Resultado
+```
+
+---
+
+## 5️⃣ Implementar la funcionalidad
+
+Los desarrolladores escriben el código necesario para cumplir los escenarios.
+
+---
+
+## 🤝 Una de las características más importantes
+
+BDD busca mejorar la comunicación entre diferentes participantes del proyecto:
+
+```text
+          Negocio
+            ↕
+          BDD / Specs
+          ↙      ↘
+  Desarrollo     QA
+```
+
+👉 Esto ayuda a reducir el problema de que cada equipo interprete los requisitos de una manera diferente.
+
+---
+
+## 🧠 El Lenguaje Gherkin: Dado, Cuando, Entonces
+
+Para que tanto una persona de negocios como una suite de pruebas automatizadas puedan leer el mismo documento, BDD utiliza un lenguaje específico de dominio (DSL) llamado **Gherkin**.
+
+Gherkin se basa en tres palabras clave fundamentales:
+
+* **Dado (Given):** El contexto o estado inicial del sistema.
+* **Cuando (When):** La acción o evento que realiza el usuario.
+* **Entonces (Then):** El resultado esperado o la consecuencia visible.
+
+### Ejemplo Práctico:
+
+Archivo `transferencia_bancaria.feature`:
+
+```gherkin
+  Característica: Transferencia de dinero entre cuentas
+    Como usuario de la banca en línea
+    Quiero transferir fondos a otra cuenta
+    Para pagar un servicio o deuda
+
+  Escenario: Transferencia exitosa con saldo suficiente
+    Dado que el usuario tiene un saldo de $500 en su cuenta
+    Y la cuenta de destino es válida
+    Cuando el usuario transfiere $100 a la cuenta de destino
+    Entonces el saldo final del usuario debe ser de $400
+    Y se debe generar un comprobante de transacción con estado "Exitoso"
+
+  Escenario: Transferencia rechazada por saldo insuficiente
+    Dado que el usuario tiene un saldo de $50 en su cuenta
+    Cuando el usuario intenta transferir $100 a otra cuenta
+    Entonces el sistema debe mostrar el mensaje "Saldo insuficiente"
+    Y el saldo del usuario debe mantenerse en $50
+```
+
+👉 La sintaxis es suficientemente sencilla para que pueda ser leída por personas no técnicas.
+
+---
+
+## 🛠️ Herramientas relacionadas
+
+Entre las herramientas utilizadas para implementar BDD se encuentran:
+
+* Cucumber
+* SpecFlow
+* Behave
+* JBehave
+
+---
+
+## 🧠 ¿Cómo se convierte el texto en código ejecutable?
+
+La magia de BDD radica en que estos archivos `.feature` se conectan directamente con frameworks de prueba automatizada (como **Cucumber**, **Behave**, **SpecFlow** o **JBehave**).
+
+El desarrollador o QA escribe código de glue o *Step Definitions* que mapea cada línea de Gherkin con acciones reales:
+
+```javascript
+// Ejemplo de mapeo de pasos en JavaScript (Cucumber.js)
+const { Given, When, Then } = require('@cucumber/cucumber');
+const assert = require('assert');
+
+Given('que el usuario tiene un saldo de ${int} en su cuenta', function (saldoInicial) {
+  this.cuenta = new CuentaBancaria(saldoInicial);
+});
+
+When('el usuario transfiere ${int} a la cuenta de destino', function (monto) {
+  this.resultado = this.cuenta.transferir(monto);
+});
+
+Then('el saldo final del usuario debe ser de ${int}', function (saldoEsperado) {
+  assert.strictEqual(this.cuenta.obtenerSaldo(), saldoEsperado);
+});
+
+```
+
+👉 Al ejecutar la suite de pruebas, el framework lee el texto en español (o inglés), ejecuta las funciones asociadas y genera reportes que cualquier stakeholder de la empresa puede entender.
+
+---
+
+## 🚀 ¿Para qué sirve BDD?
+
+BDD resulta especialmente útil para:
+
+## 🌐 Aplicaciones web
+
+Definir claramente el comportamiento de las funcionalidades.
+
+## 📱 Aplicaciones móviles
+
+Describir las interacciones esperadas del usuario.
+
+## 🔌 APIs
+
+Definir respuestas y comportamientos esperados.
+
+## 🏢 Sistemas empresariales
+
+Traducir reglas de negocio en escenarios verificables.
+
+## 🧪 Automatización de pruebas
+
+Convertir escenarios en pruebas repetibles.
+
+---
+
+## 🔥 Ventajas de BDD
+
+## 🤝 Mejor comunicación
+
+Permite que negocio, desarrollo y QA trabajen con una referencia común.
+
+---
+
+## 🎯 Requisitos más claros
+
+Los requisitos se expresan mediante comportamientos concretos.
+
+---
+
+## 🧪 Pruebas orientadas al comportamiento
+
+Las pruebas verifican lo que realmente debe hacer el sistema.
+
+---
+
+## 📝 Documentación viva
+
+Los escenarios pueden funcionar simultáneamente como:
+
+* requisitos
+* documentación
+* pruebas
+
+---
+
+## 🐛 Detección temprana de errores
+
+Los comportamientos esperados se definen antes de terminar la implementación.
+
+---
+
+## ⚠️ Desventajas
+
+## 📝 Requiere tiempo
+
+Es necesario escribir escenarios detallados.
+
+## 🔄 Mantenimiento
+
+Los escenarios deben actualizarse cuando cambian los requisitos.
+
+## 📚 Curva de aprendizaje
+
+El equipo necesita conocer la metodología y las herramientas.
+
+## ❌ No sustituye todas las pruebas
+
+BDD no elimina la necesidad de pruebas unitarias, de integración, seguridad, rendimiento, etc.
+
+---
+
+## 🆚 BDD vs TDD
+
+Aunque están relacionados, tienen enfoques diferentes:
+
+| BDD                                 | TDD                      |
+| ----------------------------------- | ------------------------ |
+| Se centra en el comportamiento      | Se centra en las pruebas |
+| Perspectiva del usuario/negocio     | Perspectiva del código   |
+| Usa escenarios                      | Usa tests                |
+| Given / When / Then                 | Red → Green → Refactor   |
+| Facilita comunicación entre equipos | Guía la implementación   |
+
+👉 Pueden utilizarse juntos.
+
+```text
+BDD
+ ↓
+Comportamiento esperado
+ ↓
+TDD
+ ↓
+Implementación
+ ↓
+Código funcionando
+```
+
+---
+
+## 🆚 BDD vs Spec-Driven Development
+
+También existe una relación interesante con el tema anterior:
+
+| BDD                                    | Spec-Driven Development                         |
+| -------------------------------------- | ----------------------------------------------- |
+| Se enfoca en comportamiento            | Se enfoca en especificaciones                   |
+| Perspectiva del usuario                | Puede abarcar requisitos técnicos y funcionales |
+| Escenarios Given/When/Then             | Especificaciones estructuradas                  |
+| Muy orientado a negocio                | Más amplio                                      |
+| Excelente para criterios de aceptación | Excelente como fuente de verdad del desarrollo  |
+
+👉 **BDD puede formar parte de un enfoque Spec-Driven Development**, especialmente cuando las especificaciones describen comportamientos del usuario.
+
+---
+
+## 🔗 BDD + IA
+
+Con los agentes de programación modernos, los escenarios BDD también pueden utilizarse como instrucciones para herramientas de IA:
+
+```text
+Requisito
+    ↓
+Escenario BDD
+    ↓
+Agente de IA
+    ↓
+Implementación
+    ↓
+Pruebas
+    ↓
+Validación
+```
+
+Por ejemplo:
+
+```text
+Given el usuario tiene una cuenta
+When introduce una contraseña incorrecta
+Then el sistema debe rechazar el acceso
+```
+
+El escenario proporciona un criterio concreto que la implementación debe satisfacer.
+
+---
+
+## 🏗️ Ejemplo completo
+
+Supongamos una tienda en línea.
+
+### Funcionalidad: Comprar producto
+
+```text
+Feature: Compra de producto
+
+Scenario: Compra exitosa
+
+Given el producto está disponible
+And el usuario tiene una cuenta
+When agrega el producto al carrito
+And confirma el pago
+Then debe generarse el pedido
+And debe mostrarse el número de orden
+```
+
+Otro escenario:
+
+```text
+Scenario: Producto agotado
+
+Given el producto no tiene existencias
+When el usuario intenta comprarlo
+Then el sistema debe informar que está agotado
+```
+
+👉 De esta manera se especifican tanto el **camino exitoso** como los **casos de error**.
+
+---
+
+## 🏁 Resumen
+
+BDD nos recuerda que el software no se trata solo de algoritmos eficientes o arquitecturas elegantes, sino de entregar valor real al negocio. Al transformar especificaciones habladas en pruebas ejecutables, garantizamos que el código no solo funcione bien técnicamente, sino que resuelva el problema correcto.
+
+## Behavior-Driven Development =
+
+**metodología que define el software a partir de comportamientos observables y verificables, utilizando escenarios comprensibles para negocio, desarrollo y QA.**
+
+Su estructura más característica es:
+
+```text
+GIVEN
+  ↓
+WHEN
+  ↓
+THEN
+```
+
