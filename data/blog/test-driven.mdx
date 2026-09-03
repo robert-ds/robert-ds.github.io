@@ -1,0 +1,421 @@
+---
+title: 🧪 Test-Driven Development (TDD)
+date: '2026-09-04'
+tags: ['Test-Driven Development', 'Desarrollo de Software', 'Metodologías Ágiles', 'Especificaciones de Software']
+draft: false
+images: ['/static/images/blog/test-driven/test-driven.png']
+summary: 'Test-Driven Development (TDD) es una metodología de desarrollo de software que se centra en la creación de pruebas antes de comenzar la implementación del código.'
+---
+
+<Image
+  alt={`Test-Driven Development image`}
+  src={`/static/images/blog/test-driven/test-driven.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>**Test-Driven Development (TDD)**, o **Desarrollo Dirigido por Pruebas**, es una metodología de desarrollo de software en la que las **pruebas automatizadas se escriben antes que el código de producción**. Esta práctica fomenta un enfoque iterativo y centrado en la calidad, donde los desarrolladores crean pruebas que definen el comportamiento esperado del software antes de implementar la funcionalidad real.
+
+La forma tradicional en la que muchos desarrolladores aprenden a programar sigue este flujo: pensar la solución, escribir decenas de líneas de código, ejecutar la aplicación manualmente y, si queda tiempo al final, escribir pruebas unitarias.
+
+**Test-Driven Development (TDD)** invierte este paradigma por completo. Es una técnica de ingeniería creada por Kent Beck (dentro del marco de *Extreme Programming*) que establece una regla estricta: **no se debe escribir una sola línea de código de producción a menos que sea para hacer pasar una prueba unitaria que previamente ha fallado.**
+
+La idea principal es sencilla:
+
+👉 **Primero se define cómo debe comportarse el software mediante una prueba; después se escribe el código necesario para que esa prueba pase.**
+
+---
+
+## 🔄 ¿Cómo funciona TDD?
+
+TDD utiliza un ciclo conocido como **Red → Verde → Refactorización** (*Red → Green → Refactor*).
+
+```text
+       ┌─────────────────────┐
+       │  1. Escribir prueba │
+       └──────────┬──────────┘
+                  ↓
+          🔴 PRUEBA FALLA
+                  ↓
+       ┌─────────────────────┐
+       │  2. Escribir código │
+       │     mínimo necesario│
+       └──────────┬──────────┘
+                  ↓
+          🟢 PRUEBA PASA
+                  ↓
+       ┌─────────────────────┐
+       │ 3. Refactorizar     │
+       │    el código        │
+       └──────────┬──────────┘
+                  ↓
+          🔵 CÓDIGO LIMPIO
+                  │
+                  └──────→ Repetir
+```
+
+## 🔴 1. Red — Prueba fallida
+
+Primero se crea una prueba que describe el comportamiento esperado.
+
+Por ejemplo, si estamos desarrollando una función que suma dos números:
+
+```python
+def test_sumar_dos_numeros():
+    assert sumar(2, 3) == 5
+```
+
+Al ejecutarla inicialmente, fallará porque `sumar()` todavía no existe.
+
+---
+
+## 🟢 2. Green — Hacer que pase
+
+Ahora se escribe **el código mínimo necesario** para superar la prueba:
+
+```python
+def sumar(a, b):
+    return a + b
+```
+
+La prueba ahora pasa:
+
+```text
+✓ test_sumar_dos_numeros
+```
+
+---
+
+## 🔵 3. Refactor — Mejorar
+
+Una vez que la prueba pasa, podemos mejorar la estructura del código sin modificar su comportamiento.
+
+```text
+Prueba
+  ↓
+Código funcional
+  ↓
+Mejorar estructura
+  ↓
+Ejecutar pruebas nuevamente
+```
+
+👉 Si todas las pruebas continúan pasando, sabemos que la modificación no rompió el comportamiento previamente validado.
+
+---
+
+## 🧩 Ejemplo completo de TDD
+
+Supongamos que queremos crear un sistema para determinar si un estudiante aprobó una asignatura.
+
+La regla es:
+
+> Un estudiante aprueba cuando obtiene una calificación igual o superior a 10 puntos.
+
+## Paso 1: escribir la prueba
+
+```python
+def test_estudiante_aprueba():
+    assert aprobo(15) == True
+```
+
+La prueba falla porque todavía no tenemos `aprobo()`.
+
+## Paso 2: implementar
+
+```python
+def aprobo(nota):
+    return nota >= 10
+```
+
+Ahora:
+
+```text
+✓ test_estudiante_aprueba
+```
+
+## Paso 3: agregar otro comportamiento
+
+```python
+def test_estudiante_no_aprueba():
+    assert aprobo(8) == False
+```
+
+La implementación actual también supera esta prueba.
+
+Finalmente tenemos:
+
+```python
+def aprobo(nota):
+    return nota >= 10
+```
+
+Y:
+
+```python
+def test_estudiante_aprueba():
+    assert aprobo(15) == True
+
+def test_estudiante_no_aprueba():
+    assert aprobo(8) == False
+```
+
+---
+
+## 🧪 Las Tres Reglas de TDD (Según Uncle Bob)
+
+Robert C. Martin ("Uncle Bob") resumió la disciplina de TDD en tres reglas fundamentales:
+
+1. No escribirás código de producción sin antes haber escrito una prueba unitaria que falle.
+2. No escribirás más de una prueba unitaria de la que sea suficiente para fallar (y la no compilación es un fallo).
+3. No escribirás más código de producción del que sea suficiente para hacer pasar la prueba que falla.
+
+---
+
+## 🎯 ¿Qué busca TDD?
+
+TDD busca principalmente:
+
+* ✅ Detectar errores rápidamente.
+* ✅ Garantizar comportamientos esperados.
+* ✅ Crear código más fácil de mantener.
+* ✅ Reducir regresiones.
+* ✅ Diseñar componentes pequeños y comprobables.
+* ✅ Facilitar la refactorización.
+* ✅ Servir como documentación ejecutable del comportamiento del código.
+
+---
+
+## 🧩 TDD y las pruebas unitarias
+
+👉 TDD está muy relacionado con las **pruebas unitarias**, porque normalmente cada ciclo valida una pequeña unidad del sistema.
+
+Por ejemplo:
+
+```text
+Aplicación
+│
+├── Usuario
+│    ├── crear()
+│    ├── modificar()
+│    └── eliminar()
+│
+├── Productos
+│    ├── agregar()
+│    ├── buscar()
+│    └── eliminar()
+│
+└── Facturación
+     ├── calcular()
+     └── generar()
+```
+
+Con TDD podemos desarrollar cada comportamiento de forma incremental:
+
+```text
+Prueba → Código → Refactorización
+   ↓
+Prueba → Código → Refactorización
+   ↓
+Prueba → Código → Refactorización
+```
+
+---
+
+## ⚖️ TDD vs BDD
+
+Como anteriormente vimos **BDD**, es importante distinguirlos.
+
+| Característica     | TDD                                     | BDD                                               |
+| ------------------ | --------------------------------------- | ------------------------------------------------- |
+| Significado        | Test-Driven Development                 | Behavior-Driven Development                       |
+| Enfoque            | Pruebas                                 | Comportamiento                                    |
+| Perspectiva        | Principalmente técnica                  | Usuario/negocio + técnica                         |
+| Pregunta principal | ¿El código funciona correctamente?      | ¿El sistema se comporta como esperamos?           |
+| Participantes      | Principalmente desarrolladores          | Desarrolladores, QA y negocio                     |
+| Ejemplo            | `assert sumar(2,3) == 5`                | Given / When / Then                               |
+| Objetivo           | Construir código correcto y comprobable | Construir comportamiento correcto para el usuario |
+
+Una forma sencilla de recordarlo:
+
+```text
+TDD → "¿Qué debe hacer este código?"
+
+BDD → "¿Cómo debe comportarse el sistema para el usuario?"
+```
+
+---
+
+## 🆚 TDD vs desarrollo tradicional
+
+## Desarrollo tradicional
+
+```text
+Requisito
+   ↓
+Diseño
+   ↓
+Código
+   ↓
+Pruebas
+   ↓
+Corrección de errores
+```
+
+## TDD
+
+```text
+Requisito
+   ↓
+Prueba
+   ↓
+Código
+   ↓
+Prueba
+   ↓
+Refactorización
+   ↓
+Nueva funcionalidad
+```
+
+👉 En TDD, las pruebas **no se dejan únicamente para el final**.
+
+---
+
+## 🛠️ Herramientas utilizadas con TDD
+
+TDD no depende de un lenguaje específico. Existen frameworks de pruebas para prácticamente todos los lenguajes.
+
+| Lenguaje   | Frameworks comunes |
+| ---------- | ------------------ |
+| Python     | pytest, unittest   |
+| Java       | JUnit              |
+| JavaScript | Jest, Vitest       |
+| TypeScript | Jest, Vitest       |
+| C#         | xUnit, NUnit       |
+| PHP        | PHPUnit            |
+| Ruby       | RSpec              |
+| Go         | testing            |
+| Kotlin     | JUnit              |
+
+Por ejemplo, en JavaScript:
+
+```javascript
+test("suma dos números", () => {
+    expect(sumar(2, 3)).toBe(5);
+});
+```
+
+---
+
+## 🤖 TDD en proyectos con Inteligencia Artificial
+
+👉 TDD también puede combinarse con herramientas de programación asistida por IA.
+
+Un flujo moderno podría ser:
+
+```text
+Requisito
+    ↓
+Crear prueba
+    ↓
+Agente de IA
+    ↓
+Generar implementación
+    ↓
+Ejecutar pruebas
+    ↓
+¿Pasa?
+ ↙       ↘
+NO       SÍ
+ ↓        ↓
+Corregir  Refactorizar
+ ↓        ↓
+ └──→ Volver a probar
+```
+
+👉 Esto es especialmente útil porque las pruebas pueden actuar como **criterios objetivos de aceptación** para el código generado por IA.
+
+---
+
+## 🔄 ¿Por qué TDD mejora la Arquitectura de Software?
+
+El mayor beneficio de TDD no son las pruebas en sí, sino **cómo fuerza a diseñar el código**:
+
+* **Acoplamiento Débil y Alta Cohesión:** Para que una clase o función sea fácil de probar en aislamiento, debe tener dependencias claras y responsabilidades únicas. TDD te obliga a aplicar principios **SOLID** de forma natural.
+* **Red de Seguridad para Refactorizar:** En sistemas grandes, los desarrolladores temen tocar código antiguo por miedo a romper algo (*legacy code*). Una suite de pruebas robusta creada con TDD te permite refactorizar con total confianza.
+* **Elimina el Código Inútil:** Solo escribes el código estrictamente necesario para cumplir los requerimientos. Evita la sobreingeniería y la especulación de *"quizás necesitemos esta función en el futuro"*.
+
+---
+
+
+## ✅ Ventajas de TDD
+
+## 1. Mayor calidad del código
+
+El código se desarrolla teniendo desde el principio un comportamiento verificable.
+
+## 2. Detección temprana de errores
+
+Los problemas aparecen durante el desarrollo y no solamente durante las pruebas finales.
+
+## 3. Facilita la refactorización
+
+Si modificamos el código y las pruebas continúan pasando, tenemos mayor confianza en el cambio.
+
+## 4. Reduce regresiones
+
+Las pruebas existentes pueden detectar si una modificación rompe funcionalidades anteriores.
+
+## 5. Mejor diseño
+
+TDD suele favorecer funciones y componentes pequeños, independientes y fáciles de probar.
+
+## 6. Documentación ejecutable
+
+Una prueba puede mostrar claramente qué comportamiento se espera:
+
+```python
+assert calcular_total(100, 20) == 120
+```
+
+👉 El código indica directamente una regla del sistema.
+
+---
+
+## ⚠️ Desventajas de TDD
+
+* ❌ Requiere tiempo inicial para escribir las pruebas.
+* ❌ Existe una curva de aprendizaje.
+* ❌ Las pruebas también necesitan mantenimiento.
+* ❌ Una mala prueba puede validar un comportamiento incorrecto.
+* ❌ No garantiza que la aplicación completa esté libre de errores.
+* ❌ No sustituye pruebas de integración, rendimiento, seguridad o aceptación.
+
+👉 Por eso TDD **no significa simplemente "hacer muchas pruebas"**. Significa utilizar las pruebas como parte del proceso de diseño y construcción del software.
+
+---
+
+## 🏁 Resumen
+
+TDD no es una técnica fácil de dominar al principio; requiere un cambio de mentalidad y disciplina consciente. Sin embargo, una vez que te acostumbras al ritmo de **Red-Green-Refactor**, programar sin pruebas se siente como caminar por una cuerda floja sin red de seguridad. Es la herramienta definitiva para transformar desarrolladores de software en verdaderos ingenieros.
+
+```text
+              TDD
+               │
+       ┌───────┴────────┐
+       ↓                ↓
+   Escribir          Escribir
+    prueba            código
+       │                │
+       └───────┬────────┘
+               ↓
+          🔴 Red
+               ↓
+          🟢 Green
+               ↓
+        🔵 Refactor
+               ↓
+           Repetir
+```
