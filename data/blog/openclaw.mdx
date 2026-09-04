@@ -1,0 +1,517 @@
+---
+title: 🦞 OpenClaw
+date: '2026-09-05'
+tags: ['OpenClaw', 'Agente de IA', 'IA personal', 'IA autónoma', 'Código abierto']
+draft: false
+images: ['/static/images/blog/openclaw/openclaw.png']
+summary: 'Es un **agente de IA personal, autónomo, de código abierto (licencia MIT)** diseñado para ejecutarse en tus propios dispositivos'
+---
+
+<Image
+  alt={`OpenClaw image`}
+  src={`/static/images/blog/openclaw/openclaw.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>**OpenClaw** es un **asistente de inteligencia artificial de código abierto y autoalojado** que puede ejecutarse en tus propios dispositivos y conectarse con aplicaciones de mensajería, herramientas, modelos de IA y otros servicios. Su componente central es un **Gateway**, que funciona como puente entre el usuario, los modelos de IA y las diferentes herramientas/canales.
+
+A diferencia de los asistentes cerrados tipo ChatGPT Web o Copilot, **OpenClaw es un *framework* / *gateway* multi-canal y agnóstico al modelo** que ejecutas en tus propios dispositivos (PC, servidor local o nube) y que se conecta directamente a tus apps de mensajería favoritas (WhatsApp, Telegram, Discord, Signal, Slack, iMessage).
+
+👉 Actualmente, el proyecto está desarrollado de forma abierta bajo la **OpenClaw Foundation**, una organización sin fines de lucro.
+
+---
+
+## 🧠 ¿Qué problema intenta resolver?
+
+Normalmente utilizamos la IA de esta manera:
+
+```text
+Usuario
+   ↓
+ChatGPT / Claude / Gemini
+   ↓
+Respuesta
+```
+
+El problema es que el modelo generalmente está separado de nuestro entorno de trabajo.
+
+OpenClaw propone algo diferente:
+
+```text
+                    ┌───────────────┐
+                    │   Modelo IA   │
+                    └───────┬───────┘
+                            │
+                            ↓
+┌─────────────┐      ┌───────────────┐
+│ WhatsApp    │─────→│               │
+│ Telegram    │─────→│    OpenClaw   │
+│ Discord     │─────→│    Gateway    │
+│ Slack       │─────→│               │
+│ iMessage    │─────→│               │
+└─────────────┘      └───────┬───────┘
+                             │
+                ┌────────────┼────────────┐
+                ↓            ↓            ↓
+             Archivos     Terminal     Web/API
+```
+
+El **Gateway** centraliza las sesiones, herramientas, eventos y conexiones con los diferentes canales.
+
+---
+
+## ⚙️ ¿Cómo funciona OpenClaw?
+
+La arquitectura puede entenderse en varias capas:
+
+```text
+┌────────────────────────────────────────┐
+│              USUARIO                   │
+│ WhatsApp · Telegram · Discord · Web    │
+└───────────────────┬────────────────────┘
+                    ↓
+┌────────────────────────────────────────┐
+│              GATEWAY                   │
+│ Sesiones · Eventos · Routing · Control │
+└───────────────────┬────────────────────┘
+                    ↓
+┌────────────────────────────────────────┐
+│               AGENTE                   │
+│ Contexto · Memoria · Herramientas      │
+└───────────────┬─────────────┬──────────┘
+                ↓             ↓
+          ┌──────────┐   ┌───────────┐
+          │ Modelo IA│   │  Tools    │
+          └──────────┘   └───────────┘
+                              │
+                ┌─────────────┼─────────────┐
+                ↓             ↓             ↓
+             Browser       Terminal      Plugins
+```
+
+## 1. Gateway
+
+Es el **núcleo de control** de OpenClaw.
+
+Gestiona:
+
+* sesiones;
+* conexiones;
+* canales;
+* herramientas;
+* eventos;
+* configuración;
+* routing entre agentes.
+
+## 2. Agente
+
+El agente utiliza un modelo de IA para interpretar las instrucciones y decidir qué acciones realizar.
+
+Puede trabajar con:
+
+* contexto;
+* memoria;
+* herramientas;
+* sesiones;
+* múltiples agentes.
+
+## 3. Canales
+
+Una de las características importantes es que puedes interactuar con el agente desde diferentes aplicaciones.
+
+Entre las integraciones documentadas se encuentran:
+
+**Discord, Google Chat, iMessage, Matrix, Microsoft Teams, Signal, Slack, Telegram, WhatsApp, Zalo**, entre otras.
+
+---
+
+## 🤖 OpenClaw no es simplemente un chatbot
+
+Esta diferencia es fundamental.
+
+Un chatbot tradicional:
+
+```text
+Pregunta
+   ↓
+IA
+   ↓
+Respuesta
+```
+
+Un agente como OpenClaw puede trabajar de forma más orientada a acciones:
+
+```text
+Solicitud
+   ↓
+Interpretar objetivo
+   ↓
+Planificar
+   ↓
+Utilizar herramientas
+   ↓
+Ejecutar acciones
+   ↓
+Obtener resultados
+   ↓
+Responder al usuario
+```
+
+Por ejemplo:
+
+> "Revisa este proyecto y dime por qué están fallando las pruebas."
+
+👉 Un agente puede tener acceso al proyecto, ejecutar comandos, analizar archivos y devolver un diagnóstico, dependiendo de las herramientas y permisos configurados.
+
+---
+
+## 🛠️ Herramientas y capacidades
+
+OpenClaw está diseñado alrededor de agentes con acceso a herramientas. Su documentación contempla capacidades como:
+
+* 🌐 navegación/web;
+* 💻 ejecución de comandos;
+* 🧠 memoria y contexto;
+* 🔌 plugins;
+* ⏰ tareas programadas;
+* 🔗 webhooks;
+* 📁 interacción con archivos;
+* 👥 múltiples agentes;
+* 📱 nodos móviles.
+
+Esto permite pasar de:
+
+```text
+"Contéstame"
+```
+
+a:
+
+```text
+"Analiza → decide → utiliza herramientas → ejecuta → verifica → informa"
+```
+
+---
+
+## 🔌 ¿Qué hace a OpenClaw diferente?
+
+OpenClaw no es simplemente "un bot que responde preguntas". Es un **harness de agentes (*agent harness*)** con capacidades de ejecución de código, gestión de memoria persistente y automatización de tareas reales.
+
+```text
+ ┌─────────────────────────────────────────────────────────────┐
+ │                    CANALES DE MENSAJERÍA                    │
+ │    WhatsApp, Telegram, Discord, Slack, Signal, iMessage     │
+ └──────────────────────────────┬──────────────────────────────┘
+                                │ (Gateway OpenClaw)
+                                ▼
+ ┌─────────────────────────────────────────────────────────────┐
+ │                OPENCLAW AGENT CORE & MEMORIA                 │
+ │   • Memoria Persistente (SOUL.md, MEMORY.md)               │
+ │   • Gestión de Sesiones y Contexto                          │
+ │   • Habilidades (Skills), Cron Jobs y Webhooks              │
+ └──────────────────────────────┬──────────────────────────────┘
+                                │
+          ┌─────────────────────┴─────────────────────┐
+          ▼                                           ▼
+┌──────────────────┐                        ┌──────────────────┐
+│ MODELOS (LLM)    │                        │ HERRAMIENTAS Y   │
+│ Claude, OpenAI,  │                        │ NODOS LOCALES    │
+│ DeepSeek, Ollama,│                        │ Visión, Cámara,  │
+│ LM Studio        │                        │ Terminal, Archivos│
+└──────────────────┘                        └──────────────────┘
+
+```
+
+---
+
+## 💻 Sus pilares principales:
+
+1. **Agnóstico al Modelo (*Model-Agnostic*):** Puedes conectar OpenClaw a API de nube (Claude Opus/Sonnet, GPT-4o, DeepSeek) usando tus propias llaves o tu suscripción, o enlazarlo a modelos 100% locales mediante **Ollama**, **LM Studio** o **vLLM** para máxima privacidad.
+2. **Multi-canal simultáneo:** Un solo proceso Gateway de OpenClaw atiende tus conversaciones en WhatsApp, Telegram, Discord, Slack o web sin duplicar instancias.
+3. **Memoria y Contexto Persistente:** Utiliza archivos estructurados (como `SOUL.md` y `MEMORY.md`) para almacenar tus preferencias, aprendizajes de conversaciones previas e instrucciones globales. Tu asistente no "resetea" su cerebro al cerrar la app.
+4. **Skills y Automatización (ClawHub):** Puede ejecutar código en tu terminal, leer archivos locales, consultar calendarios (CalDAV/Google), realizar raspados (*scraping*) web y ejecutar tareas programadas (*cron jobs*).
+
+---
+
+## 🔌 Modelos de IA
+
+OpenClaw no está limitado a un único proveedor de modelos.
+
+La documentación contempla proveedores como **Anthropic, OpenAI y Google**, además de configuraciones con modelos locales.
+
+Conceptualmente:
+
+```text
+                 OpenClaw
+                    │
+       ┌────────────┼────────────┐
+       ↓            ↓            ↓
+   OpenAI       Anthropic      Google
+       │            │            │
+       └────────────┼────────────┘
+                    ↓
+                 Agente
+```
+
+👉 Esto permite separar el **agente/orquestador** del **modelo de lenguaje** que realiza el razonamiento.
+
+---
+
+## 🔐 Autoalojamiento
+
+Una de las características más importantes de OpenClaw es que puede ejecutarse en infraestructura controlada por el usuario.
+
+En lugar de:
+
+```text
+Usuario
+   ↓
+Servicio externo
+   ↓
+IA
+```
+
+puedes tener:
+
+```text
+Usuario
+   ↓
+Tu computadora / servidor
+   ↓
+OpenClaw Gateway
+   ↓
+Modelo de IA
+```
+
+👉 La documentación describe OpenClaw como **self-hosted**, es decir, ejecutado sobre hardware bajo control del usuario.
+
+Esto proporciona mayor control sobre:
+
+* configuración;
+* sesiones;
+* herramientas;
+* permisos;
+* canales;
+* infraestructura.
+
+👉 **Importante:** autoalojar el Gateway no significa automáticamente que todos los datos sean procesados localmente; si utilizas una API de un proveedor externo, las solicitudes al modelo siguen dependiendo de ese proveedor.
+
+---
+
+## 💻 Instalación
+
+OpenClaw actualmente puede utilizarse en **macOS, Linux y Windows**, y también existen rutas mediante Docker y otros métodos de instalación.
+
+Una instalación rápida documentada es:
+
+```bash
+npx openclaw@latest
+```
+
+Después puede ejecutarse el proceso de configuración:
+
+```bash
+openclaw onboard --install-daemon
+```
+
+Y comprobar el Gateway:
+
+```bash
+openclaw gateway status
+```
+
+Finalmente:
+
+```bash
+openclaw dashboard
+```
+
+👉 abre la interfaz de control en el navegador.
+
+---
+
+## 🖥️ OpenClaw y el desarrollo de software
+
+Aquí es donde OpenClaw resulta especialmente interesante para desarrolladores.
+
+Puede funcionar como una capa de agente alrededor de herramientas de desarrollo:
+
+```text
+                 OpenClaw
+                     │
+             ┌───────┴───────┐
+             ↓               ↓
+          Modelo IA       Herramientas
+                             │
+                  ┌──────────┼──────────┐
+                  ↓          ↓          ↓
+                Git       Terminal    Archivos
+                  │          │          │
+                  └──────────┼──────────┘
+                             ↓
+                         Proyecto
+```
+
+Por ejemplo, un desarrollador podría solicitar:
+
+```text
+"Analiza los errores del proyecto,
+ejecuta las pruebas y dime qué está fallando."
+```
+
+👉 El agente puede utilizar las herramientas disponibles para investigar y ejecutar acciones.
+
+---
+
+## 🔗 Un caso de uso real: De enviar una foto a solucionar un problema
+
+Imagina que estás en casa o en la oficina y necesitas resolver algo rápido:
+
+1. **Vía WhatsApp / Telegram:** Le envías a tu OpenClaw una fotografía de un error en pantalla, una factura o una pieza rota.
+2. **Capacidad Multimodal:** Tu nodo de OpenClaw procesa la imagen usando visión por computadora o el LLM seleccionado.
+3. **Acción Real:** Si le pides *"Busca el manual de este equipo, extrae el error y envía un correo con el resumen a soporte"*, el agente ejecuta el flujo completo, genera el informe y te responde en el mismo chat confirmando que la tarea fue completada.
+
+---
+
+## 🆚 OpenClaw vs ChatGPT tradicional
+
+| Característica             |     Chat tradicional | OpenClaw |
+| -------------------------- | -------------------: | -------: |
+| Conversación               |                    ✅ |        ✅ |
+| Código abierto             |            ❌/depende |        ✅ |
+| Autoalojamiento            |      Generalmente no |        ✅ |
+| Gateway propio             |                    ❌ |        ✅ |
+| Integración con mensajería |             Limitada |        ✅ |
+| Herramientas               | Depende del servicio |        ✅ |
+| Plugins                    | Depende del servicio |        ✅ |
+| Agentes                    |  Algunas plataformas |        ✅ |
+| Control de infraestructura |             Limitado |     Alto |
+
+👉 No significa que OpenClaw sea "mejor" en todos los escenarios. Su principal diferencia es el **control y la capacidad de conectar un agente con el entorno del usuario**.
+
+---
+
+## 🆚 OpenClaw vs OpenCode
+
+Esta comparación es especialmente interesante porque son proyectos diferentes:
+
+|                     | **OpenClaw**              | **OpenCode**              |
+| ------------------- | ------------------------- | ------------------------- |
+| Propósito principal | Asistente/agente personal | Agente de programación    |
+| Interfaz            | Mensajería, Web, apps     | Terminal, IDE, desktop    |
+| Gateway             | ✅                         | No es su concepto central |
+| WhatsApp/Telegram   | ✅                         | ❌                         |
+| Automatización      | ✅                         | ✅                         |
+| Programación        | ✅                         | 🎯 Principal              |
+| Multiagente         | ✅                         | Depende del flujo         |
+| Autoalojamiento     | ✅                         | Depende de configuración  |
+| Código abierto      | ✅                         | ✅                         |
+
+Una forma sencilla de recordarlo:
+
+```text
+OpenCode
+   ↓
+"Quiero un agente para programar"
+
+OpenClaw
+   ↓
+"Quiero un agente personal que pueda
+acompañarme y actuar desde diferentes canales"
+```
+
+---
+
+## ⚠️ Seguridad: un aspecto fundamental
+
+Aquí hay que tener especial cuidado.
+
+Un agente que solamente responde preguntas tiene capacidades limitadas.
+
+Pero un agente que puede:
+
+```text
+leer archivos
+     +
+ejecutar comandos
+     +
+acceder a cuentas
+     +
+usar herramientas
+```
+
+puede realizar acciones reales sobre un sistema.
+
+👉 La propia documentación de OpenClaw señala que un agente con acceso a credenciales, correo y comandos sobre computadoras requiere especial atención a la arquitectura y los controles de seguridad.
+
+Por eso es importante configurar:
+
+* 🔐 autenticación;
+* 👤 usuarios permitidos;
+* 📋 listas de acceso;
+* 🧱 aislamiento/sandbox cuando corresponda;
+* 🔑 permisos mínimos;
+* 🌐 acceso remoto cuidadosamente;
+* 📝 registros y monitoreo.
+
+---
+
+## 🧠 OpenClaw como plataforma de agentes
+
+La idea más importante es no verlo simplemente como "otra IA".
+
+Su arquitectura intenta combinar:
+
+```text
+        MODELO
+          +
+        AGENTE
+          +
+       MEMORIA
+          +
+      HERRAMIENTAS
+          +
+       GATEWAY
+          +
+       CANALES
+          +
+      AUTOMATIZACIÓN
+          =
+   ASISTENTE PERSONAL
+```
+
+👉 Por eso OpenClaw se sitúa dentro de la evolución de los sistemas de **AI Agents / Agentic AI**.
+
+---
+
+## 🏁 Resumen
+
+**OpenClaw es un asistente de IA de código abierto y autoalojado que utiliza un Gateway para conectar modelos, agentes, herramientas y múltiples canales de comunicación.** Puede funcionar en computadoras o servidores propios y está orientado a que la IA no solamente converse, sino que pueda **interactuar con herramientas y realizar acciones** bajo los permisos configurados.
+
+
+Su arquitectura puede resumirse así:
+
+```text
+                 🧠 MODELO IA
+                      │
+                      ↓
+                🤖 AGENTE
+                      │
+              ┌───────┴───────┐
+              ↓               ↓
+          🛠️ TOOLS         🧠 MEMORIA
+              │               │
+              └───────┬───────┘
+                      ↓
+                🦞 GATEWAY
+                      │
+        ┌─────────────┼─────────────┐
+        ↓             ↓             ↓
+    WhatsApp      Telegram       Discord
+        │             │             │
+        └─────────────┼─────────────┘
+                      ↓
+                   USUARIO
+```
