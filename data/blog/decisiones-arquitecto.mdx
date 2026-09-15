@@ -1,0 +1,788 @@
+---
+title: 🏛️ Decisiones de un Arquitecto de Sistemas
+date: '2026-09-16'
+tags: ['arquitectura de software', 'ingeniería de software', 'decisiones de arquitectura','sistemas']
+draft: false
+images: ['/static/images/blog/decisiones-arquitecto/decisiones-arquitecto.png']
+summary: 'En este artículo, exploraremos las decisiones clave que un arquitecto de sistemas debe tomar al diseñar y construir soluciones de software. Desde la selección de tecnologías hasta la definición de patrones de diseño...'
+---
+
+<Image
+  alt={`Decisiones de un Arquitecto de Sistemas image`}
+  src={`/static/images/blog/decisiones-arquitecto/decisiones-arquitecto.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Las **decisiones de un arquitecto de sistemas** son las elecciones técnicas y estratégicas que determinan **cómo se estructura, construye, integra, despliega, protege y escala un sistema de software**.
+
+👉 El arquitecto no se limita a elegir tecnologías. Su función principal es **tomar decisiones que permitan que el sistema cumpla sus requisitos funcionales y, especialmente, sus requisitos no funcionales**, como rendimiento, seguridad, disponibilidad, escalabilidad, mantenibilidad y costo.
+
+---
+
+## 🧠 ¿Qué hace realmente un arquitecto de sistemas?
+
+Un desarrollador normalmente puede preguntarse:
+
+> **¿Cómo implemento esta funcionalidad?**
+
+El arquitecto debe preguntarse:
+
+> **¿Cuál es la mejor forma de estructurar todo el sistema para que esta funcionalidad y las futuras puedan funcionar correctamente?**
+
+Por ejemplo:
+
+```text
+Requisito
+    ↓
+¿Qué arquitectura necesitamos?
+    ↓
+¿Qué componentes existirán?
+    ↓
+¿Cómo se comunicarán?
+    ↓
+¿Cómo almacenaremos los datos?
+    ↓
+¿Cómo escalaremos?
+    ↓
+¿Cómo protegemos el sistema?
+    ↓
+¿Cómo lo desplegamos?
+    ↓
+¿Cómo lo monitoreamos?
+```
+
+---
+
+## 🧩 Los Pilares de una Decisión Arquitectónica
+
+Una decisión de arquitectura de sistemas eficaz se fundamenta en tres dimensiones clave:
+
+```text
+ ┌─────────────────────────────────────────────────────────────┐
+ │               REQUERIMIENTOS DE NEGOCIO                     │
+ │      (Time-to-market, Costos, Presupuesto, Regulaciones)     │
+ └──────────────────────────────┬──────────────────────────────┘
+                                │
+                                ▼
+ ┌─────────────────────────────────────────────────────────────┐
+ │                  ATRIBUTOS DE CALIDAD (NFRs)                │
+ │    (Escalabilidad, Resiliencia, Latencia, Mantenibilidad)   │
+ └──────────────────────────────┬──────────────────────────────┘
+                                │
+                                ▼
+ ┌─────────────────────────────────────────────────────────────┐
+ │                   RESTRICCIONES TÉCNICAS                    │
+ │    (Infraestructura actual, Habilidades del Equipo, Legacy)  │
+ └─────────────────────────────────────────────────────────────┘
+
+```
+
+1. **Requerimientos de Negocio:** La arquitectura está al servicio del producto. Una startup en fase de validación "MVP" necesita una arquitectura monolítica simple que permita iterar rápido; un sistema bancario global requiere una arquitectura tolerante a fallos con redundancia geográfica.
+2. **Atributos de Calidad "Requerimientos No Funcionales":** Son las propiedades medibles del sistema. ¿Cuántas peticiones por segundo (*RPS*) debe soportar? ¿Cuál es el tiempo máximo de recuperación ante un fallo "RTO* y *RPO"?
+3. **Restricciones Técnicas:** El contexto real. Muchas decisiones están limitadas por el presupuesto disponible, las licencias de software, las restricciones geográficas (como operar bajo normativas locales en Venezuela o Latinoamérica) y el conocimiento técnico del equipo de desarrollo.
+
+---
+
+## 🎯 Principales decisiones de un arquitecto
+
+Un arquitecto de sistemas suele tomar decisiones en diferentes dimensiones.
+
+```text
+                 ARQUITECTURA
+                      │
+       ┌──────────────┼──────────────┐
+       ↓              ↓              ↓
+  Arquitectura     Datos         Comunicación
+       │              │              │
+       ↓              ↓              ↓
+   Seguridad      Escalabilidad   Rendimiento
+       │              │              │
+       ↓              ↓              ↓
+  Despliegue    Observabilidad   Mantenimiento
+```
+
+---
+
+## 🏗️ Elegir la arquitectura
+
+Una de las primeras decisiones es determinar **cómo se organizará el sistema**.
+
+Algunas posibilidades:
+
+* Monolito
+* Monolito modular
+* Arquitectura en capas
+* Microservicios
+* Serverless
+* Event-Driven Architecture
+* Hexagonal
+* Clean Architecture
+* Arquitectura orientada a servicios
+
+Por ejemplo:
+
+### Monolito
+
+```text
+┌─────────────────────────┐
+│       Aplicación        │
+│                         │
+│ Usuarios                │
+│ Productos               │
+│ Pagos                   │
+│ Reportes                │
+└────────────┬────────────┘
+             ↓
+          Base de datos
+```
+
+### Microservicios
+
+```text
+        ┌───────────┐
+        │ Usuarios  │
+        └─────┬─────┘
+              │
+        ┌─────▼─────┐
+        │ Productos │
+        └─────┬─────┘
+              │
+        ┌─────▼─────┐
+        │   Pagos   │
+        └───────────┘
+```
+
+La decisión correcta **no es automáticamente la arquitectura más moderna**.
+
+👉 Un sistema pequeño puede funcionar mejor como monolito.
+
+---
+
+## 📊 Decidir cómo almacenar los datos
+
+El arquitecto debe decidir qué tipo de almacenamiento utilizar.
+
+Por ejemplo:
+
+### Base de datos relacional
+
+```text
+PostgreSQL
+MySQL
+SQL Server
+Oracle
+```
+
+👉 Adecuada cuando existen relaciones estructuradas y se necesita consistencia transaccional.
+
+### NoSQL
+
+```text
+MongoDB
+Redis
+Cassandra
+DynamoDB
+```
+
+👉 Puede ser apropiada cuando existen necesidades específicas de escalabilidad, flexibilidad o rendimiento.
+
+También hay que decidir:
+
+* modelo de datos;
+* índices;
+* replicación;
+* particionamiento;
+* backups;
+* retención;
+* consistencia;
+* recuperación ante desastres.
+
+---
+
+## 🔗 Decidir cómo se comunican los componentes
+
+Supongamos:
+
+```text
+Frontend
+    ↓
+Backend
+    ↓
+Base de datos
+```
+
+Pero cuando el sistema crece:
+
+```text
+Frontend
+    ↓
+API Gateway
+    ↓
+┌──────────┬──────────┬──────────┐
+│ Usuarios │ Pedidos  │ Pagos    │
+└──────────┴──────────┴──────────┘
+```
+
+El arquitecto debe decidir si utilizar:
+
+* REST;
+* GraphQL;
+* gRPC;
+* WebSockets;
+* mensajería;
+* eventos;
+* colas;
+* comunicación síncrona;
+* comunicación asíncrona.
+
+Por ejemplo:
+
+```text
+Síncrono:
+
+Cliente → Servicio → Respuesta
+```
+
+Mientras que:
+
+```text
+Asíncrono:
+
+Cliente
+   ↓
+Evento
+   ↓
+Cola
+   ↓
+Servicio
+```
+
+---
+
+## ⚡ Decidir cómo lograr rendimiento
+
+El arquitecto debe identificar los posibles cuellos de botella.
+
+Por ejemplo:
+
+```text
+Usuarios
+    ↓
+Load Balancer
+    ↓
+┌───────┬───────┬───────┐
+│ App 1 │ App 2 │ App 3 │
+└───────┴───────┴───────┘
+```
+
+También puede incorporar:
+
+* caché;
+* CDN;
+* índices;
+* procesamiento asíncrono;
+* compresión;
+* balanceadores;
+* réplicas;
+* optimización de consultas.
+
+Aquí aparece un concepto que ya hemos visto:
+
+**Latencia**
+
+> La arquitectura debe minimizar los tiempos de respuesta donde realmente sea necesario.
+
+---
+
+## 📈 Decidir cómo escalar
+
+Una pregunta fundamental es:
+
+> ¿Qué ocurrirá si pasamos de 100 usuarios a 100.000?
+
+Una aplicación puede escalar verticalmente:
+
+```text
+Servidor pequeño
+      ↓
+Servidor más potente
+```
+
+O horizontalmente:
+
+```text
+        Load Balancer
+        /     |     \
+       ↓      ↓      ↓
+     App 1  App 2  App 3
+```
+
+El arquitecto debe decidir cuál estrategia tiene sentido según:
+
+* tráfico;
+* costos;
+* disponibilidad;
+* naturaleza de la aplicación;
+* estado de las sesiones;
+* base de datos;
+* infraestructura.
+
+---
+
+## 🔐 Decidir la seguridad
+
+La seguridad debe formar parte de la arquitectura desde el principio.
+
+El arquitecto debe decidir:
+
+```text
+¿Quién puede acceder?
+        ↓
+Autenticación
+        ↓
+¿A qué puede acceder?
+        ↓
+Autorización
+        ↓
+¿Cómo protegemos los datos?
+        ↓
+Cifrado
+        ↓
+¿Cómo detectamos ataques?
+        ↓
+Monitoreo
+```
+
+También entran decisiones como:
+
+* OAuth 2.0 / OpenID Connect;
+* gestión de secretos;
+* cifrado;
+* redes privadas;
+* firewalls;
+* WAF;
+* gestión de permisos;
+* auditoría;
+* Zero Trust;
+* protección de APIs.
+
+---
+
+## ☁️ Decidir dónde ejecutar el sistema
+
+Otra decisión importante es la infraestructura.
+
+```text
+               SISTEMA
+                  │
+      ┌───────────┼───────────┐
+      ↓           ↓           ↓
+   On-Premise     Cloud      Híbrido
+```
+
+El arquitecto puede evaluar:
+
+* infraestructura propia;
+* nube pública;
+* nube privada;
+* arquitectura híbrida;
+* contenedores;
+* máquinas virtuales;
+* serverless.
+
+Y posteriormente tecnologías como:
+
+```text
+Docker
+Kubernetes
+Terraform
+CI/CD
+Cloud
+```
+
+---
+
+## 🚀 Decidir cómo desplegar
+
+El arquitecto también define cómo llegan los cambios a producción.
+
+Por ejemplo:
+
+```text
+Código
+  ↓
+Git
+  ↓
+Build
+  ↓
+Tests
+  ↓
+Security Scan
+  ↓
+Deploy
+  ↓
+Producción
+```
+
+Y puede elegir una estrategia:
+
+* Rolling Deployment
+* Blue-Green Deployment
+* Canary Deployment
+* Recreate Deployment
+
+👉 Esto conecta directamente con **Pipeline de Despliegue** y **Estrategias de Despliegue**.
+
+---
+
+## 📡 Decidir cómo observar el sistema
+
+Un sistema moderno no debería ser una "caja negra".
+
+El arquitecto debe pensar:
+
+```text
+¿Está funcionando?
+¿Está lento?
+¿Dónde ocurre el error?
+¿Cuántos usuarios están afectados?
+```
+
+Para responderlas se utilizan:
+
+### Logs
+
+```text
+¿Qué ocurrió?
+```
+
+### Métricas
+
+```text
+¿Cuánto?
+```
+
+### Traces
+
+```text
+¿Dónde ocurrió?
+```
+
+Conceptualmente:
+
+```text
+Aplicación
+    │
+ ┌──┼──────────────┐
+ ↓  ↓              ↓
+Logs Métricas    Traces
+ └──┬──────────────┘
+    ↓
+Observabilidad
+    ↓
+Alertas
+```
+
+---
+
+## 💰 Decidir cuánto cuesta
+
+Una arquitectura técnicamente excelente puede ser económicamente inviable.
+
+Por eso el arquitecto debe considerar:
+
+```text
+Costo
+ ├── Infraestructura
+ ├── Bases de datos
+ ├── Tráfico
+ ├── Almacenamiento
+ ├── Servicios externos
+ ├── Licencias
+ └── Mantenimiento
+```
+
+La pregunta no es:
+
+> "¿Cuál es la tecnología más potente?"
+
+Sino:
+
+> **"¿Cuál solución satisface los requisitos con un costo razonable?"**
+
+---
+
+## ⚖️ Las decisiones siempre implican compromisos
+
+Esta es una de las características más importantes de la arquitectura.
+
+No existe una solución perfecta.
+
+Por ejemplo:
+
+```text
+Mayor rendimiento
+       ↕
+Mayor costo
+
+Mayor disponibilidad
+       ↕
+Mayor complejidad
+
+Mayor flexibilidad
+       ↕
+Mayor mantenimiento
+```
+
+👉 Por eso el arquitecto trabaja constantemente con **trade-offs**.
+
+---
+
+---
+
+## ⚡ Tipos de Decisiones Críticas en el Ciclo de Vida
+
+Las decisiones de un arquitecto se dividen tradicionalmente en varias capas estructurales:
+
+* **Arquitectura de Alto Nivel "Monolito vs. Microservicios":** Evaluar si la complejidad operacional de los microservicios se justifica frente a la simplicidad y velocidad de desarrollo de un monolito modular bien estructurado.
+* **Estrategias de Almacenamiento y Datos:** Decidir entre bases de datos relacionales tradicionales "PostgreSQL, MySQL" frente a paradigmas NoSQL "MongoDB, Redis, Cassandra" basándose en los patrones de acceso y la necesidad de consistencia.
+* **Patrones de Integración y Comunicación:** Elegir entre arquitecturas basadas en llamadas síncronas "REST, gRPC, GraphQL" o arquitecturas asíncronas orientadas a eventos "Kafka, RabbitMQ, Webhooks".
+* **Gestión de Riesgos y Deuda Técnica:** Saber cuándo aceptar deuda técnica de manera consciente para cumplir con una fecha de lanzamiento, documentando el impacto y planificando su refactorización futura.
+
+---
+
+## 🧩 Architecture Decision Records (ADR)
+
+👉 Una práctica muy importante es documentar las decisiones mediante **Architecture Decision Records "ADR"**.
+
+Para evitar el fenómeno del *"conocimiento tribal"* o el olvido de por qué se tomó una decisión hace dos años, los arquitectos modernos utilizan los **ADRs "Architecture Decision Records"**.
+
+Un ADR es un documento ligero, almacenado directamente en el repositorio de código, que sigue una estructura clara:
+
+* **Contexto:** ¿Cuál es el problema actual y qué fuerzas o limitaciones nos rodean?
+* **Decisión:** ¿Qué opción elegimos para resolverlo?
+* **Consecuencias:** ¿Qué beneficios ganamos y qué sacrificios "trade-offs*" aceptamos con esta decisión?
+
+Un ADR puede tener esta estructura:
+
+```text
+ADR-001
+Título:
+Elegir PostgreSQL como base de datos principal
+
+Contexto:
+El sistema necesita transacciones y relaciones
+entre usuarios, pedidos y pagos.
+
+Decisión:
+Utilizar PostgreSQL.
+
+Alternativas:
+- MongoDB
+- MySQL
+- PostgreSQL
+
+Razones:
+- Integridad referencial
+- Transacciones
+- Madurez
+- Soporte SQL
+
+Consecuencias:
++ Alta consistencia
++ Consultas relacionales
+- Escalabilidad horizontal más compleja
+```
+
+Esto evita que meses después alguien pregunte:
+
+> "¿Por qué elegimos esta tecnología?"
+
+Y nadie conozca la respuesta.
+
+---
+
+## 🧠 Arquitectura = decisiones + consecuencias
+
+Una decisión arquitectónica no debería ser:
+
+```text
+"Usaremos microservicios porque están de moda."
+```
+
+Debería ser:
+
+```text
+Problema
+   ↓
+Requisitos
+   ↓
+Alternativas
+   ↓
+Evaluación
+   ↓
+Decisión
+   ↓
+Consecuencias
+```
+
+Por ejemplo:
+
+```text
+Problema:
+Necesitamos escalar el procesamiento de pagos.
+
+Alternativas:
+A) Monolito
+B) Microservicio
+C) Serverless
+
+Evaluación:
+Costo + rendimiento + complejidad + seguridad
+
+Decisión:
+Microservicio
+
+Consecuencia:
+Mayor independencia,
+pero mayor complejidad operacional.
+```
+
+---
+
+## 🤖 Arquitecto de sistemas en la era de la IA
+
+Con los **AI Coding Agents** y el **Harness Engineering**, el papel del arquitecto está evolucionando.
+
+Un agente puede escribir grandes cantidades de código.
+
+Pero todavía necesitamos decidir:
+
+```text
+¿Qué sistema construir?
+       ↓
+¿Cómo dividirlo?
+       ↓
+¿Qué reglas debe cumplir?
+       ↓
+¿Qué tecnologías utilizar?
+       ↓
+¿Qué puede hacer el agente?
+       ↓
+¿Cómo verificamos su trabajo?
+```
+
+Podemos visualizarlo así:
+
+```text
+              ARQUITECTO
+                   │
+         ┌─────────┼─────────┐
+         ↓         ↓         ↓
+    Arquitectura  Reglas   Requisitos
+         │         │         │
+         └─────────┼─────────┘
+                   ↓
+              AI AGENTS
+                   ↓
+                Código
+                   ↓
+          Tests / CI / Lint
+                   ↓
+             Verificación
+```
+
+👉 Aquí **Harness Engineering** adquiere especial importancia: el arquitecto no solamente diseña el sistema de software, sino también el **entorno en el que los agentes de IA pueden construirlo y mantenerlo de forma controlada**.
+
+---
+
+## 🆚 Arquitecto vs Desarrollador
+
+| Aspecto       | Desarrollador        | Arquitecto                       |
+| ------------- | -------------------- | -------------------------------- |
+| Código        | Alto enfoque         | Supervisión/dirección            |
+| Componentes   | Implementa           | Define estructura                |
+| Tecnologías   | Utiliza              | Evalúa y selecciona              |
+| APIs          | Implementa           | Define integración               |
+| Datos         | Programa acceso      | Define estrategia                |
+| Seguridad     | Implementa controles | Define arquitectura de seguridad |
+| Escalabilidad | Optimiza componentes | Diseña estrategia global         |
+| Costos        | Considera            | Evalúa a nivel arquitectónico    |
+| Trade-offs    | Locales              | Globales                         |
+| ADR           | Puede aportar        | Suele liderar                    |
+
+👉 No significa que sean roles completamente separados: en muchos equipos, **los desarrolladores también toman decisiones arquitectónicas**.
+
+---
+
+## 🔥 Las preguntas que debe hacerse un arquitecto
+
+Antes de aprobar una arquitectura, debería preguntarse:
+
+### Funcionalidad
+
+> ¿El sistema puede cumplir los requisitos?
+
+### Rendimiento
+
+> ¿Puede responder suficientemente rápido?
+
+### Escalabilidad
+
+> ¿Qué ocurre cuando aumenta la carga?
+
+### Disponibilidad
+
+> ¿Qué ocurre si falla un servidor?
+
+### Seguridad
+
+> ¿Qué ocurre si alguien intenta atacar el sistema?
+
+### Mantenibilidad
+
+> ¿Podremos modificarlo dentro de dos años?
+
+### Costos
+
+> ¿Podemos mantener económicamente esta solución?
+
+### Operación
+
+> ¿Podemos monitorizar y diagnosticar el sistema?
+
+### Evolución
+
+> ¿Podemos incorporar nuevas funcionalidades sin reconstruirlo todo?
+
+---
+
+## 🏁 Resumen
+
+Las decisiones de un arquitecto de sistemas definen el ADN de una aplicación. No se trata de tomar decisiones perfectas —porque estas no existen—, sino de tomar decisiones **justificables, documentadas y alineadas** con la realidad del negocio y del equipo técnico. Al final del día, un buen sistema es aquel cuyos costos de mantenimiento y evolución no superan el valor que aporta a los usuarios.
+
+Las **decisiones de un arquitecto de sistemas** determinan las características fundamentales de una solución tecnológica:
+
+```text
+                 REQUISITOS
+                     ↓
+             ┌───────────────┐
+             │  ARQUITECTO   │
+             └───────┬───────┘
+                     ↓
+        ┌────────────┼────────────┐
+        ↓            ↓            ↓
+   Arquitectura    Datos      Comunicación
+        ↓            ↓            ↓
+   Seguridad    Escalabilidad   Rendimiento
+        ↓            ↓            ↓
+   Despliegue  Observabilidad   Costos
+        └────────────┼────────────┘
+                     ↓
+              SISTEMA FINAL
+```
+
+
+
