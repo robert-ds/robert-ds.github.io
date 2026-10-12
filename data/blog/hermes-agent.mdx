@@ -1,0 +1,225 @@
+---
+title: 🤖 Hermes Agent - el agente de IA que aprende de sus experiencias
+date: '2026-10-13'
+tags: ['IA', 'Hermes Agent', 'Agente de IA', 'Aprendizaje automático', 'Inteligencia artificial']
+draft: false
+images: ['/static/images/blog/hermes-agent/hermes-agent.png']
+summary: 'Hermes Agent es un agente de inteligencia artificial que aprende de sus experiencias y toma decisiones informadas. Descubre cómo funciona y cómo puede mejorar la eficiencia en diversos campos.'
+---
+
+<Image
+  alt={`Hermes Agent image`}
+  src={`/static/images/blog/hermes-agent/hermes-agent.png`}
+  width={1920 / 2}
+  height={1080 / 2}
+  priority
+/>
+
+>Hasta hace poco, la mayoría de los asistentes de inteligencia artificial sufrían de "amnesia crónica": cada vez que abrías una nueva sesión o cambiabas de chat, el modelo comenzaba desde cero, sin recordar tus preferencias, tus flujos de trabajo anteriores ni los errores que ya te había ayudado a resolver.
+
+Hermes Agent es un agente de inteligencia artificial diseñado para realizar tareas, utilizar herramientas, mantener contexto entre sesiones y mejorar sus flujos de trabajo mediante habilidades reutilizables. Se relaciona con la nueva generación de agentes autónomos que van más allá de responder preguntas: pueden ejecutar acciones, trabajar con código y automatizar tareas según las herramientas y los permisos disponibles.
+
+👉 Es importante distinguirlo de un chatbot tradicional: un chatbot se centra principalmente en conversar; un agente como Hermes puede combinar razonamiento, memoria, herramientas y ejecución para completar tareas de varios pasos.
+
+---
+
+## ⚙️ ¿Cómo funciona Hermes Agent?
+
+Su funcionamiento se basa en conectar un modelo de IA con memoria, herramientas, habilidades y un entorno donde puede ejecutar tareas.
+
+
+```
+                 👤 USUARIO
+                     │
+                     ▼
+            ┌─────────────────┐
+            │   HERMES AGENT  │
+            └────────┬────────┘
+                     │
+         ┌───────────┼───────────┐
+         ▼           ▼           ▼
+      🧠 Memoria   🛠️ Tools   📚 Skills
+         │           │           │
+         └───────────┼───────────┘
+                     ▼
+               🤖 Modelo IA
+                     │
+                     ▼
+             ⚡ Ejecutar tareas
+                     │
+                     ▼
+              Verificar resultado
+                     │
+                     ▼
+              Aprender y reutilizar
+```
+
+👉 La característica distintiva de Hermes es su ciclo de aprendizaje operativo: puede crear habilidades a partir de experiencias, mejorarlas y recuperar información de sesiones anteriores. Esto no significa que el modelo se reentrene automáticamente en cada conversación; se refiere principalmente a la reutilización de memoria y procedimientos.
+
+---
+
+## 🧩 Sus componentes principales
+
+1\. 🧠 Memoria persistente
+
+Conserva información útil entre sesiones y permite recuperar conversaciones anteriores. Así puede mantener contexto sobre proyectos, preferencias e instrucciones recurrentes.
+
+2\. 📚 Sistema de habilidades (Skills)
+
+Permite convertir procedimientos repetibles en instrucciones reutilizables. Por ejemplo, una habilidad para revisar código, preparar informes o diagnosticar errores.
+
+3\. 🛠️ Herramientas
+
+Puede utilizar terminal, archivos, navegación web y otras herramientas habilitadas para ejecutar tareas reales, según sus permisos y configuración.
+
+4\. 👥 Subagentes y automatización
+
+👉 Puede delegar partes de una tarea a agentes especializados y ejecutar trabajos programados. Esto resulta útil para investigaciones o procesos que pueden dividirse en tareas independientes.
+
+---
+
+## 🔄 ¿Qué significa que Hermes aprende de la experiencia?
+
+Imagina que utilizas Hermes para revisar proyectos de Python.
+
+La primera vez le pides que analice el código, ejecute pruebas y genere un informe. Si el procedimiento se convierte en una habilidad reutilizable, puede aplicar ese flujo en futuras tareas similares.
+
+```
+Primera tarea
+     ↓
+Analizar el proyecto
+     ↓
+Ejecutar pruebas
+     ↓
+Identificar errores
+     ↓
+Crear o mejorar una Skill
+     ↓
+Guardar conocimiento útil
+     ↓
+──────────────────────
+Siguiente tarea similar
+     ↓
+Recuperar la Skill y el contexto
+     ↓
+Ejecutar el procedimiento
+     ↓
+Evaluar el resultado
+```
+
+La ventaja: no es necesario reconstruir desde cero todo el procedimiento en cada sesión.
+
+La limitación: la memoria y las habilidades pueden contener errores o quedar desactualizadas. Por eso deben revisarse, y las acciones importantes necesitan verificaciones independientes.
+
+---
+
+## 💻 ¿Para qué puedes utilizarlo?
+
+* 🧩 Desarrollo de software
+
+* 🧠 Analizar repositorios, modificar archivos, ejecutar pruebas, depurar errores y automatizar tareas de programación.
+
+* 📚 Investigación técnica
+
+* ⚡ Buscar información, comparar tecnologías, consultar documentación y elaborar informes.
+
+* 🤖 Automatización
+
+* 🛠️ Ejecutar tareas periódicas, generar reportes y enviar resultados mediante canales configurados.
+
+* 👤 Asistente personal
+
+* ⚙️ Interactuar desde la terminal o plataformas de mensajería como Telegram, Discord y otras integraciones disponibles.
+
+👉 Hermes documenta integraciones de mensajería, tareas programadas, herramientas web y conexión mediante MCP (Model Context Protocol).
+
+---
+
+## 🆚 Hermes Agent vs OpenClaw vs OpenCode
+
+Aunque pertenecen al ecosistema de agentes de IA, sus enfoques son distintos.
+
+| Característica            | Hermes Agent                                       | OpenClaw                                              | OpenCode                              |
+| ------------------------- | -------------------------------------------------- | ----------------------------------------------------- | ------------------------------------- |
+| Enfoque principal         | Agente general con memoria y aprendizaje operativo | Asistente personal conectado a canales y herramientas | Agente de programación                |
+| Memoria entre sesiones    | Sí                                                 | Según configuración                                   | Según funciones y configuración       |
+| Habilidades reutilizables | Una característica central                         | Mediante herramientas y extensiones                   | Mediante instrucciones y herramientas |
+| Mensajería                | Sí                                                 | Sí                                                    | No es su enfoque principal            |
+| Programación              | Sí                                                 | Sí, con herramientas adecuadas                        | Es su especialidad                    |
+| Automatización            | Sí                                                 | Sí                                                    | Principalmente flujos de desarrollo   |
+| Código abierto            | Sí                                                 | Sí                                                    | Sí                                    |
+
+👉 Los detalles de cada herramienta pueden cambiar con sus versiones. Esta tabla compara sus orientaciones generales, no una garantía de que cada función esté disponible en todas las instalaciones.
+
+En pocas palabras:
+
+- Hermes Agent: un asistente que reutiliza memoria y habilidades para realizar tareas variadas.
+- OpenClaw: un agente personal enfocado en conectar asistentes, herramientas y canales de comunicación.
+- OpenCode: una herramienta especializada en el desarrollo de software con agentes de IA.
+
+---
+
+## 🖥️ Instalación de Hermes Agent
+
+La documentación oficial incluye instaladores para distintos sistemas. Para una instalación desde terminal en Linux, macOS o WSL2, el proyecto documenta este comando:
+
+
+```
+curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+```
+
+Después, puedes iniciar la configuración:
+
+```
+hermes setup
+```
+
+Y seleccionar o configurar el proveedor y modelo de IA que utilizarás.
+
+Para comenzar una sesión interactiva:
+
+```
+hermes
+```
+
+Puedes consultar la documentación en [Hermes Agent — instalación y primeros pasos](https://hermes-agent.nousresearch.com/docs/).
+
+👉 Recomendación de seguridad: antes de ejecutar un instalador remoto, revisa su contenido y las instrucciones oficiales. Si habilitas acceso a terminal, archivos, cuentas o mensajería, limita los permisos y configura aislamiento cuando corresponda. Un agente autónomo puede realizar cambios reales en el sistema.
+
+---
+
+## 🧠 Relación con Harness Engineering
+
+Hermes Agent es un buen ejemplo para comprender los conceptos de Harness Engineering que vimos anteriormente.
+
+```
+          HERMES AGENT
+                │
+     ┌──────────┼──────────┐
+     ▼          ▼          ▼
+  Contexto   Herramientas  Skills
+     │          │          │
+     └──────────┼──────────┘
+                ▼
+            Ejecución
+                ▼
+          Verificación
+                ▼
+       Memoria y mejora del flujo
+```
+
+El agente proporciona las capacidades de razonamiento y acción; el entorno, las herramientas, las restricciones y los mecanismos de verificación determinan qué tan confiable resulta el proceso.
+
+También puedes combinarlo conceptualmente con las metodologías anteriores:
+
+- TDD: las pruebas comprueban que el código cumple los comportamientos esperados.
+- BDD: los escenarios describen cómo debe comportarse el sistema.
+- Spec-Driven Development: la especificación define qué construir.
+- Harness Engineering: prepara el entorno para que el agente pueda trabajar y verificar sus resultados.
+- Hermes Agent: aporta un agente con memoria persistente, habilidades reutilizables y capacidad de ejecutar tareas.
+
+---
+
+## 🏁 Resumen
+
+Hermes Agent es un agente de inteligencia artificial de código abierto desarrollado por Nous Research que combina modelos de IA, memoria persistente, herramientas, habilidades reutilizables y automatización. Su propuesta distintiva es aprovechar la experiencia operativa para reutilizar procedimientos y mantener continuidad entre sesiones.
